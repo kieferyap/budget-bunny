@@ -80,6 +80,178 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB0415D91CAE4BDF006BD3FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FB0415DD1CAE4C0E006BD3FD /* Controllers */,
+				FB0415E21CAE4C8A006BD3FD /* Helpers */,
+				FB0415DA1CAE4BE9006BD3FD /* Models */,
+				FB0415E31CAE4C91006BD3FD /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FB0415DA1CAE4BE9006BD3FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FB0415DB1CAE4BF0006BD3FD /* CellItems */,
+				FB0415DC1CAE4BF7006BD3FD /* ManagedObjects */,
+				FBD833731CAC15980020AF3E /* BudgetBunny.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FB0415DB1CAE4BF0006BD3FD /* CellItems */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CellItems;
+			sourceTree = "<group>";
+		};
+		FB0415DC1CAE4BF7006BD3FD /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		FB0415DD1CAE4C0E006BD3FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FB0415DE1CAE4C44006BD3FD /* AccountScreens */,
+				FB0415F01CAE4F1F006BD3FD /* AppLauncher */,
+				FB0415DF1CAE4C4C006BD3FD /* BudgetScreens */,
+				FB0415E11CAE4C68006BD3FD /* DashboardScreens */,
+				FB0415E01CAE4C5B006BD3FD /* ReportScreens */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FB0415DE1CAE4C44006BD3FD /* AccountScreens */ = {
+			isa = PBXGroup;
+			children = (
+				FBD8336D1CAC15980020AF3E /* ViewController.h */,
+				FBD8336E1CAC15980020AF3E /* ViewController.m */,
+			);
+			path = AccountScreens;
+			sourceTree = "<group>";
+		};
+		FB0415DF1CAE4C4C006BD3FD /* BudgetScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BudgetScreens;
+			sourceTree = "<group>";
+		};
+		FB0415E01CAE4C5B006BD3FD /* ReportScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReportScreens;
+			sourceTree = "<group>";
+		};
+		FB0415E11CAE4C68006BD3FD /* DashboardScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DashboardScreens;
+			sourceTree = "<group>";
+		};
+		FB0415E21CAE4C8A006BD3FD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FB0415E31CAE4C91006BD3FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FB0415E41CAE4C97006BD3FD /* TableViewCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FB0415E41CAE4C97006BD3FD /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		FB0415E71CAE4CB7006BD3FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FB0415E91CAE4CBE006BD3FD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		FB0415EA1CAE4CC1006BD3FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FB0415EB1CAE4CC7006BD3FD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		FB0415EC1CAE4E8C006BD3FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FB0415ED1CAE4EB5006BD3FD /* Locales */,
+				FB0415EE1CAE4EB9006BD3FD /* PropertyLists */,
+				FB0415EF1CAE4EC4006BD3FD /* Storyboards */,
+				FBD833761CAC15980020AF3E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FB0415ED1CAE4EB5006BD3FD /* Locales */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Locales;
+			sourceTree = "<group>";
+		};
+		FB0415EE1CAE4EB9006BD3FD /* PropertyLists */ = {
+			isa = PBXGroup;
+			children = (
+				FBD8337B1CAC15980020AF3E /* Info.plist */,
+			);
+			path = PropertyLists;
+			sourceTree = "<group>";
+		};
+		FB0415EF1CAE4EC4006BD3FD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FBD833781CAC15980020AF3E /* LaunchScreen.storyboard */,
+				FBD833701CAC15980020AF3E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FB0415F01CAE4F1F006BD3FD /* AppLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				FBD8336A1CAC15980020AF3E /* AppDelegate.h */,
+				FBD8336B1CAC15980020AF3E /* AppDelegate.m */,
+				FBD833681CAC15980020AF3E /* main.m */,
+			);
+			path = AppLauncher;
+			sourceTree = "<group>";
+		};
 		FBD8335B1CAC15980020AF3E = {
 			isa = PBXGroup;
 			children = (
@@ -103,31 +275,17 @@
 		FBD833661CAC15980020AF3E /* BudgetBunny */ = {
 			isa = PBXGroup;
 			children = (
-				FBD8336A1CAC15980020AF3E /* AppDelegate.h */,
-				FBD8336B1CAC15980020AF3E /* AppDelegate.m */,
-				FBD8336D1CAC15980020AF3E /* ViewController.h */,
-				FBD8336E1CAC15980020AF3E /* ViewController.m */,
-				FBD833701CAC15980020AF3E /* Main.storyboard */,
-				FBD833761CAC15980020AF3E /* Assets.xcassets */,
-				FBD833781CAC15980020AF3E /* LaunchScreen.storyboard */,
-				FBD8337B1CAC15980020AF3E /* Info.plist */,
-				FBD833731CAC15980020AF3E /* BudgetBunny.xcdatamodeld */,
-				FBD833671CAC15980020AF3E /* Supporting Files */,
+				FB0415D91CAE4BDF006BD3FD /* Classes */,
+				FB0415EC1CAE4E8C006BD3FD /* Resources */,
 			);
 			path = BudgetBunny;
-			sourceTree = "<group>";
-		};
-		FBD833671CAC15980020AF3E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FBD833681CAC15980020AF3E /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		FBD833831CAC15980020AF3E /* BudgetBunnyTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB0415E71CAE4CB7006BD3FD /* Classes */,
+				FB0415E91CAE4CBE006BD3FD /* Tests */,
 				FBD833841CAC15980020AF3E /* BudgetBunnyTests.m */,
 				FBD833861CAC15980020AF3E /* Info.plist */,
 			);
@@ -137,6 +295,8 @@
 		FBD8338E1CAC15980020AF3E /* BudgetBunnyUITests */ = {
 			isa = PBXGroup;
 			children = (
+				FB0415EA1CAE4CC1006BD3FD /* Classes */,
+				FB0415EB1CAE4CC7006BD3FD /* Tests */,
 				FBD8338F1CAC15980020AF3E /* BudgetBunnyUITests.m */,
 				FBD833911CAC15980020AF3E /* Info.plist */,
 			);
@@ -319,6 +479,7 @@
 				FBD833711CAC15980020AF3E /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		FBD833781CAC15980020AF3E /* LaunchScreen.storyboard */ = {
@@ -327,6 +488,7 @@
 				FBD833791CAC15980020AF3E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -422,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = BudgetBunny/Info.plist;
+				INFOPLIST_FILE = BudgetBunny/Resources/PropertyLists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crentagon.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -436,7 +598,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = BudgetBunny/Info.plist;
+				INFOPLIST_FILE = BudgetBunny/Resources/PropertyLists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crentagon.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -509,6 +671,7 @@
 				FBD833961CAC15980020AF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBD833971CAC15980020AF3E /* Build configuration list for PBXNativeTarget "BudgetBunnyTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +680,7 @@
 				FBD833991CAC15980020AF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBD8339A1CAC15980020AF3E /* Build configuration list for PBXNativeTarget "BudgetBunnyUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +689,7 @@
 				FBD8339C1CAC15980020AF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
