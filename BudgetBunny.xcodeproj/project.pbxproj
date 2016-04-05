@@ -16,6 +16,20 @@
 		FBD8337A1CAC15980020AF3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD833781CAC15980020AF3E /* LaunchScreen.storyboard */; };
 		FBD833851CAC15980020AF3E /* BudgetBunnyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD833841CAC15980020AF3E /* BudgetBunnyTests.m */; };
 		FBD833901CAC15980020AF3E /* BudgetBunnyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD8338F1CAC15980020AF3E /* BudgetBunnyUITests.m */; };
+		FBDAADE81CB3FF7200DEBDBC /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADCD1CB3FF7200DEBDBC /* Record+CoreDataProperties.m */; };
+		FBDAADE91CB3FF7200DEBDBC /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADCF1CB3FF7200DEBDBC /* Record.m */; };
+		FBDAADEA1CB3FF7200DEBDBC /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADD11CB3FF7200DEBDBC /* Category+CoreDataProperties.m */; };
+		FBDAADEB1CB3FF7200DEBDBC /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADD31CB3FF7200DEBDBC /* Category.m */; };
+		FBDAADEC1CB3FF7200DEBDBC /* Transaction+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADD51CB3FF7200DEBDBC /* Transaction+CoreDataProperties.m */; };
+		FBDAADED1CB3FF7200DEBDBC /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADD71CB3FF7200DEBDBC /* Transaction.m */; };
+		FBDAADEE1CB3FF7200DEBDBC /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADD91CB3FF7200DEBDBC /* Account+CoreDataProperties.m */; };
+		FBDAADEF1CB3FF7200DEBDBC /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADDB1CB3FF7200DEBDBC /* Account.m */; };
+		FBDAADF01CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADDD1CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.m */; };
+		FBDAADF11CB3FF7200DEBDBC /* Wishitem.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADDF1CB3FF7200DEBDBC /* Wishitem.m */; };
+		FBDAADF21CB3FF7200DEBDBC /* Budget+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADE11CB3FF7200DEBDBC /* Budget+CoreDataProperties.m */; };
+		FBDAADF31CB3FF7200DEBDBC /* Budget.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADE31CB3FF7200DEBDBC /* Budget.m */; };
+		FBDAADF41CB3FF7200DEBDBC /* Target+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADE51CB3FF7200DEBDBC /* Target+CoreDataProperties.m */; };
+		FBDAADF51CB3FF7200DEBDBC /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDAADE71CB3FF7200DEBDBC /* Target.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +67,34 @@
 		FBD8338B1CAC15980020AF3E /* BudgetBunnyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetBunnyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD8338F1CAC15980020AF3E /* BudgetBunnyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BudgetBunnyUITests.m; sourceTree = "<group>"; };
 		FBD833911CAC15980020AF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDAADCC1CB3FF7200DEBDBC /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADCD1CB3FF7200DEBDBC /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADCE1CB3FF7200DEBDBC /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		FBDAADCF1CB3FF7200DEBDBC /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		FBDAADD01CB3FF7200DEBDBC /* Category+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADD11CB3FF7200DEBDBC /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADD21CB3FF7200DEBDBC /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		FBDAADD31CB3FF7200DEBDBC /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		FBDAADD41CB3FF7200DEBDBC /* Transaction+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADD51CB3FF7200DEBDBC /* Transaction+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADD61CB3FF7200DEBDBC /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		FBDAADD71CB3FF7200DEBDBC /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		FBDAADD81CB3FF7200DEBDBC /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADD91CB3FF7200DEBDBC /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADDA1CB3FF7200DEBDBC /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		FBDAADDB1CB3FF7200DEBDBC /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		FBDAADDC1CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Wishitem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADDD1CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Wishitem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADDE1CB3FF7200DEBDBC /* Wishitem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wishitem.h; sourceTree = "<group>"; };
+		FBDAADDF1CB3FF7200DEBDBC /* Wishitem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wishitem.m; sourceTree = "<group>"; };
+		FBDAADE01CB3FF7200DEBDBC /* Budget+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Budget+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADE11CB3FF7200DEBDBC /* Budget+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Budget+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADE21CB3FF7200DEBDBC /* Budget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Budget.h; sourceTree = "<group>"; };
+		FBDAADE31CB3FF7200DEBDBC /* Budget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Budget.m; sourceTree = "<group>"; };
+		FBDAADE41CB3FF7200DEBDBC /* Target+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Target+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FBDAADE51CB3FF7200DEBDBC /* Target+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Target+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FBDAADE61CB3FF7200DEBDBC /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
+		FBDAADE71CB3FF7200DEBDBC /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +153,34 @@
 		FB0415DC1CAE4BF7006BD3FD /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				FBDAADCC1CB3FF7200DEBDBC /* Record+CoreDataProperties.h */,
+				FBDAADCD1CB3FF7200DEBDBC /* Record+CoreDataProperties.m */,
+				FBDAADCE1CB3FF7200DEBDBC /* Record.h */,
+				FBDAADCF1CB3FF7200DEBDBC /* Record.m */,
+				FBDAADD01CB3FF7200DEBDBC /* Category+CoreDataProperties.h */,
+				FBDAADD11CB3FF7200DEBDBC /* Category+CoreDataProperties.m */,
+				FBDAADD21CB3FF7200DEBDBC /* Category.h */,
+				FBDAADD31CB3FF7200DEBDBC /* Category.m */,
+				FBDAADD41CB3FF7200DEBDBC /* Transaction+CoreDataProperties.h */,
+				FBDAADD51CB3FF7200DEBDBC /* Transaction+CoreDataProperties.m */,
+				FBDAADD61CB3FF7200DEBDBC /* Transaction.h */,
+				FBDAADD71CB3FF7200DEBDBC /* Transaction.m */,
+				FBDAADD81CB3FF7200DEBDBC /* Account+CoreDataProperties.h */,
+				FBDAADD91CB3FF7200DEBDBC /* Account+CoreDataProperties.m */,
+				FBDAADDA1CB3FF7200DEBDBC /* Account.h */,
+				FBDAADDB1CB3FF7200DEBDBC /* Account.m */,
+				FBDAADDC1CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.h */,
+				FBDAADDD1CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.m */,
+				FBDAADDE1CB3FF7200DEBDBC /* Wishitem.h */,
+				FBDAADDF1CB3FF7200DEBDBC /* Wishitem.m */,
+				FBDAADE01CB3FF7200DEBDBC /* Budget+CoreDataProperties.h */,
+				FBDAADE11CB3FF7200DEBDBC /* Budget+CoreDataProperties.m */,
+				FBDAADE21CB3FF7200DEBDBC /* Budget.h */,
+				FBDAADE31CB3FF7200DEBDBC /* Budget.m */,
+				FBDAADE41CB3FF7200DEBDBC /* Target+CoreDataProperties.h */,
+				FBDAADE51CB3FF7200DEBDBC /* Target+CoreDataProperties.m */,
+				FBDAADE61CB3FF7200DEBDBC /* Target.h */,
+				FBDAADE71CB3FF7200DEBDBC /* Target.m */,
 			);
 			path = ManagedObjects;
 			sourceTree = "<group>";
@@ -434,10 +504,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBDAADF21CB3FF7200DEBDBC /* Budget+CoreDataProperties.m in Sources */,
 				FBD8336F1CAC15980020AF3E /* ViewController.m in Sources */,
 				FBD8336C1CAC15980020AF3E /* AppDelegate.m in Sources */,
+				FBDAADEA1CB3FF7200DEBDBC /* Category+CoreDataProperties.m in Sources */,
+				FBDAADF01CB3FF7200DEBDBC /* Wishitem+CoreDataProperties.m in Sources */,
+				FBDAADEB1CB3FF7200DEBDBC /* Category.m in Sources */,
 				FBD833691CAC15980020AF3E /* main.m in Sources */,
 				FBD833751CAC15980020AF3E /* BudgetBunny.xcdatamodeld in Sources */,
+				FBDAADE91CB3FF7200DEBDBC /* Record.m in Sources */,
+				FBDAADEC1CB3FF7200DEBDBC /* Transaction+CoreDataProperties.m in Sources */,
+				FBDAADED1CB3FF7200DEBDBC /* Transaction.m in Sources */,
+				FBDAADEF1CB3FF7200DEBDBC /* Account.m in Sources */,
+				FBDAADEE1CB3FF7200DEBDBC /* Account+CoreDataProperties.m in Sources */,
+				FBDAADE81CB3FF7200DEBDBC /* Record+CoreDataProperties.m in Sources */,
+				FBDAADF51CB3FF7200DEBDBC /* Target.m in Sources */,
+				FBDAADF41CB3FF7200DEBDBC /* Target+CoreDataProperties.m in Sources */,
+				FBDAADF31CB3FF7200DEBDBC /* Budget.m in Sources */,
+				FBDAADF11CB3FF7200DEBDBC /* Wishitem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
-    <entity name="Account" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accountBudgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="accountId" inverseEntity="Budget" syncable="YES"/>
+        <relationship name="accountRecordId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="accountId" inverseEntity="Record" syncable="YES"/>
+        <relationship name="accountTargetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="accountId" inverseEntity="Target" syncable="YES"/>
+        <relationship name="accountTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="accountId" inverseEntity="Transaction" syncable="YES"/>
+        <relationship name="accountTransferTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="transferAccountId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
-    <entity name="Budget" syncable="YES">
+    <entity name="Budget" representedClassName="Budget" syncable="YES">
         <attribute name="dailyBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
+        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBudgetId" inverseEntity="Account" syncable="YES"/>
+        <relationship name="budgetCategoryId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="budgetId" inverseEntity="Category" syncable="YES"/>
+        <relationship name="budgetTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="budgetId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
-    <entity name="Category" syncable="YES">
+    <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="isIncome" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="budgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" syncable="YES"/>
+        <relationship name="budgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="budgetCategoryId" inverseEntity="Budget" syncable="YES"/>
+        <relationship name="categoryTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="categoryId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
-    <entity name="Record" syncable="YES">
+    <entity name="Record" representedClassName="Record" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
+        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountRecordId" inverseEntity="Account" syncable="YES"/>
     </entity>
-    <entity name="Target" syncable="YES">
+    <entity name="Target" representedClassName="Target" syncable="YES">
         <attribute name="actualAmount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="targetAmount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
-        <relationship name="transactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" syncable="YES"/>
+        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountTargetId" inverseEntity="Account" syncable="YES"/>
+        <relationship name="targetWishitemId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wishitem" inverseName="targetId" inverseEntity="Wishitem" syncable="YES"/>
+        <relationship name="transactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="transactionTargetId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
-    <entity name="Transaction" syncable="YES">
+    <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="datetime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
-        <relationship name="accountIdTransferFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
-        <relationship name="budgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" syncable="YES"/>
-        <relationship name="categoryId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountTransactionId" inverseEntity="Account" syncable="YES"/>
+        <relationship name="budgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="budgetTransactionId" inverseEntity="Budget" syncable="YES"/>
+        <relationship name="categoryId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryTransactionId" inverseEntity="Category" syncable="YES"/>
+        <relationship name="transactionTargetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="transactionId" inverseEntity="Target" syncable="YES"/>
+        <relationship name="transferAccountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountTransferTransactionId" inverseEntity="Account" syncable="YES"/>
     </entity>
-    <entity name="Wishitem" syncable="YES">
+    <entity name="Wishitem" representedClassName="Wishitem" syncable="YES">
         <attribute name="isBought" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="targetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" syncable="YES"/>
+        <relationship name="targetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="targetWishitemId" inverseEntity="Target" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="Budget" positionX="-54" positionY="9" width="128" height="90"/>
-        <element name="Category" positionX="-45" positionY="45" width="128" height="90"/>
-        <element name="Transaction" positionX="-36" positionY="72" width="128" height="165"/>
-        <element name="Target" positionX="-18" positionY="126" width="128" height="105"/>
-        <element name="Wishitem" positionX="0" positionY="135" width="128" height="90"/>
-        <element name="Record" positionX="18" positionY="144" width="128" height="90"/>
+        <element name="Account" positionX="-119" positionY="-178" width="128" height="163"/>
+        <element name="Budget" positionX="-342" positionY="-189" width="128" height="118"/>
+        <element name="Category" positionX="-279" positionY="99" width="128" height="103"/>
+        <element name="Record" positionX="223" positionY="-189" width="128" height="88"/>
+        <element name="Target" positionX="178" positionY="282" width="128" height="118"/>
+        <element name="Transaction" positionX="162" positionY="15" width="128" height="178"/>
+        <element name="Wishitem" positionX="-243" positionY="252" width="128" height="88"/>
     </elements>
 </model>
