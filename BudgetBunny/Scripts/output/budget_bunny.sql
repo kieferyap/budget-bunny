@@ -141,7 +141,7 @@ SELECT pg_catalog.setval('features_seq', 28, true);
 
 COPY localizable_words (localizable_word_id, wording_key, localization_en, localization_jp, localization_zh, inserted_on) FROM stdin;
 1	LBL_ACCOUNT	Account	アカウント	帐户	2016-04-07 15:05:30.083118
-2	LBL_BUDGER	Budget	バジェット	预算	2016-04-07 15:05:30.085258
+2	LBL_BUDGET	Budget	バジェット	预算	2016-04-07 15:05:30.085258
 \.
 
 

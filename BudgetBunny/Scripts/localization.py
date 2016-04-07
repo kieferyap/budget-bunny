@@ -1,22 +1,32 @@
 import collections
 import os
 
+class LocalizationFile:
+
+	def __init__ (self, index, output_path):
+		self.index = index
+		self.output_path = output_path
+		self.file_object = open(output_path, 'w')
+
+	def write_line(self, line):
+		self.file_object.write(line)
+
+
 class Localization:
 
 	# Class constants
 	DATABASE_NAME = "budget_bunny"
 	OUTPUT_FOLDER = "output"
 	OUTPUT_FILE = OUTPUT_FOLDER+"/budget_bunny.sql"
+	HEADER = "/* This file was generated using the localization script. Please do not make any changes to this file. */"
 
 	# Localization constants
 	LOCALIZATION_FILE_MARKER = "COPY localizable_words"
 	LOCALIZATION_FILE_ENDER = "\.\n"
-	EN_OUTPUT = "../Resources/en.lproj/Localizable.strings"
-	JP_OUTPUT = "../Resources/ja.lproj/Localizable.strings"
-	ZH_OUTPUT = "../Resources/zh.lproj/Localizable.strings"
 
-	def __init__ (self):
+	def __init__ (self, localization_list):
 		print "[Internal] Initialized Localization class"
+		self.localization_list = localization_list
 
 	# Accesses the budget_bunny database and exports an SQL file
 	def database_dump(self):
@@ -30,27 +40,26 @@ class Localization:
 		print "[Status] Database dump complete: "+self.OUTPUT_FILE
 
 	# Creates the localization strings
-	def create_localization_file(self, destination_location):
+	def create_localization_file(self):
 		print "[Status] Checking database dump file"
 
-		# Add more indices if more languages are added
 		localization_idx = 1
-		en_idx = 2
-		jp_idx = 3
-		zh_idx = 4
-		output_list = [EN_OUTPUT, JP_OUTPUT, ZH_OUTPUT]
 
 		if os.path.isfile(self.OUTPUT_FILE):
 			file = open(self.OUTPUT_FILE)
 			self.find_localization_portion(file)
+
+			for item in self.localization_list:
+				item.write_line(self.HEADER+"\n")
 
 			line = file.readline()
 			while not line == self.LOCALIZATION_FILE_ENDER:
 				localization_arr = line.split()
 
 				# Output to file here
+				for item in self.localization_list:
+					item.write_line("\""+localization_arr[localization_idx]+"\" = \""+localization_arr[item.index]+"\";\n")
 
-				print localization_arr[localization_idx], localization_arr[en_idx], localization_arr[jp_idx], localization_arr[zh_idx]
 				line = file.readline()
 			
 		else:
@@ -65,6 +74,17 @@ class Localization:
 			line = file.readline()
 
 if __name__ == "__main__":
-	localization = Localization()
+
+	en_local = LocalizationFile(index = 2, output_path = "../Resources/Localization/en.proj/Localizable.strings")
+	ja_local = LocalizationFile(index = 3, output_path = "../Resources/Localization/ja.proj/Localizable.strings")
+	zh_local = LocalizationFile(index = 4, output_path = "../Resources/Localization/zh.proj/Localizable.strings")
+	all_localizations = [en_local, ja_local, zh_local]
+
+	localization = Localization(all_localizations)
 	localization.database_dump()
 	localization.create_localization_file()
+
+
+
+
+
