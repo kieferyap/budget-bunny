@@ -349,7 +349,7 @@
         <scene sceneID="zmO-kq-aIN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="23d-NK-NrP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="accounts" id="20R-zZ-6jh"/>
+                    <tabBarItem key="tabBarItem" title="accounts" image="AccountIcon" id="20R-zZ-6jh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KqG-lr-voo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -388,7 +388,7 @@
         <scene sceneID="Cxx-TP-wiz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WG2-IY-NAT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="budgets" id="Nal-Wc-Nde"/>
+                    <tabBarItem key="tabBarItem" title="budgets" image="BudgetIcon" id="Nal-Wc-Nde"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hhm-5K-9Bv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -407,7 +407,7 @@
         <scene sceneID="yK3-KU-sP2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a2l-9U-hMb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="dashboard" id="BsS-ip-gpo"/>
+                    <tabBarItem key="tabBarItem" title="dashboard" image="DashboardIcon" id="BsS-ip-gpo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lft-Lb-FVD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -426,7 +426,7 @@
         <scene sceneID="V7d-J0-Uq6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWK-7d-mz2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="records" id="qz1-G5-hqh"/>
+                    <tabBarItem key="tabBarItem" title="records" image="RecordsIcon" id="qz1-G5-hqh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5NO-nl-yud">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -442,4 +442,10 @@
             <point key="canvasLocation" x="3003" y="884"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AccountIcon" width="22" height="22"/>
+        <image name="BudgetIcon" width="22" height="22"/>
+        <image name="DashboardIcon" width="22" height="22"/>
+        <image name="RecordsIcon" width="22" height="22"/>
+    </resources>
 </document>

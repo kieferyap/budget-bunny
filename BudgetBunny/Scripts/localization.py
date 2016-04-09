@@ -1,5 +1,9 @@
-import collections
 import os
+
+#
+# The goal of this script is to read localization data from a PostgreSQL database
+# and generate the needed localization string files for the project.
+#
 
 class LocalizationFile:
 
