@@ -22,4 +22,4 @@ There are plenty of budgeting apps out there, but I'm reinventing the wheel beca
 - Supported Languages: English, Japanese, Chinese (Simplified)
 - Device Orientation: all orientations supported
 
-The full Project Specification Document is located [here](https://github.com/kieferyap/budget-bunny/blob/feature/V0.1/master/BudgetBunny/Documents/budget-bunny.pdf).
+The full Project Specification Document is located [here](https://github.com/kieferyap/budget-bunny/blob/master/BudgetBunny/Documents/budget-bunny.pdf).
