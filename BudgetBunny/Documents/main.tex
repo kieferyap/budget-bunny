@@ -1,0 +1,52 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[letterpaper, portrait, margin=1.0in]{geometry}
+\usepackage{lipsum}
+
+\title{Budget Bunny}
+\author{Project Specifications Document} % Because it looks so much better than \subtitle{}. Besides, the authors are specified in the version history authors
+\date{ }
+\usepackage{vhistory}
+
+% Font -- lmodern (Latin Modern Sans)
+% LaTeX Font Resource: http://www.tug.dk/FontCatalogue/
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+% Item list separation
+\usepackage{enumitem}
+\setlist{  
+	listparindent=\parindent,
+	parsep=1pt,
+	leftmargin=*,
+}
+
+% Colors
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{special-color}{RGB}{51,51,178}
+
+\begin{document}
+
+\maketitle 
+\begin{versionhistory}
+	\vhEntry{0.1}{04/10/2016}{Kiefer Yap}{Created the document}
+\end{versionhistory}
+\pagebreak
+
+\tableofcontents
+\pagebreak
+
+\input{support-specs}
+\pagebreak
+
+\input{use-case-diagram}
+\pagebreak
+
+\input{database-schema}
+\pagebreak
+
+\input{screens}
+\pagebreak
+
+\end{document}
