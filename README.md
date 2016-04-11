@@ -1,5 +1,7 @@
 # Budget Bunny
 
+[![Build Status](https://travis-ci.org/kieferyap/budget-bunny.svg?branch=master)](https://travis-ci.org/kieferyap/budget-bunny)
+
 Budget Bunny is an iOS application that helps you manage your expenses and budgets. It is currently a work in progress.
 
 -----------------------
