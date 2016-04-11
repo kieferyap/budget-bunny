@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: BudgetBunny.xcodeproj
+xcode_scheme: BudgetBunnyUITests
+osx_image: xcode7.3
