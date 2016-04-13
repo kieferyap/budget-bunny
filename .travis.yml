@@ -1,5 +1,1 @@
 language: objective-c
-osx_image: xcode7.3
-xcode_project: BudgetBunny.xcodeproj
-xcode_scheme: BudgetBunny
-xcode_sdk: iphonesimulator

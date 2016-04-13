@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--accounts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AccountViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -29,9 +29,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="nHU-4Q-3si" kind="show" id="1Wt-t3-f3x"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -50,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="51" y="1636"/>
         </scene>
-        <!--newAccount-->
+        <!--newEditAccount-->
         <scene sceneID="jzX-ZC-YJ1">
             <objects>
-                <viewController id="vjh-X6-m8y" sceneMemberID="viewController">
+                <viewController id="vjh-X6-m8y" customClass="NewEditAccountViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pEb-uA-R6u"/>
                         <viewControllerLayoutGuide type="bottom" id="OVf-kD-bWW"/>
@@ -61,41 +58,85 @@
                     <view key="view" contentMode="scaleToFill" id="y0W-ae-OT8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2p-RI-MAV">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOe-Bb-ptY">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="few-D8-FwZ">
+                                                <rect key="frame" x="8" y="8" width="63" height="30"/>
+                                                <state key="normal" title="Currency"/>
+                                                <connections>
+                                                    <segue destination="pux-uI-2Db" kind="show" id="aTd-qS-DNf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="487" id="u1R-MR-Bkq"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JOe-Bb-ptY" firstAttribute="centerX" secondItem="K2p-RI-MAV" secondAttribute="centerX" id="Abb-VS-pHa"/>
+                                    <constraint firstAttribute="trailing" secondItem="JOe-Bb-ptY" secondAttribute="trailing" id="VIq-Z5-ZBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="JOe-Bb-ptY" secondAttribute="bottom" id="dQ0-2n-lpR"/>
+                                    <constraint firstItem="JOe-Bb-ptY" firstAttribute="centerY" secondItem="K2p-RI-MAV" secondAttribute="centerY" id="gc2-j9-OFg"/>
+                                    <constraint firstItem="JOe-Bb-ptY" firstAttribute="leading" secondItem="K2p-RI-MAV" secondAttribute="leading" id="hcC-np-5nX"/>
+                                    <constraint firstItem="JOe-Bb-ptY" firstAttribute="top" secondItem="K2p-RI-MAV" secondAttribute="top" id="hmu-gN-OxM"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OVf-kD-bWW" firstAttribute="top" secondItem="K2p-RI-MAV" secondAttribute="bottom" id="T5D-Fu-KB4"/>
+                            <constraint firstItem="K2p-RI-MAV" firstAttribute="leading" secondItem="y0W-ae-OT8" secondAttribute="leadingMargin" constant="-20" id="Xy5-fG-5bv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K2p-RI-MAV" secondAttribute="trailing" constant="-20" id="Zdq-GE-8ut"/>
+                            <constraint firstItem="K2p-RI-MAV" firstAttribute="top" secondItem="pEb-uA-R6u" secondAttribute="bottom" id="uRo-RD-EVp"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="newAccount" id="P7N-zO-A72">
+                    <navigationItem key="navigationItem" title="newEditAccount" id="P7N-zO-A72">
                         <barButtonItem key="rightBarButtonItem" title="done" id="G2f-DI-tVi"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzM-RU-BJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633" y="2473"/>
+            <point key="canvasLocation" x="51" y="2473"/>
         </scene>
-        <!--editAccount-->
-        <scene sceneID="yVo-L9-Sfo">
+        <!--Currency Picker Table View Controller-->
+        <scene sceneID="9Dn-6N-47N">
             <objects>
-                <viewController id="nHU-4Q-3si" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0K7-tS-q53"/>
-                        <viewControllerLayoutGuide type="bottom" id="ChB-Yp-kuq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K40-HS-RNw">
+                <tableViewController id="pux-uI-2Db" customClass="CurrencyPickerTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7p9-J5-QXW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="editAccount" id="z8o-ah-oM7">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="PS3-8c-Ob9"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7pW-Zl-cdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyPickerCell" id="NtI-8C-VAQ">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NtI-8C-VAQ" id="Dei-KL-9jK">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pux-uI-2Db" id="0AJ-ai-Mcq"/>
+                            <outlet property="delegate" destination="pux-uI-2Db" id="BqS-8t-jb1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wGq-Qs-qo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="51" y="2473"/>
+            <point key="canvasLocation" x="51" y="3238"/>
         </scene>
         <!--budgets-->
         <scene sceneID="8cK-NP-6bf">
             <objects>
-                <viewController id="xCe-Tm-b1h" sceneMemberID="viewController">
+                <viewController id="xCe-Tm-b1h" customClass="BudgetViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zmH-fF-Jin"/>
                         <viewControllerLayoutGuide type="bottom" id="gsf-Zj-fQ9"/>
@@ -123,9 +164,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Dgf-tb-Owf" kind="show" id="Y7F-mf-iY4"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -154,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="1021" y="1636"/>
         </scene>
-        <!--newBudget-->
+        <!--newEditBudget-->
         <scene sceneID="31S-Et-Ush">
             <objects>
-                <viewController id="Qoy-rD-m4p" sceneMemberID="viewController">
+                <viewController id="Qoy-rD-m4p" customClass="NewEditBudgetViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Mr-jZ-lt8"/>
                         <viewControllerLayoutGuide type="bottom" id="i6d-q5-9mC"/>
@@ -167,39 +205,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="newBudget" id="msc-Xu-wo1">
+                    <navigationItem key="navigationItem" title="newEditBudget" id="msc-Xu-wo1">
                         <barButtonItem key="rightBarButtonItem" title="done" id="MwL-AU-goE"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YT4-iD-oBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="2473"/>
-        </scene>
-        <!--editBudget-->
-        <scene sceneID="pOh-3Q-DjJ">
-            <objects>
-                <viewController id="Dgf-tb-Owf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aVe-cw-FHn"/>
-                        <viewControllerLayoutGuide type="bottom" id="sdP-EJ-lov"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Zbz-TL-KmT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="editBudget" id="E7t-PW-pc5">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="OYH-zF-wQn"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RYz-RK-JO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1348" y="2473"/>
+            <point key="canvasLocation" x="1021" y="2473"/>
         </scene>
         <!--addTransaction-->
         <scene sceneID="j5c-e7-e8U">
             <objects>
-                <viewController id="aS9-4m-h9r" sceneMemberID="viewController">
+                <viewController id="aS9-4m-h9r" customClass="AddNewTransactionViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d3c-S1-wbt"/>
                         <viewControllerLayoutGuide type="bottom" id="PTu-sk-OUj"/>
@@ -220,7 +237,7 @@
         <!--dashboard-->
         <scene sceneID="As5-Fa-GFB">
             <objects>
-                <viewController id="CXh-NV-ZCb" sceneMemberID="viewController">
+                <viewController id="CXh-NV-ZCb" customClass="DashboardViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UTQ-6f-tTP"/>
                         <viewControllerLayoutGuide type="bottom" id="n0n-3n-Pa8"/>
@@ -261,7 +278,7 @@
         <!--records-->
         <scene sceneID="CMH-Tk-CzC">
             <objects>
-                <viewController id="Fdd-Cn-IYb" sceneMemberID="viewController">
+                <viewController id="Fdd-Cn-IYb" customClass="RecordsViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="INp-eH-YZI"/>
                         <viewControllerLayoutGuide type="bottom" id="EAL-cz-BxK"/>
@@ -308,7 +325,7 @@
         <!--addTarget-->
         <scene sceneID="gR5-8X-KDZ">
             <objects>
-                <viewController id="dnh-fi-cu8" sceneMemberID="viewController">
+                <viewController id="dnh-fi-cu8" customClass="AddTargetViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CaH-N8-hTD"/>
                         <viewControllerLayoutGuide type="bottom" id="M6l-Xi-Mhb"/>
@@ -329,7 +346,7 @@
         <!--data-->
         <scene sceneID="fia-nP-Wp8">
             <objects>
-                <viewController id="y9K-MY-gMZ" sceneMemberID="viewController">
+                <viewController id="y9K-MY-gMZ" customClass="DataViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o8Z-a7-9OS"/>
                         <viewControllerLayoutGuide type="bottom" id="VqS-7w-4GX"/>
