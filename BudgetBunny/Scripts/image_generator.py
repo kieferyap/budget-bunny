@@ -67,7 +67,6 @@ class ImageIcon(object):
 		self.json_data["info"] = {"version": 1, "author": "xcode"}
 
 	def write_to_json(self):
-		print json.dumps(self.json_data, sort_keys=True, indent=4, separators=(',', ': '))
 		json.dump(self.json_data, self.json_file_object, sort_keys=True, indent=4, separators=(',', ': '))
 
 class TabIcon(ImageIcon):
