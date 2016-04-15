@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
+		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
+		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB8550F11CBDE2990037A881 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F01CBDE2990037A881 /* AccountViewController.swift */; };
 		FB8550F31CBDE4FF0037A881 /* NewEditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F21CBDE4FF0037A881 /* NewEditAccountViewController.swift */; };
 		FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */; };
@@ -59,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* NewEditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEditAccountViewController.swift; sourceTree = "<group>"; };
 		FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTableViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		FB97C3411CB49B5A00C35BC0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FB5FF8201CC134D10090F5FA /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
+				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */,
@@ -528,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */,
+				FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */,
+				FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
