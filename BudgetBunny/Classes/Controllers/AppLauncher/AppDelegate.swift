@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Set tint color
+        let universalTintColor = Constants.Colors.NormalGreen
+        UIApplication.sharedApplication().windows.last?.tintColor = universalTintColor
+        UINavigationBar.appearance().tintColor = universalTintColor
+        UITabBar.appearance().tintColor = universalTintColor
+        
         // Override point for customization after application launch.
         return true
     }
