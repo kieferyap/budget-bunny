@@ -10,7 +10,7 @@ Budget Bunny is an iOS application that helps you manage your expenses and budge
 
 ### Installation notes:
 
-I haven't enrolled in Apple's Developer Program yet (as of April 10, 2016), so this app cannot be downloaded from the App Store for now, unless you have an iOS 9 device and XCode 7+, [which enables you to load apps to your device without signing up for the Dev Program.](http://bouk.co/blog/sideload-iphone/). 
+This app is still a work in progress, so it cannot be downloaded from the App Store. If you still want to check this project out, and have an iOS 9 device and XCode 7+, [you can even if you don't sign up for the Apple Dev Program](http://bouk.co/blog/sideload-iphone/). 
 
 ### Motivation:
 
