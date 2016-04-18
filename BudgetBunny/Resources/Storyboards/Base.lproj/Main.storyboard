@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LMZ-I6-RnC" id="oE2-H7-L0U">
@@ -83,8 +83,12 @@
                                         <constraint firstItem="zNz-Ps-euU" firstAttribute="centerY" secondItem="oE2-H7-L0U" secondAttribute="centerY" id="xvg-H5-MqN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="field" destination="eAs-iV-ZJW" id="4f3-wc-Wi8"/>
+                                    <outlet property="textfield" destination="zNz-Ps-euU" id="rkc-Uq-0M5"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wn4-Op-jsU" id="D9N-b0-Y9v">
@@ -111,8 +115,11 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="mm6-va-18q" secondAttribute="trailing" id="rjA-51-rJo"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="value" destination="mm6-va-18q" id="hJ8-VO-pFC"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPl">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPl" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPl" id="2jn-4e-eT9">
@@ -145,6 +152,10 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="jlN-Ed-rCN" secondAttribute="leading" id="zcg-PM-uGe"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="information" destination="jlN-Ed-rCN" id="RS3-46-xJK"/>
+                                    <outlet property="isDefaultSwitch" destination="MYf-pt-WJT" id="bfv-LP-I7z"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

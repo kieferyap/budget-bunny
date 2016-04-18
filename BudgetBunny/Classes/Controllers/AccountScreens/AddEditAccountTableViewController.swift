@@ -46,10 +46,16 @@ class AddEditAccountTableViewController: UITableViewController {
         return addAccountTable[section].count
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier: String = addAccountTable[indexPath.section][indexPath.row].cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
+        let cellIdentifier: String = cellItem.cellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
+        
+        cell.setAccountModel(cellItem)
         
         // cell.frame.size.height = 120.0
         return cell
