@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PushViewControllerDelegate: class {
+    func pushViewController(destinationViewController: UIViewController, isAnimated: Bool)
+}
+
 class AddEditAccountTableViewCell: UITableViewCell {
 
     @IBOutlet weak var field: UILabel!
@@ -16,13 +20,13 @@ class AddEditAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var accountSwitch: UISwitch!
     var model: AddEditAccountCell = AddEditAccountCell()
+    weak var delegate:PushViewControllerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     func setAccountModel(accountModel: AddEditAccountCell) {
-        
         self.model = accountModel
         
         let selectionColor = UIView()
@@ -55,7 +59,8 @@ class AddEditAccountTableViewCell: UITableViewCell {
         }
             
         else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron) {
-            NSLog("Performing a segue");
+            let destinationViewController = CurrencyPickerTableViewController()
+            delegate?.pushViewController(destinationViewController, isAnimated: true)
         }
             
         else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch) {

@@ -21,6 +21,7 @@ class AddEditAccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Info Group
         let nameCell = AddEditAccountCell(field: "nameId",
                                     placeholder: "myWalletId",
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
@@ -36,19 +37,21 @@ class AddEditAccountTableViewController: UITableViewController {
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                             cellSettings: [:])
         
-        let defaultAccountCell = AddEditAccountCell(field: "DefaultAccount",
-                                              placeholder: "trueId",
-                                           cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
-                                             cellSettings: [KEY_HEIGHT:60.0])
-        
         addAccountTable.append([])
-        addAccountTable.append([])
-        
         addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(nameCell)
         addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(currencyCell)
         addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(initialAmountCell)
+        
+        // Account details group
+        let defaultAccountCell = AddEditAccountCell(field: "DefaultAccount",
+            placeholder: "trueId",
+            cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
+            cellSettings: [KEY_HEIGHT:60.0])
+        
+        addAccountTable.append([])
         addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
         
+        // Dismiss keyboard after tapping outside of it
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissKeyboard")
         tapRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapRecognizer)
@@ -84,7 +87,6 @@ class AddEditAccountTableViewController: UITableViewController {
             isAnimated = true
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: isAnimated)
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -93,6 +95,7 @@ class AddEditAccountTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
         
         cell.setAccountModel(cellItem)
+        cell.delegate = self
         return cell
     }
     
@@ -105,4 +108,10 @@ class AddEditAccountTableViewController: UITableViewController {
         return DEFAULT_CELL_HEIGHT
     }
 
+}
+
+extension AddEditAccountTableViewController: PushViewControllerDelegate {
+    func pushViewController(destinationViewController: UIViewController, isAnimated: Bool) {
+        self.navigationController?.pushViewController(destinationViewController, animated: isAnimated)
+    }
 }

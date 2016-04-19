@@ -168,10 +168,41 @@
                     <navigationItem key="navigationItem" title="addEditAccount" id="mbX-o5-cBn">
                         <barButtonItem key="rightBarButtonItem" title="done" id="7tW-gU-OLf"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="rLm-kW-0jh" kind="show" id="2Z9-y1-Cmr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kpf-jf-XWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="51" y="2370"/>
+        </scene>
+        <!--Currency Picker Table View Controller-->
+        <scene sceneID="vDV-lZ-YHS">
+            <objects>
+                <tableViewController id="rLm-kW-0jh" customClass="CurrencyPickerTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BPe-AY-1ND">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jjG-NL-lad">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjG-NL-lad" id="3sl-2s-7Qn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rLm-kW-0jh" id="jXh-HS-V7R"/>
+                            <outlet property="delegate" destination="rLm-kW-0jh" id="j1I-3p-Sa8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SUG-pR-38u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50" y="3124"/>
         </scene>
         <!--budgets-->
         <scene sceneID="8cK-NP-6bf">

@@ -21,6 +21,8 @@
 		FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FE1CBE27950037A881 /* RecordsViewController.swift */; };
 		FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8551001CBE27BF0037A881 /* AddTargetViewController.swift */; };
 		FB8551031CBE27F50037A881 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8551021CBE27F50037A881 /* DataViewController.swift */; };
+		FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9B971CC65AB10017D0D3 /* Currency.swift */; };
+		FB8A9B9A1CC65AC40017D0D3 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */; };
 		FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3061CB4974F00C35BC0 /* AppDelegate.swift */; };
 		FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3081CB4974F00C35BC0 /* ViewController.swift */; };
 		FB97C30C1CB4974F00C35BC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
@@ -76,6 +78,8 @@
 		FB8550FE1CBE27950037A881 /* RecordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordsViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/RecordsViewController.swift; sourceTree = SOURCE_ROOT; };
 		FB8551001CBE27BF0037A881 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTargetViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/AddTargetViewController.swift; sourceTree = SOURCE_ROOT; };
 		FB8551021CBE27F50037A881 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/DataViewController.swift; sourceTree = SOURCE_ROOT; };
+		FB8A9B971CC65AB10017D0D3 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		FB97C3031CB4974F00C35BC0 /* BudgetBunny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetBunny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB97C3061CB4974F00C35BC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB97C3081CB4974F00C35BC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				FB97C3391CB499D800C35BC0 /* CellItems */,
 				FB97C33A1CB499DE00C35BC0 /* ManagedObjects */,
 				FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */,
+				FB8A9B971CC65AB10017D0D3 /* Currency.swift */,
+				FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
+				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */,
@@ -525,6 +532,7 @@
 				FB9CD8A71CB49D100031E3B8 /* Record+CoreDataProperties.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,
 				FB9CD8AE1CB49D100031E3B8 /* Wishitem.swift in Sources */,
+				FB8A9B9A1CC65AC40017D0D3 /* CurrencyManager.swift in Sources */,
 				FB8551031CBE27F50037A881 /* DataViewController.swift in Sources */,
 				FB9CD8AF1CB49D100031E3B8 /* Target+CoreDataProperties.swift in Sources */,
 				FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */,
