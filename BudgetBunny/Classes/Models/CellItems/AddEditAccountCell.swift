@@ -9,7 +9,7 @@
 import Foundation
 
 struct AddEditAccountCell {
-    var key: String = ""
+    var field: String = ""
     var placeholder: String = ""
     var cellIdentifier: String = ""
     var cellSettings: NSDictionary = [:]

@@ -8,8 +8,11 @@
 
 import UIKit
 
-let ACCOUNT_INFO_GROUP = 0
-let ACCOUNT_DETAILS_GROUP = 1
+let IDX_ACCOUNT_INFO_GROUP = 0
+let IDX_ACCOUNT_DETAILS_GROUP = 1
+let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
+let KEY_HEIGHT = "height"
+let KEY_ANIMATED = "animated"
 
 class AddEditAccountTableViewController: UITableViewController {
 
@@ -18,23 +21,49 @@ class AddEditAccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nameCell = AddEditAccountCell(key: "nameId", placeholder: "myWalletId", cellIdentifier: "addAccountFieldValueCell", cellSettings: [:])
-        let currencyCell = AddEditAccountCell(key: "currencyId", placeholder: "dollarId", cellIdentifier: "addAccountChevronCell", cellSettings: [:])
-        let initialAmountCell = AddEditAccountCell(key: "Currency", placeholder: "500id", cellIdentifier: "addAccountFieldValueCell", cellSettings: [:])
-        let defaultAccountCell = AddEditAccountCell(key: "Currency", placeholder: "trueId", cellIdentifier: "addAccountSwitchCell", cellSettings: [:])
+        let nameCell = AddEditAccountCell(field: "nameId",
+                                    placeholder: "myWalletId",
+                                 cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
+                                   cellSettings: [:])
+        
+        let currencyCell = AddEditAccountCell(field: "currencyId",
+                                        placeholder: "dollarId",
+                                     cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
+                                       cellSettings: [KEY_ANIMATED:true])
+        
+        let initialAmountCell = AddEditAccountCell(field: "Currency",
+                                             placeholder: "500id",
+                                          cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
+                                            cellSettings: [:])
+        
+        let defaultAccountCell = AddEditAccountCell(field: "DefaultAccount",
+                                              placeholder: "trueId",
+                                           cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
+                                             cellSettings: [KEY_HEIGHT:60.0])
         
         addAccountTable.append([])
         addAccountTable.append([])
         
-        addAccountTable[ACCOUNT_INFO_GROUP].append(nameCell)
-        addAccountTable[ACCOUNT_INFO_GROUP].append(currencyCell)
-        addAccountTable[ACCOUNT_INFO_GROUP].append(initialAmountCell)
-        addAccountTable[ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
+        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(nameCell)
+        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(currencyCell)
+        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(initialAmountCell)
+        addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
         
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissKeyboard")
+        tapRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func isKeyExistingForAddEditAccountCell(cell: AddEditAccountCell, key: String) -> Bool {
+        return cell.cellSettings[key] != nil
     }
     
     // MARK: - Table view data source
@@ -47,7 +76,15 @@ class AddEditAccountTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddEditAccountTableViewCell
+        cell.performAction()
+        
+        var isAnimated = false
+        if (isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED)) {
+            isAnimated = true
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: isAnimated)
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -56,56 +93,16 @@ class AddEditAccountTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
         
         cell.setAccountModel(cellItem)
-        
-        // cell.frame.size.height = 120.0
         return cell
-     }
+    }
     
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
+        if (self.isKeyExistingForAddEditAccountCell(cellItem, key: KEY_HEIGHT)) {
+            let height: CGFloat? = CGFloat(cellItem.cellSettings[KEY_HEIGHT]!.floatValue)
+            return height!
+        }
+        return DEFAULT_CELL_HEIGHT
+    }
 
 }

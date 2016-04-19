@@ -14,16 +14,53 @@ class AddEditAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var information: UILabel!
     @IBOutlet weak var textfield: UITextField!
-    @IBOutlet weak var isDefaultSwitch: UISwitch!
-    var accountModel: AddEditAccountCell = AddEditAccountCell()
+    @IBOutlet weak var accountSwitch: UISwitch!
+    var model: AddEditAccountCell = AddEditAccountCell()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     func setAccountModel(accountModel: AddEditAccountCell) {
-        NSLog("Got in AccountModel setter.");
+        
+        self.model = accountModel
+        
+        let selectionColor = UIView()
+        selectionColor.backgroundColor = UIColor.whiteColor()
+        
+        field?.text = accountModel.field
+        let placeholderText = accountModel.placeholder
+        
+        if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue) {
+            self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
+        }
+        
+        else if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron) {
+            self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            selectionColor.backgroundColor = Constants.Colors.LightGreen
+            self.value?.text = placeholderText
+        }
+        
+        else if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch) {
+            self.information?.text = placeholderText
+        }
+        
+        self.selectedBackgroundView = selectionColor;
+    }
+    
+    func performAction() {
+
+        if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue) {
+            self.textfield.becomeFirstResponder()
+        }
+            
+        else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron) {
+            NSLog("Performing a segue");
+        }
+            
+        else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch) {
+            self.accountSwitch.setOn(!accountSwitch.on, animated: true)
+        }
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
