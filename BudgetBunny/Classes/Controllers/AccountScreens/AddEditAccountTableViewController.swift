@@ -52,7 +52,7 @@ class AddEditAccountTableViewController: UITableViewController {
         self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
         
         // Dismiss keyboard after tapping outside of it
-        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissKeyboard")
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(AddEditAccountTableViewController.dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapRecognizer)
     }

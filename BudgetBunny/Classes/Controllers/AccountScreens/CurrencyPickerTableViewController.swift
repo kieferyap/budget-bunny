@@ -9,6 +9,8 @@
 import UIKit
 
 class CurrencyPickerTableViewController: UITableViewController {
+    
+    var currencyTable: NSArray = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,7 @@ class CurrencyPickerTableViewController: UITableViewController {
         let manager = CurrencyManager()
         manager.setCurrencyList()
         
+        self.currencyTable = manager.currencyDictionary.allValues
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,18 +33,20 @@ class CurrencyPickerTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.currencyTable.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cellItem: Currency = self.currencyTable[indexPath.row] as! Currency
+        let cellIdentifier: String = Constants.CellIdentifiers.AddAccountCurrency
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CurrencyTableViewCell
+        
+        cell.setCurrencyModel(cellItem)
+//        cell.delegate = self
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

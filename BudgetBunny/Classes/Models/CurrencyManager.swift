@@ -20,9 +20,9 @@ class CurrencyManager: NSObject {
             let currency = Currency()
             currency.setAttributes(country)
             
-            if self.currencyDictionary.objectForKey(currency.name) == nil {
-                self.currencyDictionary.setObject(currency, forKey: currency.name)
-                self.currencyNames.addObject(currency.name)
+            if self.currencyDictionary.objectForKey(currency.country) == nil {
+                self.currencyDictionary.setObject(currency, forKey: currency.country)
+                self.currencyNames.addObject(currency.country)
             }
         }
     }

@@ -10,9 +10,10 @@ import UIKit
 
 class Currency: NSObject {
 
-    var code: String = ""
-    var symbol: String = ""
-    var name: String = ""
+    var currencyCode: String = ""
+    var currencySymbol: String = ""
+    var country: String = ""
+    var identifier: String = ""
     
     func setAttributes(identifier: String) {
         
@@ -25,9 +26,10 @@ class Currency: NSObject {
         let isNameUsable: Bool = countryName != nil
         
         if isCodeUsable && isSymbolUsable && isNameUsable {
-            self.code = currencyCode!
-            self.symbol = currencySymbol!
-            self.name = countryName!
+            self.currencyCode = currencyCode!
+            self.currencySymbol = currencySymbol!
+            self.country = countryName!
+            self.identifier = identifier
         }
     }
 }

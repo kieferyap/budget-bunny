@@ -19,7 +19,7 @@ class AddEditAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var information: UILabel!
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var accountSwitch: UISwitch!
-    var model: AddEditAccountCell = AddEditAccountCell()
+    var model = AddEditAccountCell()
     weak var delegate:PushViewControllerDelegate?
     
     override func awakeFromNib() {
@@ -59,7 +59,8 @@ class AddEditAccountTableViewCell: UITableViewCell {
         }
             
         else if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron {
-            let destinationViewController = CurrencyPickerTableViewController()
+            let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
+            let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.CurrencyPickerTable)
             self.delegate?.pushViewController(destinationViewController, isAnimated: true)
         }
             

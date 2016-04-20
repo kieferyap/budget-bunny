@@ -10,11 +10,28 @@ import UIKit
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    
+    @IBOutlet weak var currencyCodeLabel: UILabel!
+    @IBOutlet weak var currencySymbolLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    var model = Currency()
+    var identifier: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setCurrencyModel(currencyModel: Currency) {
+        
+        let selectionColor = UIView()
+        selectionColor.backgroundColor = Constants.Colors.LightGreen
+        
+        self.currencyCodeLabel.text = currencyModel.currencyCode
+        self.currencySymbolLabel.text = currencyModel.currencySymbol
+        self.countryLabel.text = currencyModel.country
+        self.model = currencyModel
+        self.identifier = currencyModel.identifier
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
