@@ -22,34 +22,34 @@ class AddEditAccountTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Info Group
-        let nameCell = AddEditAccountCell(field: "nameId",
-                                    placeholder: "myWalletId",
+        let nameCell = AddEditAccountCell(field: "name",
+                                    placeholder: "myWallet",
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                    cellSettings: [:])
         
-        let currencyCell = AddEditAccountCell(field: "currencyId",
-                                        placeholder: "dollarId",
+        let currencyCell = AddEditAccountCell(field: "currency",
+                                        placeholder: "dollar",
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
                                        cellSettings: [KEY_ANIMATED:true])
         
-        let initialAmountCell = AddEditAccountCell(field: "Currency",
-                                             placeholder: "500id",
+        let initialAmountCell = AddEditAccountCell(field: "initAmount",
+                                             placeholder: "500",
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                             cellSettings: [:])
         
-        addAccountTable.append([])
-        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(nameCell)
-        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(currencyCell)
-        addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(initialAmountCell)
+        self.addAccountTable.append([])
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(nameCell)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(currencyCell)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(initialAmountCell)
         
         // Account details group
-        let defaultAccountCell = AddEditAccountCell(field: "DefaultAccount",
-            placeholder: "trueId",
+        let defaultAccountCell = AddEditAccountCell(field: "isDefaultAccount?",
+            placeholder: "defaultAccountForTransactions",
             cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
             cellSettings: [KEY_HEIGHT:60.0])
         
-        addAccountTable.append([])
-        addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
+        self.addAccountTable.append([])
+        self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
         
         // Dismiss keyboard after tapping outside of it
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissKeyboard")
@@ -71,11 +71,11 @@ class AddEditAccountTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return addAccountTable.count
+        return self.addAccountTable.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addAccountTable[section].count
+        return self.addAccountTable[section].count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -83,7 +83,7 @@ class AddEditAccountTableViewController: UITableViewController {
         cell.performAction()
         
         var isAnimated = false
-        if (isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED)) {
+        if isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED) {
             isAnimated = true
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: isAnimated)
@@ -101,7 +101,7 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
-        if (self.isKeyExistingForAddEditAccountCell(cellItem, key: KEY_HEIGHT)) {
+        if self.isKeyExistingForAddEditAccountCell(cellItem, key: KEY_HEIGHT) {
             let height: CGFloat? = CGFloat(cellItem.cellSettings[KEY_HEIGHT]!.floatValue)
             return height!
         }

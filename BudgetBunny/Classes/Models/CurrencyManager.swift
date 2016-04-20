@@ -10,85 +10,20 @@ import UIKit
 
 class CurrencyManager: NSObject {
 
-    var currencyDictionary: NSDictionary = [:]
+    var currencyDictionary: NSMutableDictionary = [:]
+    var currencyNames: NSMutableArray = []
     
     func setCurrencyList() {
-        var countryInfo: NSMutableDictionary = [:]
-        var currencies: NSMutableArray = []
+        let countries: NSArray = NSLocale.availableLocaleIdentifiers()
         
+        for country in (countries as! [String]) {
+            let currency = Currency()
+            currency.setAttributes(country)
+            
+            if self.currencyDictionary.objectForKey(currency.name) == nil {
+                self.currencyDictionary.setObject(currency, forKey: currency.name)
+                self.currencyNames.addObject(currency.name)
+            }
+        }
     }
-    
 }
-
-
-/*
-
-
-#import "CurrencyManager.h"
-#import "Currency.h"
-
-@interface CurrencyManager()
-
-@property (strong, nonatomic) NSDictionary* currencyDictionary;
-
-@end
-
-@implementation CurrencyManager
-
-@synthesize validCurrencies = _validCurrencies;
-@synthesize currencyDictionary = _currencyDictionary;
-
-// Don't return a mutable array
-- (NSArray *)validCurrencies {
-return [_validCurrencies copy];
-}
-
-
-- (CurrencyManager *) init {
-self = [super init];
-if ( self ) {
-
-NSMutableDictionary* countryInfo = [[NSMutableDictionary alloc] init];
-NSMutableArray* keptCurrencies = [[NSMutableArray alloc] init];
-NSArray* countries = [NSLocale availableLocaleIdentifiers];
-
-for ( NSString* country in countries ) {
-Currency* currency = [[Currency alloc] initWithLocaleIdentifier:country];
-
-if ( currency ) {
-if ( ![countryInfo objectForKey:currency.name] ) {
-[countryInfo setObject:currency forKey:currency.name];
-[keptCurrencies addObject:currency.name];
-
-}
-}
-
-}
-
-_validCurrencies = [keptCurrencies sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-_currencyDictionary = countryInfo;
-}
-return self;
-}
-
--(int)currencyCount {
-return self.validCurrencies.count;
-}
-
-
--(NSString *)titleForPickerForRow:(NSInteger)row {
-
-Currency* currencyItem = [self.currencyDictionary objectForKey:[self.validCurrencies objectAtIndex:row]];
-return currencyItem.pickerTitle;
-}
--(Currency *)infoForCurrencyAtRow:(NSInteger)row {
-return [self.currencyDictionary objectForKey:[self.validCurrencies objectAtIndex:row]];
-
-}
--(Currency *)infoForCurrencyWithName:(NSString *)name {
-return [self.currencyDictionary objectForKey:name];
-}
-
-
-
-*/

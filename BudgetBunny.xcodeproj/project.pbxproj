@@ -45,6 +45,7 @@
 		FB9CD8AE1CB49D100031E3B8 /* Wishitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A01CB49D100031E3B8 /* Wishitem.swift */; };
 		FB9CD8AF1CB49D100031E3B8 /* Target+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A11CB49D100031E3B8 /* Target+CoreDataProperties.swift */; };
 		FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A21CB49D100031E3B8 /* Target.swift */; };
+		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
 		FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		FB9CD8A01CB49D100031E3B8 /* Wishitem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wishitem.swift; sourceTree = "<group>"; };
 		FB9CD8A11CB49D100031E3B8 /* Target+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Target+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FB9CD8A21CB49D100031E3B8 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */,
+				FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
+				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
 				FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */,
 				FB9CD8AC1CB49D100031E3B8 /* Budget.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,

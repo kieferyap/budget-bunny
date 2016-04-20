@@ -10,17 +10,24 @@ import UIKit
 
 class Currency: NSObject {
 
-    var name: String = ""
     var code: String = ""
     var symbol: String = ""
+    var name: String = ""
     
     func setAttributes(identifier: String) {
-        let country: NSLocale = NSLocale(localeIdentifier: identifier)
-        let countryCode = String(country.objectForKey(NSLocaleCountryCode))
-        let currentLocale = NSLocale.currentLocale()
         
-        self.name = currentLocale.displayNameForKey(NSLocaleCountryCode, value: countryCode)!
-        self.symbol = String(country.objectForKey(NSLocaleCurrencySymbol))
-        self.code = String(country.objectForKey(NSLocaleCurrencyCode))
+        let currencyCode = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCountryCode) as? String
+        let currencySymbol = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCurrencySymbol) as? String
+        let countryName = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: identifier)
+        
+        let isCodeUsable: Bool = currencyCode != nil
+        let isSymbolUsable: Bool = currencySymbol != nil
+        let isNameUsable: Bool = countryName != nil
+        
+        if isCodeUsable && isSymbolUsable && isNameUsable {
+            self.code = currencyCode!
+            self.symbol = currencySymbol!
+            self.name = countryName!
+        }
     }
 }

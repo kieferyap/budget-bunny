@@ -32,20 +32,20 @@ class AddEditAccountTableViewCell: UITableViewCell {
         let selectionColor = UIView()
         selectionColor.backgroundColor = UIColor.whiteColor()
         
-        field?.text = accountModel.field
+        self.field?.text = accountModel.field
         let placeholderText = accountModel.placeholder
         
-        if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue) {
+        if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue {
             self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
         }
         
-        else if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron) {
+        else if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron {
             self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             selectionColor.backgroundColor = Constants.Colors.LightGreen
             self.value?.text = placeholderText
         }
         
-        else if (accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch) {
+        else if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch {
             self.information?.text = placeholderText
         }
         
@@ -54,16 +54,16 @@ class AddEditAccountTableViewCell: UITableViewCell {
     
     func performAction() {
 
-        if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue) {
+        if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue {
             self.textfield.becomeFirstResponder()
         }
             
-        else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron) {
+        else if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron {
             let destinationViewController = CurrencyPickerTableViewController()
-            delegate?.pushViewController(destinationViewController, isAnimated: true)
+            self.delegate?.pushViewController(destinationViewController, isAnimated: true)
         }
             
-        else if (self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch) {
+        else if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch {
             self.accountSwitch.setOn(!accountSwitch.on, animated: true)
         }
     }
