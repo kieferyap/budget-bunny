@@ -18,7 +18,7 @@ class CurrencyPickerTableViewController: UITableViewController {
         let manager = CurrencyManager()
         manager.setCurrencyList()
         
-        self.currencyTable = manager.currencyDictionary.allValues
+        self.currencyTable = manager.currencyDictionary
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,7 +17,7 @@ class Currency: NSObject {
     
     func setAttributes(identifier: String) {
         
-        let currencyCode = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCountryCode) as? String
+        let currencyCode = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCurrencyCode) as? String
         let currencySymbol = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCurrencySymbol) as? String
         let countryName = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: identifier)
         
@@ -30,6 +30,8 @@ class Currency: NSObject {
             self.currencySymbol = currencySymbol!
             self.country = countryName!
             self.identifier = identifier
+            
+            print(">>>", identifier, country, currencyCode, currencySymbol)
         }
     }
 }
