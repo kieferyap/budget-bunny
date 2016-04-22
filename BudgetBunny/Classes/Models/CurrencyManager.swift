@@ -19,7 +19,6 @@ class CurrencyManager: NSObject {
         for country in (countries as! [String]) {
             let currency = Currency()
             currency.setAttributes(country)
-            print(currency.country)
             unsortedCurrencyList.setObject(currency, forKey: currency.country)
         }
         
@@ -28,9 +27,5 @@ class CurrencyManager: NSObject {
         for key in sortedKeys {
             self.currencyDictionary.addObject(unsortedCurrencyList.objectForKey(key)!)
         }
-        
-        
-//        let objects = sorted(self.currencyDictionary.allKeys).map() { self.currencyDictionary[$0]! }
-//        self.currencyDictionary.sortBy
     }
 }

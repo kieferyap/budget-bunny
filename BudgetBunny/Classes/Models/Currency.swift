@@ -16,22 +16,20 @@ class Currency: NSObject {
     var identifier: String = ""
     
     func setAttributes(identifier: String) {
+        let localeIdentifier = NSLocale.init(localeIdentifier:identifier)
         
-        let currencyCode = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCurrencyCode) as? String
-        let currencySymbol = NSLocale.init(localeIdentifier:identifier).objectForKey(NSLocaleCurrencySymbol) as? String
-        let countryName = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: identifier)
+        let currencyCode = localeIdentifier.objectForKey(NSLocaleCurrencyCode) as? String
+        let currencySymbol = localeIdentifier.objectForKey(NSLocaleCurrencySymbol) as? String
+        let countryCode = localeIdentifier.objectForKey(NSLocaleCountryCode) as? String
         
         let isCodeUsable: Bool = currencyCode != nil
         let isSymbolUsable: Bool = currencySymbol != nil
-        let isNameUsable: Bool = countryName != nil
+        let isNameUsable: Bool = countryCode != nil
         
-        if isCodeUsable && isSymbolUsable && isNameUsable {
+        if isNameUsable && isCodeUsable && isSymbolUsable {
             self.currencyCode = currencyCode!
             self.currencySymbol = currencySymbol!
-            self.country = countryName!
-            self.identifier = identifier
-            
-            print(">>>", identifier, country, currencyCode, currencySymbol)
+            self.country = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: countryCode!)!
         }
     }
 }
