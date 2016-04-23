@@ -8,9 +8,12 @@
 
 import UIKit
 
-class CurrencyPickerTableViewController: UITableViewController {
+class CurrencyPickerTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var currencyTable: NSArray = []
+    var filteredCurrencies: NSArray = []
+    var isSearching: Bool = false
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,12 @@ class CurrencyPickerTableViewController: UITableViewController {
         manager.setCurrencyList()
         
         self.currencyTable = manager.currencyDictionary
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        self.tableView.tableHeaderView = searchController.searchBar
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,19 +42,42 @@ class CurrencyPickerTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if self.isSearching {
+            return self.filteredCurrencies.count
+        }
         return self.currencyTable.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellItem: Currency = self.currencyTable[indexPath.row] as! Currency
+        
+        var cellItem: Currency = self.currencyTable[indexPath.row] as! Currency
+        if self.isSearching {
+            cellItem = self.filteredCurrencies[indexPath.row] as! Currency
+        }
+        
         let cellIdentifier: String = Constants.CellIdentifiers.AddAccountCurrency
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CurrencyTableViewCell
         
         cell.setCurrencyModel(cellItem)
-//        cell.delegate = self
         return cell
     }
- 
+    
+    // MARK: - Search Results
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        let searchKey: String = searchController.searchBar.text!
+        self.isSearching = false
+        
+        if searchKey.characters.count > 0 {
+            let currencyPredicate = NSPredicate(format: "SELF.country CONTAINS[c] %@ OR SELF.currencyCode CONTAINS[c] %@ OR SELF.currencySymbol CONTAINS[c] %@", searchKey, searchKey, searchKey)
+            self.filteredCurrencies = self.currencyTable.filteredArrayUsingPredicate(currencyPredicate)
+            self.isSearching = true
+        }
+        
+        self.tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,5 +123,7 @@ class CurrencyPickerTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class CurrencyManager: NSObject {
 
-    var currencyDictionary: NSMutableDictionary = [:]
+    var currencyDictionary: NSMutableArray = []
     
     func setCurrencyList() {
         let countries: NSArray = NSLocale.availableLocaleIdentifiers()
@@ -26,17 +26,8 @@ class CurrencyManager: NSObject {
         
         for key in sortedKeys {
             if !key.isEqualToString("") {
-                let keyString = (key as! String)
-                let firstCharacter = String(keyString[keyString.startIndex])
-                
-                if self.currencyDictionary.objectForKey(firstCharacter) != nil {
-                    self.currencyDictionary.setObject([:], forKey: firstCharacter)
-                }
-                
-                self.currencyDictionary[firstCharacter]?.addObject(unsortedCurrencyList.objectForKey(key)!)
-            }
+                self.currencyDictionary.addObject(unsortedCurrencyList.objectForKey(key)!)
+             }
         }
-        
-        print(self.currencyDictionary["A"])
     }
 }
