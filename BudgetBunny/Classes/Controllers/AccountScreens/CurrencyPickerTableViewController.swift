@@ -35,7 +35,6 @@ class CurrencyPickerTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currencyTable.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellItem: Currency = self.currencyTable[indexPath.row] as! Currency

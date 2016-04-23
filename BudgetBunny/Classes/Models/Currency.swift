@@ -30,6 +30,7 @@ class Currency: NSObject {
             self.currencyCode = currencyCode!
             self.currencySymbol = currencySymbol!
             self.country = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: countryCode!)!
+//            print(">>>", self.country, self.currencyCode, self.currencySymbol)
         }
     }
 }
