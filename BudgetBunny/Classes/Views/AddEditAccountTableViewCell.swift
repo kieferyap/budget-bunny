@@ -35,44 +35,51 @@ class AddEditAccountTableViewCell: UITableViewCell {
         self.field?.text = accountModel.field
         let placeholderText = accountModel.placeholder
         
-        if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue {
+        switch accountModel.cellIdentifier {
+        case Constants.CellIdentifiers.AddAccountFieldValue:
             self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
-        }
-        
-        else if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron {
+            let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
+            if keyboardType != nil {
+                self.textfield.keyboardType = UIKeyboardType.DecimalPad
+            }
+            break
+            
+        case Constants.CellIdentifiers.AddAccountChevron:
             self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             selectionColor.backgroundColor = Constants.Colors.LightGreen
             self.value?.text = placeholderText
-        }
-        
-        else if accountModel.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch {
+            break
+            
+        case Constants.CellIdentifiers.AddAccountSwitch:
             self.information?.text = placeholderText
+            break
+            
+        default:
+            break
         }
         
         self.selectedBackgroundView = selectionColor;
     }
     
     func performAction() {
-
-        if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountFieldValue {
+        switch self.model.cellIdentifier {
+        case Constants.CellIdentifiers.AddAccountFieldValue:
             self.textfield.becomeFirstResponder()
-        }
+            break
             
-        else if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountChevron {
+        case Constants.CellIdentifiers.AddAccountChevron:
             let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
             let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.CurrencyPickerTable)
             self.delegate?.pushViewController(destinationViewController, isAnimated: true)
-        }
+            break
             
-        else if self.model.cellIdentifier == Constants.CellIdentifiers.AddAccountSwitch {
+        case Constants.CellIdentifiers.AddAccountSwitch:
             self.accountSwitch.setOn(!accountSwitch.on, animated: true)
+            break
+            
+        default:
+            break
         }
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

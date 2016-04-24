@@ -19,20 +19,25 @@ class CurrencyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setCurrencyModel(currencyModel: Currency, selectedCountryName: NSString) {
+        // Set selected color
         let selectionColor = UIView()
         selectionColor.backgroundColor = Constants.Colors.LightGreen
-        let countryName = currencyModel.country
+        self.selectedBackgroundView = selectionColor;
         
-        self.currencyCodeLabel.text = currencyModel.currencyCode
-        self.currencySymbolLabel.text = currencyModel.currencySymbol
-        self.countryLabel.text = countryName
+        // Set models
+        let countryName = currencyModel.country
         self.model = currencyModel
         self.identifier = currencyModel.identifier
         
+        // Set labels
+        self.currencyCodeLabel.text = currencyModel.currencyCode
+        self.currencySymbolLabel.text = currencyModel.currencySymbol
+        self.countryLabel.text = countryName
+        
+        // Set checkmark
         if selectedCountryName.isEqualToString(countryName) {
             self.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
@@ -40,11 +45,4 @@ class CurrencyTableViewCell: UITableViewCell {
             self.accessoryType = UITableViewCellAccessoryType.None
         }
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
