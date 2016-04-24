@@ -13,6 +13,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     var currencyTable: NSArray = []
     var filteredCurrencies: NSArray = []
     var isSearching: Bool = false
+    var selectedCountry: String = ""
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -25,9 +26,9 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,15 +53,22 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cellItem: Currency = self.currencyTable[indexPath.row] as! Currency
+        let cellIdentifier: String = Constants.CellIdentifiers.AddAccountCurrency
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CurrencyTableViewCell
+        
         if self.isSearching {
             cellItem = self.filteredCurrencies[indexPath.row] as! Currency
         }
         
-        let cellIdentifier: String = Constants.CellIdentifiers.AddAccountCurrency
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CurrencyTableViewCell
-        
-        cell.setCurrencyModel(cellItem)
+        cell.setCurrencyModel(cellItem, selectedCountryName: self.selectedCountry)
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! CurrencyTableViewCell
+        self.selectedCountry = cell.model.country
+        self.tableView.reloadData()
     }
     
     // MARK: - Search Results
@@ -79,6 +87,9 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         self.tableView.reloadData()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        self.searchController.view.removeFromSuperview()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

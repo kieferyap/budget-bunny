@@ -236,8 +236,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="chooseCurrency" id="Pv3-WA-V0P"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="xRI-WF-GW0" id="g3d-3W-yuQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUG-pR-38u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="xRI-WF-GW0">
+                    <connections>
+                        <outlet property="delegate" destination="rLm-kW-0jh" id="7Q1-WH-mJD"/>
+                        <outlet property="searchContentsController" destination="rLm-kW-0jh" id="uH8-B9-F0I"/>
+                        <outlet property="searchResultsDataSource" destination="rLm-kW-0jh" id="jYN-yP-0gW"/>
+                        <outlet property="searchResultsDelegate" destination="rLm-kW-0jh" id="exn-BE-c7g"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="50" y="3124"/>
         </scene>

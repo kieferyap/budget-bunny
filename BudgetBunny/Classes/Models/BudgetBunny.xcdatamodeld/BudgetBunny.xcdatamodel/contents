@@ -52,7 +52,7 @@
         <relationship name="targetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="targetWishitemId" inverseEntity="Target" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-119" positionY="-178" width="128" height="163"/>
+        <element name="Account" positionX="-119" positionY="-178" width="128" height="165"/>
         <element name="Budget" positionX="-342" positionY="-189" width="128" height="118"/>
         <element name="Category" positionX="-279" positionY="99" width="128" height="103"/>
         <element name="Record" positionX="223" positionY="-189" width="128" height="88"/>
