@@ -21,7 +21,7 @@ class CurrencyTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setCurrencyModel(currencyModel: Currency, selectedCountryName: NSString) {
+    func setCurrencyModel(currencyModel: Currency, selectedCountryIdentifier: NSString) {
         // Set selected color
         let selectionColor = UIView()
         selectionColor.backgroundColor = Constants.Colors.LightGreen
@@ -38,7 +38,7 @@ class CurrencyTableViewCell: UITableViewCell {
         self.countryLabel.text = countryName
         
         // Set checkmark
-        if selectedCountryName.isEqualToString(countryName) {
+        if selectedCountryIdentifier.isEqualToString(currencyModel.identifier) {
             self.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
         else {

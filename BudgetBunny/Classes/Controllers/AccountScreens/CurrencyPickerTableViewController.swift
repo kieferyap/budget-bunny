@@ -13,13 +13,18 @@ let COUNTRY_SEARCH_PARAMETER = "SELF.country CONTAINS[c] %@ OR "
 let CODE_SEARCH_PARAMETER = "SELF.currencyCode CONTAINS[c] %@ OR "
 let SYMBOL_SEARCH_PARAMETER = "SELF.currencySymbol CONTAINS[c] %@"
 
+protocol CurrencySelectionDelegate: class {
+    func setSelectedCurrencyIdentifier(identifier: String)
+}
+
 class CurrencyPickerTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var currencyTable: NSArray = []
     var filteredCurrencies: NSArray = []
     var isSearching: Bool = false
-    var selectedCountry: String = ""
+    var selectedCountryIdentifier: String = ""
     let searchController = UISearchController(searchResultsController: nil)
+    weak var delegate:CurrencySelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     
     override func viewWillDisappear(animated: Bool) {
         self.searchController.view.removeFromSuperview()
+        self.delegate?.setSelectedCurrencyIdentifier(self.selectedCountryIdentifier)
     }
 
     // MARK: - Table view data source
@@ -70,14 +76,14 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
             cellItem = self.filteredCurrencies[indexPath.row] as! Currency
         }
         
-        cell.setCurrencyModel(cellItem, selectedCountryName: self.selectedCountry)
+        cell.setCurrencyModel(cellItem, selectedCountryIdentifier: self.selectedCountryIdentifier)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! CurrencyTableViewCell
-        self.selectedCountry = cell.model.country
+        self.selectedCountryIdentifier = cell.model.identifier
         self.tableView.reloadData()
     }
     

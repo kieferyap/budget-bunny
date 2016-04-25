@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PushViewControllerDelegate: class {
-    func pushViewController(destinationViewController: UIViewController, isAnimated: Bool)
+    func pushCurrencyViewController()
 }
 
 class AddEditAccountTableViewCell: UITableViewCell {
@@ -68,9 +68,7 @@ class AddEditAccountTableViewCell: UITableViewCell {
             break
             
         case Constants.CellIdentifiers.AddAccountChevron:
-            let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
-            let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.CurrencyPickerTable)
-            self.delegate?.pushViewController(destinationViewController, isAnimated: true)
+            self.delegate?.pushCurrencyViewController()
             break
             
         case Constants.CellIdentifiers.AddAccountSwitch:

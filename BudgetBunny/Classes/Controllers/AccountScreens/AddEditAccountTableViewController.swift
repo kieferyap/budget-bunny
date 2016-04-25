@@ -9,7 +9,13 @@
 import UIKit
 
 let IDX_ACCOUNT_INFO_GROUP = 0
+let IDX_NAME_CELL = 0
+let IDX_CURRENCY_CELL = 1
+let IDX_AMOUNT_CELL = 2
+
 let IDX_ACCOUNT_DETAILS_GROUP = 1
+let IDX_DEFAULT_CELL = 0
+
 let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
 let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
 let KEY_HEIGHT = "height"
@@ -19,6 +25,7 @@ let KEY_IS_NUMPAD = "isKeyboardNumpad"
 class AddEditAccountTableViewController: UITableViewController {
 
     var addAccountTable:[[AddEditAccountCell]] = [[]]
+    var selectedCountryIdentifier: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +50,13 @@ class AddEditAccountTableViewController: UITableViewController {
         
         // Information group
         self.addAccountTable.append([])
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(nameCell)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(currencyCell)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].append(initialAmountCell)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(nameCell, atIndex: IDX_NAME_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(currencyCell, atIndex: IDX_CURRENCY_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(initialAmountCell, atIndex: IDX_AMOUNT_CELL)
         
         // Account details group
         self.addAccountTable.append([])
-        self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].append(defaultAccountCell)
+        self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell, atIndex: IDX_DEFAULT_CELL)
         
         // Keyboard must be dismissed when regions outside of it is tapped
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(AddEditAccountTableViewController.dismissKeyboard))
@@ -111,7 +118,19 @@ class AddEditAccountTableViewController: UITableViewController {
 }
 
 extension AddEditAccountTableViewController: PushViewControllerDelegate {
-    func pushViewController(destinationViewController: UIViewController, isAnimated: Bool) {
-        self.navigationController?.pushViewController(destinationViewController, animated: isAnimated)
+    func pushCurrencyViewController() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
+        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.CurrencyPickerTable)
+            as! CurrencyPickerTableViewController
+        destinationViewController.delegate = self
+        self.navigationController?.pushViewController(destinationViewController, animated: true)
+    }
+}
+
+
+extension AddEditAccountTableViewController: CurrencySelectionDelegate {
+    func setSelectedCurrencyIdentifier(identifier: String) {
+        (self.addAccountTable[IDX_ACCOUNT_INFO_GROUP][IDX_CURRENCY_CELL] as AddEditAccountCell).setCellPlaceholder(identifier)
+        self.tableView.reloadData()
     }
 }
