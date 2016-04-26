@@ -1,0 +1,108 @@
+
+/* Class = "UITabBarItem"; title = "accounts"; ObjectID = "20R-zZ-6jh"; */
+"20R-zZ-6jh.title" = "accounts";
+
+/* Class = "UISegmentedControl"; 2VZ-au-IUr.segmentTitles[0] = "monthly"; ObjectID = "2VZ-au-IUr"; */
+"2VZ-au-IUr.segmentTitles[0]" = "monthly";
+
+/* Class = "UISegmentedControl"; 2VZ-au-IUr.segmentTitles[1] = "weekly"; ObjectID = "2VZ-au-IUr"; */
+"2VZ-au-IUr.segmentTitles[1]" = "weekly";
+
+/* Class = "UISegmentedControl"; 2VZ-au-IUr.segmentTitles[2] = "daily"; ObjectID = "2VZ-au-IUr"; */
+"2VZ-au-IUr.segmentTitles[2]" = "daily";
+
+/* Class = "UISegmentedControl"; 3y3-ls-gp7.segmentTitles[0] = "calendar"; ObjectID = "3y3-ls-gp7"; */
+"3y3-ls-gp7.segmentTitles[0]" = "calendar";
+
+/* Class = "UISegmentedControl"; 3y3-ls-gp7.segmentTitles[1] = "targets"; ObjectID = "3y3-ls-gp7"; */
+"3y3-ls-gp7.segmentTitles[1]" = "targets";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5pO-GQ-VzW"; */
+"5pO-GQ-VzW.text" = "Label";
+
+/* Class = "UILabel"; text = "USD"; ObjectID = "6o8-kX-UJf"; */
+"6o8-kX-UJf.text" = "USD";
+
+/* Class = "UIBarButtonItem"; title = "done"; ObjectID = "7tW-gU-OLf"; */
+"7tW-gU-OLf.title" = "done";
+
+/* Class = "UINavigationItem"; title = "addTarget"; ObjectID = "9wj-PL-Yks"; */
+"9wj-PL-Yks.title" = "addTarget";
+
+/* Class = "UITabBarItem"; title = "dashboard"; ObjectID = "BsS-ip-gpo"; */
+"BsS-ip-gpo.title" = "dashboard";
+
+/* Class = "UILabel"; text = "field"; ObjectID = "CrT-Rn-Pg3"; */
+"CrT-Rn-Pg3.text" = "field";
+
+/* Class = "UIButton"; normalTitle = "calendarEntry"; ObjectID = "EPd-Dl-v9b"; */
+"EPd-Dl-v9b.normalTitle" = "calendarEntry";
+
+/* Class = "UINavigationItem"; title = "records"; ObjectID = "FCR-Ia-Oc0"; */
+"FCR-Ia-Oc0.title" = "records";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "FKp-Qx-Utr"; */
+"FKp-Qx-Utr.title" = "+";
+
+/* Class = "UIButton"; normalTitle = "post"; ObjectID = "G2U-lq-uWK"; */
+"G2U-lq-uWK.normalTitle" = "post";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "H1M-gK-Fod"; */
+"H1M-gK-Fod.title" = "+";
+
+/* Class = "UILabel"; text = "field"; ObjectID = "IjL-Dx-Dcm"; */
+"IjL-Dx-Dcm.text" = "field";
+
+/* Class = "UIBarButtonItem"; title = "done"; ObjectID = "MNM-zL-JiU"; */
+"MNM-zL-JiU.title" = "done";
+
+/* Class = "UIBarButtonItem"; title = "done"; ObjectID = "MwL-AU-goE"; */
+"MwL-AU-goE.title" = "done";
+
+/* Class = "UITabBarItem"; title = "budgets"; ObjectID = "Nal-Wc-Nde"; */
+"Nal-Wc-Nde.title" = "budgets";
+
+/* Class = "UINavigationItem"; title = "chooseCurrency"; ObjectID = "Pv3-WA-V0P"; */
+"Pv3-WA-V0P.title" = "chooseCurrency";
+
+/* Class = "UIButton"; normalTitle = "addTarget"; ObjectID = "QcV-we-cEI"; */
+"QcV-we-cEI.normalTitle" = "addTarget";
+
+/* Class = "UIBarButtonItem"; title = "post"; ObjectID = "Rt4-QG-O2Y"; */
+"Rt4-QG-O2Y.title" = "post";
+
+/* Class = "UINavigationItem"; title = "accounts"; ObjectID = "S7T-U9-FLW"; */
+"S7T-U9-FLW.title" = "accounts";
+
+/* Class = "UINavigationItem"; title = "dashboard"; ObjectID = "WZL-VM-r8J"; */
+"WZL-VM-r8J.title" = "dashboard";
+
+/* Class = "UILabel"; text = "($)"; ObjectID = "XdU-Xu-waI"; */
+"XdU-Xu-waI.text" = "($)";
+
+/* Class = "UINavigationItem"; title = "addTransaction"; ObjectID = "cXC-dD-Cyh"; */
+"cXC-dD-Cyh.title" = "addTransaction";
+
+/* Class = "UILabel"; text = "field"; ObjectID = "eAs-iV-ZJW"; */
+"eAs-iV-ZJW.text" = "field";
+
+/* Class = "UINavigationItem"; title = "budgets"; ObjectID = "jRK-CR-iuI"; */
+"jRK-CR-iuI.title" = "budgets";
+
+/* Class = "UILabel"; text = "description"; ObjectID = "jlN-Ed-rCN"; */
+"jlN-Ed-rCN.text" = "description";
+
+/* Class = "UINavigationItem"; title = "addEditAccount"; ObjectID = "mbX-o5-cBn"; */
+"mbX-o5-cBn.title" = "addEditAccount";
+
+/* Class = "UILabel"; text = "value"; ObjectID = "mm6-va-18q"; */
+"mm6-va-18q.text" = "value";
+
+/* Class = "UINavigationItem"; title = "newEditBudget"; ObjectID = "msc-Xu-wo1"; */
+"msc-Xu-wo1.title" = "newEditBudget";
+
+/* Class = "UINavigationItem"; title = "data"; ObjectID = "oBC-73-If4"; */
+"oBC-73-If4.title" = "data";
+
+/* Class = "UITabBarItem"; title = "records"; ObjectID = "qz1-G5-hqh"; */
+"qz1-G5-hqh.title" = "records";

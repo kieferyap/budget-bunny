@@ -1,0 +1,11 @@
+/* This file was generated using the localization script. Please do not make any changes to this file. */
+"MENULABEL_ACCOUNT" = "帐户";
+"MENULABEL_ADD_ACCOUNT" = "新帐户";
+"MENULABEL_CURRENCY_PICKER" = "货币";
+"LABEL_NAME" = "货币的名称";
+"TEXTFIELD_NAME_PLACEHOLDER" = "我的钱包";
+"LABEL_CURRENCY" = "货币";
+"LABEL_STARTING_BALANCE" = "起始余额";
+"TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "600";
+"LABEL_IS_DEFAULT_ACCOUNT" = "默认帐户";
+"LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎天用的帐户";

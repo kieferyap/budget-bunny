@@ -1,0 +1,11 @@
+/* This file was generated using the localization script. Please do not make any changes to this file. */
+"MENULABEL_ACCOUNT" = "アカウント";
+"MENULABEL_ADD_ACCOUNT" = "追加";
+"MENULABEL_CURRENCY_PICKER" = "通貨";
+"LABEL_NAME" = "アカウント名";
+"TEXTFIELD_NAME_PLACEHOLDER" = "私の財布";
+"LABEL_CURRENCY" = "通貨";
+"LABEL_STARTING_BALANCE" = "開始残高";
+"TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "1000";
+"LABEL_IS_DEFAULT_ACCOUNT" = "デフォルトのアカウント";
+"LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎日に使うアカウント";

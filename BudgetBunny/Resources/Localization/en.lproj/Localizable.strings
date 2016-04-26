@@ -1,0 +1,11 @@
+/* This file was generated using the localization script. Please do not make any changes to this file. */
+"MENULABEL_ACCOUNT" = "Account";
+"MENULABEL_ADD_ACCOUNT" = "Add New Account";
+"MENULABEL_CURRENCY_PICKER" = "Currency";
+"LABEL_NAME" = "Account Name";
+"TEXTFIELD_NAME_PLACEHOLDER" = "My Wallet";
+"LABEL_CURRENCY" = "Currency";
+"LABEL_STARTING_BALANCE" = "Starting Balance";
+"TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "100";
+"LABEL_IS_DEFAULT_ACCOUNT" = "Default Account";
+"LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "The default account to use for everyday transactions";

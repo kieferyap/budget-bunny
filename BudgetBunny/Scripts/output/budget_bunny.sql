@@ -140,8 +140,16 @@ SELECT pg_catalog.setval('features_seq', 28, true);
 --
 
 COPY localizable_words (localizable_word_id, wording_key, localization_en, localization_jp, localization_zh, inserted_on) FROM stdin;
-1	LBL_ACCOUNT	Account	アカウント	帐户	2016-04-07 15:05:30.083118
-2	LBL_BUDGET	Budget	バジェット	预算	2016-04-07 15:05:30.085258
+3	MENULABEL_ACCOUNT	Account	アカウント	帐户	2016-04-26 14:10:39.122605
+4	MENULABEL_ADD_ACCOUNT	Add New Account	追加	新帐户	2016-04-26 14:10:39.173172
+5	MENULABEL_CURRENCY_PICKER	Currency	通貨	货币	2016-04-26 14:10:39.175402
+6	LABEL_NAME	Account Name	アカウント名	货币的名称	2016-04-26 14:10:39.177616
+7	TEXTFIELD_NAME_PLACEHOLDER	My Wallet	私の財布	我的钱包	2016-04-26 14:10:39.179932
+8	LABEL_CURRENCY	Currency	通貨	货币	2016-04-26 14:10:39.181916
+9	LABEL_STARTING_BALANCE	Starting Balance	開始残高	起始余额	2016-04-26 14:10:39.222807
+10	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-04-26 14:10:39.225605
+11	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-04-26 14:10:39.228502
+12	LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION	The default account to use for everyday transactions	毎日に使うアカウント	毎天用的帐户	2016-04-26 14:10:39.232309
 \.
 
 
@@ -149,7 +157,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 2, true);
+SELECT pg_catalog.setval('localizable_words_seq', 12, true);
 
 
 --

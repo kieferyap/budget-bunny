@@ -58,7 +58,7 @@ class Localization:
 
 			line = file.readline()
 			while not line == self.LOCALIZATION_FILE_ENDER:
-				localization_arr = line.split()
+				localization_arr = line.split("\t")
 
 				# Output to file here
 				for item in self.localization_list:
@@ -79,9 +79,9 @@ class Localization:
 
 if __name__ == "__main__":
 
-	en_local = LocalizationFile(index = 2, output_path = "../Resources/Localization/en.proj/Localizable.strings")
-	ja_local = LocalizationFile(index = 3, output_path = "../Resources/Localization/ja.proj/Localizable.strings")
-	zh_local = LocalizationFile(index = 4, output_path = "../Resources/Localization/zh.proj/Localizable.strings")
+	en_local = LocalizationFile(index = 2, output_path = "../Resources/Localization/en.lproj/Localizable.strings")
+	ja_local = LocalizationFile(index = 3, output_path = "../Resources/Localization/ja.lproj/Localizable.strings")
+	zh_local = LocalizationFile(index = 4, output_path = "../Resources/Localization/zh-Hans.lproj/Localizable.strings")
 	all_localizations = [en_local, ja_local, zh_local]
 
 	localization = Localization(all_localizations)

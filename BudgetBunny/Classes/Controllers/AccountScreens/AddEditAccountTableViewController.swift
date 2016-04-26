@@ -31,15 +31,15 @@ class AddEditAccountTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Cell information
-        let nameCell = AddEditAccountCell(field: "name",
-                                    placeholder: "myWallet",
+        let nameCell = AddEditAccountCell(field: NSLocalizedString("LABEL_NAME", comment: ""),
+                                    placeholder: NSLocalizedString("TEXTFIELD_NAME_PLACEHOLDER", comment: ""),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                    cellSettings: [:])
-        let currencyCell = AddEditAccountCell(field: "currency",
+        let currencyCell = AddEditAccountCell(field: NSLocalizedString("LABEL_NAME", comment: ""),
                                         placeholder: "dollar",
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
                                        cellSettings: [KEY_ANIMATED: true])
-        let initialAmountCell = AddEditAccountCell(field: "initAmount",
+        let initialAmountCell = AddEditAccountCell(field: NSLocalizedString("LABEL_STARTING_BALANCE", comment: ""),
                                              placeholder: "500",
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                             cellSettings: [KEY_IS_NUMPAD: true])
