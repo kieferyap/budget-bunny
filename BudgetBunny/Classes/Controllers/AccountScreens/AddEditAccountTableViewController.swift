@@ -31,20 +31,20 @@ class AddEditAccountTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Cell information
-        let nameCell = AddEditAccountCell(field: NSLocalizedString("LABEL_NAME", comment: ""),
-                                    placeholder: NSLocalizedString("TEXTFIELD_NAME_PLACEHOLDER", comment: ""),
+        let nameCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME),
+                                    placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                    cellSettings: [:])
-        let currencyCell = AddEditAccountCell(field: NSLocalizedString("LABEL_NAME", comment: ""),
+        let currencyCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_CURRENCY),
                                         placeholder: "dollar",
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
                                        cellSettings: [KEY_ANIMATED: true])
-        let initialAmountCell = AddEditAccountCell(field: NSLocalizedString("LABEL_STARTING_BALANCE", comment: ""),
-                                             placeholder: "500",
+        let initialAmountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_STARTING_BALANCE),
+                                             placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                             cellSettings: [KEY_IS_NUMPAD: true])
-        let defaultAccountCell = AddEditAccountCell(field: "isDefaultAccount?",
-                                                    placeholder: "defaultAccountForTransactions",
+        let defaultAccountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT),
+                                                    placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION),
                                                     cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
                                                     cellSettings: [KEY_HEIGHT:ACCOUNT_CELL_HEIGHT])
         

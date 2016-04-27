@@ -22,6 +22,7 @@ class Localization:
 	DATABASE_NAME = "budget_bunny"
 	OUTPUT_FOLDER = "output"
 	OUTPUT_FILE = OUTPUT_FOLDER+"/budget_bunny.sql"
+	STRINGS_OUTPUT_FILE = "../Classes/Helpers/StringConstants.swift"
 	HEADER = "/* This file was generated using the localization script. Please do not make any changes to this file. */"
 
 	# Localization constants
@@ -31,6 +32,7 @@ class Localization:
 	def __init__ (self, localization_list):
 		print "[Internal] Initialized Localization class"
 		self.localization_list = localization_list
+		self.localization_indices = {}
 
 	# Accesses the budget_bunny database and exports an SQL file
 	def database_dump(self):
@@ -64,10 +66,24 @@ class Localization:
 				for item in self.localization_list:
 					item.write_line("\""+localization_arr[localization_idx]+"\" = \""+localization_arr[item.index]+"\";\n")
 
+					localization_strings = localization_arr[localization_idx]
+					self.localization_indices[localization_strings] = localization_strings
+
 				line = file.readline()
 			
 		else:
 			print "[Error] File not found: "+self.OUTPUT_FILE
+
+	def create_strings_file(self):
+		print "[Status] Making the StringConstants file."
+
+		strings_file = open(self.STRINGS_OUTPUT_FILE, 'w')
+		strings_file.write("struct StringConstants {\n")
+
+		for item in self.localization_indices:
+			strings_file.write("\tstatic let "+item+" = "+"\""+item+"\"\n")
+
+		strings_file.write("}")
 
 		print "[Status] Finished"
 
@@ -87,6 +103,7 @@ if __name__ == "__main__":
 	localization = Localization(all_localizations)
 	localization.database_dump()
 	localization.create_localization_file()
+	localization.create_strings_file()
 
 
 

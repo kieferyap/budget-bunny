@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
 		FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */; };
+		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -25,10 +27,8 @@
 		FB8A9B9A1CC65AC40017D0D3 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */; };
 		FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3061CB4974F00C35BC0 /* AppDelegate.swift */; };
 		FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3081CB4974F00C35BC0 /* ViewController.swift */; };
-		FB97C30C1CB4974F00C35BC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */; };
 		FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB97C3101CB4975000C35BC0 /* Assets.xcassets */; };
-		FB97C3141CB4975000C35BC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C3121CB4975000C35BC0 /* LaunchScreen.storyboard */; };
 		FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C31E1CB4975000C35BC0 /* BudgetBunnyTests.swift */; };
 		FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3291CB4975000C35BC0 /* LocationUITests.swift */; };
 		FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8951CB49D100031E3B8 /* Account+CoreDataProperties.swift */; };
@@ -68,7 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
 		FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewCell.swift; sourceTree = "<group>"; };
+		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewController.swift; sourceTree = "<group>"; };
@@ -113,9 +115,7 @@
 		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountCell.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		FBEB61571CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		FBEB61591CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		FBFE42F61CCF34A1000206FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F81CCF34A3000206FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F91CCF34A5000206FE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -311,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				FB5FF8201CC134D10090F5FA /* Constants.swift */,
+				FB49683D1CD0ADC9006A0177 /* StringConstants.swift */,
+				FB2445361CCF5B3400E55941 /* BunnyUtils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -498,10 +500,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB97C3141CB4975000C35BC0 /* LaunchScreen.storyboard in Resources */,
 				FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */,
 				FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */,
-				FB97C30C1CB4974F00C35BC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +529,9 @@
 				FB9CD8AB1CB49D100031E3B8 /* Budget+CoreDataProperties.swift in Sources */,
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
 				FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */,
+				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
 				FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */,
+				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
 				FB9CD8A91CB49D100031E3B8 /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* NewEditBudgetViewController.swift in Sources */,
 				FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */,
@@ -600,8 +602,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB97C30B1CB4974F00C35BC0 /* Base */,
-				FBEB61571CCF30F100FE1660 /* ja */,
-				FBEB61591CCF30FB00FE1660 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			path = .;
