@@ -134,7 +134,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYf-pt-WJT">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYf-pt-WJT">
                                             <rect key="frame" x="543" y="14" width="51" height="31"/>
                                             <color key="onTintColor" red="0.0" green="0.69411764705882351" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                         </switch>
@@ -147,6 +147,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="topMargin" secondItem="CrT-Rn-Pg3" secondAttribute="top" id="3Cb-Mu-wN2"/>
+                                        <constraint firstItem="jlN-Ed-rCN" firstAttribute="top" secondItem="CrT-Rn-Pg3" secondAttribute="bottom" constant="7" id="6mZ-Se-TFv"/>
                                         <constraint firstItem="jlN-Ed-rCN" firstAttribute="bottom" secondItem="2jn-4e-eT9" secondAttribute="bottomMargin" id="OpV-1n-RTF"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="CrT-Rn-Pg3" secondAttribute="leading" id="Swg-4l-KQa"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MYf-pt-WJT" secondAttribute="trailing" id="cPa-1r-d14"/>
@@ -168,9 +169,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="addEditAccount" id="mbX-o5-cBn">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="7tW-gU-OLf"/>
+                        <barButtonItem key="rightBarButtonItem" title="done" id="7tW-gU-OLf">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="tGE-fd-eFe" id="DUy-lP-1JH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="7tW-gU-OLf" id="gpc-is-A4B"/>
                         <segue destination="rLm-kW-0jh" kind="show" identifier="testSegue" id="H69-zE-kHx"/>
                     </connections>
                 </tableViewController>

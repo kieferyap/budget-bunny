@@ -14,4 +14,13 @@ class BunnyUtils: NSObject {
         return NSLocalizedString(key, comment: "")
     }
     
+    class func addKeyboardDismisserListener(vc: UIViewController) {
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: vc, action:#selector(BunnyUtils.dismissKeyboard))
+        tapRecognizer.cancelsTouchesInView = false
+        vc.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    class func dismissKeyboard() {
+    }
+    
 }

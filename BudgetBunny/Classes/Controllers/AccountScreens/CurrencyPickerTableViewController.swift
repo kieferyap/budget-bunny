@@ -51,8 +51,15 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         self.searchController.searchBar.tintColor = Constants.Colors.DarkGreen
         definesPresentationContext = true
         self.tableView.tableHeaderView = searchController.searchBar
+        
+        BunnyUtils.addKeyboardDismisserListener(self)
     }
 
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // self.searchController.active = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -68,10 +75,35 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isSearching {
-            return self.filteredCurrencies.count
+        
+        let emptyTableLabel = UILabel.init(frame: CGRectMake(0, 0, self.tableView.bounds.size.height, self.tableView.bounds.size.width))
+        var labelString: String = "Loading..." //TO-DO: Localize!
+        var rows: Int = 0
+        var separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        if self.currencyTable.count > 0 {
+            labelString = ""
+            separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            
+            if self.isSearching {
+                rows = self.filteredCurrencies.count
+            }
+            else {
+                rows = self.currencyTable.count
+            }
         }
-        return self.currencyTable.count
+        
+        // Set empty table label
+        emptyTableLabel.text = labelString
+        emptyTableLabel.textAlignment = NSTextAlignment.Center
+        emptyTableLabel.sizeToFit()
+        emptyTableLabel.textColor = Constants.Colors.NormalGreen
+        
+        // Add table label to table view's background view
+        self.tableView.backgroundView = emptyTableLabel
+        self.tableView.separatorStyle = separatorStyle
+        
+        return rows
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

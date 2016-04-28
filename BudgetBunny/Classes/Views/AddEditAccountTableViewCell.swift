@@ -8,6 +8,9 @@
 
 import UIKit
 
+let TRUE_STRING = "1"
+let FALSE_STRING = "0"
+
 protocol PushViewControllerDelegate: class {
     func pushCurrencyViewController()
 }
@@ -55,6 +58,7 @@ class AddEditAccountTableViewCell: UITableViewCell {
             
         case Constants.CellIdentifiers.AddAccountSwitch:
             self.information.text = placeholderText
+            self.information.adjustsFontSizeToFitWidth = true
             break
             
         default:
@@ -81,6 +85,32 @@ class AddEditAccountTableViewCell: UITableViewCell {
         default:
             break
         }
+    }
+    
+    func getValue() -> String {
+        var returnValue: String = ""
+        
+        switch self.model.cellIdentifier {
+        case Constants.CellIdentifiers.AddAccountFieldValue:
+            returnValue = self.textfield.text!
+            break
+            
+        case Constants.CellIdentifiers.AddAccountChevron:
+            returnValue = self.value.text!
+            break
+            
+        case Constants.CellIdentifiers.AddAccountSwitch:
+            returnValue = FALSE_STRING
+            if self.accountSwitch.on {
+                returnValue = TRUE_STRING
+            }
+            break
+            
+        default:
+            break
+        }
+        
+        return returnValue
     }
 
 }

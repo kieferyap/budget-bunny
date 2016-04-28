@@ -26,6 +26,7 @@ class AddEditAccountTableViewController: UITableViewController {
 
     var addAccountTable:[[AddEditAccountCell]] = [[]]
     var selectedCountryIdentifier: String = ""
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +62,15 @@ class AddEditAccountTableViewController: UITableViewController {
         self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell, atIndex: IDX_DEFAULT_CELL)
         
         // Keyboard must be dismissed when regions outside of it is tapped
-        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(AddEditAccountTableViewController.dismissKeyboard))
-        tapRecognizer.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapRecognizer)
+        BunnyUtils.addKeyboardDismisserListener(self)
+        
+        // TO-DO: Localize the Done button
+        
+    }
+
+    // TO-DO: Prevent duplication of this snippet of code
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func getCurrencyStringWithIdentifier() -> String {
@@ -80,16 +87,30 @@ class AddEditAccountTableViewController: UITableViewController {
         return newCurrencyPlaceholder
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func isKeyExistingForAddEditAccountCell(cell: AddEditAccountCell, key: String) -> Bool {
         return cell.cellSettings[key] != nil
+    }
+    
+    func getTableViewCellValue(section: Int, row: Int) -> String {
+        let indexPath = NSIndexPath.init(forRow: row, inSection: section)
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditAccountTableViewCell
+        return cell.getValue()
+    }
+    
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        let accountName = self.getTableViewCellValue(IDX_ACCOUNT_INFO_GROUP, row: IDX_NAME_CELL)
+        let accountCurrency = self.selectedCountryIdentifier
+        let accountInitValue = self.getTableViewCellValue(IDX_ACCOUNT_INFO_GROUP, row: IDX_AMOUNT_CELL)
+        let isDefaultAccount = self.getTableViewCellValue(IDX_ACCOUNT_DETAILS_GROUP, row: IDX_DEFAULT_CELL)
+        print(accountName, ">>>", accountCurrency, ">>>", accountInitValue, ">>>", isDefaultAccount)
+        
+        // TO-DO: Check that all fields are not null. If at least one field is an empty string, display an error.
+        // TO-DO: If all the fields are valid, save them to the core data and pop the view controller
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - Table view data source
@@ -130,7 +151,6 @@ class AddEditAccountTableViewController: UITableViewController {
         }
         return DEFAULT_CELL_HEIGHT
     }
-
 }
 
 extension AddEditAccountTableViewController: PushViewControllerDelegate {
