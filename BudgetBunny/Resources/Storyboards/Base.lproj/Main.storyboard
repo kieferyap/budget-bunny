@@ -70,8 +70,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Ps-euU">
-                                            <rect key="frame" x="49" y="13" width="543" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="49" y="11" width="543" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
@@ -101,17 +101,18 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-va-18q">
-                                            <rect key="frame" x="551" y="11" width="41" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-va-18q">
+                                            <rect key="frame" x="49" y="11" width="543" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="mm6-va-18q" firstAttribute="centerY" secondItem="D9N-b0-Y9v" secondAttribute="centerY" id="UGt-Dt-EKx"/>
+                                        <constraint firstItem="mm6-va-18q" firstAttribute="leading" secondItem="IjL-Dx-Dcm" secondAttribute="trailing" constant="8" id="GgJ-Xd-0jy"/>
                                         <constraint firstItem="IjL-Dx-Dcm" firstAttribute="centerY" secondItem="D9N-b0-Y9v" secondAttribute="centerY" id="cZ5-uu-Xle"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="IjL-Dx-Dcm" secondAttribute="leading" id="drh-xT-jw2"/>
+                                        <constraint firstItem="mm6-va-18q" firstAttribute="centerY" secondItem="D9N-b0-Y9v" secondAttribute="centerY" id="oUz-m3-9QB"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="mm6-va-18q" secondAttribute="trailing" id="rjA-51-rJo"/>
                                     </constraints>
                                 </tableViewCellContentView>

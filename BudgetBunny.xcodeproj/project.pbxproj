@@ -26,7 +26,6 @@
 		FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9B971CC65AB10017D0D3 /* Currency.swift */; };
 		FB8A9B9A1CC65AC40017D0D3 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */; };
 		FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3061CB4974F00C35BC0 /* AppDelegate.swift */; };
-		FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3081CB4974F00C35BC0 /* ViewController.swift */; };
 		FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */; };
 		FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB97C3101CB4975000C35BC0 /* Assets.xcassets */; };
 		FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C31E1CB4975000C35BC0 /* BudgetBunnyTests.swift */; };
@@ -47,6 +46,7 @@
 		FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A21CB49D100031E3B8 /* Target.swift */; };
 		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
 		FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */; };
+		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +86,6 @@
 		FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		FB97C3031CB4974F00C35BC0 /* BudgetBunny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetBunny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB97C3061CB4974F00C35BC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB97C3081CB4974F00C35BC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FB97C30B1CB4974F00C35BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB97C30E1CB4974F00C35BC0 /* BudgetBunny.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetBunny.xcdatamodel; sourceTree = "<group>"; };
 		FB97C3101CB4975000C35BC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -270,7 +269,6 @@
 		FB97C33D1CB49B3800C35BC0 /* AccountScreens */ = {
 			isa = PBXGroup;
 			children = (
-				FB97C3081CB4974F00C35BC0 /* ViewController.swift */,
 				FB8550F01CBDE2990037A881 /* AccountViewController.swift */,
 				FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */,
 				FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */,
@@ -500,6 +498,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */,
 				FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */,
 				FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */,
 			);
@@ -545,7 +544,6 @@
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
-				FB97C3091CB4974F00C35BC0 /* ViewController.swift in Sources */,
 				FB9CD8AC1CB49D100031E3B8 /* Budget.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
 				FB9CD8A71CB49D100031E3B8 /* Record+CoreDataProperties.swift in Sources */,

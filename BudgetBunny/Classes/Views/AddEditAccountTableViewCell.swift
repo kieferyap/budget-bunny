@@ -32,12 +32,13 @@ class AddEditAccountTableViewCell: UITableViewCell {
         let selectionColor = UIView()
         selectionColor.backgroundColor = UIColor.whiteColor()
         
-        self.field?.text = accountModel.field
+        self.field.text = accountModel.field
         let placeholderText = accountModel.placeholder
         
         switch accountModel.cellIdentifier {
         case Constants.CellIdentifiers.AddAccountFieldValue:
             self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
+            self.textfield.textColor = Constants.Colors.DarkGray
             let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
             if keyboardType != nil {
                 self.textfield.keyboardType = UIKeyboardType.DecimalPad
@@ -47,11 +48,13 @@ class AddEditAccountTableViewCell: UITableViewCell {
         case Constants.CellIdentifiers.AddAccountChevron:
             self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             selectionColor.backgroundColor = Constants.Colors.LightGreen
-            self.value?.text = placeholderText
+            self.value.text = placeholderText
+            self.value.adjustsFontSizeToFitWidth = true
+            self.value.textColor = Constants.Colors.DarkGray
             break
             
         case Constants.CellIdentifiers.AddAccountSwitch:
-            self.information?.text = placeholderText
+            self.information.text = placeholderText
             break
             
         default:

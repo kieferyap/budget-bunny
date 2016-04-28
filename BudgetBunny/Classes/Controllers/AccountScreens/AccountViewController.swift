@@ -12,6 +12,7 @@ class AccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
         // Do any additional setup after loading the view.
     }
 

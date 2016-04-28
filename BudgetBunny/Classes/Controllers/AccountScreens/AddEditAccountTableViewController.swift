@@ -29,14 +29,16 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT)
         
         // Cell information
+        self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
         let nameCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME),
                                     placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                    cellSettings: [:])
         let currencyCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_CURRENCY),
-                                        placeholder: "dollar",
+                                        placeholder: self.getCurrencyStringWithIdentifier(),
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
                                        cellSettings: [KEY_ANIMATED: true])
         let initialAmountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_STARTING_BALANCE),
@@ -62,6 +64,20 @@ class AddEditAccountTableViewController: UITableViewController {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(AddEditAccountTableViewController.dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func getCurrencyStringWithIdentifier() -> String {
+        let identifier = self.selectedCountryIdentifier
+        
+        let currency = Currency()
+        currency.setAttributes(identifier)
+        
+        let currencyCountry = currency.country.stringByAppendingString(": ")
+        let currencyCode = currency.currencyCode.stringByAppendingString(" (")
+        let currencySymbol = currency.currencySymbol.stringByAppendingString(")")
+        let newCurrencyPlaceholder = currencyCountry.stringByAppendingString(currencyCode.stringByAppendingString(currencySymbol))
+        
+        return newCurrencyPlaceholder
     }
     
     func dismissKeyboard() {
@@ -130,7 +146,12 @@ extension AddEditAccountTableViewController: PushViewControllerDelegate {
 
 extension AddEditAccountTableViewController: CurrencySelectionDelegate {
     func setSelectedCurrencyIdentifier(identifier: String) {
-        (self.addAccountTable[IDX_ACCOUNT_INFO_GROUP][IDX_CURRENCY_CELL] as AddEditAccountCell).setCellPlaceholder(identifier)
+        if identifier != "" {
+            self.selectedCountryIdentifier = identifier
+        }
+        let currencyString: String = self.getCurrencyStringWithIdentifier()
+        
+        (self.addAccountTable[IDX_ACCOUNT_INFO_GROUP][IDX_CURRENCY_CELL] as AddEditAccountCell).setCellPlaceholder(currencyString)
         self.tableView.reloadData()
     }
 }

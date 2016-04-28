@@ -28,11 +28,18 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_CURRENCY_PICKER)
         
         // Set the currency table
-        let manager = CurrencyManager()
-        manager.setCurrencyList()
-        self.currencyTable = manager.currencyDictionary
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            let manager = CurrencyManager()
+            manager.setCurrencyList()
+            self.currencyTable = manager.currencyDictionary
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.tableView.reloadData()
+            })
+        }
         
         // Set the search controller
         self.searchController.searchResultsUpdater = self
