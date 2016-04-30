@@ -23,4 +23,31 @@ class BunnyUtils: NSObject {
     class func dismissKeyboard() {
     }
     
+//    class func showAlertWithOKButton(title: String, message: String) {
+//        let alertMessage = UIAlertController.init(title: title,
+//                                                message: message,
+//                                         preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        let okAction = UIAlertAction.init(title: "OK", style: <#T##UIAlertActionStyle#>, handler: <#T##((UIAlertAction) -> Void)?##((UIAlertAction) -> Void)?##(UIAlertAction) -> Void#>)
+//        
+//        
+//        //            UIAlertController* alertMessage =
+//        //                [UIAlertController alertControllerWithTitle:title
+//        //                    message:msg
+//        //                    preferredStyle:UIAlertControllerStyleAlert];
+//        //
+//        //            UIAlertAction* okAction =
+//        //                [UIAlertAction actionWithTitle:NSLocalizedString(IDS_LBL_OK, nil)
+//        //                    style:UIAlertActionStyleDefault
+//        //                    handler:
+//        //                    ^(UIAlertAction* _Nonnull action) {
+//        //                    if (handler) {
+//        //                    handler();
+//        //                    }
+//        //                    }];
+//        //
+//        //            [alertMessage addAction:okAction];
+//        //            [viewController presentViewController:alertMessage animated:YES completion:nil];
+//    }
+    
 }

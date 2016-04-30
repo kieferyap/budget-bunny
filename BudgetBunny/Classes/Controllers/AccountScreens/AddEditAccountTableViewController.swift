@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 let IDX_ACCOUNT_INFO_GROUP = 0
 let IDX_NAME_CELL = 0
@@ -106,10 +107,37 @@ class AddEditAccountTableViewController: UITableViewController {
         let accountCurrency = self.selectedCountryIdentifier
         let accountInitValue = self.getTableViewCellValue(IDX_ACCOUNT_INFO_GROUP, row: IDX_AMOUNT_CELL)
         let isDefaultAccount = self.getTableViewCellValue(IDX_ACCOUNT_DETAILS_GROUP, row: IDX_DEFAULT_CELL)
-        print(accountName, ">>>", accountCurrency, ">>>", accountInitValue, ">>>", isDefaultAccount)
         
-        // TO-DO: Check that all fields are not null. If at least one field is an empty string, display an error.
-        // TO-DO: If all the fields are valid, save them to the core data and pop the view controller
+        let accountInitValueFloat = (accountInitValue as NSString).floatValue
+        let isDefaultAccountBool = isDefaultAccount == "1" ? true : false
+        
+        // If at least one string is null, do not save
+        if accountName == "" || accountInitValue == "" {
+            // TO-DO: Show alert
+            print(accountName, ">>>", accountCurrency, ">>>", accountInitValueFloat, ">>>", isDefaultAccount)
+            return
+        }
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
+        let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
+        
+        accountModel.setValue(accountName, forKey:"name")
+        accountModel.setValue(accountCurrency, forKey:"currency")
+        accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")
+        
+        // TO-DO: Save initial amount into a transaction model
+        
+        do {
+            try managedContext.save()
+            print("Saved!")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        print(accountName, ">>>", accountCurrency, ">>>", accountInitValue, ">>>", isDefaultAccount)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
