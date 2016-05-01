@@ -22,8 +22,13 @@ let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
 let KEY_HEIGHT = "height"
 let KEY_ANIMATED = "animated"
 let KEY_IS_NUMPAD = "isKeyboardNumpad"
+let KEY_MAX_LENGTH = "maxLength"
 
-class AddEditAccountTableViewController: UITableViewController {
+let SEPARATOR_COUNTRY_CODE = ": "
+let SEPARATOR_CODE_SYMBOL = " ("
+let SEPARATOR_SYMBOL = ")"
+
+class AddEditAccountTableViewController: UITableViewController, UITextFieldDelegate {
 
     var addAccountTable:[[AddEditAccountCell]] = [[]]
     var selectedCountryIdentifier: String = ""
@@ -38,7 +43,7 @@ class AddEditAccountTableViewController: UITableViewController {
         let nameCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME),
                                     placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
-                                   cellSettings: [:])
+                                   cellSettings: [KEY_MAX_LENGTH: 50])
         let currencyCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_CURRENCY),
                                         placeholder: self.getCurrencyStringWithIdentifier(),
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
@@ -66,7 +71,7 @@ class AddEditAccountTableViewController: UITableViewController {
         BunnyUtils.addKeyboardDismisserListener(self)
         
         // Done button
-        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DONE)
+        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
     }
 
     // TO-DO: Prevent duplication of this snippet of code
@@ -80,9 +85,9 @@ class AddEditAccountTableViewController: UITableViewController {
         let currency = Currency()
         currency.setAttributes(identifier)
         
-        let currencyCountry = currency.country.stringByAppendingString(": ")
-        let currencyCode = currency.currencyCode.stringByAppendingString(" (")
-        let currencySymbol = currency.currencySymbol.stringByAppendingString(")")
+        let currencyCountry = currency.country.stringByAppendingString(SEPARATOR_COUNTRY_CODE)
+        let currencyCode = currency.currencyCode.stringByAppendingString(SEPARATOR_CODE_SYMBOL)
+        let currencySymbol = currency.currencySymbol.stringByAppendingString(SEPARATOR_SYMBOL)
         let newCurrencyPlaceholder = currencyCountry.stringByAppendingString(currencyCode.stringByAppendingString(currencySymbol))
         
         return newCurrencyPlaceholder
@@ -90,10 +95,6 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func isKeyExistingForAddEditAccountCell(cell: AddEditAccountCell, key: String) -> Bool {
-        return cell.cellSettings[key] != nil
     }
     
     func getTableViewCellValue(section: Int, row: Int) -> String {
@@ -113,8 +114,10 @@ class AddEditAccountTableViewController: UITableViewController {
         
         // If at least one string is null, do not save
         if accountName == "" || accountInitValue == "" {
-            // TO-DO: Show alert
-            print(accountName, ">>>", accountCurrency, ">>>", accountInitValueFloat, ">>>", isDefaultAccount)
+            let title = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
+            let message = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+            
+            BunnyUtils.showAlertWithOKButton(self, title: title, message: message)
             return
         }
         
@@ -139,12 +142,10 @@ class AddEditAccountTableViewController: UITableViewController {
         
         do {
             try managedContext.save()
-            print("Saved!")
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            print("Error occured while saving: \(error), \(error.userInfo)")
         }
         
-        print(accountName, ">>>", accountCurrency, ">>>", accountInitValue, ">>>", isDefaultAccount)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -162,7 +163,7 @@ class AddEditAccountTableViewController: UITableViewController {
         cell.performAction()
         
         var isAnimated = false
-        if isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED) {
+        if BunnyUtils.isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED) {
             isAnimated = true
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: isAnimated)
@@ -180,7 +181,7 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
-        if self.isKeyExistingForAddEditAccountCell(cellItem, key: KEY_HEIGHT) {
+        if BunnyUtils.isKeyExistingForAddEditAccountCell(cellItem, key: KEY_HEIGHT) {
             let height: CGFloat? = CGFloat(cellItem.cellSettings[KEY_HEIGHT]!.floatValue)
             return height!
         }

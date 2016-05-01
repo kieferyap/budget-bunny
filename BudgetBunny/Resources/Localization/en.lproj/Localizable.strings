@@ -10,4 +10,8 @@
 "LABEL_IS_DEFAULT_ACCOUNT" = "Default Account";
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "The default account to use for everyday transactions";
 "LABEL_LOADING" = "Loading...";
-"LABEL_DONE" = "Done";
+"BUTTON_DONE" = "Done";
+"ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "Error: the name of the account must not exceed 50 characters.";
+"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "Error: the name and currency must not be left blank.";
+"LABEL_OK" = "OK";
+"ERRORLABEL_ERROR_TITLE" = "Error";

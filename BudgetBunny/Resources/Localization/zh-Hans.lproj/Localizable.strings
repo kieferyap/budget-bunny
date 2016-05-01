@@ -10,4 +10,8 @@
 "LABEL_IS_DEFAULT_ACCOUNT" = "默认帐户";
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎天用的帐户";
 "LABEL_LOADING" = "加載...";
-"LABEL_DONE" = "完成";
+"BUTTON_DONE" = "完成";
+"ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "[Not localizaed yet]";
+"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "[Not localizaed yet]";
+"LABEL_OK" = "OK";
+"ERRORLABEL_ERROR_TITLE" = "[Not localizaed yet]";

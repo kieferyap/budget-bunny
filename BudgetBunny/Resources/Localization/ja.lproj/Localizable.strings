@@ -10,4 +10,8 @@
 "LABEL_IS_DEFAULT_ACCOUNT" = "デフォルトのアカウント";
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎日に使うアカウント";
 "LABEL_LOADING" = "ローディング中...";
-"LABEL_DONE" = "完了";
+"BUTTON_DONE" = "完了";
+"ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "[Not localizaed yet]";
+"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "[Not localizaed yet]";
+"LABEL_OK" = "OK";
+"ERRORLABEL_ERROR_TITLE" = "[Not localizaed yet]";

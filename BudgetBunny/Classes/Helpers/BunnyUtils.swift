@@ -14,40 +14,30 @@ class BunnyUtils: NSObject {
         return NSLocalizedString(key, comment: "")
     }
     
-    class func addKeyboardDismisserListener(vc: UIViewController) {
-        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: vc, action:#selector(BunnyUtils.dismissKeyboard))
+    class func addKeyboardDismisserListener(viewController: UIViewController) {
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action:#selector(BunnyUtils.dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
-        vc.view.addGestureRecognizer(tapRecognizer)
+        viewController.view.addGestureRecognizer(tapRecognizer)
     }
     
     class func dismissKeyboard() {
     }
     
-//    class func showAlertWithOKButton(title: String, message: String) {
-//        let alertMessage = UIAlertController.init(title: title,
-//                                                message: message,
-//                                         preferredStyle: UIAlertControllerStyle.Alert)
-//        
-//        let okAction = UIAlertAction.init(title: "OK", style: <#T##UIAlertActionStyle#>, handler: <#T##((UIAlertAction) -> Void)?##((UIAlertAction) -> Void)?##(UIAlertAction) -> Void#>)
-//        
-//        
-//        //            UIAlertController* alertMessage =
-//        //                [UIAlertController alertControllerWithTitle:title
-//        //                    message:msg
-//        //                    preferredStyle:UIAlertControllerStyleAlert];
-//        //
-//        //            UIAlertAction* okAction =
-//        //                [UIAlertAction actionWithTitle:NSLocalizedString(IDS_LBL_OK, nil)
-//        //                    style:UIAlertActionStyleDefault
-//        //                    handler:
-//        //                    ^(UIAlertAction* _Nonnull action) {
-//        //                    if (handler) {
-//        //                    handler();
-//        //                    }
-//        //                    }];
-//        //
-//        //            [alertMessage addAction:okAction];
-//        //            [viewController presentViewController:alertMessage animated:YES completion:nil];
-//    }
+    class func isKeyExistingForAddEditAccountCell(cell: AddEditAccountCell, key: String) -> Bool {
+        return cell.cellSettings[key] != nil
+    }
+    
+    class func showAlertWithOKButton(viewController: UIViewController, title: String, message: String) {
+        let okMessage = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
+        
+        let alertController = UIAlertController.init(title: title,
+                                                message: message,
+                                         preferredStyle: UIAlertControllerStyle.Alert)
+
+        let okAction = UIAlertAction.init(title: okMessage, style: UIAlertActionStyle.Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        viewController.presentViewController(alertController, animated: true, completion: nil)
+    }
     
 }

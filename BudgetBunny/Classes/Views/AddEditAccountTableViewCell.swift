@@ -15,7 +15,7 @@ protocol PushViewControllerDelegate: class {
     func pushCurrencyViewController()
 }
 
-class AddEditAccountTableViewCell: UITableViewCell {
+class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var field: UILabel!
     @IBOutlet weak var value: UILabel!
@@ -23,6 +23,7 @@ class AddEditAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var accountSwitch: UISwitch!
     var model = AddEditAccountCell()
+    var fieldMaxLength: Int = 0
     weak var delegate:PushViewControllerDelegate?
     
     override func awakeFromNib() {
@@ -42,6 +43,10 @@ class AddEditAccountTableViewCell: UITableViewCell {
         case Constants.CellIdentifiers.AddAccountFieldValue:
             self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
             self.textfield.textColor = Constants.Colors.DarkGray
+            if BunnyUtils.isKeyExistingForAddEditAccountCell(accountModel, key: KEY_MAX_LENGTH) {
+                self.fieldMaxLength = accountModel.cellSettings[KEY_MAX_LENGTH] as! Int
+                self.textfield.delegate = self
+            }
             let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
             if keyboardType != nil {
                 self.textfield.keyboardType = UIKeyboardType.DecimalPad
@@ -111,6 +116,16 @@ class AddEditAccountTableViewCell: UITableViewCell {
         }
         
         return returnValue
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else {
+            return true
+        }
+        
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= self.fieldMaxLength
     }
 
 }
