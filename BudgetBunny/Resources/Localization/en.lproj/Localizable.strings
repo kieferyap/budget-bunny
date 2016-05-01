@@ -9,3 +9,5 @@
 "TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "100";
 "LABEL_IS_DEFAULT_ACCOUNT" = "Default Account";
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "The default account to use for everyday transactions";
+"LABEL_LOADING" = "Loading...";
+"LABEL_DONE" = "Done";

@@ -34,11 +34,11 @@ SET search_path = public, pg_catalog;
 --
 
 CREATE SEQUENCE features_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+	START WITH 1
+	INCREMENT BY 1
+	NO MINVALUE
+	NO MAXVALUE
+	CACHE 1;
 
 
 ALTER TABLE features_seq OWNER TO kiefer;
@@ -52,11 +52,11 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE features (
-    feature_id integer DEFAULT nextval('features_seq'::regclass) NOT NULL,
-    requirement_key character varying(8) NOT NULL,
-    description text NOT NULL,
-    is_bug boolean DEFAULT false,
-    inserted_on timestamp without time zone DEFAULT now()
+	feature_id integer DEFAULT nextval('features_seq'::regclass) NOT NULL,
+	requirement_key character varying(8) NOT NULL,
+	description text NOT NULL,
+	is_bug boolean DEFAULT false,
+	inserted_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -67,11 +67,11 @@ ALTER TABLE features OWNER TO kiefer;
 --
 
 CREATE SEQUENCE localizable_words_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+	START WITH 1
+	INCREMENT BY 1
+	NO MINVALUE
+	NO MAXVALUE
+	CACHE 1;
 
 
 ALTER TABLE localizable_words_seq OWNER TO kiefer;
@@ -81,12 +81,12 @@ ALTER TABLE localizable_words_seq OWNER TO kiefer;
 --
 
 CREATE TABLE localizable_words (
-    localizable_word_id integer DEFAULT nextval('localizable_words_seq'::regclass) NOT NULL,
-    wording_key character varying(64) NOT NULL,
-    localization_en text NOT NULL,
-    localization_jp text,
-    localization_zh text,
-    inserted_on timestamp without time zone DEFAULT now()
+	localizable_word_id integer DEFAULT nextval('localizable_words_seq'::regclass) NOT NULL,
+	wording_key character varying(64) NOT NULL,
+	localization_en text NOT NULL,
+	localization_jp text,
+	localization_zh text,
+	inserted_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -150,6 +150,8 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 10	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-04-26 14:10:39.225605
 11	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-04-26 14:10:39.228502
 12	LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION	The default account to use for everyday transactions	毎日に使うアカウント	毎天用的帐户	2016-04-26 14:10:39.232309
+13	LABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 10:23:00.232309
+14	LABEL_DONE	Done	完了	完成	2016-05-01 10:23:01.232309
 \.
 
 
@@ -157,7 +159,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 12, true);
+SELECT pg_catalog.setval('localizable_words_seq', 14, true);
 
 
 --
@@ -165,7 +167,7 @@ SELECT pg_catalog.setval('localizable_words_seq', 12, true);
 --
 
 ALTER TABLE ONLY features
-    ADD CONSTRAINT features_pkey PRIMARY KEY (feature_id);
+	ADD CONSTRAINT features_pkey PRIMARY KEY (feature_id);
 
 
 --
@@ -173,7 +175,7 @@ ALTER TABLE ONLY features
 --
 
 ALTER TABLE ONLY localizable_words
-    ADD CONSTRAINT localizable_words_pkey PRIMARY KEY (localizable_word_id);
+	ADD CONSTRAINT localizable_words_pkey PRIMARY KEY (localizable_word_id);
 
 
 --

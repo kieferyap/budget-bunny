@@ -77,7 +77,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let emptyTableLabel = UILabel.init(frame: CGRectMake(0, 0, self.tableView.bounds.size.height, self.tableView.bounds.size.width))
-        var labelString: String = "Loading..." //TO-DO: Localize!
+        var labelString: String = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_LOADING)
         var rows: Int = 0
         var separatorStyle = UITableViewCellSeparatorStyle.None
         

@@ -65,8 +65,8 @@ class AddEditAccountTableViewController: UITableViewController {
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)
         
-        // TO-DO: Localize the Done button
-        
+        // Done button
+        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DONE)
     }
 
     // TO-DO: Prevent duplication of this snippet of code
