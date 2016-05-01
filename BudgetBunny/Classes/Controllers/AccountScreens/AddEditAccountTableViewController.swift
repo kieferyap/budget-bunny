@@ -124,11 +124,18 @@ class AddEditAccountTableViewController: UITableViewController {
         let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
         let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
         
+        let transactionEntity = NSEntityDescription.entityForName("Transaction", inManagedObjectContext: managedContext)
+        let transactionModel = NSManagedObject(entity: transactionEntity!, insertIntoManagedObjectContext: managedContext)
+        
         accountModel.setValue(accountName, forKey:"name")
         accountModel.setValue(accountCurrency, forKey:"currency")
         accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")
         
-        // TO-DO: Save initial amount into a transaction model
+        transactionModel.setValue(accountInitValueFloat, forKey: "amount")
+        transactionModel.setValue(NSDate.init(), forKey: "datetime")
+        transactionModel.setValue("", forKey: "notes")
+        transactionModel.setValue(3, forKey: "type")
+        transactionModel.setValue(accountModel, forKey: "accountId")
         
         do {
             try managedContext.save()

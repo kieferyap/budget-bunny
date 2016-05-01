@@ -7,13 +7,39 @@
 //
 
 import UIKit
+import CoreData
 
 class AccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+        self.tempPrintAccounts()
         // Do any additional setup after loading the view.
+    }
+    
+    func tempPrintAccounts() {
+        //1
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: "Transaction")
+        var accounts = [NSManagedObject]()
+        
+        //3
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            accounts = results as! [NSManagedObject]
+            
+            for account in accounts {
+                print(account.valueForKey("amount"))
+            }
+            
+            print(accounts)
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
