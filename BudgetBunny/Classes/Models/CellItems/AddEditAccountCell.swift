@@ -8,25 +8,19 @@
 
 import Foundation
 
-
-class AddEditAccountCell: NSObject {
+class AddEditAccountCell: BunnyCell {
+    
     var field: String = ""
     var placeholder: String = ""
-    var cellIdentifier: String = ""
-    var cellSettings: NSDictionary = [:]
     
     init(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
         self.field = field
         self.placeholder = placeholder
-        self.cellIdentifier = cellIdentifier
-        self.cellSettings = cellSettings
+        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
     }
     
-    override init() {
-        self.field = ""
-        self.placeholder = ""
-        self.cellIdentifier = ""
-        self.cellSettings = [:]
+    override init(){
+        super.init()
     }
     
     func setCellPlaceholder(placeholder: String) {

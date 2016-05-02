@@ -23,7 +23,7 @@ class BunnyUtils: NSObject {
     class func dismissKeyboard() {
     }
     
-    class func isKeyExistingForAddEditAccountCell(cell: AddEditAccountCell, key: String) -> Bool {
+    class func isKeyExistingForAddEditAccountCell(cell: BunnyCell, key: String) -> Bool {
         return cell.cellSettings[key] != nil
     }
     

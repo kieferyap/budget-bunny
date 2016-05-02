@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
+		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
 		FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
+		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
 		FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewCell.swift; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
+				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
 			);
 			path = CellItems;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				FB9CD8AF1CB49D100031E3B8 /* Target+CoreDataProperties.swift in Sources */,
 				FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */,
 				FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */,
+				FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */,
 				FB8550F11CBDE2990037A881 /* AccountViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,
 				FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */,
