@@ -22,7 +22,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var information: UILabel!
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var accountSwitch: UISwitch!
-    var model = AddEditAccountCell()
+    var model: AddEditAccountCell!
     var fieldMaxLength: Int = 0
     weak var delegate:PushViewControllerDelegate?
     

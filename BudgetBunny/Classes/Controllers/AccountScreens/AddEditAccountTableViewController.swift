@@ -59,13 +59,13 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         // Information group
         self.addAccountTable.append([])
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(nameCell, atIndex: IDX_NAME_CELL)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(currencyCell, atIndex: IDX_CURRENCY_CELL)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(initialAmountCell, atIndex: IDX_AMOUNT_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(nameCell!, atIndex: IDX_NAME_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(currencyCell!, atIndex: IDX_CURRENCY_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(initialAmountCell!, atIndex: IDX_AMOUNT_CELL)
         
         // Account details group
         self.addAccountTable.append([])
-        self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell, atIndex: IDX_DEFAULT_CELL)
+        self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
         
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)

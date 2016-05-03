@@ -7,21 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 class AddEditAccountCell: BunnyCell {
     
-    var field: String = ""
-    var placeholder: String = ""
+    lazy var field: String = {return ""}()
+    lazy var placeholder: String = {return ""}()
     
-    init(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
+    init?(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
+        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
         self.field = field
         self.placeholder = placeholder
-        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
     }
     
-    override init(){
-        super.init()
-    }
+    
     
     func setCellPlaceholder(placeholder: String) {
         self.placeholder = placeholder

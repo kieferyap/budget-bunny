@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
+		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
 		FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
+		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
 		FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewCell.swift; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				FB97C33E1CB49B4400C35BC0 /* BudgetScreens */,
 				FB97C3401CB49B5200C35BC0 /* DashboardScreens */,
 				FB97C33F1CB49B4C00C35BC0 /* RecordScreens */,
+				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB9CD8AB1CB49D100031E3B8 /* Budget+CoreDataProperties.swift in Sources */,
+				FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */,
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
 				FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
