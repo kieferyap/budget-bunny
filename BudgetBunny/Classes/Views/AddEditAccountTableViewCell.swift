@@ -22,7 +22,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var information: UILabel!
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var accountSwitch: UISwitch!
-    var model: AddEditAccountCell!
+    var model: AddEditAccountCell?
     var fieldMaxLength: Int = 0
     weak var delegate:PushViewControllerDelegate?
     
@@ -74,7 +74,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func performAction() {
-        switch self.model.cellIdentifier {
+        switch self.model!.cellIdentifier {
         case Constants.CellIdentifiers.AddAccountFieldValue:
             self.textfield.becomeFirstResponder()
             break
@@ -95,7 +95,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     func getValue() -> String {
         var returnValue: String = ""
         
-        switch self.model.cellIdentifier {
+        switch self.model!.cellIdentifier {
         case Constants.CellIdentifiers.AddAccountFieldValue:
             returnValue = self.textfield.text!
             break

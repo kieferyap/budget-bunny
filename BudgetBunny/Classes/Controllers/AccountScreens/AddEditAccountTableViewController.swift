@@ -36,7 +36,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT)
+        self.setTitleLocalizationKey(BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT))
         
         // Cell information
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
@@ -163,7 +163,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         cell.performAction()
         
         var isAnimated = false
-        if BunnyUtils.isKeyExistingForAddEditAccountCell(cell.model, key: KEY_ANIMATED) {
+        if BunnyUtils.isKeyExistingForAddEditAccountCell(cell.model!, key: KEY_ANIMATED) {
             isAnimated = true
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: isAnimated)
