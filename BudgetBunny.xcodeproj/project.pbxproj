@@ -807,7 +807,7 @@
 				FB97C32D1CB4975000C35BC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FB97C32E1CB4975000C35BC0 /* Build configuration list for PBXNativeTarget "BudgetBunny" */ = {
 			isa = XCConfigurationList;
@@ -816,7 +816,7 @@
 				FB97C3301CB4975000C35BC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FB97C3311CB4975000C35BC0 /* Build configuration list for PBXNativeTarget "BudgetBunnyTests" */ = {
 			isa = XCConfigurationList;
@@ -825,7 +825,7 @@
 				FB97C3331CB4975000C35BC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FB97C3341CB4975000C35BC0 /* Build configuration list for PBXNativeTarget "BudgetBunnyUITests" */ = {
 			isa = XCConfigurationList;
@@ -834,7 +834,7 @@
 				FB97C3361CB4975000C35BC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

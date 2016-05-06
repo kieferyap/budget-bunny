@@ -24,7 +24,8 @@ class BudgetBunnyUITests: XCTestCase {
     }
     
     func testScreenTransitions() {
-        XCTAssertTrue(true)
+        XCUIApplication().navigationBars["Account"].buttons["+"].tap()
+        
     }
     
 }
