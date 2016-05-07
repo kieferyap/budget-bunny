@@ -23,9 +23,11 @@ class BudgetBunnyUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testScreenTransitions() {
-        XCUIApplication().navigationBars["Account"].buttons["+"].tap()
-        
+    func testScreenExistence() {
+        ScreenManager.tapBudgetsTab(self.app)
+        ScreenManager.tapRecordsTab(self.app)
+        ScreenManager.tapDashboardTab(self.app)
+        ScreenManager.tapAccountsTab(self.app)
     }
     
 }
