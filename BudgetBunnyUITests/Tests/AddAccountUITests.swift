@@ -31,8 +31,10 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField("test")
         addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField("120")
         addAccountScreen.tapOutside()
         addAccountScreen.tapIsDefaultSwitch()
         addAccountScreen.tapCurrencyCell()

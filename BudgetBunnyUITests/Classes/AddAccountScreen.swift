@@ -27,6 +27,14 @@ class AddAccountScreen: BaseScreen {
         self.app.tables.staticTexts["United States: USD ($)"].tap()
     }
     
+    func typeAccountNameTextField(input: String) {
+        self.app.tables.textFields["My Wallet"].typeText(input)
+    }
+    
+    func typeAmountTextField(input: String) {
+        self.app.tables.textFields["100"].typeText(input)
+    }
+    
     func tapOutside() {
         self.app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Table).element.tap()
     }
