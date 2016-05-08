@@ -27,8 +27,12 @@ class CurrencyPickerScreen: BaseScreen {
         self.app.navigationBars["Currency"].buttons["Add New Account"].tap()
     }
     
+    func tapElementWithCountryName(countryName: String) {
+        self.app.tables.cells.staticTexts[countryName].tap()
+    }
+    
     func tapFirstElement() {
-        self.app.tables.cells.staticTexts["Afghanistan"].tap()
+        self.app.childrenMatchingType(.Window).elementBoundByIndex(0).tap()
     }
     
     func typeSearchBar(query: String) {

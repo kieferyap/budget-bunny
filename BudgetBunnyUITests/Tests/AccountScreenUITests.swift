@@ -40,15 +40,6 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapAmountTextField()
         addAccountScreen.tapIsDefaultSwitch()
         addAccountScreen.tapCurrencyCell()
-        
-        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapFirstElement()
-        currencyPickerScreen.tapSearchBar()
-        currencyPickerScreen.typeSearchBar("Test")
-        currencyPickerScreen.tapSearchBarClearText()
-        currencyPickerScreen.tapSearchBar()
-        currencyPickerScreen.tapSearchBarCancel()
-        currencyPickerScreen.tapBackButton()
     }
     
     func testAddAccountTextFields() {
@@ -60,11 +51,11 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(accountName)
-        addAccountScreen.assertAmountTextFieldEquality(accountName)
+        addAccountScreen.assertTextFieldEquality(accountName)
         
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
-        addAccountScreen.assertAmountTextFieldEquality(initialAmount)
+        addAccountScreen.assertTextFieldEquality(initialAmount)
     
     }
     
@@ -75,19 +66,94 @@ class AddAccountUITests: XCTestCase {
         let length25 = "1234567890123456789012345"
         let length22 = "1234567890123456789012"
         
+        // Test 01: Assert that the 25-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(length30)
-        addAccountScreen.assertAccountTextFieldEquality(length25)
+        addAccountScreen.assertTextFieldEquality(length25)
         
+        // Test 02: Assert that the 22-character limit is enforced in the Account Name
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(length30)
-        addAccountScreen.assertAmountTextFieldEquality(length22)
+        addAccountScreen.assertTextFieldEquality(length22)
     }
     
     func testCurrencyCell() {
         self.proceedToAddAccountScreen()
-    }
         
+        let usdCurrency = "United States: USD ($)"
+        let japanCurrency = "Japan: JPY (¥)"
+        let japanSearchKey = "Japan"
+        
+        // Test 01: Tapping the currency cell and returning should not change the current cell
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.assertStaticTextEquality(usdCurrency)
+        addAccountScreen.tapCurrencyCell()
+    
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapBackButton()
+        addAccountScreen.assertStaticTextEquality(usdCurrency)
+        
+        // Test 02: Tapping the currency cell and changing the currency should change the cell
+        addAccountScreen.tapCurrencyCell()
+        currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
+        currencyPickerScreen.tapBackButton()
+        addAccountScreen.assertStaticTextEquality(japanCurrency)
+        
+        // TO-DO: I can't get the type-search-bar-tap-first-element to work because it apparently couldn't find the element after searching. I'll look into this in depth next time.
+    }
+    
+    func testErrorScenario01() {
+        self.proceedToAddAccountScreen()
+        
+        // Test 01: Both are empty
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapDoneButton()
+        addAccountScreen.tapErrorAlertOkButton()
+        
+        // Test 02: Currency is empty
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField("test")
+        addAccountScreen.tapDoneButton()
+        addAccountScreen.tapErrorAlertOkButton()
+    }
+    
+    func testErrorScenario02() {
+        self.proceedToAddAccountScreen()
+        
+        // Test 01: Account name is empty
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField("120")
+        addAccountScreen.tapDoneButton()
+        addAccountScreen.tapErrorAlertOkButton()
+    }
+    
+    func testSuccess() {
+        self.proceedToAddAccountScreen()
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField("test")
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField("120")
+        addAccountScreen.tapDoneButton()
+    }
+    
+    func testSearchBar() {
+        self.proceedToAddAccountScreen()
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapCurrencyCell()
+        
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName("Japan")
+        currencyPickerScreen.tapSearchBar()
+        currencyPickerScreen.typeSearchBar("Test")
+        currencyPickerScreen.tapSearchBarClearText()
+        currencyPickerScreen.tapSearchBar()
+        currencyPickerScreen.tapSearchBarCancel()
+        currencyPickerScreen.tapBackButton()
+    }
     
 }

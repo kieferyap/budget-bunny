@@ -11,6 +11,14 @@ import XCTest
 @available(iOS 9.0, *)
 class AddAccountScreen: BaseScreen {
     
+    func tapDoneButton() {
+        self.app.navigationBars["Add New Account"].buttons["Done"].tap()
+    }
+    
+    func tapErrorAlertOkButton() {
+        self.app.alerts["Error"].collectionViews.buttons["OK"].tap()
+    }
+    
     func tapAccountNameTextField() {
         self.app.tables.textFields["My Wallet"].tap()
     }
@@ -35,12 +43,12 @@ class AddAccountScreen: BaseScreen {
         self.app.tables.textFields["100"].typeText(input)
     }
     
-    func assertAccountTextFieldEquality(key: String) {
+    func assertTextFieldEquality(key: String) {
         XCTAssertTrue(self.app.tables.textFields[key].exists)
     }
     
-    func assertAmountTextFieldEquality(key: String) {
-        XCTAssertTrue(self.app.tables.textFields[key].exists)
+    func assertStaticTextEquality(key: String) {
+        XCTAssertTrue(self.app.staticTexts[key].exists)
     }
     
     func tapOutside() {
