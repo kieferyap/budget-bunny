@@ -17,6 +17,9 @@ let IDX_AMOUNT_CELL = 2
 let IDX_ACCOUNT_DETAILS_GROUP = 1
 let IDX_DEFAULT_CELL = 0
 
+let ACCOUNT_NAME_MAX_LENGTH = 25
+let INITIAL_AMOUNT_MAX_LENGTH = 22
+
 let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
 let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
 let KEY_HEIGHT = "height"
@@ -43,7 +46,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let nameCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME),
                                     placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
-                                   cellSettings: [KEY_MAX_LENGTH: 50])
+                                   cellSettings: [KEY_MAX_LENGTH: ACCOUNT_NAME_MAX_LENGTH])
         let currencyCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_CURRENCY),
                                         placeholder: self.getCurrencyStringWithIdentifier(),
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
@@ -51,7 +54,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let initialAmountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_STARTING_BALANCE),
                                              placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
-                                            cellSettings: [KEY_IS_NUMPAD: true])
+                                            cellSettings: [KEY_IS_NUMPAD: true, KEY_MAX_LENGTH: INITIAL_AMOUNT_MAX_LENGTH])
         let defaultAccountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT),
                                                     placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION),
                                                     cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,

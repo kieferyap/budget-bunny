@@ -51,7 +51,7 @@
 		FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A21CB49D100031E3B8 /* Target.swift */; };
 		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
 		FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */; };
-		FBBEBF711CDD8382000AE2C9 /* AddAccountUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF701CDD8382000AE2C9 /* AddAccountUITests.swift */; };
+		FBBEBF711CDD8382000AE2C9 /* AccountScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */; };
 		FBBEBF731CDD8411000AE2C9 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */; };
 		FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */; };
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
@@ -126,7 +126,7 @@
 		FB9CD8A21CB49D100031E3B8 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountCell.swift; sourceTree = "<group>"; };
-		FBBEBF701CDD8382000AE2C9 /* AddAccountUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountUITests.swift; sourceTree = "<group>"; };
+		FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScreenUITests.swift; sourceTree = "<group>"; };
 		FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScreen.swift; sourceTree = "<group>"; };
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				FB97C3291CB4975000C35BC0 /* LocationUITests.swift */,
-				FBBEBF701CDD8382000AE2C9 /* AddAccountUITests.swift */,
+				FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */,
-				FBBEBF711CDD8382000AE2C9 /* AddAccountUITests.swift in Sources */,
+				FBBEBF711CDD8382000AE2C9 /* AccountScreenUITests.swift in Sources */,
 				FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */,
 				FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */,
 				FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */,

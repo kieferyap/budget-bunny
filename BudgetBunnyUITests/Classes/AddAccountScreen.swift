@@ -35,6 +35,14 @@ class AddAccountScreen: BaseScreen {
         self.app.tables.textFields["100"].typeText(input)
     }
     
+    func assertAccountTextFieldEquality(key: String) {
+        XCTAssertTrue(self.app.tables.textFields[key].exists)
+    }
+    
+    func assertAmountTextFieldEquality(key: String) {
+        XCTAssertTrue(self.app.tables.textFields[key].exists)
+    }
+    
     func tapOutside() {
         self.app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Table).element.tap()
     }
