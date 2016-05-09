@@ -153,9 +153,10 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 11	LABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
 12	BUTTON_DONE	Done	完了	完成	2016-05-01 19:46:00.824602
 13	ERRORLABEL_ACCOUNT_NAME_TOO_LONG	Error: the name of the account must not exceed 50 characters.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.213004
-14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	Error: the name and currency must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.219882
 15	LABEL_OK	OK	OK	OK	2016-05-01 19:58:59.708225
 16	ERRORLABEL_ERROR_TITLE	Error	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 20:29:22.122071
+14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and initial amount must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.219882
+17	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	[Not localizaed yet]	[Not localizaed yet]	2016-05-10 01:04:25.576925
 \.
 
 
@@ -163,7 +164,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 16, true);
+SELECT pg_catalog.setval('localizable_words_seq', 17, true);
 
 
 --

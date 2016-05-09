@@ -12,6 +12,7 @@
 "LABEL_LOADING" = "Loading...";
 "BUTTON_DONE" = "Done";
 "ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "Error: the name of the account must not exceed 50 characters.";
-"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "Error: the name and currency must not be left blank.";
 "LABEL_OK" = "OK";
 "ERRORLABEL_ERROR_TITLE" = "Error";
+"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "The name and initial amount must not be left blank.";
+"ERRORLABEL_INTERNAL_ERROR" = "An internal error has occured. Please try again later.";

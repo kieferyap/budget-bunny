@@ -80,10 +80,12 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         var labelString: String = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_LOADING)
         var rows: Int = 0
         var separatorStyle = UITableViewCellSeparatorStyle.None
+        var isTableScrollable = false
         
         if self.currencyTable.count > 0 {
             labelString = ""
             separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            isTableScrollable = true
             
             if self.isSearching {
                 rows = self.filteredCurrencies.count
@@ -102,6 +104,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         // Add table label to table view's background view
         self.tableView.backgroundView = emptyTableLabel
         self.tableView.separatorStyle = separatorStyle
+        self.tableView.scrollEnabled = isTableScrollable
         
         return rows
     }
