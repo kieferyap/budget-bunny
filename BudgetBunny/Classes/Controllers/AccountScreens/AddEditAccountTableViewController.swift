@@ -76,11 +76,6 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         // Done button
         self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
     }
-
-    // TO-DO: Prevent duplication of this snippet of code
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
     
     func getCurrencyStringWithIdentifier() -> String {
         let identifier = self.selectedCountryIdentifier

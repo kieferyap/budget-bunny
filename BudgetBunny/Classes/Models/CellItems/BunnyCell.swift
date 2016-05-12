@@ -17,8 +17,4 @@ class BunnyCell: NSObject {
         self.cellIdentifier = cellIdentifier
         self.cellSettings = cellSettings
     }
-    
-    override init(){
-        
-    }
 }

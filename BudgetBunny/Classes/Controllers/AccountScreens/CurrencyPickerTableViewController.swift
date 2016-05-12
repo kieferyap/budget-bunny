@@ -54,11 +54,6 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         
         BunnyUtils.addKeyboardDismisserListener(self)
     }
-
-    func dismissKeyboard() {
-        view.endEditing(true)
-        // self.searchController.active = false
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

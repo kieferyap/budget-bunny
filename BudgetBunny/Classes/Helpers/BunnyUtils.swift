@@ -15,12 +15,9 @@ class BunnyUtils: NSObject {
     }
     
     class func addKeyboardDismisserListener(viewController: UIViewController) {
-        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action:#selector(BunnyUtils.dismissKeyboard))
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action:#selector(UIViewController.dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
         viewController.view.addGestureRecognizer(tapRecognizer)
-    }
-    
-    class func dismissKeyboard() {
     }
     
     class func isKeyExistingForAddEditAccountCell(cell: BunnyCell, key: String) -> Bool {

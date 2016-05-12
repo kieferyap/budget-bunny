@@ -11,16 +11,14 @@ import UIKit
 
 class AddEditAccountCell: BunnyCell {
     
-    lazy var field: String = {return ""}()
-    lazy var placeholder: String = {return ""}()
+    var field: String = {return ""}()
+    var placeholder: String = {return ""}()
     
     init?(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
         self.field = field
         self.placeholder = placeholder
     }
-    
-    
     
     func setCellPlaceholder(placeholder: String) {
         self.placeholder = placeholder
