@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class AccountViewController: UIViewController {
-
+class AccountsTableViewController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
