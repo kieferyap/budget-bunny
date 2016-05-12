@@ -10,6 +10,7 @@ import UIKit
 
 class AccountsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var checkmark: UILabel!
     @IBOutlet weak var accountName: UILabel!
     @IBOutlet weak var symbol: UILabel!
     @IBOutlet weak var amount: UILabel!

@@ -54,6 +54,7 @@
 		FBBEBF711CDD8382000AE2C9 /* AccountScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */; };
 		FBBEBF731CDD8411000AE2C9 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */; };
 		FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */; };
+		FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD06A7A1CE4E47200C32672 /* AccountCell.swift */; };
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */; };
 		FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
@@ -130,6 +131,7 @@
 		FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScreenUITests.swift; sourceTree = "<group>"; };
 		FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScreen.swift; sourceTree = "<group>"; };
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
+		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
+				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
 			);
 			path = CellItems;
@@ -583,6 +586,7 @@
 				FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */,
 				FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */,
 				FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */,
+				FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */,
 				FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */,
 				FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,

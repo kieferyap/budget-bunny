@@ -11,8 +11,8 @@ import UIKit
 
 class AddEditAccountCell: BunnyCell {
     
-    var field: String = {return ""}()
-    var placeholder: String = {return ""}()
+    var field: String = ""
+    var placeholder: String = ""
     
     init?(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
