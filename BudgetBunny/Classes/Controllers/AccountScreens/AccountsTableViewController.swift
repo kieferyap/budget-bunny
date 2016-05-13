@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let SECTION_COUNT = 1
+
 class AccountsTableViewController: UITableViewController {
     
     var accountTable: [AccountCell] = []
@@ -16,7 +18,11 @@ class AccountsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         self.loadData()
+        self.tableView.reloadData()
     }
     
     func loadData() {
@@ -26,27 +32,29 @@ class AccountsTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest(entityName: "Account")
         var accounts = [NSManagedObject]()
         
+        self.accountTable = []
+        
         do {
             let results = try managedContext.executeFetchRequest(fetchRequest)
             accounts = results as! [NSManagedObject]
             
             for account in accounts {
-                let isDefaultString: String = account.valueForKey("isDefault") as! String
+                let isDefault: Bool = account.valueForKey("isDefault") as! Bool
                 let currencyIdentifier: String = account.valueForKey("currency") as! String
                 let accountName: String = account.valueForKey("name") as! String
                 
-                let isDefault = isDefaultString == "1" ? true : false
                 let currency = Currency()
                 currency.setAttributes(currencyIdentifier)
                 let currencySymbol = currency.currencySymbol
                 
-                let amount = ""
-                let cellIdentifier = ""
+                let amount: Float = account.valueForKey("amount") as! Float
+                let amountString: String = amount.description
+                let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
-                let accountItem = AccountCell(isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount, cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+                let accountItem: AccountCell = AccountCell(isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
 
-                self.accountTable.append(accountItem!)
+                self.accountTable.append(accountItem)
             }
             
             print(accounts)
@@ -89,21 +97,26 @@ class AccountsTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 0
-//    }
-//    
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return SECTION_COUNT
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.accountTable.count
+    }
+//
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        
 //    }
 //    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//       
-//    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellItem: AccountCell = self.accountTable[indexPath.row]
+        let cellIdentifier: String = cellItem.cellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
+        
+        cell.setAccountModel(cellItem)
+        return cell
+    }
     
     /*
     // MARK: - Navigation

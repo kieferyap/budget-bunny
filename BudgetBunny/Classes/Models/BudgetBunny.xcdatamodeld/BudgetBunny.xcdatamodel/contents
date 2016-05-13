@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Account" representedClassName="Account" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,7 +53,7 @@
         <relationship name="targetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="targetWishitemId" inverseEntity="Target" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-119" positionY="-178" width="128" height="165"/>
+        <element name="Account" positionX="-119" positionY="-178" width="128" height="180"/>
         <element name="Budget" positionX="-342" positionY="-189" width="128" height="118"/>
         <element name="Category" positionX="-279" positionY="99" width="128" height="103"/>
         <element name="Record" positionX="223" positionY="-189" width="128" height="88"/>

@@ -106,6 +106,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let accountCurrency = self.selectedCountryIdentifier
         let accountInitValue = self.getTableViewCellValue(IDX_ACCOUNT_INFO_GROUP, row: IDX_AMOUNT_CELL)
         let isDefaultAccount = self.getTableViewCellValue(IDX_ACCOUNT_DETAILS_GROUP, row: IDX_DEFAULT_CELL)
+        let transactionTypeInitial = 3
         
         let accountInitValueFloat = (accountInitValue as NSString).floatValue
         let isDefaultAccountBool = isDefaultAccount == "1" ? true : false
@@ -131,11 +132,12 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         accountModel.setValue(accountName, forKey:"name")
         accountModel.setValue(accountCurrency, forKey:"currency")
         accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")
+        accountModel.setValue(accountInitValueFloat, forKey:"amount")
         
         transactionModel.setValue(accountInitValueFloat, forKey: "amount")
         transactionModel.setValue(NSDate.init(), forKey: "datetime")
         transactionModel.setValue("", forKey: "notes")
-        transactionModel.setValue(3, forKey: "type")
+        transactionModel.setValue(transactionTypeInitial, forKey: "type")
         transactionModel.setValue(accountModel, forKey: "accountId")
         
         do {

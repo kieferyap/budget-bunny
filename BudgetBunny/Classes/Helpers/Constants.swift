@@ -13,6 +13,7 @@ struct Constants {
         static let AddAccountChevron = "addAccountChevronCell"
         static let AddAccountSwitch = "addAccountSwitchCell"
         static let AddAccountCurrency = "addAccountCurrencyCell"
+        static let Account = "AccountCell"
     }
     struct ViewControllers {
         static let CurrencyPickerTable = "CurrencyPickerTableViewController"
