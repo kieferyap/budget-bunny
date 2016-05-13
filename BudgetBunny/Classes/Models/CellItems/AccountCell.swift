@@ -13,14 +13,12 @@ class AccountCell: BunnyCell {
 
     var isDefault: Bool = false
     var accountName: String = ""
-    var currencySymbol: String = ""
     var amount: String = ""
     
-    init?(isDefault: Bool, accountName: String, currencySymbol: String, amount: String, cellIdentifier: String, cellSettings: NSDictionary) {
+    init?(isDefault: Bool, accountName: String, amount: String, cellIdentifier: String, cellSettings: NSDictionary) {
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
         self.isDefault = isDefault
         self.accountName = accountName
-        self.currencySymbol = currencySymbol
         self.amount = amount
     }
     

@@ -45,14 +45,14 @@ class AccountsTableViewController: UITableViewController {
                 
                 let currency = Currency()
                 currency.setAttributes(currencyIdentifier)
-                let currencySymbol = currency.currencySymbol
+                let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
                 
                 let amount: Float = account.valueForKey("amount") as! Float
-                let amountString: String = amount.description
+                let amountString: String = currencySymbol.stringByAppendingString(amount.description)
                 let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
-                let accountItem: AccountCell = AccountCell(isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
+                let accountItem: AccountCell = AccountCell(isDefault: isDefault, accountName: accountName, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
 
                 self.accountTable.append(accountItem)
             }
@@ -104,11 +104,15 @@ class AccountsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.accountTable.count
     }
-//
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//    }
-//    
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: NSInteger) -> CGFloat {
+        return CGFloat.min
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellItem: AccountCell = self.accountTable[indexPath.row]
         let cellIdentifier: String = cellItem.cellIdentifier
