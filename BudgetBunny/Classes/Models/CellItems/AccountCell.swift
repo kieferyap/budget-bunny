@@ -8,18 +8,21 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class AccountCell: BunnyCell {
 
     var isDefault: Bool = false
     var accountName: String = ""
     var amount: String = ""
+    var accountObject: NSManagedObject
     
-    init?(isDefault: Bool, accountName: String, amount: String, cellIdentifier: String, cellSettings: NSDictionary) {
-        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+    init?(accountObject: NSManagedObject, isDefault: Bool, accountName: String, amount: String, cellIdentifier: String, cellSettings: NSDictionary) {
         self.isDefault = isDefault
         self.accountName = accountName
         self.amount = amount
+        self.accountObject = accountObject
+        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
     }
     
 }

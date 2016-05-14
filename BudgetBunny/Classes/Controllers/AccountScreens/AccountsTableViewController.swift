@@ -52,7 +52,7 @@ class AccountsTableViewController: UITableViewController {
                 let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
-                let accountItem: AccountCell = AccountCell(isDefault: isDefault, accountName: accountName, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
+                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
 
                 self.accountTable.append(accountItem)
             }
@@ -97,6 +97,30 @@ class AccountsTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            let row = indexPath.row
+            let account: AccountCell = self.accountTable[row]
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            
+            managedContext.deleteObject(account.accountObject)
+            self.accountTable.removeAtIndex(row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Error occured while saving: \(error), \(error.userInfo)")
+            }
+            
+            //TO-DO: Remove all transactions that are involved with the account
+        }
+        
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return SECTION_COUNT
     }
