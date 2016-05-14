@@ -99,8 +99,13 @@ class AccountsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        if editingStyle == .Delete {
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
+            
             let row = indexPath.row
             let account: AccountCell = self.accountTable[row]
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -119,6 +124,9 @@ class AccountsTableViewController: UITableViewController {
             //TO-DO: Remove all transactions that are involved with the account
         }
         
+        delete.backgroundColor = Constants.Colors.DangerColor
+        
+        return [delete]
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
