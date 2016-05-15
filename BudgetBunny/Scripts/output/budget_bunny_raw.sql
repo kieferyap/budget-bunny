@@ -87,3 +87,4 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 UPDATE localizable_words SET localization_en = 'The name and initial amount must not be left blank.' WHERE wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
 UPDATE localizable_words SET localization_en = 'An internal error has occured. Please try again later.' WHERE wording_key = 'ERRORLABEL_INTERNAL_ERROR';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DELETE', 'Delete', '削除', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DEFAULT', 'DEFAULT', 'デフォルト', '[Not localized yet]');

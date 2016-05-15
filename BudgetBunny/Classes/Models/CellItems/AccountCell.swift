@@ -24,5 +24,4 @@ class AccountCell: BunnyCell {
         self.accountObject = accountObject
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
     }
-    
 }

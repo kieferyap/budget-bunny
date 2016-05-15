@@ -9,8 +9,19 @@
 import UIKit
 import ObjectiveC
 
+private var sourceInformationKey: UInt8 = 0
+
 extension UIViewController {
     
+    var sourceInformation: Int! {
+        get {
+            return (objc_getAssociatedObject(self, &sourceInformationKey) as? Int)!
+        }
+        set (newValue) {
+            objc_setAssociatedObject(self, &sourceInformationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
     func setTitleLocalizationKey(key: String) {
         let title = BunnyUtils.uncommentedLocalizedString(key)
         self.navigationItem.title = title

@@ -158,6 +158,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and initial amount must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.219882
 17	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	[Not localizaed yet]	[Not localizaed yet]	2016-05-10 01:04:25.576925
 18	BUTTON_DELETE	Delete	削除	[Not localized yet]	2016-05-15 16:44:05.227482
+19	LABEL_DEFAULT	DEFAULT	デフォルト	[Not localized yet]	2016-05-15 20:54:52.783206
 \.
 
 
@@ -165,7 +166,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 18, true);
+SELECT pg_catalog.setval('localizable_words_seq', 19, true);
 
 
 --

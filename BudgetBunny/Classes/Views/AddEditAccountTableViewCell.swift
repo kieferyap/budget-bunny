@@ -47,6 +47,9 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.fieldMaxLength = accountModel.cellSettings[KEY_MAX_LENGTH] as! Int
                 self.textfield.delegate = self
             }
+            if BunnyUtils.isKeyExistingForAddEditAccountCell(accountModel, key: KEY_TEXTFIELD_VALUE) {
+                self.textfield.text = accountModel.cellSettings[KEY_TEXTFIELD_VALUE] as? String
+            }
             let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
             if keyboardType != nil {
                 self.textfield.keyboardType = UIKeyboardType.DecimalPad

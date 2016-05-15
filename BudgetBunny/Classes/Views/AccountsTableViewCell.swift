@@ -10,32 +10,43 @@ import UIKit
 
 class AccountsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var checkmark: UILabel!
-    @IBOutlet weak var accountName: UILabel!
-    @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var isDefaultLabel: UILabel!
+    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var isDefaultLabelWidth: NSLayoutConstraint!
+    
     var model: AccountCell?
     
     func setAccountModel(model: AccountCell) {
         
         // Prepare UI elements
+        let defaultString = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DEFAULT)
         self.model = model
-        let checkmark = model.isDefault == true ? "✔︎" : ""
+        let isDefaultText = model.isDefault == true ? defaultString : ""
         let accountName = model.accountName
         let amount = model.amount
         
         // Set UI elements
-        self.checkmark.text = checkmark
-        self.accountName.text = accountName
-        self.amount.text = amount
+        self.isDefaultLabel.text = isDefaultText
+        self.accountNameLabel.text = accountName
+        self.amountLabel.text = amount
         self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         // Colors
-        self.checkmark.textColor = Constants.Colors.NormalGreen
-        self.amount.textColor = Constants.Colors.DarkGray
+        self.isDefaultLabelWidth.constant = 0.0
+        self.amountLabel.textColor = Constants.Colors.DarkGray
+        if isDefaultText != "" {
+            self.isDefaultLabel.layer.cornerRadius = 6.0
+            self.isDefaultLabel.layer.masksToBounds = true
+            self.isDefaultLabel.layer.borderWidth = 2.0
+            self.isDefaultLabel.layer.borderColor = Constants.Colors.DarkGreen.CGColor
+            self.isDefaultLabel.textColor = Constants.Colors.DarkGreen
+            self.isDefaultLabelWidth.constant = 75.0
+        }
         
         // Text overflow
-        self.accountName.adjustsFontSizeToFitWidth = true
-        self.amount.adjustsFontSizeToFitWidth = true
+        self.accountNameLabel.adjustsFontSizeToFitWidth = true
+        self.amountLabel.adjustsFontSizeToFitWidth = true
         
         // Selection color
         let selectionColor = UIView()

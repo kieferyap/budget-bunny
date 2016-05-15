@@ -38,7 +38,6 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.tapIsDefaultSwitch()
         addAccountScreen.tapCurrencyCell()
     }
     
@@ -163,5 +162,25 @@ class AddAccountUITests: XCTestCase {
         currencyPickerScreen.tapSearchBarCancel()
         currencyPickerScreen.tapBackButton()
     }
+
+    // MARK: ACC-0002 Test Cases
+    
+    func proceedToAccountTab() {
+        // Delete accounts core data
+        ScreenManager.tapAccountsTab(self.app)
+        
+    }
+    
+    func testAddAccount() {
+        self.proceedToAccountTab()
+    }
+    
+    func testDeleteAccount() {
+        self.proceedToAccountTab()
+    }
+    
+    //TO-DO: Remove the isDefault in the Add Account Screen
+    //TO-DO: [x] Change the default account display (instead of a checkmark: "Default")
+    //TO-DO: Implement uniqueness of account name and isDefault
     
 }

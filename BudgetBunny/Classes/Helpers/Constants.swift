@@ -15,7 +15,12 @@ struct Constants {
         static let AddAccountCurrency = "addAccountCurrencyCell"
         static let Account = "AccountCell"
     }
+    struct SourceInformation {
+        static let AccountNew = 0
+        static let AccountEditing = 1
+    }
     struct ViewControllers {
+        static let AddEditTable = "AddEditAccountTableViewController"
         static let CurrencyPickerTable = "CurrencyPickerTableViewController"
     }
     struct Storyboards {

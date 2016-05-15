@@ -117,6 +117,16 @@ class AccountsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let cell: AccountCell = self.accountTable[indexPath.row]
+        let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
+        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.AddEditTable)
+            as! AddEditAccountTableViewController
+        
+        destinationViewController.sourceInformation = Constants.SourceInformation.AccountEditing
+        destinationViewController.accountInformation = cell
+        self.navigationController?.pushViewController(destinationViewController, animated: true)
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -128,14 +138,16 @@ class AccountsTableViewController: UITableViewController {
         return cell
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        segue.destinationViewController.sourceInformation = Constants.SourceInformation.AccountNew
+        (segue.destinationViewController as! AddEditAccountTableViewController).accountInformation = nil
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }
