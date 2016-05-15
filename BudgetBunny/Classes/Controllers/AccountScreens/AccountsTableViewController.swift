@@ -47,8 +47,8 @@ class AccountsTableViewController: UITableViewController {
                 currency.setAttributes(currencyIdentifier)
                 let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
                 
-                let amount: Float = account.valueForKey("amount") as! Float
-                let amountString: String = currencySymbol.stringByAppendingString(amount.description)
+                let amount: Double = account.valueForKey("amount") as! Double                
+                let amountString: String = currencySymbol.stringByAppendingString(String(format: "%.2f", amount))
                 let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
@@ -57,38 +57,11 @@ class AccountsTableViewController: UITableViewController {
                 self.accountTable.append(accountItem)
             }
             
-            print(accounts)
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
 
     }
-    
-//    func tempPrintAccounts() {
-//        //1
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
-//        
-//        //2
-//        let fetchRequest = NSFetchRequest(entityName: "Account")
-//        var accounts = [NSManagedObject]()
-//        
-//        //3
-//        do {
-//            let results = try managedContext.executeFetchRequest(fetchRequest)
-//            accounts = results as! [NSManagedObject]
-//            
-//            for account in accounts {
-//                print(account.valueForKey("currency"))
-//                print(account.valueForKey("isDefault"))
-//                print(account.valueForKey("name"))
-//            }
-//            
-//            print(accounts)
-//        } catch let error as NSError {
-//            print("Could not fetch \(error), \(error.userInfo)")
-//        }
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,7 +77,8 @@ class AccountsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
+        let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
+        let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
             
             let row = indexPath.row
             let account: AccountCell = self.accountTable[row]

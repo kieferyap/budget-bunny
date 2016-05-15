@@ -45,7 +45,7 @@ class AddAccountUITests: XCTestCase {
     func testAddAccountTextFields() {
         self.proceedToAddAccountScreen()
         
-        let accountName: String = "My bank account"
+        let accountName: String = "my bank account"
         let initialAmount: String = "450"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
@@ -53,6 +53,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.typeAccountNameTextField(accountName)
         addAccountScreen.assertTextFieldEquality(accountName)
         
+        addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
         addAccountScreen.assertTextFieldEquality(initialAmount)
@@ -64,18 +65,25 @@ class AddAccountUITests: XCTestCase {
         
         let length30 = "123456789012345678901234567890"
         let length25 = "1234567890123456789012345"
-        let length22 = "1234567890123456789012"
         
-        // Test 01: Assert that the 25-character limit is enforced in the Account Name
+        // Assert that the 25-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(length30)
         addAccountScreen.assertTextFieldEquality(length25)
+    }
+    
+    func testAmountTextFieldLength() {
+        self.proceedToAddAccountScreen()
         
-        // Test 02: Assert that the 22-character limit is enforced in the Account Name
+        let length30 = "123456789012345678901234567890"
+        let length15 = "123456789012345"
+        
+        // Assert that the 22-character limit is enforced in the Account Name
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(length30)
-        addAccountScreen.assertTextFieldEquality(length22)
+        addAccountScreen.assertTextFieldEquality(length15)
     }
     
     func testCurrencyCell() {

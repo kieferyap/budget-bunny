@@ -18,7 +18,7 @@ let IDX_ACCOUNT_DETAILS_GROUP = 1
 let IDX_DEFAULT_CELL = 0
 
 let ACCOUNT_NAME_MAX_LENGTH = 25
-let INITIAL_AMOUNT_MAX_LENGTH = 22
+let INITIAL_AMOUNT_MAX_LENGTH = 15
 
 let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
 let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
@@ -108,7 +108,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let isDefaultAccount = self.getTableViewCellValue(IDX_ACCOUNT_DETAILS_GROUP, row: IDX_DEFAULT_CELL)
         let transactionTypeInitial = 3
         
-        let accountInitValueFloat = (accountInitValue as NSString).floatValue
+        let accountInitValueFloat = (accountInitValue as NSString).doubleValue
         let isDefaultAccountBool = isDefaultAccount == "1" ? true : false
         
         // If at least one string is null, do not save

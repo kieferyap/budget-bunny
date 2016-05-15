@@ -29,9 +29,15 @@ class AccountsTableViewCell: UITableViewCell {
         self.amount.text = amount
         self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
-        // UI element
+        // Colors
         self.checkmark.textColor = Constants.Colors.NormalGreen
         self.amount.textColor = Constants.Colors.DarkGray
+        
+        // Text overflow
+        self.accountName.adjustsFontSizeToFitWidth = true
+        self.amount.adjustsFontSizeToFitWidth = true
+        
+        // Selection color
         let selectionColor = UIView()
         selectionColor.backgroundColor = Constants.Colors.LightGreen
         self.selectedBackgroundView = selectionColor;
