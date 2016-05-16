@@ -34,7 +34,6 @@ let SEPARATOR_SYMBOL = ")"
 
 class AddEditAccountTableViewController: UITableViewController, UITextFieldDelegate {
 
-    //TO-DO: Two bugs -- 1. Account Name gets the "..." treatment. 2. Crash on Account Name
     var addAccountTable:[[AddEditAccountCell]] = [[]]
     var selectedCountryIdentifier: String = ""
     var accountInformation: AccountCell?
@@ -47,9 +46,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         var accountNameValue: String = ""
         var initialAmountValue: String = ""
         
-        if self.accountInformation != nil {
+        if self.accountInformation != nil && self.sourceInformation == Constants.SourceInformation.AccountEditing {
             accountNameValue = (self.accountInformation?.accountName)!
-            let amountDouble = (self.accountInformation!.amount as NSString).doubleValue
+            let amountDouble = ((self.accountInformation!.amount as NSString).substringFromIndex(2) as NSString).doubleValue
             initialAmountValue = String(format: "%.2f", amountDouble)
         }
         

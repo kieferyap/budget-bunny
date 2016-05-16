@@ -48,7 +48,10 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.textfield.delegate = self
             }
             if BunnyUtils.isKeyExistingForAddEditAccountCell(accountModel, key: KEY_TEXTFIELD_VALUE) {
-                self.textfield.text = accountModel.cellSettings[KEY_TEXTFIELD_VALUE] as? String
+                let textValue: String = accountModel.cellSettings[KEY_TEXTFIELD_VALUE] as! String
+                if textValue != "" {
+                    self.textfield.text = textValue
+                }
             }
             let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
             if keyboardType != nil {

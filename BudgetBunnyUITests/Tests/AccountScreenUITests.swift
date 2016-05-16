@@ -138,10 +138,17 @@ class AddAccountUITests: XCTestCase {
     
     func testSuccess() {
         self.proceedToAddAccountScreen()
+        let japanSearchKey = "Japan"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField("test")
+        addAccountScreen.tapCurrencyCell()
+        
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
+        currencyPickerScreen.tapBackButton()
+        
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField("120")
         addAccountScreen.tapDoneButton()
@@ -179,8 +186,6 @@ class AddAccountUITests: XCTestCase {
         self.proceedToAccountTab()
     }
     
-    //TO-DO: Remove the isDefault in the Add Account Screen
-    //TO-DO: [x] Change the default account display (instead of a checkmark: "Default")
     //TO-DO: Implement uniqueness of account name and isDefault
     
 }
