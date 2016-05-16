@@ -14,6 +14,7 @@
 		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
 		FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */; };
 		FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */; };
+		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -85,6 +86,7 @@
 		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
 		FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewCell.swift; sourceTree = "<group>"; };
 		FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerScreen.swift; sourceTree = "<group>"; };
+		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				FB97C3401CB49B5200C35BC0 /* DashboardScreens */,
 				FB97C33F1CB49B4C00C35BC0 /* RecordScreens */,
 				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
+				FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
+				FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */,
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,

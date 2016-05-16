@@ -48,11 +48,10 @@ class AccountsTableViewController: UITableViewController {
                 let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
                 
                 let amount: Double = account.valueForKey("amount") as! Double                
-                let amountString: String = currencySymbol.stringByAppendingString(String(format: "%.2f", amount))
                 let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
-                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, amount: amountString, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
+                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
 
                 self.accountTable.append(accountItem)
             }

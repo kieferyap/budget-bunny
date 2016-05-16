@@ -47,9 +47,17 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         var initialAmountValue: String = ""
         
         if self.accountInformation != nil && self.sourceInformation == Constants.SourceInformation.AccountEditing {
+            
             accountNameValue = (self.accountInformation?.accountName)!
-            let amountDouble = ((self.accountInformation!.amount as NSString).substringFromIndex(2) as NSString).doubleValue
-            initialAmountValue = String(format: "%.2f", amountDouble)
+            let amountDouble: Double = (self.accountInformation?.amount)!
+            
+            var format = "%.0f"
+            if !amountDouble.isInteger {
+                format = "%.2f"
+            }
+            
+            print(format)
+            initialAmountValue = String(format: format, amountDouble)
         }
         
         // Cell information

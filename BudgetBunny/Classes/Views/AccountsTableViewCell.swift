@@ -25,11 +25,14 @@ class AccountsTableViewCell: UITableViewCell {
         let isDefaultText = model.isDefault == true ? defaultString : ""
         let accountName = model.accountName
         let amount = model.amount
+        let currencySymbol = model.currencySymbol
+        
+        let amountString: String = currencySymbol.stringByAppendingString(String(format: "%.2f", amount))
         
         // Set UI elements
         self.isDefaultLabel.text = isDefaultText
         self.accountNameLabel.text = accountName
-        self.amountLabel.text = amount
+        self.amountLabel.text = amountString
         self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         // Colors
