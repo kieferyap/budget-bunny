@@ -131,7 +131,13 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         let newLength = text.characters.count + string.characters.count - range.length
-        return newLength <= self.fieldMaxLength
+        var shouldChangeCharacter = newLength <= self.fieldMaxLength
+        
+        if text.rangeOfString(".") != nil && string == "." {
+            shouldChangeCharacter = false
+        }
+        
+        return shouldChangeCharacter
     }
 
 }
