@@ -14,7 +14,7 @@ This app is still a work in progress, so it cannot be downloaded from the App St
 
 ### Motivation:
 
-There are plenty of budgeting apps out there, but I'm reinventing the wheel because I'd like to have full control of all the features, UI, documentation, etc. It's also a good opportunity to get my feet wet on Swift, and apply what I've learned in the field so far.
+There are plenty of budgeting apps out there, but I'm making my own version because I'd like to have full control of the features, UI, documentation, etc. I can add/subtract features when I want to. It's also a good opportunity to get my feet wet on Swift, and apply what I've learned from work.
 
 ### Project Specification Overview:
 
