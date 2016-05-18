@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
+		FB0928AB1CECC54B00E73FF1 /* EmptyFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */; };
 		FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */; };
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
 		FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */; };
@@ -79,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
+		FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFieldValidator.swift; sourceTree = "<group>"; };
 		FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
 		FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
@@ -96,9 +100,9 @@
 		FB8550F81CBDF41F0037A881 /* NewEditBudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEditBudgetViewController.swift; sourceTree = "<group>"; };
 		FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTransactionViewController.swift; sourceTree = "<group>"; };
-		FB8550FE1CBE27950037A881 /* RecordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordsViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/RecordsViewController.swift; sourceTree = SOURCE_ROOT; };
-		FB8551001CBE27BF0037A881 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTargetViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/AddTargetViewController.swift; sourceTree = SOURCE_ROOT; };
-		FB8551021CBE27F50037A881 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = BudgetBunny/Classes/Controllers/RecordScreens/DataViewController.swift; sourceTree = SOURCE_ROOT; };
+		FB8550FE1CBE27950037A881 /* RecordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
+		FB8551001CBE27BF0037A881 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewController.swift; sourceTree = "<group>"; };
+		FB8551021CBE27F50037A881 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		FB8A9B971CC65AB10017D0D3 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		FB97C3031CB4974F00C35BC0 /* BudgetBunny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetBunny.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,8 +139,8 @@
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
-		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FBFE42F61CCF34A1000206FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F81CCF34A3000206FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F91CCF34A5000206FE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -242,8 +246,8 @@
 		FB97C3391CB499D800C35BC0 /* CellItems */ = {
 			isa = PBXGroup;
 			children = (
-				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
+				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
 				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
 			);
 			path = CellItems;
@@ -278,8 +282,6 @@
 				FB97C33E1CB49B4400C35BC0 /* BudgetScreens */,
 				FB97C3401CB49B5200C35BC0 /* DashboardScreens */,
 				FB97C33F1CB49B4C00C35BC0 /* RecordScreens */,
-				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
-				FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -314,19 +316,18 @@
 		FB97C33F1CB49B4C00C35BC0 /* RecordScreens */ = {
 			isa = PBXGroup;
 			children = (
-				FB8550FE1CBE27950037A881 /* RecordsViewController.swift */,
 				FB8551001CBE27BF0037A881 /* AddTargetViewController.swift */,
 				FB8551021CBE27F50037A881 /* DataViewController.swift */,
+				FB8550FE1CBE27950037A881 /* RecordsViewController.swift */,
 			);
-			name = RecordScreens;
-			path = ReportScreens;
+			path = RecordScreens;
 			sourceTree = "<group>";
 		};
 		FB97C3401CB49B5200C35BC0 /* DashboardScreens */ = {
 			isa = PBXGroup;
 			children = (
-				FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */,
 				FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */,
+				FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */,
 			);
 			path = DashboardScreens;
 			sourceTree = "<group>";
@@ -334,9 +335,13 @@
 		FB97C3411CB49B5A00C35BC0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FB5FF8201CC134D10090F5FA /* Constants.swift */,
-				FB49683D1CD0ADC9006A0177 /* StringConstants.swift */,
 				FB2445361CCF5B3400E55941 /* BunnyUtils.swift */,
+				FB5FF8201CC134D10090F5FA /* Constants.swift */,
+				FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */,
+				FB49683D1CD0ADC9006A0177 /* StringConstants.swift */,
+				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
+				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
+				FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -344,9 +349,9 @@
 		FB97C3421CB49B5E00C35BC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */,
 				FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */,
 				FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */,
-				FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,8 +372,7 @@
 			children = (
 				FBFE42F71CCF34A1000206FE /* Localizable.strings */,
 			);
-			name = Localization;
-			path = Locales;
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		FB97C3461CB49BF600C35BC0 /* PropertyLists */ = {
@@ -406,11 +410,11 @@
 		FB9CD8B31CB49DB40031E3B8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */,
 				FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */,
 				FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */,
-				FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */,
 				FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */,
+				FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */,
+				FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -418,8 +422,8 @@
 		FB9CD8B41CB49DB70031E3B8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FB97C3291CB4975000C35BC0 /* LocationUITests.swift */,
 				FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */,
+				FB97C3291CB4975000C35BC0 /* LocationUITests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -568,6 +572,7 @@
 				FB9CD8A91CB49D100031E3B8 /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* NewEditBudgetViewController.swift in Sources */,
 				FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */,
+				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
 				FB9CD8A41CB49D100031E3B8 /* Account.swift in Sources */,
 				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
@@ -576,6 +581,7 @@
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
+				FB0928AB1CECC54B00E73FF1 /* EmptyFieldValidator.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
@@ -668,8 +674,8 @@
 				FBFE42F91CCF34A5000206FE /* zh-Hans */,
 			);
 			name = Localizable.strings;
-			path = BudgetBunny/Resources/Localization;
-			sourceTree = SOURCE_ROOT;
+			path = .;
+			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 

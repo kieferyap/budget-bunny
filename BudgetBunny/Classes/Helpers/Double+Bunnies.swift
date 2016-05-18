@@ -9,5 +9,7 @@
 import Foundation
 
 extension Double {
-    var isInteger: Bool {return rint(self) == self}
+    var isInteger: Bool {
+        return rint(self) == self
+    }
 }
