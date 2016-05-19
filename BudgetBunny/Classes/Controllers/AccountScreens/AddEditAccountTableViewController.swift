@@ -140,16 +140,21 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let accountInitValueFloat = (accountInitValue as NSString).doubleValue
         
         // Error validators
+        let accountNameModel = AttributeModel(tableName: "Account", format: "name == %@", value: accountName)
         let emptyAccountValidator = EmptyStringValidator(
                     objectToValidate: accountName,
                       errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
         let emptyCurrencyValidator = EmptyStringValidator(
                       objectToValidate: accountInitValue,
                         errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+        let accountnameUniquenessValidator = AttributeUniquenessValidator(
+                objectToValidate: accountNameModel,
+                  errorStringKey: StringConstants.ERRORLABEL_INTERNAL_ERROR)
         
         let validator = Validator()
         validator.addValidator(emptyAccountValidator)
         validator.addValidator(emptyCurrencyValidator)
+        validator.addValidator(accountnameUniquenessValidator)
         
         validator.validate { (errorMessage) in
             if errorMessage != "" {

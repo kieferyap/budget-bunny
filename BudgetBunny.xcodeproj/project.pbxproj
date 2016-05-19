@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
-		FB0928AB1CECC54B00E73FF1 /* EmptyStringValudator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */; };
+		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */; };
+		FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */; };
+		FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2D1CEE101900636CCC /* AttributeModel.swift */; };
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
 		FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */; };
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
@@ -83,8 +85,10 @@
 
 /* Begin PBXFileReference section */
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
-		FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValudator.swift; sourceTree = "<group>"; };
+		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
+		FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeUniquenessValidator.swift; sourceTree = "<group>"; };
+		FB238F2D1CEE101900636CCC /* AttributeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeModel.swift; sourceTree = "<group>"; };
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
 		FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
@@ -236,7 +240,7 @@
 		FB97C3381CB499D600C35BC0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FB97C3391CB499D800C35BC0 /* CellItems */,
+				FB97C3391CB499D800C35BC0 /* Items */,
 				FB97C33A1CB499DE00C35BC0 /* ManagedObjects */,
 				FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */,
 				FB8A9B971CC65AB10017D0D3 /* Currency.swift */,
@@ -245,13 +249,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FB97C3391CB499D800C35BC0 /* CellItems */ = {
+		FB97C3391CB499D800C35BC0 /* Items */ = {
 			isa = PBXGroup;
 			children = (
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
 				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
+				FB238F2D1CEE101900636CCC /* AttributeModel.swift */,
 			);
+			name = Items;
 			path = CellItems;
 			sourceTree = "<group>";
 		};
@@ -343,8 +349,9 @@
 				FB49683D1CD0ADC9006A0177 /* StringConstants.swift */,
 				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
-				FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */,
+				FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */,
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
+				FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,6 +584,7 @@
 				FB8550F91CBDF41F0037A881 /* NewEditBudgetViewController.swift in Sources */,
 				FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
+				FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */,
 				FB9CD8A41CB49D100031E3B8 /* Account.swift in Sources */,
 				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
@@ -585,7 +593,7 @@
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
-				FB0928AB1CECC54B00E73FF1 /* EmptyStringValudator.swift in Sources */,
+				FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
@@ -601,6 +609,7 @@
 				FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */,
 				FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */,
 				FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */,
+				FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */,
 				FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */,
 				FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,
