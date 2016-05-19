@@ -9,5 +9,7 @@
 import UIKit
 
 protocol ValidatorProtocol: class {
-    func validateObject(object: NSObject) -> Bool
+    var objectToValidate: NSObject {get set}
+    var errorStringKey: String {get set}
+    func validateObject() -> Bool
 }

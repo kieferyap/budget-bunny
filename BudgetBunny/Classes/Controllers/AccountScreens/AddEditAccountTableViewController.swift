@@ -139,42 +139,53 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         let accountInitValueFloat = (accountInitValue as NSString).doubleValue
         
-        // If at least one string is null, do not save
-        if accountName == "" || accountInitValue == "" {
-            let title = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
-            let message = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
-            
-            BunnyUtils.showAlertWithOKButton(self, title: title, message: message)
-            return
+        // Error validators
+        let emptyAccountValidator = EmptyStringValidator(
+                    objectToValidate: accountName,
+                      errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+        let emptyCurrencyValidator = EmptyStringValidator(
+                      objectToValidate: accountInitValue,
+                        errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+        
+        let validator = Validator()
+        validator.addValidator(emptyAccountValidator)
+        validator.addValidator(emptyCurrencyValidator)
+        
+        validator.validate { (errorMessage) in
+            if errorMessage != "" {
+                let title = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
+                BunnyUtils.showAlertWithOKButton(self, title: title, message: errorMessage)
+            }
+            else {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext
+                
+                let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
+                let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
+                
+                let transactionEntity = NSEntityDescription.entityForName("Transaction", inManagedObjectContext: managedContext)
+                let transactionModel = NSManagedObject(entity: transactionEntity!, insertIntoManagedObjectContext: managedContext)
+                
+                accountModel.setValue(accountName, forKey:"name")
+                accountModel.setValue(accountCurrency, forKey:"currency")
+                accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")
+                accountModel.setValue(accountInitValueFloat, forKey:"amount")
+                
+                transactionModel.setValue(accountInitValueFloat, forKey: "amount")
+                transactionModel.setValue(NSDate.init(), forKey: "datetime")
+                transactionModel.setValue("", forKey: "notes")
+                transactionModel.setValue(transactionTypeInitial, forKey: "type")
+                transactionModel.setValue(accountModel, forKey: "accountId")
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Error occured while saving: \(error), \(error.userInfo)")
+                }
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         }
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
-        let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
-        
-        let transactionEntity = NSEntityDescription.entityForName("Transaction", inManagedObjectContext: managedContext)
-        let transactionModel = NSManagedObject(entity: transactionEntity!, insertIntoManagedObjectContext: managedContext)
-        
-        accountModel.setValue(accountName, forKey:"name")
-        accountModel.setValue(accountCurrency, forKey:"currency")
-        accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")
-        accountModel.setValue(accountInitValueFloat, forKey:"amount")
-        
-        transactionModel.setValue(accountInitValueFloat, forKey: "amount")
-        transactionModel.setValue(NSDate.init(), forKey: "datetime")
-        transactionModel.setValue("", forKey: "notes")
-        transactionModel.setValue(transactionTypeInitial, forKey: "type")
-        transactionModel.setValue(accountModel, forKey: "accountId")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Error occured while saving: \(error), \(error.userInfo)")
-        }
-        
-        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - Table view data source

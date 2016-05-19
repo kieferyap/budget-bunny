@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
-		FB0928AB1CECC54B00E73FF1 /* EmptyFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */; };
+		FB0928AB1CECC54B00E73FF1 /* EmptyStringValudator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */; };
 		FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */; };
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
 		FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */; };
@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
-		FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFieldValidator.swift; sourceTree = "<group>"; };
+		FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValudator.swift; sourceTree = "<group>"; };
 		FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
 		FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				FB49683D1CD0ADC9006A0177 /* StringConstants.swift */,
 				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
-				FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */,
+				FB0928AA1CECC54900E73FF1 /* EmptyStringValudator.swift */,
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
 			);
 			path = Helpers;
@@ -585,7 +585,7 @@
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
-				FB0928AB1CECC54B00E73FF1 /* EmptyFieldValidator.swift in Sources */,
+				FB0928AB1CECC54B00E73FF1 /* EmptyStringValudator.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
