@@ -10,8 +10,9 @@ import UIKit
 
 class EmptyFieldValidator: NSObject, ValidatorProtocol {
 
-    func validateObject(object: NSObject) {
-        
+    func validateObject(object: NSObject) -> Bool {
+        let field = object as! UITextField
+        return field.text != ""
     }
     
 }

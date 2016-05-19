@@ -21,6 +21,7 @@
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
+		FB6CED241CEDE48800FB222E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CED231CEDE48800FB222E /* Validator.swift */; };
 		FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */; };
 		FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */; };
 		FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */; };
@@ -93,6 +94,7 @@
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FB6CED231CEDE48800FB222E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTableViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
 				FB0928AA1CECC54900E73FF1 /* EmptyFieldValidator.swift */,
+				FB6CED231CEDE48800FB222E /* Validator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */,
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
 				FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */,
+				FB6CED241CEDE48800FB222E /* Validator.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
 				FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,

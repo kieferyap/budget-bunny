@@ -1,5 +1,5 @@
 //
-//  ValidatorProtocol.swift
+//  Validator.swift
 //  BudgetBunny
 //
 //  Created by Kiefer Yap on 5/19/16.
@@ -8,6 +8,9 @@
 
 import UIKit
 
-protocol ValidatorProtocol: class {
-    func validateObject(object: NSObject) -> Bool
+class Validator: NSObject {
+
+    func addValidator(validator: ValidatorProtocol) {
+        
+    }
 }
