@@ -11,7 +11,7 @@ struct Constants {
     struct CellIdentifiers {
         static let AddAccountFieldValue = "addAccountFieldValueCell"
         static let AddAccountChevron = "addAccountChevronCell"
-        static let AddAccountSwitch = "addAccountSwitchCell"
+        static let AddAccountAction = "addAccountActionCell"
         static let AddAccountCurrency = "addAccountCurrencyCell"
         static let Account = "AccountCell"
     }

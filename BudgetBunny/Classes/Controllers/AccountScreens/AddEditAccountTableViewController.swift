@@ -16,17 +16,19 @@ let IDX_AMOUNT_CELL = 2
 
 let IDX_ACCOUNT_DETAILS_GROUP = 1
 let IDX_DEFAULT_CELL = 0
+let IDX_DELETE_CELL = 1
 
 let ACCOUNT_NAME_MAX_LENGTH = 25
 let INITIAL_AMOUNT_MAX_LENGTH = 15
 
 let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
-let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
-let KEY_HEIGHT = "height"
+let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0 // Unused
+let KEY_HEIGHT = "height" // Unused
 let KEY_ANIMATED = "animated"
 let KEY_IS_NUMPAD = "isKeyboardNumpad"
 let KEY_MAX_LENGTH = "maxLength"
 let KEY_TEXTFIELD_VALUE = "value"
+let KEY_SELECTOR = "selector"
 
 let SEPARATOR_COUNTRY_CODE = ": "
 let SEPARATOR_CODE_SYMBOL = " ("
@@ -56,7 +58,6 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 format = "%.2f"
             }
             
-            print(format)
             initialAmountValue = String(format: format, amountDouble)
         }
         
@@ -79,13 +80,18 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                    KEY_TEXTFIELD_VALUE: initialAmountValue])
         
         if self.sourceInformation == Constants.SourceInformation.AccountEditing {
-            let defaultAccountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT),
-                                                  placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION),
-                                               cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
-                                                 cellSettings: [KEY_HEIGHT:ACCOUNT_CELL_HEIGHT])
+            let setDefaultAccountCell = AddEditAccountCell(field: "Set as default",
+                                                  placeholder: "",
+                                               cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
+                                               cellSettings: [KEY_SELECTOR: "setDefault"])
+            let deleteAccountCell = AddEditAccountCell(field: "Delete account",
+                                                        placeholder: "",
+                                                        cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
+                                                        cellSettings: [KEY_SELECTOR: "deleteAccount"])
             // Account details group
             self.addAccountTable.append([])
-            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(setDefaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(deleteAccountCell!, atIndex: IDX_DELETE_CELL)
         }
         
         // Information group
