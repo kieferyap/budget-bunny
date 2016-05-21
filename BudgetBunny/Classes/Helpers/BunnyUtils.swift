@@ -37,4 +37,35 @@ class BunnyUtils: NSObject {
         viewController.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    class func tableRowsWithLoadingTitle(titleKey: String, tableModel: NSArray, tableView: UITableView, completion: () -> Int) -> Int {
+        
+        let emptyTableLabel = UILabel.init(frame: CGRectMake(0, 0, tableView.bounds.size.height, tableView.bounds.size.width))
+        var labelString: String = BunnyUtils.uncommentedLocalizedString(titleKey)
+        var rows: Int = 0
+        var separatorStyle = UITableViewCellSeparatorStyle.None
+        var isTableScrollable = false
+        
+        if tableModel.count > 0 {
+            labelString = ""
+            separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            isTableScrollable = true
+            
+            rows = completion()
+        }
+        
+        // Set empty table label
+        emptyTableLabel.text = labelString
+        emptyTableLabel.textAlignment = NSTextAlignment.Center
+        emptyTableLabel.sizeToFit()
+        emptyTableLabel.numberOfLines = 0
+        emptyTableLabel.textColor = UIColor.lightGrayColor()
+        
+        // Add table label to table view's background view
+        tableView.backgroundView = emptyTableLabel
+        tableView.separatorStyle = separatorStyle
+        tableView.scrollEnabled = isTableScrollable
+        
+        return rows
+    }
+    
 }

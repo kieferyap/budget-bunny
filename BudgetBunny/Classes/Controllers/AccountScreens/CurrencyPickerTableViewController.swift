@@ -55,10 +55,6 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         BunnyUtils.addKeyboardDismisserListener(self)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         self.searchController.view.removeFromSuperview()
         self.delegate?.setSelectedCurrencyIdentifier(self.selectedCountryIdentifier)
@@ -70,38 +66,9 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let emptyTableLabel = UILabel.init(frame: CGRectMake(0, 0, self.tableView.bounds.size.height, self.tableView.bounds.size.width))
-        var labelString: String = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_LOADING)
-        var rows: Int = 0
-        var separatorStyle = UITableViewCellSeparatorStyle.None
-        var isTableScrollable = false
-        
-        if self.currencyTable.count > 0 {
-            labelString = ""
-            separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            isTableScrollable = true
-            
-            if self.isSearching {
-                rows = self.filteredCurrencies.count
-            }
-            else {
-                rows = self.currencyTable.count
-            }
+        return BunnyUtils.tableRowsWithLoadingTitle(StringConstants.LABEL_LOADING, tableModel: self.currencyTable, tableView: self.tableView) { () -> Int in
+            return self.isSearching ? self.filteredCurrencies.count : self.currencyTable.count
         }
-        
-        // Set empty table label
-        emptyTableLabel.text = labelString
-        emptyTableLabel.textAlignment = NSTextAlignment.Center
-        emptyTableLabel.sizeToFit()
-        emptyTableLabel.textColor = Constants.Colors.NormalGreen
-        
-        // Add table label to table view's background view
-        self.tableView.backgroundView = emptyTableLabel
-        self.tableView.separatorStyle = separatorStyle
-        self.tableView.scrollEnabled = isTableScrollable
-        
-        return rows
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -88,3 +88,12 @@ UPDATE localizable_words SET localization_en = 'The name and initial amount must
 UPDATE localizable_words SET localization_en = 'An internal error has occured. Please try again later.' WHERE wording_key = 'ERRORLABEL_INTERNAL_ERROR';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DELETE', 'Delete', '削除', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DEFAULT', 'DEFAULT', 'デフォルト', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_NO_ACCOUNTS', 'There are no accounts yet.\n\nTo add a new account, tap the + sign located at the upper right corner of the screen.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SAVE', 'Save', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SET_AS_DEFAULT', 'Set as default', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DELETE_ACCOUNT', 'Delete account', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ACCOUNT_INFO', 'Information', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ACCOUNT_ACTIONS', 'Actions', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_CURRENT_AMOUNT', 'Current amount', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_ACCOUNT_NAME', 'The account name already exists.', '[Not localized yet]', '[Not localized yet]');

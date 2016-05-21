@@ -30,6 +30,9 @@ let KEY_MAX_LENGTH = "maxLength"
 let KEY_TEXTFIELD_VALUE = "value"
 let KEY_SELECTOR = "selector"
 
+let SELECTOR_DELETE = "deleteAccount"
+let SELECTOR_SET_DEFAULT = "setDefault"
+
 let SEPARATOR_COUNTRY_CODE = ": "
 let SEPARATOR_CODE_SYMBOL = " ("
 let SEPARATOR_SYMBOL = ")"
@@ -63,16 +66,16 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         // Cell information
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
-        let nameCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME),
+        let nameCell = AddEditAccountCell(fieldKey: StringConstants.LABEL_NAME,
                                     placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
                                  cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                  cellSettings: [KEY_MAX_LENGTH: ACCOUNT_NAME_MAX_LENGTH,
                                            KEY_TEXTFIELD_VALUE: accountNameValue])
-        let currencyCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_CURRENCY),
+        let currencyCell = AddEditAccountCell(fieldKey: StringConstants.LABEL_CURRENCY,
                                         placeholder: self.getCurrencyStringWithIdentifier(),
                                      cellIdentifier: Constants.CellIdentifiers.AddAccountChevron,
                                        cellSettings: [KEY_ANIMATED: true])
-        let initialAmountCell = AddEditAccountCell(field: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_STARTING_BALANCE),
+        let initialAmountCell = AddEditAccountCell(fieldKey: StringConstants.LABEL_STARTING_BALANCE,
                                              placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
                                           cellIdentifier: Constants.CellIdentifiers.AddAccountFieldValue,
                                           cellSettings: [KEY_IS_NUMPAD: true,
@@ -80,14 +83,14 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                    KEY_TEXTFIELD_VALUE: initialAmountValue])
         
         if self.sourceInformation == Constants.SourceInformation.AccountEditing {
-            let setDefaultAccountCell = AddEditAccountCell(field: "Set as default",
+            let setDefaultAccountCell = AddEditAccountCell(fieldKey: StringConstants.BUTTON_SET_AS_DEFAULT,
                                                   placeholder: "",
                                                cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
-                                               cellSettings: [KEY_SELECTOR: "setDefault"])
-            let deleteAccountCell = AddEditAccountCell(field: "Delete account",
+                                               cellSettings: [KEY_SELECTOR: SELECTOR_SET_DEFAULT])
+            let deleteAccountCell = AddEditAccountCell(fieldKey: StringConstants.BUTTON_DELETE_ACCOUNT,
                                                         placeholder: "",
                                                         cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
-                                                        cellSettings: [KEY_SELECTOR: "deleteAccount"])
+                                                        cellSettings: [KEY_SELECTOR: SELECTOR_DELETE])
             // Account details group
             self.addAccountTable.append([])
             self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(setDefaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
@@ -155,7 +158,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                         errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
         let accountnameUniquenessValidator = AttributeUniquenessValidator(
                 objectToValidate: accountNameModel,
-                  errorStringKey: StringConstants.ERRORLABEL_INTERNAL_ERROR)
+                  errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME)
         
         let validator = Validator()
         validator.addValidator(emptyAccountValidator)

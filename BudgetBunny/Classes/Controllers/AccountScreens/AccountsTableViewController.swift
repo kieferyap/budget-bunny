@@ -107,7 +107,9 @@ class AccountsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.accountTable.count
+        return BunnyUtils.tableRowsWithLoadingTitle(StringConstants.LABEL_NO_ACCOUNTS, tableModel: self.accountTable, tableView: self.tableView) { () -> Int in
+            return self.accountTable.count
+        }
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: NSInteger) -> CGFloat {
@@ -139,13 +141,10 @@ class AccountsTableViewController: UITableViewController {
     
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         segue.destinationViewController.sourceInformation = Constants.SourceInformation.AccountNew
         (segue.destinationViewController as! AddEditAccountTableViewController).accountInformation = nil
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
  
 

@@ -14,9 +14,9 @@ class AddEditAccountCell: BunnyCell {
     var field: String = ""
     var placeholder: String = ""
     
-    init?(field: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
+    init?(fieldKey: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
-        self.field = field
+        self.field = BunnyUtils.uncommentedLocalizedString(fieldKey)
         self.placeholder = placeholder
     }
     

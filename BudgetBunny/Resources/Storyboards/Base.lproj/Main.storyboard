@@ -88,7 +88,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJF-QW-d5t">
-                                            <rect key="frame" x="8" y="7" width="43" height="30"/>
+                                            <rect key="frame" x="8" y="5" width="48" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="action"/>
                                         </button>
                                     </subviews>
