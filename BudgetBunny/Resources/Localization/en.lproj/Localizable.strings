@@ -20,9 +20,9 @@
 "LABEL_DEFAULT" = "DEFAULT";
 "LABEL_NO_ACCOUNTS" = "There are no accounts yet.\n\nTo add a new account, tap the + sign located at the upper right corner of the screen.";
 "BUTTON_SAVE" = "Save";
-"BUTTON_SET_AS_DEFAULT" = "Set as default";
 "BUTTON_DELETE_ACCOUNT" = "Delete account";
 "LABEL_ACCOUNT_INFO" = "Information";
 "LABEL_ACCOUNT_ACTIONS" = "Actions";
 "LABEL_CURRENT_AMOUNT" = "Current amount";
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "The account name already exists.";
+"BUTTON_SET_AS_DEFAULT" = "Set as default account";

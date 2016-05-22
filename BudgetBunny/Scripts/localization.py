@@ -60,6 +60,7 @@ class Localization:
 
 			line = file.readline()
 			while not line == self.LOCALIZATION_FILE_ENDER:
+				line = line.replace("\\\\n", "\\n")
 				localization_arr = line.split("\t")
 
 				# Output to file here

@@ -97,3 +97,4 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ACCOUNT_ACTIONS', 'Actions', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_CURRENT_AMOUNT', 'Current amount', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_ACCOUNT_NAME', 'The account name already exists.', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET localization_en = 'Set as default account' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';

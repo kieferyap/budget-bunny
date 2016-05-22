@@ -102,6 +102,47 @@
                                     <outlet property="actionButton" destination="XJF-QW-d5t" id="vJF-29-J3Y"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="246" width="600" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPm" id="2jn-4e-eT8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrT-Rn-Pg3">
+                                            <rect key="frame" x="8" y="8" width="33" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MYf-pt-WJT">
+                                            <rect key="frame" x="543" y="14" width="51" height="31"/>
+                                            <color key="onTintColor" red="0.0" green="0.69411764705882351" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlN-Ed-rCN">
+                                            <rect key="frame" x="8" y="36" width="527" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="topMargin" secondItem="CrT-Rn-Pg3" secondAttribute="top" id="3Cb-Mu-wN2"/>
+                                        <constraint firstItem="jlN-Ed-rCN" firstAttribute="top" secondItem="CrT-Rn-Pg3" secondAttribute="bottom" constant="7" id="6mZ-Se-TFv"/>
+                                        <constraint firstItem="jlN-Ed-rCN" firstAttribute="bottom" secondItem="2jn-4e-eT8" secondAttribute="bottomMargin" id="OpV-1n-RTF"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="CrT-Rn-Pg3" secondAttribute="leading" id="Swg-4l-KQa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MYf-pt-WJT" secondAttribute="trailing" id="cPa-1r-d14"/>
+                                        <constraint firstItem="MYf-pt-WJT" firstAttribute="centerY" secondItem="2jn-4e-eT8" secondAttribute="centerY" id="itf-E5-qH5"/>
+                                        <constraint firstItem="MYf-pt-WJT" firstAttribute="leading" secondItem="jlN-Ed-rCN" secondAttribute="trailing" constant="8" id="mct-yp-S3n"/>
+                                        <constraint firstItem="jlN-Ed-rCN" firstAttribute="leading" secondItem="2jn-4e-eT8" secondAttribute="leadingMargin" id="mqR-DU-CaV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="accountSwitch" destination="MYf-pt-WJT" id="km0-74-Spz"/>
+                                    <outlet property="field" destination="CrT-Rn-Pg3" id="16d-h9-ebw"/>
+                                    <outlet property="value" destination="jlN-Ed-rCN" id="Jxu-p3-FmN"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="tGE-fd-eFe" id="La6-gM-dnE"/>

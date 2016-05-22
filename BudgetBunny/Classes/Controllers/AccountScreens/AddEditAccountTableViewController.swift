@@ -22,8 +22,8 @@ let ACCOUNT_NAME_MAX_LENGTH = 25
 let INITIAL_AMOUNT_MAX_LENGTH = 15
 
 let DEFAULT_CELL_HEIGHT: CGFloat = 44.0
-let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0 // Unused
-let KEY_HEIGHT = "height" // Unused
+let ACCOUNT_CELL_HEIGHT: CGFloat = 60.0
+let KEY_HEIGHT = "height"
 let KEY_ANIMATED = "animated"
 let KEY_IS_NUMPAD = "isKeyboardNumpad"
 let KEY_MAX_LENGTH = "maxLength"
@@ -82,6 +82,8 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                         KEY_MAX_LENGTH: INITIAL_AMOUNT_MAX_LENGTH,
                                                    KEY_TEXTFIELD_VALUE: initialAmountValue])
         
+        self.addAccountTable.append([])
+        
         if self.sourceInformation == Constants.SourceInformation.AccountEditing {
             let setDefaultAccountCell = AddEditAccountCell(fieldKey: StringConstants.BUTTON_SET_AS_DEFAULT,
                                                   placeholder: "",
@@ -92,10 +94,19 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                         cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
                                                         cellSettings: [KEY_SELECTOR: SELECTOR_DELETE])
             // Account details group
-            self.addAccountTable.append([])
             self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(setDefaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
             self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(deleteAccountCell!, atIndex: IDX_DELETE_CELL)
         }
+        
+        else {
+            let defaultAccountCell = AddEditAccountCell(fieldKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT,
+                                                        placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION),
+                                                        cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
+                                                        cellSettings: [KEY_HEIGHT:ACCOUNT_CELL_HEIGHT])
+
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
+        }
+
         
         // Information group
         self.addAccountTable.append([])
@@ -140,7 +151,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let accountInitValue = self.getTableViewCellValue(IDX_ACCOUNT_INFO_GROUP, row: IDX_AMOUNT_CELL)
         var isDefaultAccountBool = false
         
-        if self.sourceInformation == Constants.SourceInformation.AccountEditing {
+        if self.sourceInformation == Constants.SourceInformation.AccountNew {
             let isDefaultAccount = self.getTableViewCellValue(IDX_ACCOUNT_DETAILS_GROUP, row: IDX_DEFAULT_CELL)
             isDefaultAccountBool = isDefaultAccount == "1" ? true : false
         }

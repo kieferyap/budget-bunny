@@ -13,6 +13,7 @@ struct Constants {
         static let AddAccountChevron = "addAccountChevronCell"
         static let AddAccountAction = "addAccountActionCell"
         static let AddAccountCurrency = "addAccountCurrencyCell"
+        static let AddAccountSwitch = "addAccountSwitchCell"
         static let Account = "AccountCell"
     }
     struct SourceInformation {

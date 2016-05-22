@@ -20,9 +20,9 @@
 "LABEL_DEFAULT" = "[Not localized yet]";
 "LABEL_NO_ACCOUNTS" = "[Not localized yet]";
 "BUTTON_SAVE" = "[Not localized yet]";
-"BUTTON_SET_AS_DEFAULT" = "[Not localized yet]";
 "BUTTON_DELETE_ACCOUNT" = "[Not localized yet]";
 "LABEL_ACCOUNT_INFO" = "[Not localized yet]";
 "LABEL_ACCOUNT_ACTIONS" = "[Not localized yet]";
 "LABEL_CURRENT_AMOUNT" = "[Not localized yet]";
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "[Not localized yet]";
+"BUTTON_SET_AS_DEFAULT" = "[Not localized yet]";

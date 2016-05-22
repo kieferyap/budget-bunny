@@ -21,6 +21,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var accountSwitch: UISwitch!
     var model: AddEditAccountCell?
     var fieldMaxLength: Int = 0
     weak var delegate:PushViewControllerDelegate?
@@ -75,6 +76,11 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             self.actionButton.addTarget(self, action: Selector(selectorName), forControlEvents: UIControlEvents.TouchUpInside)
             break
             
+        case Constants.CellIdentifiers.AddAccountSwitch:
+            self.field.text = fieldText
+            self.value.text = placeholderText
+            self.value.adjustsFontSizeToFitWidth = true
+
         default:
             break
         }
@@ -90,6 +96,14 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             
         case Constants.CellIdentifiers.AddAccountChevron:
             self.delegate?.pushCurrencyViewController()
+            break
+            
+        case Constants.CellIdentifiers.AddAccountAction:
+            self.actionButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+            break
+            
+        case Constants.CellIdentifiers.AddAccountSwitch:
+            self.accountSwitch.setOn(!accountSwitch.on, animated: true)
             break
             
         default:
@@ -115,6 +129,13 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             
         case Constants.CellIdentifiers.AddAccountChevron:
             returnValue = self.value.text!
+            break
+            
+        case Constants.CellIdentifiers.AddAccountSwitch:
+            returnValue = FALSE_STRING
+            if self.accountSwitch.on {
+                returnValue = TRUE_STRING
+            }
             break
             
         default:
