@@ -191,6 +191,10 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 let transactionEntity = NSEntityDescription.entityForName("Transaction", inManagedObjectContext: managedContext)
                 let transactionModel = NSManagedObject(entity: transactionEntity!, insertIntoManagedObjectContext: managedContext)
                 
+                if isDefaultAccountBool {
+                    BunnyUtils.setAllValues("Account", managedContext: managedContext, key: "isDefault", value: false)
+                }
+                
                 accountModel.setValue(accountName, forKey:"name")
                 accountModel.setValue(accountCurrency, forKey:"currency")
                 accountModel.setValue(isDefaultAccountBool, forKey:"isDefault")

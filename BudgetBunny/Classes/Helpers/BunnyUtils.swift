@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class BunnyUtils: NSObject {
 
@@ -66,6 +67,23 @@ class BunnyUtils: NSObject {
         tableView.scrollEnabled = isTableScrollable
         
         return rows
+    }
+    
+    class func setAllValues(tableName: String, managedContext: NSManagedObjectContext, key: String, value: NSObject) -> Bool {
+        let request = NSFetchRequest()
+        request.entity = NSEntityDescription.entityForName(tableName, inManagedObjectContext: managedContext)
+        
+        do {
+            let objects = try managedContext.executeFetchRequest(request) as! [NSManagedObject]
+            for object in objects {
+                object.setValue(value, forKey: key)
+            }
+        } catch let error as NSError {
+            print("Could not find user: \(error), \(error.userInfo)")
+            return false
+        }
+        
+        return true
     }
     
 }

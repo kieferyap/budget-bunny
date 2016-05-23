@@ -77,6 +77,8 @@ class AccountsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
+        let setDefaultButtonTitle = "Set Default"
+        
         let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
             
             let row = indexPath.row
@@ -97,9 +99,33 @@ class AccountsTableViewController: UITableViewController {
             //TO-DO: Remove all transactions that are involved with the account
         }
         
-        delete.backgroundColor = Constants.Colors.DangerColor
+        let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
+            
+            let row = indexPath.row
+            let account: AccountCell = self.accountTable[row]
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            
+            BunnyUtils.setAllValues("Account", managedContext: managedContext, key: "isDefault", value: false)
+            
+            let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
+            let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
+            accountModel.setValue(true, forKey:"isDefault")
+            
+            do {
+                try managedContext.save()
+                self.tableView.reloadData()
+            } catch let error as NSError {
+                print("Error occured while saving: \(error), \(error.userInfo)")
+            }
+            
+            //TO-DO: Remove all transactions that are involved with the account
+        }
         
-        return [delete]
+        delete.backgroundColor = Constants.Colors.DangerColor
+        setDefault.backgroundColor = Constants.Colors.NormalGreen
+        
+        return [delete, setDefault]
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
