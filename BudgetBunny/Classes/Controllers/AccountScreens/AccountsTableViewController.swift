@@ -173,7 +173,6 @@ class AccountsTableViewController: UITableViewController {
         destinationViewController.sourceInformation = Constants.SourceInformation.AccountEditing
         destinationViewController.accountInformation = cell
         self.navigationController?.pushViewController(destinationViewController, animated: true)
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
