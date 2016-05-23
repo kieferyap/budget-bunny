@@ -79,7 +79,7 @@ class BunnyUtils: NSObject {
                 object.setValue(value, forKey: key)
             }
         } catch let error as NSError {
-            print("Could not find user: \(error), \(error.userInfo)")
+            print("Error: \(error)")
             return false
         }
         

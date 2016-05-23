@@ -21,6 +21,7 @@ class AccountsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadData()
         self.tableView.reloadData()
     }
@@ -77,55 +78,74 @@ class AccountsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
-        let setDefaultButtonTitle = "Set Default"
+        let setDefaultButtonTitle = "Set\nDefault"
         
-        let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
-            
-            let row = indexPath.row
-            let account: AccountCell = self.accountTable[row]
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext
-            
-            managedContext.deleteObject(account.accountObject)
-            self.accountTable.removeAtIndex(row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Error occured while saving: \(error), \(error.userInfo)")
-            }
-            
-            //TO-DO: Remove all transactions that are involved with the account
+        let row = indexPath.row
+        let account: AccountCell = self.accountTable[row]
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let view = UITableViewRowAction(style: .Normal, title: "View") { (action, indexPath) in
+            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         }
         
-        let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
-            
-            let row = indexPath.row
-            let account: AccountCell = self.accountTable[row]
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext
-            
-            BunnyUtils.setAllValues("Account", managedContext: managedContext, key: "isDefault", value: false)
-            
-            let accountEntity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
-            let accountModel = NSManagedObject(entity: accountEntity!, insertIntoManagedObjectContext: managedContext)
-            accountModel.setValue(true, forKey:"isDefault")
-            
-            do {
-                try managedContext.save()
-                self.tableView.reloadData()
-            } catch let error as NSError {
-                print("Error occured while saving: \(error), \(error.userInfo)")
+        var returnArray = [view]
+        
+        if !account.isDefault {
+            let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
+                
+                managedContext.deleteObject(account.accountObject)
+                self.accountTable.removeAtIndex(row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Error occured while saving: \(error), \(error.userInfo)")
+                }
+                
+                //TO-DO: Remove all transactions that are involved with the account
             }
             
-            //TO-DO: Remove all transactions that are involved with the account
+            delete.backgroundColor = Constants.Colors.DangerColor
+            
+            let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
+            
+                let request = NSFetchRequest()
+                var refreshingIndexPath: NSIndexPath!
+                request.entity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
+            
+                do {
+                    let objects = try managedContext.executeFetchRequest(request) as! [NSManagedObject]
+                    for (index, element) in objects.enumerate() {
+                        let object = element
+                        if object == account.accountObject {
+                            object.setValue(true, forKey: "isDefault")
+                        }
+                        else {
+                            if object.valueForKey("isDefault") as! Bool == true {
+                                refreshingIndexPath = NSIndexPath.init(forRow: index, inSection: 0)
+                            }
+                            object.setValue(false, forKey: "isDefault")
+                        }
+                    }
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Error: \(error)")
+                }
+            
+                self.loadData()
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+                
+                if refreshingIndexPath != nil {
+                    self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+                }
+            }
+            setDefault.backgroundColor = Constants.Colors.NormalGreen
+            returnArray = [delete, setDefault]
         }
         
-        delete.backgroundColor = Constants.Colors.DangerColor
-        setDefault.backgroundColor = Constants.Colors.NormalGreen
-        
-        return [delete, setDefault]
+        return returnArray
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
