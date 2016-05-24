@@ -27,7 +27,7 @@ class AttributeUniquenessValidator: NSObject, ValidatorProtocol {
         request.predicate = NSPredicate(format: field.format, field.value)
         
         do {
-            let objects = try field.context.executeFetchRequest(request) as! [NSObject]
+            let objects = try field.context.executeFetchRequest(request) as! [NSManagedObject]
             if objects.count > 0 {
                 return false
             }

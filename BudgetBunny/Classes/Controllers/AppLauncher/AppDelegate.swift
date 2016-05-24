@@ -24,6 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = universalTintColor
         
         // Override point for customization after application launch.
+        let environment = NSProcessInfo.processInfo().environment;
+        if environment["isTesting"] == "1" {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            
+            let fetchRequest = NSFetchRequest(entityName: "Account")
+            
+            do {
+                let objects = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                for object in objects {
+                    managedContext.deleteObject(object)
+                }
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save: \(error)")
+                return false
+            }
+        }
+        
         return true
     }
 

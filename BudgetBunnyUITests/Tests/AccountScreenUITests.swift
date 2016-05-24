@@ -15,6 +15,7 @@ class AddAccountUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        app.launchEnvironment = ["isTesting": "1"]
         app.launch()
         continueAfterFailure = false
     }
