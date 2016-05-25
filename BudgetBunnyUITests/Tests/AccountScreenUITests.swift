@@ -7,10 +7,15 @@
 //
 
 import XCTest
+import CoreData
 
 @available(iOS 9.0, *)
 class AddAccountUITests: XCTestCase {
-        
+    
+    /*
+      *  Important note! Hardware > Keyboard > Connect Hardware Keyboard must be unchecked.
+    */
+    
     var app = XCUIApplication();
     
     override func setUp() {
@@ -26,7 +31,7 @@ class AddAccountUITests: XCTestCase {
     // MARK: ACC-0001 Test Cases
     
     func proceedToAddAccountScreen() {
-        ScreenManager.tapAccountsTab(self.app)
+        self.proceedToAccountTab()
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
         accountScreen.tapAddAccountButton()
@@ -85,6 +90,41 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(length15)
     }
     
+    func testMultiDecimal() {
+        self.proceedToAddAccountScreen()
+        
+        let multiDecimal = "1..25"
+        let singleDecimal = "1.25"
+        
+        // Assert that the 22-character limit is enforced in the Account Name
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField(multiDecimal)
+        addAccountScreen.assertTextFieldEquality(singleDecimal)
+    }
+    
+    func testDecimalFormatting() {
+        self.proceedToAddAccountScreen()
+
+        let decimalOnly = ".25"
+        let formattedDecimal = "$ 0.25"
+        let accountName = "test"
+        
+        // Assert that the 22-character limit is enforced in the Account Name
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField(decimalOnly)
+        
+        addAccountScreen.tapOutside()
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField(accountName)
+        addAccountScreen.tapDoneButton()
+        
+        // Assert that the decimal is saved properly
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.assertCellTextWithIndex(0, textToFind: formattedDecimal)
+    }
+    
     func testCurrencyCell() {
         self.proceedToAddAccountScreen()
         
@@ -137,21 +177,45 @@ class AddAccountUITests: XCTestCase {
     }
     
     func testSuccess() {
+        // Successfully add a non-default account
         self.proceedToAddAccountScreen()
         let japanSearchKey = "Japan"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField("test")
-        addAccountScreen.tapCurrencyCell()
         
+        addAccountScreen.tapOutside()
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField("120")
+        
+        addAccountScreen.tapCurrencyCell()
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
         currencyPickerScreen.tapBackButton()
         
-        addAccountScreen.tapAmountTextField()
-        addAccountScreen.typeAmountTextField("120")
         addAccountScreen.tapDoneButton()
+        
+        // Successfully add a default account
+        self.proceedToAddAccountScreen()
+        let usSearchKey = "United States"
+        
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField("test2")
+        addAccountScreen.tapCurrencyCell()
+        
+        currencyPickerScreen.tapElementWithCountryName(usSearchKey)
+        currencyPickerScreen.tapBackButton()
+        
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField("65536")
+        addAccountScreen.tapIsDefaultSwitch()
+        addAccountScreen.tapDoneButton()
+        
+        // Assert, in the Account List screen, that test2 is marked as default, while test is not
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.assertCellIsNotDefaultAccount(0)
+        accountScreen.assertCellIsDefaultAccount(1)
     }
     
     func testSearchBar() {
