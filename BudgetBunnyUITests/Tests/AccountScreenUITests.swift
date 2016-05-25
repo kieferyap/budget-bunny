@@ -29,7 +29,7 @@ class AddAccountUITests: XCTestCase {
         super.tearDown()
     }
     
-    // MARK: ACC-0001 Test Cases
+    // MARK: Test functions
     
     func proceedToAddAccountScreen() {
         self.proceedToAccountTab()
@@ -37,6 +37,36 @@ class AddAccountUITests: XCTestCase {
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
         accountScreen.tapAddAccountButton()
     }
+    
+    func proceedToAccountTab() {
+        // Delete accounts core data
+        ScreenManager.tapAccountsTab(self.app)
+    }
+    
+    func addAccountSuccess(name: String, amount: String, currencyName: String, isDefault: Bool) {
+        self.proceedToAddAccountScreen()
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.typeAccountNameTextField(name)
+        
+        addAccountScreen.tapOutside()
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.typeAmountTextField(amount)
+        
+        addAccountScreen.tapCurrencyCell()
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName(currencyName)
+        currencyPickerScreen.tapBackButton()
+        
+        if isDefault {
+            addAccountScreen.tapIsDefaultSwitch()
+        }
+        addAccountScreen.tapDoneButton()
+
+    }
+    
+    // MARK: ACC-0001 Test Cases
     
     func testCellExistence() {
         self.proceedToAddAccountScreen()
@@ -179,41 +209,26 @@ class AddAccountUITests: XCTestCase {
     
     func testSuccess() {
         // Successfully add a non-default account
-        self.proceedToAddAccountScreen()
-        let japanSearchKey = "Japan"
-        
-        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.typeAccountNameTextField("test")
-        
-        addAccountScreen.tapOutside()
-        addAccountScreen.tapAmountTextField()
-        addAccountScreen.typeAmountTextField("120")
-        
-        addAccountScreen.tapCurrencyCell()
-        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
-        currencyPickerScreen.tapBackButton()
-        
-        addAccountScreen.tapDoneButton()
-        
-        // Successfully add a default account
-        self.proceedToAddAccountScreen()
-        let usSearchKey = "United States"
-        
-        addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.typeAccountNameTextField("test2")
-        addAccountScreen.tapCurrencyCell()
-        
-        currencyPickerScreen.tapElementWithCountryName(usSearchKey)
-        currencyPickerScreen.tapBackButton()
-        
-        addAccountScreen.tapAmountTextField()
-        addAccountScreen.typeAmountTextField("65536")
-        addAccountScreen.tapIsDefaultSwitch()
-        addAccountScreen.tapDoneButton()
+        self.addAccountSuccess("test", amount: "120", currencyName: "Japan", isDefault: false)
+        self.addAccountSuccess("test2", amount: "65536", currencyName: "United States", isDefault: true)
         
         // Assert, in the Account List screen, that test2 is marked as default, while test is not
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.assertCellIsNotDefaultAccount(0)
+        accountScreen.assertCellIsDefaultAccount(1)
+    }
+    
+    func testExistingAccountError() {
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        self.addAccountSuccess("test", amount: "123456789012.34", currencyName: "Japan", isDefault: false)
+        self.addAccountSuccess("test", amount: "32768", currencyName: "Philippines", isDefault: false)
+        addAccountScreen.tapErrorAlertOkButton()
+    }
+    
+    func testDoubleDefaultAccount() {
+        self.addAccountSuccess("test1", amount: "1024", currencyName: "Japan", isDefault: true)
+        self.addAccountSuccess("test2", amount: "2048", currencyName: "United Kingdom", isDefault: true)
+        
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
         accountScreen.assertCellIsNotDefaultAccount(0)
         accountScreen.assertCellIsDefaultAccount(1)
@@ -237,18 +252,23 @@ class AddAccountUITests: XCTestCase {
 
     // MARK: ACC-0002 Test Cases
     
-    func proceedToAccountTab() {
-        // Delete accounts core data
-        ScreenManager.tapAccountsTab(self.app)
+    func testAllAddAccountFeatures() {
+        self.addAccountSuccess("test1", amount: "256", currencyName: "Japan", isDefault: false)
+        self.addAccountSuccess("test2", amount: "512", currencyName: "United Kingdom", isDefault: false)
+        self.addAccountSuccess("test3", amount: "1024", currencyName: "United States", isDefault: false)
+        self.addAccountSuccess("test4", amount: "2048", currencyName: "France", isDefault: true)
         
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.swipeCellLeftAndSetAsDefaultWithIndex(1)
+        accountScreen.swipeCellLeftAndDeleteWithIndex(3)
+        accountScreen.swipeCellLeftAndViewWithIndex(1)
     }
     
-    func testAddAccount() {
-        self.proceedToAccountTab()
-    }
-    
-    func testDeleteAccount() {
-        self.proceedToAccountTab()
+    func testTapAccount() {
+        self.addAccountSuccess("test1", amount: "128", currencyName: "Japan", isDefault: false)
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(0)
     }
     
     //TO-DO: Implement uniqueness of account name and isDefault

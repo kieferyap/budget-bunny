@@ -19,6 +19,21 @@ class AccountScreen: BaseScreen {
         self.getTableElementAtIndex(index).swipeLeft()
     }
     
+    func swipeCellLeftAndSetAsDefaultWithIndex(index: UInt){
+        self.swipeCellLeftWithIndex(index)
+        XCUIApplication().tables.buttons["Set Default"].tap()
+    }
+    
+    func swipeCellLeftAndViewWithIndex(index: UInt){
+        self.swipeCellLeftWithIndex(index)
+        XCUIApplication().tables.buttons["View"].tap()
+    }
+    
+    func swipeCellLeftAndDeleteWithIndex(index: UInt){
+        self.swipeCellLeftWithIndex(index)
+        XCUIApplication().tables.buttons["Delete"].tap()
+    }
+    
     func assertCellTextWithIndex(index: UInt, textToFind: String) {
         XCTAssertTrue(self.getTableElementAtIndex(index).staticTexts[textToFind].exists)
     }
