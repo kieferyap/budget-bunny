@@ -21,21 +21,16 @@ class AttributeUniquenessValidator: NSObject, ValidatorProtocol {
     
     func validateObject() -> Bool {
         let field = self.objectToValidate as! AttributeModel
+        var isDuplicateNotFound = false
         
-        let request = NSFetchRequest()
-        request.entity = NSEntityDescription.entityForName(field.tableName, inManagedObjectContext: field.context)
-        request.predicate = NSPredicate(format: field.format, field.value)
-        
-        do {
-            let objects = try field.context.executeFetchRequest(request) as! [NSManagedObject]
-            if objects.count > 0 {
-                return false
+        let model = BunnyModel(tableName: "Account")
+        model.selectAllObjectsWithParameters([field.format: field.value]) { (objects) in
+            if objects.count == 0 {
+                isDuplicateNotFound = true
             }
-        } catch let error as NSError {
-            print("Could not find user: \(error), \(error.userInfo)")
-            return false
         }
-        return true
+        
+        return isDuplicateNotFound
     }
     
 }

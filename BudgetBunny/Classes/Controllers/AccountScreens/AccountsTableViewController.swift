@@ -27,19 +27,11 @@ class AccountsTableViewController: UITableViewController {
     }
     
     func loadData() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        let fetchRequest = NSFetchRequest(entityName: "Account")
-        var accounts = [NSManagedObject]()
-        
         self.accountTable = []
         
-        do {
-            let results = try managedContext.executeFetchRequest(fetchRequest)
-            accounts = results as! [NSManagedObject]
-            
-            for account in accounts {
+        let model = BunnyModel(tableName: "Account")
+        model.selectAllObjects { (fetchedObjects) in
+            for account in fetchedObjects {
                 let isDefault: Bool = account.valueForKey("isDefault") as! Bool
                 let currencyIdentifier: String = account.valueForKey("currency") as! String
                 let accountName: String = account.valueForKey("name") as! String
@@ -48,19 +40,15 @@ class AccountsTableViewController: UITableViewController {
                 currency.setAttributes(currencyIdentifier)
                 let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
                 
-                let amount: Double = account.valueForKey("amount") as! Double                
+                let amount: Double = account.valueForKey("amount") as! Double
                 let cellIdentifier = Constants.CellIdentifiers.Account
                 let cellSettings = [:]
                 
-                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount, cellIdentifier: cellIdentifier, cellSettings: cellSettings)!
-
+                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount, cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+                
                 self.accountTable.append(accountItem)
             }
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
         }
-
     }
 
     override func didReceiveMemoryWarning() {

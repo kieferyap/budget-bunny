@@ -94,8 +94,8 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                         cellIdentifier: Constants.CellIdentifiers.AddAccountAction,
                                                         cellSettings: [KEY_SELECTOR: SELECTOR_DELETE])
             // Account details group
-            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(setDefaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
-            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(deleteAccountCell!, atIndex: IDX_DELETE_CELL)
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(setDefaultAccountCell, atIndex: IDX_DEFAULT_CELL)
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(deleteAccountCell, atIndex: IDX_DELETE_CELL)
         }
         
         else {
@@ -104,15 +104,15 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                                                         cellIdentifier: Constants.CellIdentifiers.AddAccountSwitch,
                                                         cellSettings: [KEY_HEIGHT:ACCOUNT_CELL_HEIGHT])
 
-            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell!, atIndex: IDX_DEFAULT_CELL)
+            self.addAccountTable[IDX_ACCOUNT_DETAILS_GROUP].insert(defaultAccountCell, atIndex: IDX_DEFAULT_CELL)
         }
 
         
         // Information group
         self.addAccountTable.append([])
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(nameCell!, atIndex: IDX_NAME_CELL)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(currencyCell!, atIndex: IDX_CURRENCY_CELL)
-        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(initialAmountCell!, atIndex: IDX_AMOUNT_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(nameCell, atIndex: IDX_NAME_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(currencyCell, atIndex: IDX_CURRENCY_CELL)
+        self.addAccountTable[IDX_ACCOUNT_INFO_GROUP].insert(initialAmountCell, atIndex: IDX_AMOUNT_CELL)
         
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)
