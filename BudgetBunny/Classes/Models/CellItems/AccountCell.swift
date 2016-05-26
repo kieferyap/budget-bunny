@@ -18,12 +18,12 @@ class AccountCell: BunnyCell {
     var amount: Double = 0.0
     var accountObject: NSManagedObject
     
-    init(accountObject: NSManagedObject, isDefault: Bool, accountName: String, currencySymbol: String, amount: Double, cellIdentifier: String, cellSettings: NSDictionary) {
+    init(accountObject: NSManagedObject, isDefault: Bool, accountName: String, currencySymbol: String, amount: Double) {
         self.isDefault = isDefault
         self.accountName = accountName
         self.amount = amount
         self.accountObject = accountObject
         self.currencySymbol = currencySymbol
-        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+        super.init(cellIdentifier: Constants.CellIdentifiers.Account, cellSettings: [:])
     }
 }

@@ -22,31 +22,58 @@ class BunnyModel: NSObject {
     }
     
     func selectAllObjects(completion: (fetchedObjects: [NSManagedObject]) -> Void) {
-        let fetchRequest = NSFetchRequest(entityName: self.tableName)
-        do {
-            let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-            completion(fetchedObjects: fetchedObjects)
-        } catch let error as NSError {
-            print("Could not find user: \(error), \(error.userInfo)")
-        }
+        self.selectAllObjectsWithParameters([:], completion: completion)
     }
     
     func selectAllObjectsWithParameters(parameters: NSDictionary, completion: (fetchedObjects: [NSManagedObject]) -> Void) {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
-        var predicateArray = [NSPredicate]()
-        for (key, value) in parameters {
-            let predicate = NSPredicate(format: key as! String, value as! NSString)
-            predicateArray.append(predicate)
-        }
-        let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicateArray)
-        fetchRequest.predicate = compoundPredicate
         
+        if parameters != [:] {
+            var predicateArray = [NSPredicate]()
+            for (key, value) in parameters {
+                let predicate = NSPredicate(format: key as! String, value as! NSString)
+                predicateArray.append(predicate)
+            }
+            let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicateArray)
+            fetchRequest.predicate = compoundPredicate
+        }
+            
         do {
             let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
             completion(fetchedObjects: fetchedObjects)
         } catch let error as NSError {
-            print("Could not find user: \(error), \(error.userInfo)")
+            print("Could not find user: \(error)")
         }
+    }
+    
+    func deleteAllObjects() -> Bool {
+        let fetchRequest = NSFetchRequest(entityName: self.tableName)
+        
+        do {
+            let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            for object in fetchedObjects {
+                self.managedContext.deleteObject(object)
+            }
+            try self.managedContext.save()
+        } catch let error as NSError {
+            print("Could not save: \(error)")
+            return false
+        }
+        return true
+    }
+    
+    func deleteObject(object: NSManagedObject, completion: () -> Void) -> Bool {
+        self.managedContext.deleteObject(object)
+        
+        do {
+            try managedContext.save()
+            completion()
+        } catch let error as NSError {
+            print("Error occured while saving: \(error)")
+            return false
+        }
+        
+        return true
     }
     
 }

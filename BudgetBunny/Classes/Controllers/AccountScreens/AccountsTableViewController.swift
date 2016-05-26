@@ -41,10 +41,8 @@ class AccountsTableViewController: UITableViewController {
                 let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
                 
                 let amount: Double = account.valueForKey("amount") as! Double
-                let cellIdentifier = Constants.CellIdentifiers.Account
-                let cellSettings = [:]
                 
-                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount, cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount)
                 
                 self.accountTable.append(accountItem)
             }
@@ -79,24 +77,22 @@ class AccountsTableViewController: UITableViewController {
         
         var returnArray = [view]
         
+        // If the account is not a default account
         if !account.isDefault {
+            
+            // Set the delete button
             let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
                 
-                managedContext.deleteObject(account.accountObject)
-                self.accountTable.removeAtIndex(row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                
-                do {
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Error occured while saving: \(error), \(error.userInfo)")
-                }
+                let model = BunnyModel.init(tableName: "Account")
+                model.deleteObject(account.accountObject, completion: {
+                    self.accountTable.removeAtIndex(row)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                })
                 
                 //TO-DO: Remove all transactions that are involved with the account
             }
             
-            delete.backgroundColor = Constants.Colors.DangerColor
-            
+            // Set the "Set Default" button
             let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
             
                 let request = NSFetchRequest()
@@ -129,7 +125,10 @@ class AccountsTableViewController: UITableViewController {
                     self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None)
                 }
             }
+            
+            delete.backgroundColor = Constants.Colors.DangerColor
             setDefault.backgroundColor = Constants.Colors.NormalGreen
+            
             returnArray = [delete, setDefault]
         }
         
