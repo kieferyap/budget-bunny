@@ -95,17 +95,21 @@ class AccountsTableViewController: UITableViewController {
             // Set the "Set Default" button
             let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
             
-                let request = NSFetchRequest()
                 var refreshingIndexPath: NSIndexPath!
-                request.entity = NSEntityDescription.entityForName("Account", inManagedObjectContext: managedContext)
-            
-                do {
-                    let objects = try managedContext.executeFetchRequest(request) as! [NSManagedObject]
-                    for (index, element) in objects.enumerate() {
+                let model = BunnyModel.init(tableName: "Account")
+                
+                model.selectAllObjects({ (fetchedObjects) -> Void in
+                    
+                    // For each element
+                    for (index, element) in fetchedObjects.enumerate() {
                         let object = element
+                        
+                        // If the element is the currently selected element, set isDefault to true.
                         if object == account.accountObject {
                             object.setValue(true, forKey: "isDefault")
                         }
+                            
+                        // Else, if the element is the previously default account, set isDefault to false.
                         else {
                             if object.valueForKey("isDefault") as! Bool == true {
                                 refreshingIndexPath = NSIndexPath.init(forRow: index, inSection: 0)
@@ -113,17 +117,16 @@ class AccountsTableViewController: UITableViewController {
                             object.setValue(false, forKey: "isDefault")
                         }
                     }
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Error: \(error)")
-                }
-            
-                self.loadData()
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
-                
-                if refreshingIndexPath != nil {
-                    self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None)
-                }
+                    
+                    // Save the model, reload the data, etc.
+                    model.save()
+                    self.loadData()
+                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+                    
+                    if refreshingIndexPath != nil {
+                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+                    }
+                })
             }
             
             delete.backgroundColor = Constants.Colors.DangerColor

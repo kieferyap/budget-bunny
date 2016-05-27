@@ -76,4 +76,12 @@ class BunnyModel: NSObject {
         return true
     }
     
+    func save() {
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Error occured while saving: \(error)")
+        }
+    }
+    
 }
