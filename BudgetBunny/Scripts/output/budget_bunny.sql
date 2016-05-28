@@ -166,7 +166,8 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 25	LABEL_ACCOUNT_ACTIONS	Actions	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.976371
 26	LABEL_CURRENT_AMOUNT	Current amount	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
 27	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	[Not localized yet]	[Not localized yet]	2016-05-21 21:22:39.38273
-22	BUTTON_SET_AS_DEFAULT	Set as default account	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.963768
+22	BUTTON_SET_AS_DEFAULT	Set\\nDefault	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.963768
+28	BUTTON_VIEW	View	[Not localized yet]	[Not localized yet]	2016-05-28 16:58:29.215243
 \.
 
 
@@ -174,7 +175,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 27, true);
+SELECT pg_catalog.setval('localizable_words_seq', 28, true);
 
 
 --

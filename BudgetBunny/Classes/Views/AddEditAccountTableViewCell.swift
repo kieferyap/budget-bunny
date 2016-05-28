@@ -25,7 +25,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     var model: AddEditAccountCell?
     var fieldMaxLength: Int = 0
     weak var delegate:PushViewControllerDelegate?
-    
+    let constants = ScreenConstants.AddEditAccount.self
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,42 +41,49 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         let placeholderText = accountModel.placeholder
         
         switch accountModel.cellIdentifier {
-        case Constants.CellIdentifiers.AddAccountFieldValue:
+        case Constants.CellIdentifiers.addAccountFieldValue:
             self.field.text = fieldText
             self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
-            self.textfield.textColor = Constants.Colors.DarkGray
-            if BunnyUtils.isKeyExistingForAddEditAccountCell(accountModel, key: KEY_MAX_LENGTH) {
-                self.fieldMaxLength = accountModel.cellSettings[KEY_MAX_LENGTH] as! Int
+            self.textfield.textColor = Constants.Colors.darkGray
+            
+            BunnyUtils.keyExistsForCellSettings(accountModel,
+                                                key: constants.keyMaxLength,
+                                                completion: { (object) in
+                self.fieldMaxLength = object as! Int
                 self.textfield.delegate = self
-            }
-            if BunnyUtils.isKeyExistingForAddEditAccountCell(accountModel, key: KEY_TEXTFIELD_VALUE) {
-                let textValue: String = accountModel.cellSettings[KEY_TEXTFIELD_VALUE] as! String
+            })
+            
+            BunnyUtils.keyExistsForCellSettings(accountModel,
+                                                key: constants.keyTextFieldValue,
+                                                completion: { (object) in
+                let textValue = object as? String
                 if textValue != "" {
-                    self.textfield.text = textValue
+                    self.textfield.text = object as? String
                 }
-            }
-            let keyboardType = accountModel.cellSettings[KEY_IS_NUMPAD]
+            })
+            
+            let keyboardType = accountModel.cellSettings[constants.keyIsNumpad]
             if keyboardType != nil {
                 self.textfield.keyboardType = UIKeyboardType.DecimalPad
             }
             break
             
-        case Constants.CellIdentifiers.AddAccountChevron:
+        case Constants.CellIdentifiers.addAccountChevron:
             self.field.text = fieldText
             self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            selectionColor.backgroundColor = Constants.Colors.LightGreen
+            selectionColor.backgroundColor = Constants.Colors.lightGreen
             self.value.text = placeholderText
             self.value.adjustsFontSizeToFitWidth = true
-            self.value.textColor = Constants.Colors.DarkGray
+            self.value.textColor = Constants.Colors.darkGray
             break
             
-        case Constants.CellIdentifiers.AddAccountAction:
+        case Constants.CellIdentifiers.addAccountAction:
             self.actionButton.setTitle(fieldText, forState: UIControlState.Normal)
-            let selectorName = self.model!.cellSettings[KEY_SELECTOR] as! String
+            let selectorName = self.model!.cellSettings[constants.keySelector] as! String
             self.actionButton.addTarget(self, action: Selector(selectorName), forControlEvents: UIControlEvents.TouchUpInside)
             break
             
-        case Constants.CellIdentifiers.AddAccountSwitch:
+        case Constants.CellIdentifiers.addAccountSwitch:
             self.field.text = fieldText
             self.value.text = placeholderText
             self.value.adjustsFontSizeToFitWidth = true
@@ -90,19 +97,19 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func performAction() {
         switch self.model!.cellIdentifier {
-        case Constants.CellIdentifiers.AddAccountFieldValue:
+        case Constants.CellIdentifiers.addAccountFieldValue:
             self.textfield.becomeFirstResponder()
             break
             
-        case Constants.CellIdentifiers.AddAccountChevron:
+        case Constants.CellIdentifiers.addAccountChevron:
             self.delegate?.pushCurrencyViewController()
             break
             
-        case Constants.CellIdentifiers.AddAccountAction:
+        case Constants.CellIdentifiers.addAccountAction:
             self.actionButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
             break
             
-        case Constants.CellIdentifiers.AddAccountSwitch:
+        case Constants.CellIdentifiers.addAccountSwitch:
             self.accountSwitch.setOn(!accountSwitch.on, animated: true)
             break
             
@@ -123,15 +130,11 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         var returnValue: String = ""
         
         switch self.model!.cellIdentifier {
-        case Constants.CellIdentifiers.AddAccountFieldValue:
+        case Constants.CellIdentifiers.addAccountFieldValue:
             returnValue = self.textfield.text!
             break
             
-        case Constants.CellIdentifiers.AddAccountChevron:
-            returnValue = self.value.text!
-            break
-            
-        case Constants.CellIdentifiers.AddAccountSwitch:
+        case Constants.CellIdentifiers.addAccountSwitch:
             returnValue = FALSE_STRING
             if self.accountSwitch.on {
                 returnValue = TRUE_STRING

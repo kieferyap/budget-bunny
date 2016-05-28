@@ -8,11 +8,6 @@
 
 import UIKit
 
-let TABLE_VIEW_SECTIONS = 1
-let COUNTRY_SEARCH_PARAMETER = "SELF.country CONTAINS[c] %@ OR "
-let CODE_SEARCH_PARAMETER = "SELF.currencyCode CONTAINS[c] %@ OR "
-let SYMBOL_SEARCH_PARAMETER = "SELF.currencySymbol CONTAINS[c] %@"
-
 protocol CurrencySelectionDelegate: class {
     func setSelectedCurrencyIdentifier(identifier: String)
 }
@@ -24,11 +19,12 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     var isSearching: Bool = false
     var selectedCountryIdentifier: String = ""
     let searchController = UISearchController(searchResultsController: nil)
+    let constants = ScreenConstants.Currency.self
     weak var delegate:CurrencySelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_CURRENCY_PICKER)
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_CURRENCY_PICKER)
         
         // Set the currency table
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
@@ -48,13 +44,14 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         
         // Set the search bar
         self.searchController.searchBar.sizeToFit()
-        self.searchController.searchBar.tintColor = Constants.Colors.DarkGreen
+        self.searchController.searchBar.tintColor = Constants.Colors.darkGreen
         definesPresentationContext = true
         self.tableView.tableHeaderView = searchController.searchBar
         
         BunnyUtils.addKeyboardDismisserListener(self)
     }
     
+    // Remove the search bar, and pass the selected identifier through a delegate
     override func viewWillDisappear(animated: Bool) {
         self.searchController.view.removeFromSuperview()
         self.delegate?.setSelectedCurrencyIdentifier(self.selectedCountryIdentifier)
@@ -62,18 +59,22 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return TABLE_VIEW_SECTIONS
+        return constants.sectionCount
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BunnyUtils.tableRowsWithLoadingTitle(StringConstants.LABEL_LOADING, tableModel: self.currencyTable, tableView: self.tableView) { () -> Int in
+        return BunnyUtils.tableRowsWithLoadingTitle(
+            StringConstants.LABEL_LOADING,
+            tableModel: self.currencyTable,
+            tableView: self.tableView
+        ) { () -> Int in
             return self.isSearching ? self.filteredCurrencies.count : self.currencyTable.count
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cellItem: Currency = self.currencyTable[indexPath.row] as! Currency
-        let cellIdentifier: String = Constants.CellIdentifiers.AddAccountCurrency
+        let cellIdentifier: String = Constants.CellIdentifiers.addAccountCurrency
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CurrencyTableViewCell
         
         if self.isSearching {
@@ -98,9 +99,9 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
         self.isSearching = false
         
         if searchKey.characters.count > 0 {
-            let searchParameters = COUNTRY_SEARCH_PARAMETER
-                .stringByAppendingString(CODE_SEARCH_PARAMETER)
-                .stringByAppendingString(SYMBOL_SEARCH_PARAMETER)
+            let searchParameters = constants.countrySearchParameter
+                .stringByAppendingString(constants.codeSearchParameter)
+                .stringByAppendingString(constants.symbolSearchParameter)
             
             let currencyPredicate = NSPredicate(format: searchParameters, searchKey, searchKey, searchKey)
             self.filteredCurrencies = self.currencyTable.filteredArrayUsingPredicate(currencyPredicate)

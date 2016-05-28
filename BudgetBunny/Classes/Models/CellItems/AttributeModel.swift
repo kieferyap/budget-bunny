@@ -13,12 +13,9 @@ class AttributeModel: NSObject {
 
     var tableName: String
     var format: String
-    var context: NSManagedObjectContext
     var value: String
     
     init(tableName: String, format: String, value: String) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        self.context = appDelegate.managedObjectContext
         self.tableName = tableName
         self.format = format
         self.value = value

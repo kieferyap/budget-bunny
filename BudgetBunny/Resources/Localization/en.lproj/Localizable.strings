@@ -25,4 +25,5 @@
 "LABEL_ACCOUNT_ACTIONS" = "Actions";
 "LABEL_CURRENT_AMOUNT" = "Current amount";
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "The account name already exists.";
-"BUTTON_SET_AS_DEFAULT" = "Set as default account";
+"BUTTON_SET_AS_DEFAULT" = "Set\nDefault";
+"BUTTON_VIEW" = "View";

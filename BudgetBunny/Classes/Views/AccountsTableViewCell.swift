@@ -37,13 +37,13 @@ class AccountsTableViewCell: UITableViewCell {
         
         // Colors
         self.isDefaultLabelWidth.constant = 0.0
-        self.amountLabel.textColor = Constants.Colors.DarkGray
+        self.amountLabel.textColor = Constants.Colors.darkGray
         if isDefaultText != "" {
             self.isDefaultLabel.layer.cornerRadius = 6.0
             self.isDefaultLabel.layer.masksToBounds = true
             self.isDefaultLabel.layer.borderWidth = 2.0
-            self.isDefaultLabel.layer.borderColor = Constants.Colors.DarkGreen.CGColor
-            self.isDefaultLabel.textColor = Constants.Colors.DarkGreen
+            self.isDefaultLabel.layer.borderColor = Constants.Colors.darkGreen.CGColor
+            self.isDefaultLabel.textColor = Constants.Colors.darkGreen
             self.isDefaultLabelWidth.constant = 75.0
         }
         
@@ -53,7 +53,7 @@ class AccountsTableViewCell: UITableViewCell {
         
         // Selection color
         let selectionColor = UIView()
-        selectionColor.backgroundColor = Constants.Colors.LightGreen
+        selectionColor.backgroundColor = Constants.Colors.lightGreen
         self.selectedBackgroundView = selectionColor;
     }
     

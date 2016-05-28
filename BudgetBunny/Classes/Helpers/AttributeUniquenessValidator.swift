@@ -23,7 +23,7 @@ class AttributeUniquenessValidator: NSObject, ValidatorProtocol {
         let field = self.objectToValidate as! AttributeModel
         var isDuplicateNotFound = false
         
-        let model = BunnyModel(tableName: "Account")
+        let model = BunnyModel(tableName: field.tableName)
         model.selectAllObjectsWithParameters([field.format: field.value]) { (objects) in
             if objects.count == 0 {
                 isDuplicateNotFound = true

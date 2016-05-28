@@ -9,73 +9,62 @@
 import UIKit
 import CoreData
 
-let SECTION_COUNT = 1
-
 class AccountsTableViewController: UITableViewController {
     
     var accountTable: [AccountCell] = []
+    let constants = ScreenConstants.Account.self
     
+    // Set the title in the navigation bar
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = BunnyUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_ACCOUNT)
     }
     
+    // Load the table data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadData()
         self.tableView.reloadData()
     }
     
+    // Fetch from the core data, and append each element into the table
     func loadData() {
         self.accountTable = []
         
-        let model = BunnyModel(tableName: "Account")
+        let model = BunnyModel(tableName: ModelConstants.Entities.account)
         model.selectAllObjects { (fetchedObjects) in
             for account in fetchedObjects {
-                let isDefault: Bool = account.valueForKey("isDefault") as! Bool
-                let currencyIdentifier: String = account.valueForKey("currency") as! String
-                let accountName: String = account.valueForKey("name") as! String
                 
+                // Set currency
                 let currency = Currency()
-                currency.setAttributes(currencyIdentifier)
-                let currencySymbol = currency.currencySymbol.stringByAppendingString(" ")
+                currency.setAttributes(account.valueForKey(ModelConstants.Account.currency) as! String)
                 
-                let amount: Double = account.valueForKey("amount") as! Double
-                
-                let accountItem: AccountCell = AccountCell(accountObject: account, isDefault: isDefault, accountName: accountName, currencySymbol: currencySymbol, amount: amount)
+                // Set account cell
+                let accountItem: AccountCell = AccountCell(
+                    accountObject: account,
+                    isDefault: account.valueForKey(ModelConstants.Account.isDefault) as! Bool,
+                    accountName: account.valueForKey(ModelConstants.Account.name) as! String,
+                    currencySymbol: currency.currencySymbol.stringByAppendingString(" "),
+                    amount: account.valueForKey(ModelConstants.Account.amount) as! Double
+                )
                 
                 self.accountTable.append(accountItem)
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     // MARK: - Table view data source
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-
-    }
-    
+    // Set the swipe buttons
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
-        let setDefaultButtonTitle = "Set\nDefault"
+        let setDefaultButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
+        let viewTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_VIEW)
         
         let row = indexPath.row
         let account: AccountCell = self.accountTable[row]
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        let view = UITableViewRowAction(style: .Normal, title: "View") { (action, indexPath) in
-            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
-        }
-        
-        var returnArray = [view]
+        var returnArray: [UITableViewRowAction]
         
         // If the account is not a default account
         if !account.isDefault {
@@ -83,7 +72,7 @@ class AccountsTableViewController: UITableViewController {
             // Set the delete button
             let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
                 
-                let model = BunnyModel.init(tableName: "Account")
+                let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 model.deleteObject(account.accountObject, completion: {
                     self.accountTable.removeAtIndex(row)
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -96,7 +85,7 @@ class AccountsTableViewController: UITableViewController {
             let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
             
                 var refreshingIndexPath: NSIndexPath!
-                let model = BunnyModel.init(tableName: "Account")
+                let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 
                 model.selectAllObjects({ (fetchedObjects) -> Void in
                     
@@ -106,15 +95,15 @@ class AccountsTableViewController: UITableViewController {
                         
                         // If the element is the currently selected element, set isDefault to true.
                         if object == account.accountObject {
-                            object.setValue(true, forKey: "isDefault")
+                            object.setValue(true, forKey: ModelConstants.Account.isDefault)
                         }
                             
                         // Else, if the element is the previously default account, set isDefault to false.
                         else {
-                            if object.valueForKey("isDefault") as! Bool == true {
+                            if object.valueForKey(ModelConstants.Account.isDefault) as! Bool == true {
                                 refreshingIndexPath = NSIndexPath.init(forRow: index, inSection: 0)
                             }
-                            object.setValue(false, forKey: "isDefault")
+                            object.setValue(false, forKey: ModelConstants.Account.isDefault)
                         }
                     }
                     
@@ -124,26 +113,39 @@ class AccountsTableViewController: UITableViewController {
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
                     
                     if refreshingIndexPath != nil {
-                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                     }
                 })
             }
             
-            delete.backgroundColor = Constants.Colors.DangerColor
-            setDefault.backgroundColor = Constants.Colors.NormalGreen
+            delete.backgroundColor = Constants.Colors.dangerColor
+            setDefault.backgroundColor = Constants.Colors.normalGreen
             
             returnArray = [delete, setDefault]
+        }
+        
+        // If the account is a default account
+        else {
+            let view = UITableViewRowAction(style: .Normal, title: viewTitle) { (action, indexPath) in
+                self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            }
+            
+            returnArray = [view]
         }
         
         return returnArray
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return SECTION_COUNT
+        return constants.sectionCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BunnyUtils.tableRowsWithLoadingTitle(StringConstants.LABEL_NO_ACCOUNTS, tableModel: self.accountTable, tableView: self.tableView) { () -> Int in
+        return BunnyUtils.tableRowsWithLoadingTitle(
+            StringConstants.LABEL_NO_ACCOUNTS,
+            tableModel: self.accountTable,
+            tableView: self.tableView
+        ) { () -> Int in
             return self.accountTable.count
         }
     }
@@ -152,15 +154,16 @@ class AccountsTableViewController: UITableViewController {
         return CGFloat.min
     }
 
+    // On selection, set the values of the destination view controller and push it into the view controller stack
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell: AccountCell = self.accountTable[indexPath.row]
-        let storyboard = UIStoryboard(name: Constants.Storyboards.MainStoryboard, bundle: nil)
-        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.AddEditTable)
+        let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
+        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable)
             as! AddEditAccountTableViewController
         
-        destinationViewController.sourceInformation = Constants.SourceInformation.AccountEditing
+        destinationViewController.sourceInformation = Constants.SourceInformation.accountEditing
         destinationViewController.accountInformation = cell
         self.navigationController?.pushViewController(destinationViewController, animated: true)
     }
@@ -178,9 +181,8 @@ class AccountsTableViewController: UITableViewController {
     // MARK: - Navigation
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        segue.destinationViewController.sourceInformation = Constants.SourceInformation.AccountNew
+        segue.destinationViewController.sourceInformation = Constants.SourceInformation.accountNew
         (segue.destinationViewController as! AddEditAccountTableViewController).accountInformation = nil
     }
  
-
 }

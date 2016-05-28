@@ -24,7 +24,7 @@ class CurrencyTableViewCell: UITableViewCell {
     func setCurrencyModel(currencyModel: Currency, selectedCountryIdentifier: NSString) {
         // Set selected color
         let selectionColor = UIView()
-        selectionColor.backgroundColor = Constants.Colors.LightGreen
+        selectionColor.backgroundColor = Constants.Colors.lightGreen
         self.selectedBackgroundView = selectionColor;
         
         // Set models

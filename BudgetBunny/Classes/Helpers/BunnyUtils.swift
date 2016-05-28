@@ -21,8 +21,10 @@ class BunnyUtils: NSObject {
         viewController.view.addGestureRecognizer(tapRecognizer)
     }
     
-    class func isKeyExistingForAddEditAccountCell(cell: BunnyCell, key: String) -> Bool {
-        return cell.cellSettings[key] != nil
+    class func keyExistsForCellSettings(cell: BunnyCell, key: String, completion: (object: AnyObject) -> Void) {
+        if cell.cellSettings[key] != nil {
+            completion(object: cell.cellSettings[key]!)
+        }
     }
     
     class func showAlertWithOKButton(viewController: UIViewController, title: String, message: String) {

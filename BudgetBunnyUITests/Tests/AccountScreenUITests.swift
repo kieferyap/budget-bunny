@@ -80,7 +80,7 @@ class AddAccountUITests: XCTestCase {
     func testAddAccountTextFields() {
         self.proceedToAddAccountScreen()
         
-        let accountName: String = "my bank account"
+        let accountName: String = "My bank account"
         let initialAmount: String = "450"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)

@@ -25,6 +25,10 @@ class BunnyModel: NSObject {
         self.selectAllObjectsWithParameters([:], completion: completion)
     }
     
+    func changeTableName(newTableName: String) {
+        self.tableName = newTableName
+    }
+    
     func selectAllObjectsWithParameters(parameters: NSDictionary, completion: (fetchedObjects: [NSManagedObject]) -> Void) {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
         
@@ -67,6 +71,9 @@ class BunnyModel: NSObject {
         
         do {
             try managedContext.save()
+            
+            // What would you like to do once the object has been successfully deleted?
+            // (e.g.: Remove the row and update the table view)
             completion()
         } catch let error as NSError {
             print("Error occured while saving: \(error)")
@@ -74,6 +81,17 @@ class BunnyModel: NSObject {
         }
         
         return true
+    }
+    
+    func insertObject(values: NSDictionary) -> NSManagedObject {
+        let entity = NSEntityDescription.entityForName(self.tableName, inManagedObjectContext: self.managedContext)
+        let model = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.managedContext)
+        
+        for value in values {
+            print(value.value, value.key)
+            model.setValue(value.value, forKey: value.key as! String)
+        }
+        return model
     }
     
     func save() {

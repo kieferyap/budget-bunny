@@ -24,6 +24,6 @@ class AccountCell: BunnyCell {
         self.amount = amount
         self.accountObject = accountObject
         self.currencySymbol = currencySymbol
-        super.init(cellIdentifier: Constants.CellIdentifiers.Account, cellSettings: [:])
+        super.init(cellIdentifier: Constants.CellIdentifiers.account, cellSettings: [:])
     }
 }
