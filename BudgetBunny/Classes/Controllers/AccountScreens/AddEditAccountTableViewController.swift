@@ -142,20 +142,27 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         // Edit mode does not have this cell, so. yeah.
         if self.sourceInformation == Constants.SourceInformation.accountNew {
             let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsGroup, row: screenConstants.idxDefaultCell)
-            isDefaultAccountBool = isDefaultAccount == "1" ? true : false
+            isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
         }
         
         // Set up the error validators
-        let accountNameModel = AttributeModel(tableName: "Account", format: "name == %@", value: accountName)
+        let accountNameModel = AttributeModel(
+            tableName: ModelConstants.Entities.account,
+            key: ModelConstants.Account.name,
+            value: accountName
+        )
         let emptyAccountValidator = EmptyStringValidator(
-                    objectToValidate: accountName,
-                      errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+            objectToValidate: accountName,
+            errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
+        )
         let emptyCurrencyValidator = EmptyStringValidator(
-                      objectToValidate: accountInitValue,
-                        errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY)
+            objectToValidate: accountInitValue,
+            errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
+        )
         let accountnameUniquenessValidator = AttributeUniquenessValidator(
-                objectToValidate: accountNameModel,
-                  errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME)
+            objectToValidate: accountNameModel,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME
+        )
         
         // Add the error validators
         let validator = Validator()
@@ -174,27 +181,49 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 
             // If there are no errors, save the fields
             else {
-                
                 // Adding a new account
-                let activeRecord = BunnyModel.init(tableName: "Account")
+                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 
                 // Set all isDefaults to false
                 if isDefaultAccountBool {
-                    BunnyUtils.setAllValues("Account", managedContext: activeRecord.managedContext, key: "isDefault", value: false)
+                    activeRecord.updateAllValues(ModelConstants.Account.isDefault, value: false)
                 }
                 
                 // Set the values of the account and insert it
                 var values = NSDictionary.init(
-                    objects: [accountName, self.selectedCountryIdentifier, isDefaultAccountBool, accountInitValueFloat],
-                    forKeys: ["name", "currency", "isDefault", "amount"]
+                    objects: [
+                        accountName,
+                        self.selectedCountryIdentifier,
+                        isDefaultAccountBool,
+                        accountInitValueFloat
+                    ],
+                    forKeys: [
+                        ModelConstants.Account.name,
+                        ModelConstants.Account.currency,
+                        ModelConstants.Account.isDefault,
+                        ModelConstants.Account.amount
+                    ]
                 )
                 let model = activeRecord.insertObject(values)
                 
                 // Add a new transaction and save
-                activeRecord.changeTableName("Transaction")
+                activeRecord.changeTableName(ModelConstants.Entities.transaction)
                 values = NSDictionary.init(
-                    objects: [accountInitValueFloat, NSDate.init(), " ", ModelConstants.TransactionTypes.resetAmount, model],
-                    forKeys: ["amount", "datetime", "notes", "type", "accountId"])
+                    objects: [
+                        accountInitValueFloat,
+                        NSDate.init(),
+                        " ",
+                        ModelConstants.TransactionTypes.resetAmount,
+                        model
+                    ],
+                    forKeys: [
+                        ModelConstants.Transaction.amount,
+                        ModelConstants.Transaction.datetime,
+                        ModelConstants.Transaction.notes,
+                        ModelConstants.Transaction.type,
+                        ModelConstants.Transaction.accountId
+                    ]
+                )
                 activeRecord.insertObject(values)
                 activeRecord.save()
                 

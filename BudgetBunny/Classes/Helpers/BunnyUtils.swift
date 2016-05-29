@@ -11,22 +11,26 @@ import CoreData
 
 class BunnyUtils: NSObject {
 
+    // Returns an uncommented localized string, given the key. The comments are normally used for your localization team, but, well...)
     class func uncommentedLocalizedString(key: String) -> String {
         return NSLocalizedString(key, comment: "")
     }
     
+    // When called, this method adds a listener in the view controller which dismisses the keyboard whenever places other than the keyboard (or the textarea/textfield) have been tapped. Pretty handy, huh?
     class func addKeyboardDismisserListener(viewController: UIViewController) {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action:#selector(UIViewController.dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
         viewController.view.addGestureRecognizer(tapRecognizer)
     }
     
+    // The table cells can be customized by slapping on a special NSDictionary. This method simply checks if the cells' dictionary possess the specified key, and executes a completion handler if it does.
     class func keyExistsForCellSettings(cell: BunnyCell, key: String, completion: (object: AnyObject) -> Void) {
         if cell.cellSettings[key] != nil {
             completion(object: cell.cellSettings[key]!)
         }
     }
     
+    // Method name is self-explanatory. I'm not a huge fan of the whole Copy-Paste Design Pattern, so this factory method will have to do. When summoned, this method will deal 65536 damage to all your enemies.
     class func showAlertWithOKButton(viewController: UIViewController, title: String, message: String) {
         let okMessage = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
         
@@ -40,6 +44,7 @@ class BunnyUtils: NSObject {
         viewController.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    // This is one of my favorite methods. It basically checks if the table has anything in it. If it doesn't, it tells the table view to display a certain text. (Think, "No files found.") Else, it returns the number of table rows.
     class func tableRowsWithLoadingTitle(titleKey: String, tableModel: NSArray, tableView: UITableView, completion: () -> Int) -> Int {
         
         let emptyTableLabel = UILabel.init(frame: CGRectMake(0, 0, tableView.bounds.size.height, tableView.bounds.size.width))
@@ -69,23 +74,6 @@ class BunnyUtils: NSObject {
         tableView.scrollEnabled = isTableScrollable
         
         return rows
-    }
-    
-    class func setAllValues(tableName: String, managedContext: NSManagedObjectContext, key: String, value: NSObject) -> Bool {
-        let request = NSFetchRequest()
-        request.entity = NSEntityDescription.entityForName(tableName, inManagedObjectContext: managedContext)
-        
-        do {
-            let objects = try managedContext.executeFetchRequest(request) as! [NSManagedObject]
-            for object in objects {
-                object.setValue(value, forKey: key)
-            }
-        } catch let error as NSError {
-            print("Error: \(error)")
-            return false
-        }
-        
-        return true
     }
     
 }

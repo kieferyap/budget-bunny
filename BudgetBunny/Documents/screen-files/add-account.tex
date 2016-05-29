@@ -16,9 +16,7 @@ The Add New Account screen enables users to add a new account by specifying the 
   \caption{Error Scenario}
   \label{fig:sub-account-2}
 \end{subfigure}
- 
 \caption{Add New Account Screenshots}
-\label{fig:account-1}
 \end{figure}
 
 \screentable{
@@ -31,7 +29,7 @@ The Add New Account screen enables users to add a new account by specifying the 
     \row{2. Done Button}
     	{Button}
         {When tapped, the app checks on whether or not both the Account Name and the Initial Amount have been filled. \doublenewline
-        If both textfields have been filled, then all fields (that is: account name, currency, initial amount, is default) will be saved into the model. If not, then an error will pop up, prompting the user to have both textfields filled up. \doublenewline
+        If both textfields have been filled, then all fields (that is: account name, currency, initial amount, is default) will be saved into the core data. If not, then an error will pop up, prompting the user to have both textfields filled up. \doublenewline
         Localization Key: BUTTON\_DONE
         } 
     \row{3. Account Name Cell}
@@ -40,7 +38,7 @@ The Add New Account screen enables users to add a new account by specifying the 
         
         Tap anywhere in the cell and the textfield will be placed in focus, bringing up a QWERTY keyboard. Tap anywhere outside the cell to dismiss the keyboard. \doublenewline
         
-        The textfield has a character limit of 25 characters. This is because the average word has an average of five letters, and a four-word account name suffices.\doublenewline
+        The textfield has a character limit of 25 characters.\doublenewline
         
         Localization Keys: LABEL\_NAME, TEXTFIELD\_NAME\_PLACEHOLDER} 
     \row{4. Currency Cell}
@@ -62,23 +60,43 @@ The Add New Account screen enables users to add a new account by specifying the 
         
         Tap anywhere in the cell and the textfield will be placed in focus, bringing up a keyboard that is numeric with a decimal point.  Tap anywhere outside the cell to dismiss the keyboard. \doublenewline
         
-        The textfield has a character limit of 22 characters. This is because the largest banknote ever released due to hyperinflation has a value of ${10}^{20}$.\doublenewline
+        The textfield has a character limit of 15 characters.\doublenewline
          
         Localization Keys: LABEL\_STARTING\_BALANCE, TEXTFIELD\_STARTING\_BALANCE\_ PLACEHOLDER} 
     \row{6. Default Account Cell}
     	{Table Cell}
-        {This table cell consists of three UI elements: two labels and a switch. \doublenewline
+        {This table cell consists of three UI elements: two labels and a switch. The switch is turned off by default.\doublenewline
         
-        Tap anywhere in the cell and the switch will be toggled. \doublenewline
+        Tap anywhere in the cell and the switch will be toggled. There can only be one default account at any time. \doublenewline
         
         Localization Keys: LABEL\_IS\_DEFAULT\_ACCOUNT, LABEL\_IS\_DEFAULT\_ACCOUNT\_ DESCRIPTION} 
     \row{7. Error Alert}
     	{Alert Controller}
         {This alert controller has two labels. \doublenewline
         
-        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps "Done". \doublenewline
+        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps "Done".\doublenewline
         
         Localization Keys: ERRORLABEL\_ERROR\_TITLE, ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
+}
+
+\subsubsection{Error Scenarios}
+
+\errortable{
+	\errorheader{Title}{Description}
+    \errorrow{Duplicate Account Name}
+    	{This error is triggered when the Done button is pressed and a similar account name already exists in the Core Data. \doublenewline
+        
+        Localization Key: ERRORLABEL\_ DUPLICATE\_ACCOUNT\_NAME}
+    \errorrow{Duplicate Account Name}
+    	{This error is triggered when the Done button is pressed and the account name or the amount has not been filled. \doublenewline
+        
+        Localization Key: ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
+    
+    \errorrow{Multiple Decimals}
+    	{No error alert is displayed, but this check exists in the textfield, where decimals can only be input once.}
+        
+    \errorrow{Maximum Length}
+    	{No error alert is displayed, but this check exists in the textfield, where there is a maximum length for the textfield.}
 }
 
 \subsubsection{Use Cases}

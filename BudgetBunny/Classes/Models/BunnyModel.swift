@@ -94,6 +94,20 @@ class BunnyModel: NSObject {
         return model
     }
     
+    func updateAllValues(key: String, value: NSObject) {
+        let request = NSFetchRequest()
+        request.entity = NSEntityDescription.entityForName(self.tableName, inManagedObjectContext: self.managedContext)
+        
+        do {
+            let objects = try self.managedContext.executeFetchRequest(request) as! [NSManagedObject]
+            for object in objects {
+                object.setValue(value, forKey: key)
+            }
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+    }
+    
     func save() {
         do {
             try managedContext.save()

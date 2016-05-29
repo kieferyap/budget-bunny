@@ -29,6 +29,9 @@ struct ScreenConstants {
         static let separatorCountryCode = ": "
         static let separatorCodeSymbol = " ("
         static let separatorSymbol = ")"
+        
+        static let trueString = "1"
+        static let falseString = "0"
     }
     struct Currency {
         static let sectionCount = 1

@@ -15,9 +15,10 @@ class AttributeModel: NSObject {
     var format: String
     var value: String
     
-    init(tableName: String, format: String, value: String) {
+    init(tableName: String, key: String, value: String) {
         self.tableName = tableName
-        self.format = format
+        let formattedString = String.init(format: "%@ == ", key)
+        self.format = formattedString.stringByAppendingString("%@")
         self.value = value
     }
 }

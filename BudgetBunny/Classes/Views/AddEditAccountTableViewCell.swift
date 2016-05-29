@@ -8,9 +8,6 @@
 
 import UIKit
 
-let TRUE_STRING = "1"
-let FALSE_STRING = "0"
-
 protocol PushViewControllerDelegate: class {
     func pushCurrencyViewController()
 }
@@ -135,10 +132,9 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             break
             
         case Constants.CellIdentifiers.addAccountSwitch:
-            returnValue = FALSE_STRING
-            if self.accountSwitch.on {
-                returnValue = TRUE_STRING
-            }
+            returnValue = self.accountSwitch.on ?
+                ScreenConstants.AddEditAccount.trueString :
+                ScreenConstants.AddEditAccount.falseString
             break
             
         default:

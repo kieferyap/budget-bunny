@@ -60,6 +60,28 @@
   	\arrayrulecolor{lightgray}\hline
 }
 
+% Error Scenarios Table
+\newcommand{\errortable}[1]{
+	\begin{center}
+	\begin{tabular}{ |L{5cm} !{\color{lightgray}\vrule} L{7cm}| }
+    #1
+    \end{tabular}
+	\end{center}
+}
+
+% Error Scenarios Header
+\newcommand{\errorheader}[2]{
+	\arrayrulecolor{lightgray}\hline
+  	\textbf{#1} & \textbf{#2} \\
+  	\arrayrulecolor{lightgray}\hline
+}
+
+% Error Scenarios Row
+\newcommand{\errorrow}[2]{
+	{#1} & {\newline #2 \newline} \\ 
+  	\arrayrulecolor{lightgray}\hline
+}
+
 \newcommand{\doublenewline}{
 	\newline ~ \newline
 }

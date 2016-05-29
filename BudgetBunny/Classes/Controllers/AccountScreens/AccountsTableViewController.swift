@@ -55,6 +55,11 @@ class AccountsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    // Needed for the swipe functionality
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+
+    
     // Set the swipe buttons
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
