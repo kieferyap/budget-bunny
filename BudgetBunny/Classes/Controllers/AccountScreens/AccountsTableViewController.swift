@@ -35,16 +35,12 @@ class AccountsTableViewController: UITableViewController {
         model.selectAllObjects { (fetchedObjects) in
             for account in fetchedObjects {
                 
-                // Set currency
-                let currency = Currency()
-                currency.setAttributes(account.valueForKey(ModelConstants.Account.currency) as! String)
-                
                 // Set account cell
                 let accountItem: AccountCell = AccountCell(
                     accountObject: account,
                     isDefault: account.valueForKey(ModelConstants.Account.isDefault) as! Bool,
                     accountName: account.valueForKey(ModelConstants.Account.name) as! String,
-                    currencySymbol: currency.currencySymbol.stringByAppendingString(" "),
+                    currencyIdentifier: account.valueForKey(ModelConstants.Account.currency) as! String,
                     amount: account.valueForKey(ModelConstants.Account.amount) as! Double
                 )
                 
@@ -58,13 +54,12 @@ class AccountsTableViewController: UITableViewController {
     // Needed for the swipe functionality
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
-
     
     // Set the swipe buttons
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
-        let setDefaultButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
+        let setDefaultButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_DEFAULT)
         let viewTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_VIEW)
         
         let row = indexPath.row
@@ -73,7 +68,6 @@ class AccountsTableViewController: UITableViewController {
         
         // If the account is not a default account
         if !account.isDefault {
-            
             // Set the delete button
             let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
                 
@@ -93,7 +87,6 @@ class AccountsTableViewController: UITableViewController {
                 let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 
                 model.selectAllObjects({ (fetchedObjects) -> Void in
-                    
                     // For each element
                     for (index, element) in fetchedObjects.enumerate() {
                         let object = element

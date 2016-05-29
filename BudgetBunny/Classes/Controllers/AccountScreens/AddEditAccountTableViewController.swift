@@ -23,6 +23,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         var accountNameValue: String = ""
         var initialAmountValue: String = ""
+        var isAccountDefault: Bool = false
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
         self.addAccountTable = Array.init(count: 2, repeatedValue: [])
         
@@ -30,29 +31,60 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         // If we are in editing mode, then we should set the textfields based on the account we are editing.
         case Constants.SourceInformation.accountEditing:
+            var isKeyEnabled = true
+            var defaultButtonText = StringConstants.BUTTON_SET_AS_DEFAULT
+            var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
+            var accountObject: NSManagedObject!
+            
+            // accountInformation should never really be nil while editing, so this is just a safety measure.
             if self.accountInformation != nil {
+                let amountDouble: Double = (self.accountInformation?.amount)!
+                let floatFormat: String = amountDouble.isInteger ? "%.0f" : "%.2f"
+                
                 accountNameValue = (self.accountInformation?.accountName)!
-                initialAmountValue = (self.accountInformation?.amount)!.isInteger ? "%.0f" : "%.2f"
-                self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier //TO-DO in ACC-0003
+                initialAmountValue = String.init(format: floatFormat, amountDouble)
+                isAccountDefault = (self.accountInformation?.isDefault)!
+                accountObject = (self.accountInformation?.accountObject)!
+                
+                self.selectedCountryIdentifier = (self.accountInformation?.currencyIdentifier)!
             }
             
-            // In editing mode, the second section has two actions: Set as Default, and Delete Account
+            // If the account is a default account, then certain actions cannot be used.
+            if isAccountDefault {
+                isKeyEnabled = false
+                defaultButtonText = "This is the default account."
+                deleteButtonText = "Default accounts cannot be deleted."
+            }
+            
             let setDefaultAccountCell = AddEditAccountCell(
-                fieldKey: StringConstants.BUTTON_SET_AS_DEFAULT,
+                fieldKey: defaultButtonText,
                 placeholder: "",
                 cellIdentifier: Constants.CellIdentifiers.addAccountAction,
-                cellSettings: [screenConstants.keySelector: screenConstants.selectorSetDefault])
+                cellSettings: [
+                    screenConstants.keySelector: screenConstants.selectorSetDefault,
+                    screenConstants.keyEnabled: isKeyEnabled,
+                    screenConstants.keyManagedObject: accountObject
+                ]
+            )
             
             let deleteAccountCell = AddEditAccountCell(
-                fieldKey: StringConstants.BUTTON_DELETE_ACCOUNT,
+                fieldKey: deleteButtonText,
                 placeholder: "",
                 cellIdentifier: Constants.CellIdentifiers.addAccountAction,
-                cellSettings: [screenConstants.keySelector: screenConstants.selectorDelete])
+                cellSettings: [
+                    screenConstants.keySelector: screenConstants.selectorDelete,
+                    screenConstants.keyEnabled: isKeyEnabled,
+                    screenConstants.keyManagedObject: accountObject,
+                    screenConstants.keyButtonColor: Constants.Colors.dangerColor
+                ]
+            )
             
             self.addAccountTable[screenConstants.idxAccountActionsGroup]
                 .insert(setDefaultAccountCell, atIndex: screenConstants.idxDefaultCell)
             self.addAccountTable[screenConstants.idxAccountActionsGroup]
                 .insert(deleteAccountCell, atIndex: screenConstants.idxDeleteCell)
+            
+            break
             
         // If we are trying to create a new account, however, all the textfields should remain blank
         case Constants.SourceInformation.accountNew:
@@ -65,6 +97,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 cellSettings: [screenConstants.keyHeight: screenConstants.accountCellHeight])
             
             self.addAccountTable[screenConstants.idxAccountActionsGroup].insert(defaultAccountCell, atIndex: screenConstants.idxDefaultCell)
+            
+            break
+            
         default:
             break
         }
@@ -172,7 +207,6 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         
         // Validate the fields
         validator.validate { (errorMessage) in
-            
             // If there is an error message, display it and don't do anything else.
             if errorMessage != "" {
                 let title = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
@@ -253,7 +287,10 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
         
         cell.setAccountModel(cellItem)
-        cell.delegate = self
+        cell.pushDelegate = self
+        cell.popDelegate = self
+        cell.setDefaultDelegate = self
+        
         return cell
     }
     
@@ -276,6 +313,20 @@ extension AddEditAccountTableViewController: PushViewControllerDelegate {
             as! CurrencyPickerTableViewController
         destinationViewController.delegate = self
         self.navigationController?.pushViewController(destinationViewController, animated: true)
+    }
+}
+
+extension AddEditAccountTableViewController: PopViewControllerDelegate {
+    func popViewController() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension AddEditAccountTableViewController: SetAsDefaultDelegate {
+    func setAsDefault() {
+        self.accountInformation?.isDefault = true
+        self.viewDidLoad()
+        self.tableView.reloadData()
     }
 }
 

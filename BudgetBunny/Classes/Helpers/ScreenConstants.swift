@@ -23,6 +23,9 @@ struct ScreenConstants {
         static let keyMaxLength = "maxLength"
         static let keyTextFieldValue = "value"
         static let keySelector = "selector"
+        static let keyEnabled = "enabled"
+        static let keyButtonColor = "color"
+        static let keyManagedObject = "managedObject"
         
         static let selectorDelete = "deleteAccount"
         static let selectorSetDefault = "setDefault"

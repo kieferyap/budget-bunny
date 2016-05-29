@@ -88,7 +88,6 @@ class BunnyModel: NSObject {
         let model = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.managedContext)
         
         for value in values {
-            print(value.value, value.key)
             model.setValue(value.value, forKey: value.key as! String)
         }
         return model

@@ -6,10 +6,19 @@
 //  Copyright © 2016 Kiefer Yap. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 protocol PushViewControllerDelegate: class {
     func pushCurrencyViewController()
+}
+
+protocol PopViewControllerDelegate: class {
+    func popViewController()
+}
+
+protocol SetAsDefaultDelegate: class {
+    func setAsDefault()
 }
 
 class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
@@ -21,7 +30,11 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var accountSwitch: UISwitch!
     var model: AddEditAccountCell?
     var fieldMaxLength: Int = 0
-    weak var delegate:PushViewControllerDelegate?
+    
+    weak var pushDelegate:PushViewControllerDelegate?
+    weak var popDelegate:PopViewControllerDelegate?
+    weak var setDefaultDelegate:SetAsDefaultDelegate?
+    
     let constants = ScreenConstants.AddEditAccount.self
     
     override func awakeFromNib() {
@@ -76,8 +89,20 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             
         case Constants.CellIdentifiers.addAccountAction:
             self.actionButton.setTitle(fieldText, forState: UIControlState.Normal)
-            let selectorName = self.model!.cellSettings[constants.keySelector] as! String
-            self.actionButton.addTarget(self, action: Selector(selectorName), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            BunnyUtils.keyExistsForCellSettings(accountModel, key: constants.keyButtonColor, completion: { (object) in
+                self.actionButton.tintColor = object as! UIColor
+            })
+            
+            BunnyUtils.keyExistsForCellSettings(accountModel, key: constants.keyEnabled, completion: { (object) in
+                let isEnabled = object as! Bool
+                self.actionButton.enabled = isEnabled
+                
+                if isEnabled {
+                    let selectorName = self.model!.cellSettings[self.constants.keySelector] as! String
+                    self.actionButton.addTarget(self, action: Selector(selectorName), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+            })
             break
             
         case Constants.CellIdentifiers.addAccountSwitch:
@@ -99,7 +124,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             break
             
         case Constants.CellIdentifiers.addAccountChevron:
-            self.delegate?.pushCurrencyViewController()
+            self.pushDelegate?.pushCurrencyViewController()
             break
             
         case Constants.CellIdentifiers.addAccountAction:
@@ -116,11 +141,40 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setDefault() {
-        print("Default Account Button Tapped")
+        // TO-DO: Visual bug when the button is pressed. I wonder if we can make it so that it fades instead...
+        // TO-DO: Bug for both Set Default and Delete buttons: both still execute even when disabled.
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyManagedObject) { (object) in
+            let managedObject = object as! NSManagedObject
+            let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+            activeRecord.selectAllObjects({ (fetchedObjects) -> Void in
+                // For each element
+                for object in fetchedObjects {
+                    // If the element is the currently selected element, set isDefault to true.
+                    if object == managedObject {
+                        object.setValue(true, forKey: ModelConstants.Account.isDefault)
+                    }
+                        
+                    // Else, if the element is the previously default account, set isDefault to false.
+                    else if object.valueForKey(ModelConstants.Account.isDefault) as! Bool == true {
+                        object.setValue(false, forKey: ModelConstants.Account.isDefault)
+                    }
+                }
+                
+                // Save the model, reload the data, etc.
+                activeRecord.save()
+            })
+            self.setDefaultDelegate?.setAsDefault()
+        }
     }
     
     func deleteAccount() {
-        print("Delete account button tapped")
+        // TO-DO: Show alert action -- "This account, and all its transactions, will be deleted. Are you sure?"
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyManagedObject) { (object) in
+            let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+            activeRecord.deleteObject(object as! NSManagedObject, completion: {
+                self.popDelegate?.popViewController()
+            })
+        }        
     }
     
     func getValue() -> String {
