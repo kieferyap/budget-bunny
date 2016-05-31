@@ -87,10 +87,27 @@ class BunnyModel: NSObject {
         let entity = NSEntityDescription.entityForName(self.tableName, inManagedObjectContext: self.managedContext)
         let model = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.managedContext)
         
+        let request = NSFetchRequest()
+        request.entity = NSEntityDescription.entityForName(self.tableName, inManagedObjectContext: self.managedContext)
+        
         for value in values {
             model.setValue(value.value, forKey: value.key as! String)
         }
         return model
+    }
+    
+    func updateObjectWithObjectId(objectId: NSManagedObjectID, updateParameters: NSDictionary) -> NSManagedObject {
+        do {
+            let returnObject = try self.managedContext.existingObjectWithID(objectId)
+            for (key, value) in updateParameters {
+                returnObject.setValue(value, forKey: key as! String)
+            }
+            return returnObject
+        } catch let error as NSError {
+            print("Error occured: \(error)")
+        }
+        return NSManagedObject.init()
+
     }
     
     func updateAllValues(key: String, value: NSObject) {

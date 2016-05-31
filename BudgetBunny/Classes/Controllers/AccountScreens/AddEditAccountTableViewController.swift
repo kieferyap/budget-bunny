@@ -25,6 +25,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     let screenConstants = ScreenConstants.AddEditAccount.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
+    // TO-DO: Bug on EDIT > Change Account Name > Tap Currency > Tap Back: Account name unchanged
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
@@ -32,6 +33,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         var accountNameValue: String = ""
         var initialAmountValue: String = ""
         var isAccountDefault: Bool = false
+        var buttonTitle: String = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
         self.addAccountTable = Array.init(count: 2, repeatedValue: [])
         
@@ -43,6 +45,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             var defaultButtonText = StringConstants.BUTTON_SET_AS_DEFAULT
             var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
             var accountObject: NSManagedObject!
+            buttonTitle = "Save"
             
             // accountInformation should never really be nil while editing, so this is just a safety measure.
             if self.accountInformation != nil {
@@ -148,7 +151,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         BunnyUtils.addKeyboardDismisserListener(self)
         
         // Done button
-        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        self.doneButton.title = buttonTitle
     }
     
     // This method uses the currently selected currency identifier (en_US) to return its information (United States, USD, etc.)
@@ -202,16 +205,20 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             objectToValidate: accountInitValue,
             errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
         )
-        let accountnameUniquenessValidator = AttributeUniquenessValidator(
-            objectToValidate: accountNameModel,
-            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME
-        )
         
         // Add the error validators
         let validator = Validator()
         validator.addValidator(emptyAccountValidator)
         validator.addValidator(emptyCurrencyValidator)
-        validator.addValidator(accountnameUniquenessValidator)
+        
+        // We need to check for account name uniqueness if we're entering a new account
+        if self.sourceInformation == Constants.SourceInformation.accountNew {
+            let accountnameUniquenessValidator = AttributeUniquenessValidator(
+                objectToValidate: accountNameModel,
+                errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME
+            )
+            validator.addValidator(accountnameUniquenessValidator)
+        }
         
         // Validate the fields
         validator.validate { (errorMessage) in
@@ -246,7 +253,14 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                         ModelConstants.Account.amount
                     ]
                 )
-                let model = activeRecord.insertObject(values)
+                
+                // The active record should insert if the account is new, but update if it is being edited
+                let model = self.sourceInformation == Constants.SourceInformation.accountNew ?
+                    activeRecord.insertObject(values) :
+                    activeRecord.updateObjectWithObjectId(
+                        (self.accountInformation?.accountObject.objectID)!,
+                        updateParameters: values
+                    )
                 
                 // Add a new transaction and save
                 activeRecord.changeTableName(ModelConstants.Entities.transaction)
