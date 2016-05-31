@@ -11,8 +11,9 @@
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎天用的帐户";
 "LABEL_LOADING" = "加載...";
 "BUTTON_DONE" = "完成";
-"ERRORLABEL_ERROR_TITLE" = "[Not localizaed yet]";
+"ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "[Not localizaed yet]";
 "LABEL_OK" = "OK";
+"ERRORLABEL_ERROR_TITLE" = "[Not localizaed yet]";
 "ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "[Not localizaed yet]";
 "ERRORLABEL_INTERNAL_ERROR" = "[Not localizaed yet]";
 "BUTTON_DELETE" = "[Not localized yet]";
@@ -26,7 +27,9 @@
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "[Not localized yet]";
 "BUTTON_VIEW" = "[Not localized yet]";
 "BUTTON_SET_AS_DEFAULT" = "[Not localized yet]";
+"BUTTON_SET_DEFAULT" = "[Not localized yet]";
+"BUTTON_DEFAULT_ACCOUNT_MESSAGE" = "[Not localized yet]";
+"BUTTON_DEFAULT_ACCOUNT_DESCRIPTION" = "[Not localized yet]";
 "LABEL_WARNING_DELETE_ACCOUNT_TITLE" = "[Not localized yet]";
 "LABEL_WARNING_DELETE_ACCOUNT_MESSAGE" = "[Not localized yet]";
 "BUTTON_CANCEL" = "[Not localized yet]";
-"BUTTON_SET_DEFAULT" = "[Not localized yet]";

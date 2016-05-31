@@ -22,7 +22,7 @@ class Localization:
 	DATABASE_NAME = "budget_bunny"
 	OUTPUT_FOLDER = "output"
 	OUTPUT_FILE = OUTPUT_FOLDER+"/budget_bunny.sql"
-	STRINGS_OUTPUT_FILE = "../Classes/Helpers/StringConstants.swift"
+	STRINGS_OUTPUT_FILE = "../Classes/Helpers/Constants/StringConstants.swift"
 	HEADER = "/* This file was generated using the localization script. Please do not make any changes to this file. */"
 
 	# Localization constants

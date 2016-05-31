@@ -113,7 +113,7 @@ class AccountsTableViewController: UITableViewController {
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
                     
                     if refreshingIndexPath != nil {
-                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None) // For some reason, the animation is still not what I'd expect of a "None."
                     }
                 })
             }

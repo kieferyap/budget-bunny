@@ -271,6 +271,4 @@ class AddAccountUITests: XCTestCase {
         accountScreen.tapCellWithIndex(0)
     }
     
-    //TO-DO: Implement uniqueness of account name and isDefault
-    
 }

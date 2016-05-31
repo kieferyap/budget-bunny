@@ -25,7 +25,6 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     let screenConstants = ScreenConstants.AddEditAccount.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    // TO-DO: Bug on EDIT > Change Account Name > Tap Currency > Tap Back: Account name unchanged
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
@@ -63,8 +62,8 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             // If the account is a default account, then certain actions cannot be used.
             if isAccountDefault {
                 isKeyEnabled = false
-                defaultButtonText = "This is the default account."
-                deleteButtonText = "Default accounts cannot be deleted."
+                defaultButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_MESSAGE) 
+                deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_DESCRIPTION)
             }
             
             let setDefaultAccountCell = AddEditAccountCell(
@@ -339,9 +338,18 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
     }
 
     func setAsDefault() {
+        let idxAccountActionsGroup = screenConstants.idxAccountActionsGroup
+        let idxDefaultCell = screenConstants.idxDefaultCell
+        let idxDeleteCell = screenConstants.idxDeleteCell
+        let indexPathDefault = NSIndexPath.init(forRow: idxDefaultCell, inSection: idxAccountActionsGroup)
+        let indexPathDelete = NSIndexPath.init(forRow: idxDeleteCell, inSection: idxAccountActionsGroup)
+        
         self.accountInformation?.isDefault = true
         self.viewDidLoad()
-        self.tableView.reloadData()
+        self.tableView.reloadRowsAtIndexPaths(
+            [indexPathDefault, indexPathDelete],
+            withRowAnimation: UITableViewRowAnimation.Fade
+        )
     }
     
     func presentViewController(vc: UIViewController) {
@@ -353,8 +361,13 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
             self.selectedCountryIdentifier = identifier
         }
         let currencyString: String = self.getCurrencyStringWithIdentifier()
+        let idxAccountInfoGroup = screenConstants.idxAccountInfoGroup
+        let idxCurrencyCell = screenConstants.idxCurrencyCell
+        let indexPath = NSIndexPath.init(forRow: idxCurrencyCell, inSection: idxAccountInfoGroup)
         
-        (self.addAccountTable[screenConstants.idxAccountInfoGroup][screenConstants.idxCurrencyCell] as AddEditAccountCell).setCellPlaceholder(currencyString)
-        self.tableView.reloadData()
+        (self.addAccountTable[idxAccountInfoGroup][idxCurrencyCell] as AddEditAccountCell)
+            .setCellPlaceholder(currencyString)
+        
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
 }

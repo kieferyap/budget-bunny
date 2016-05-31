@@ -125,7 +125,6 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setDefault() {
-        // TO-DO: Visual bug when the button is pressed. I wonder if we can make it so that it fades instead...
         BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
