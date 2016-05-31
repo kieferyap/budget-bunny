@@ -140,7 +140,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
                                 object.setValue(true, forKey: ModelConstants.Account.isDefault)
                             }
                                 
-                                // Else, if the element is the previously default account, set isDefault to false.
+                            // Else, if the element is the previously default account, set isDefault to false.
                             else if object.valueForKey(ModelConstants.Account.isDefault) as! Bool == true {
                                 object.setValue(false, forKey: ModelConstants.Account.isDefault)
                             }
@@ -159,29 +159,14 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
-                let alertController = UIAlertController.init(
-                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE),
-                    message: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE),
-                    preferredStyle: UIAlertControllerStyle.ActionSheet
-                )
-                let deleteAction = UIAlertAction.init(
-                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
-                    style: UIAlertActionStyle.Destructive,
-                    handler: { (UIAlertAction) in
+                let alertController = AccountUtils.accountDeletionPopup({
+                    BunnyUtils.keyExistsForCellSettings(self.model!, key: self.constants.keyManagedObject) { (object) in
                         let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
                         activeRecord.deleteObject(object as! NSManagedObject, completion: {
                             self.delegate?.popViewController()
                         })
                     }
-                )
-                let cancelAction = UIAlertAction.init(
-                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
-                    style: UIAlertActionStyle.Cancel,
-                    handler: nil
-                )
-                
-                alertController.addAction(deleteAction)
-                alertController.addAction(cancelAction)
+                })
                 self.delegate?.presentViewController(alertController)
             }
         })
