@@ -68,15 +68,36 @@ class AccountsTableViewController: UITableViewController {
         
         // If the account is not a default account
         if !account.isDefault {
+            
             // Set the delete button
             let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
                 
-                let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
-                model.deleteObject(account.accountObject, completion: {
-                    self.accountTable.removeAtIndex(row)
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                })
+                let alertController = UIAlertController.init(
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE),
+                    message: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE),
+                    preferredStyle: UIAlertControllerStyle.ActionSheet
+                )
+                let deleteAction = UIAlertAction.init(
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
+                    style: UIAlertActionStyle.Destructive,
+                    handler: { (UIAlertAction) in
+                        let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                        model.deleteObject(account.accountObject, completion: {
+                            self.accountTable.removeAtIndex(row)
+                            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                        })
+                    }
+                )
+                let cancelAction = UIAlertAction.init(
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
+                    style: UIAlertActionStyle.Cancel,
+                    handler: nil
+                )
                 
+                alertController.addAction(deleteAction)
+                alertController.addAction(cancelAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                                
                 //TO-DO: Remove all transactions that are involved with the account
             }
             

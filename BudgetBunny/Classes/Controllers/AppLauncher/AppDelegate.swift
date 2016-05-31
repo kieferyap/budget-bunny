@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         let environment = NSProcessInfo.processInfo().environment;
-        if environment["isTesting"] == "1" {
-            let model = BunnyModel.init(tableName: "Account")
+        if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
+            let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
             model.deleteAllObjects()
         }
         

@@ -9,6 +9,14 @@
 import UIKit
 import CoreData
 
+protocol AddEditAccountDelegate: class {
+    func pushCurrencyViewController()
+    func popViewController()
+    func setAsDefault()
+    func presentViewController(vc: UIViewController)
+    func setSelectedCurrencyIdentifier(identifier: String)
+}
+
 class AddEditAccountTableViewController: UITableViewController, UITextFieldDelegate {
 
     var addAccountTable:[[AddEditAccountCell]] = [[]]
@@ -287,9 +295,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
         
         cell.setAccountModel(cellItem)
-        cell.pushDelegate = self
-        cell.popDelegate = self
-        cell.setDefaultDelegate = self
+        cell.delegate = self
         
         return cell
     }
@@ -304,9 +310,8 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     }
 }
 
-// Just a heads up: this assumes that the only type of screen to be pushed after the current screen is the
-// currency selection view controller; which holds true, for now. TO-DO: Move to UIViewController+Bunnies?
-extension AddEditAccountTableViewController: PushViewControllerDelegate {
+extension AddEditAccountTableViewController: AddEditAccountDelegate {
+    
     func pushCurrencyViewController() {
         let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
         let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.currencyPickerTable)
@@ -314,29 +319,27 @@ extension AddEditAccountTableViewController: PushViewControllerDelegate {
         destinationViewController.delegate = self
         self.navigationController?.pushViewController(destinationViewController, animated: true)
     }
-}
-
-extension AddEditAccountTableViewController: PopViewControllerDelegate {
+    
     func popViewController() {
         self.navigationController?.popViewControllerAnimated(true)
     }
-}
 
-extension AddEditAccountTableViewController: SetAsDefaultDelegate {
     func setAsDefault() {
         self.accountInformation?.isDefault = true
         self.viewDidLoad()
         self.tableView.reloadData()
     }
-}
-
-extension AddEditAccountTableViewController: CurrencySelectionDelegate {
+    
+    func presentViewController(vc: UIViewController) {
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
     func setSelectedCurrencyIdentifier(identifier: String) {
         if identifier != "" {
             self.selectedCountryIdentifier = identifier
         }
         let currencyString: String = self.getCurrencyStringWithIdentifier()
-
+        
         (self.addAccountTable[screenConstants.idxAccountInfoGroup][screenConstants.idxCurrencyCell] as AddEditAccountCell).setCellPlaceholder(currencyString)
         self.tableView.reloadData()
     }

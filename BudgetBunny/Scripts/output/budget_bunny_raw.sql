@@ -103,3 +103,8 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 
 UPDATE localizable_words SET localization_en = 'Set as Default' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SET_DEFAULT', 'Set\ndefault', '[Not localized yet]', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WARNING_DELETE_ACCOUNT_TITLE', 'Warning: This action cannot be undone.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WARNING_DELETE_ACCOUNT_MESSAGE', 'The account, and all its associated transactions will be deleted. Are you sure?', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_CANCEL', 'Cancel', '[Not localized yet]', '[Not localized yet]');
+

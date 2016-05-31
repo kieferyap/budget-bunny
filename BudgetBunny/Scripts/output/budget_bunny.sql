@@ -97,34 +97,34 @@ ALTER TABLE localizable_words OWNER TO kiefer;
 --
 
 COPY features (feature_id, requirement_key, description, is_bug, inserted_on) FROM stdin;
-1	GEN-0001	Create single view app, project structure.	f	2016-05-01 19:45:48.613827
-2	GEN-0002	Core data	f	2016-05-01 19:45:48.650281
-3	GEN-0003	Scripts for localization, images, screen constants, cell identifiers	f	2016-05-01 19:45:48.653613
-4	GEN-0004	Application icon	f	2016-05-01 19:45:48.657628
-5	GEN-0005	LaTeX document	f	2016-05-01 19:45:48.659673
-6	GEN-0006	Unit testing and UI testing on Git	f	2016-05-01 19:45:48.662047
-7	GEN-0007	Storyboard - tabs and screens	f	2016-05-01 19:45:48.66453
-8	ACC-0001	Add new account screen	f	2016-05-01 19:45:48.66708
-9	ACC-0002	Account display screen	f	2016-05-01 19:45:48.669069
-10	ACC-0003	Edit account screen	f	2016-05-01 19:45:48.712514
-11	BUD-0001	Add new budget screen	f	2016-05-01 19:45:48.71517
-12	BUD-0002	Budget display screen	f	2016-05-01 19:45:48.717503
-13	BUD-0003	Budget calculation - monthly, weekly, daily	f	2016-05-01 19:45:48.720231
-14	BUD-0004	Budget editing	f	2016-05-01 19:45:48.722133
-15	BUD-0005	Budget category editing	f	2016-05-01 19:45:48.724232
-16	DSH-0001	Posting a new transaction (Post, Amount, Notes)	f	2016-05-01 19:45:48.7277
-17	DSH-0002	Posting a new transaction (Type, Category/Subcategory)	f	2016-05-01 19:45:48.730651
-18	DSH-0003	Dashboard Account Display, Spent Today, and Transaction List	f	2016-05-01 19:45:48.733641
-19	STN-0001	Settings screen	f	2016-05-01 19:45:48.811393
-20	RCD-0001	Calendar Display	f	2016-05-01 19:45:48.814644
-21	RCD-0002	Calendar Monthly Navigation	f	2016-05-01 19:45:48.817038
-22	RCD-0003	Calendar Yearly/Monthly Switching	f	2016-05-01 19:45:48.81947
-23	RCD-0004	Calendar Yearly Navigation	f	2016-05-01 19:45:48.821763
-24	RCD-0005	Data: Total	f	2016-05-01 19:45:48.823611
-25	RCD-0006	Data: Transactions	f	2016-05-01 19:45:48.825624
-26	RCD-0007	Data: Graphs	f	2016-05-01 19:45:48.827447
-27	RCD-0008	Targets: New Target	f	2016-05-01 19:45:48.829423
-28	RCD-0009	Targets: Display Target	f	2016-05-01 19:45:49.688233
+1	GEN-0001	Create Single View App, Project Structure	f	2016-04-07 15:05:20.809082
+2	GEN-0002	Core Data	f	2016-04-07 15:05:20.811046
+3	GEN-0003	Scripts for Localization, Images, Screen Constants, Cell Identifiers	f	2016-04-07 15:05:20.813123
+4	GEN-0004	Application Icon	f	2016-04-07 15:05:20.817772
+5	GEN-0005	LaTeX Document	f	2016-04-07 15:05:20.819195
+6	GEN-0006	Unit Testing and UI Testing on Git	f	2016-04-07 15:05:20.820827
+7	GEN-0007	Storyboard -- tabs and screens	f	2016-04-07 15:05:20.822396
+8	ACC-0001	Add New Account Screen	f	2016-04-07 15:05:29.876237
+9	ACC-0002	Account Display Screen	f	2016-04-07 15:05:29.878102
+10	ACC-0003	Edit Account Screen	f	2016-04-07 15:05:29.879729
+11	BUD-0001	Add New Budget Screen	f	2016-04-07 15:05:29.881611
+12	BUD-0002	Budget Display Screen	f	2016-04-07 15:05:29.883045
+13	BUD-0003	Budget Calculation -- Monthly, Weekly, Daily	f	2016-04-07 15:05:29.884516
+14	BUD-0004	Budget Editing	f	2016-04-07 15:05:29.885677
+15	BUD-0005	Budget Category Editing	f	2016-04-07 15:05:29.887012
+16	DSH-0001	Posting a new transaction (Post, Amount, Notes)	f	2016-04-07 15:05:29.888922
+17	DSH-0002	Posting a new transaction (Type, Category/Subcategory)	f	2016-04-07 15:05:29.976284
+18	DSH-0003	Dashboard Account Display, Spent Today, and Transaction List	f	2016-04-07 15:05:29.978551
+19	STN-0001	Settings screen	f	2016-04-07 15:05:29.980151
+20	RCD-0001	Calendar Display	f	2016-04-07 15:05:29.983488
+21	RCD-0002	Calendar Monthly Navigation	f	2016-04-07 15:05:29.984826
+22	RCD-0003	Calendar Yearly/Monthly Switching	f	2016-04-07 15:05:29.986116
+23	RCD-0004	Calendar Yearly Navigation	f	2016-04-07 15:05:29.987309
+24	RCD-0005	Data: Total	f	2016-04-07 15:05:29.988329
+25	RCD-0006	Data: Transactions	f	2016-04-07 15:05:30.075898
+26	RCD-0007	Data: Graphs	f	2016-04-07 15:05:30.077332
+27	RCD-0008	Targets: New Target	f	2016-04-07 15:05:30.078858
+28	RCD-0009	Targets: Display Target	f	2016-04-07 15:05:30.080395
 \.
 
 
@@ -140,35 +140,37 @@ SELECT pg_catalog.setval('features_seq', 28, true);
 --
 
 COPY localizable_words (localizable_word_id, wording_key, localization_en, localization_jp, localization_zh, inserted_on) FROM stdin;
-1	MENULABEL_ACCOUNT	Account	アカウント	帐户	2016-05-01 19:45:58.215002
-2	MENULABEL_ADD_ACCOUNT	Add New Account	追加	新帐户	2016-05-01 19:45:58.256828
-3	MENULABEL_CURRENCY_PICKER	Currency	通貨	货币	2016-05-01 19:45:58.260746
-4	LABEL_NAME	Account Name	アカウント名	货币的名称	2016-05-01 19:45:58.26445
-5	TEXTFIELD_NAME_PLACEHOLDER	My Wallet	私の財布	我的钱包	2016-05-01 19:45:58.26876
-6	LABEL_CURRENCY	Currency	通貨	货币	2016-05-01 19:45:58.272206
-7	LABEL_STARTING_BALANCE	Starting Balance	開始残高	起始余额	2016-05-01 19:45:58.313389
-8	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-05-01 19:45:58.317714
-9	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-05-01 19:45:58.32213
-10	LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION	The default account to use for everyday transactions	毎日に使うアカウント	毎天用的帐户	2016-05-01 19:45:58.327688
-11	LABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
-12	BUTTON_DONE	Done	完了	完成	2016-05-01 19:46:00.824602
-13	ERRORLABEL_ACCOUNT_NAME_TOO_LONG	Error: the name of the account must not exceed 50 characters.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.213004
-15	LABEL_OK	OK	OK	OK	2016-05-01 19:58:59.708225
-16	ERRORLABEL_ERROR_TITLE	Error	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 20:29:22.122071
-14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and initial amount must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.219882
-17	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	[Not localizaed yet]	[Not localizaed yet]	2016-05-10 01:04:25.576925
-18	BUTTON_DELETE	Delete	削除	[Not localized yet]	2016-05-15 16:44:05.227482
-19	LABEL_DEFAULT	DEFAULT	デフォルト	[Not localized yet]	2016-05-15 20:54:52.783206
-20	LABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.711997
-21	BUTTON_SAVE	Save	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.958043
-23	BUTTON_DELETE_ACCOUNT	Delete account	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.968125
-24	LABEL_ACCOUNT_INFO	Information	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.972225
-25	LABEL_ACCOUNT_ACTIONS	Actions	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.976371
-26	LABEL_CURRENT_AMOUNT	Current amount	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
-27	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	[Not localized yet]	[Not localized yet]	2016-05-21 21:22:39.38273
-28	BUTTON_VIEW	View	[Not localized yet]	[Not localized yet]	2016-05-28 16:58:29.215243
-22	BUTTON_SET_AS_DEFAULT	Set as Default	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.963768
-29	BUTTON_SET_DEFAULT	Set\\ndefault	[Not localized yet]	[Not localized yet]	2016-05-29 17:17:59.750267
+3	MENULABEL_ACCOUNT	Account	アカウント	帐户	2016-04-26 14:10:39.122605
+4	MENULABEL_ADD_ACCOUNT	Add New Account	追加	新帐户	2016-04-26 14:10:39.173172
+5	MENULABEL_CURRENCY_PICKER	Currency	通貨	货币	2016-04-26 14:10:39.175402
+6	LABEL_NAME	Account Name	アカウント名	货币的名称	2016-04-26 14:10:39.177616
+7	TEXTFIELD_NAME_PLACEHOLDER	My Wallet	私の財布	我的钱包	2016-04-26 14:10:39.179932
+8	LABEL_CURRENCY	Currency	通貨	货币	2016-04-26 14:10:39.181916
+9	LABEL_STARTING_BALANCE	Starting Balance	開始残高	起始余额	2016-04-26 14:10:39.222807
+10	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-04-26 14:10:39.225605
+11	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-04-26 14:10:39.228502
+12	LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION	The default account to use for everyday transactions	毎日に使うアカウント	毎天用的帐户	2016-04-26 14:10:39.232309
+13	LABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-31 11:22:49.822924
+14	BUTTON_DONE	Done	完了	完成	2016-05-31 11:22:49.906702
+17	ERRORLABEL_ERROR_TITLE	Error	[Not localizaed yet]	[Not localizaed yet]	2016-05-31 11:22:49.917326
+18	LABEL_OK	OK	OK	OK	2016-05-31 11:22:49.922245
+15	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and initial amount must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-31 11:22:49.910952
+16	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	[Not localizaed yet]	[Not localizaed yet]	2016-05-31 11:22:49.914506
+19	BUTTON_DELETE	Delete	削除	[Not localized yet]	2016-05-31 11:22:49.961696
+20	LABEL_DEFAULT	DEFAULT	デフォルト	[Not localized yet]	2016-05-31 11:22:49.963989
+21	LABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.021745
+22	BUTTON_SAVE	Save	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.024915
+24	BUTTON_DELETE_ACCOUNT	Delete account	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.030863
+25	LABEL_ACCOUNT_INFO	Information	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.033551
+26	LABEL_ACCOUNT_ACTIONS	Actions	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.036227
+27	LABEL_CURRENT_AMOUNT	Current amount	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.123935
+28	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.127694
+29	BUTTON_VIEW	View	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.131815
+23	BUTTON_SET_AS_DEFAULT	Set as Default	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.027973
+30	BUTTON_SET_DEFAULT	Set\\ndefault	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.135839
+31	LABEL_WARNING_DELETE_ACCOUNT_TITLE	Warning: This action cannot be undone.	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.224483
+32	LABEL_WARNING_DELETE_ACCOUNT_MESSAGE	The account, and all its associated transactions will be deleted. Are you sure?	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.228509
+33	BUTTON_CANCEL	Cancel	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.231106
 \.
 
 
@@ -176,7 +178,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 29, true);
+SELECT pg_catalog.setval('localizable_words_seq', 33, true);
 
 
 --

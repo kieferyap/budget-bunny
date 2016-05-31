@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol CurrencySelectionDelegate: class {
-    func setSelectedCurrencyIdentifier(identifier: String)
-}
-
 class CurrencyPickerTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var currencyTable: NSArray = []
@@ -20,7 +16,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
     var selectedCountryIdentifier: String = ""
     let searchController = UISearchController(searchResultsController: nil)
     let constants = ScreenConstants.Currency.self
-    weak var delegate:CurrencySelectionDelegate?
+    weak var delegate:AddEditAccountDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
