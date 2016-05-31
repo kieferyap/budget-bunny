@@ -32,6 +32,7 @@ class AccountScreen: BaseScreen {
     func swipeCellLeftAndDeleteWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
         XCUIApplication().tables.buttons["Delete"].tap()
+        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
     }
     
     func assertCellTextWithIndex(index: UInt, textToFind: String) {

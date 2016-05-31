@@ -26,7 +26,7 @@
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "The account name already exists.";
 "BUTTON_VIEW" = "View";
 "BUTTON_SET_AS_DEFAULT" = "Set as Default";
-"BUTTON_SET_DEFAULT" = "Set\ndefault";
 "LABEL_WARNING_DELETE_ACCOUNT_TITLE" = "Warning: This action cannot be undone.";
 "LABEL_WARNING_DELETE_ACCOUNT_MESSAGE" = "The account, and all its associated transactions will be deleted. Are you sure?";
 "BUTTON_CANCEL" = "Cancel";
+"BUTTON_SET_DEFAULT" = "Set\nDefault";

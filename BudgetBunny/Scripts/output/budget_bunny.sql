@@ -167,10 +167,10 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 28	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.127694
 29	BUTTON_VIEW	View	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.131815
 23	BUTTON_SET_AS_DEFAULT	Set as Default	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.027973
-30	BUTTON_SET_DEFAULT	Set\\ndefault	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.135839
 31	LABEL_WARNING_DELETE_ACCOUNT_TITLE	Warning: This action cannot be undone.	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.224483
 32	LABEL_WARNING_DELETE_ACCOUNT_MESSAGE	The account, and all its associated transactions will be deleted. Are you sure?	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.228509
 33	BUTTON_CANCEL	Cancel	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.231106
+30	BUTTON_SET_DEFAULT	Set\\nDefault	[Not localized yet]	[Not localized yet]	2016-05-31 11:22:50.135839
 \.
 
 
