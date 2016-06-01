@@ -111,4 +111,4 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DEFAULT_ACCOUNT_MESSAGE', 'This is the default account.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DEFAULT_ACCOUNT_DESCRIPTION', 'Default accounts cannot be deleted.', '[Not localized yet]', '[Not localized yet]');
 
-
+UPDATE localizable_words SET localization_en = 'Set\nDefault' WHERE wording_key = 'BUTTON_SET_DEFAULT';

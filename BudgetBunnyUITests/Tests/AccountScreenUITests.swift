@@ -43,6 +43,7 @@ class AddAccountUITests: XCTestCase {
         ScreenManager.tapAccountsTab(self.app)
     }
     
+    // Successfully adds an account given the parameters
     func addAccountSuccess(name: String, amount: String, currencyName: String, isDefault: Bool) {
         self.proceedToAddAccountScreen()
         
@@ -68,6 +69,7 @@ class AddAccountUITests: XCTestCase {
     
     // MARK: ACC-0001 Test Cases
     
+    // Tap each cell to execute its functions.
     func testCellExistence() {
         self.proceedToAddAccountScreen()
         
@@ -75,8 +77,12 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.tapCurrencyCell()
+        
+        // TO-DO: Tap the cell, instead of the textfields
     }
     
+    // Type anything on both the Account Name, and Initial Amount Textfields. 
+    // Then, tap outside. Both textfields must contain the whatever has been typed.
     func testAddAccountTextFields() {
         self.proceedToAddAccountScreen()
         
@@ -95,6 +101,7 @@ class AddAccountUITests: XCTestCase {
     
     }
     
+    // Confirm that the Account Name textfield has a 25 character limit
     func testAddAccountTextFieldLength() {
         self.proceedToAddAccountScreen()
         
@@ -108,6 +115,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(length25)
     }
     
+    // Confirm that the Initial Amount textfield has a 22 character limit.
     func testAmountTextFieldLength() {
         self.proceedToAddAccountScreen()
         
@@ -121,6 +129,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(length15)
     }
     
+    // Confirm that users cannot add two decimal points in the Amount field 
     func testMultiDecimal() {
         self.proceedToAddAccountScreen()
         
@@ -134,6 +143,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(singleDecimal)
     }
     
+    // Confirm that a 0 is automatically added in the front.
     func testDecimalFormatting() {
         self.proceedToAddAccountScreen()
 
@@ -141,7 +151,6 @@ class AddAccountUITests: XCTestCase {
         let formattedDecimal = "$ 0.25"
         let accountName = "test"
         
-        // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(decimalOnly)
@@ -156,6 +165,9 @@ class AddAccountUITests: XCTestCase {
         accountScreen.assertCellTextWithIndex(0, textToFind: formattedDecimal)
     }
     
+    
+    // From the Add Account Screen, tap the Currency Cell, and return. The currency cell must still contain the default currency.
+    // From the Add Account Screen, tap the Currency Cell, and search for USD. Tap it and return. The currency cell must contain the currency in USD
     func testCurrencyCell() {
         self.proceedToAddAccountScreen()
         
@@ -181,6 +193,8 @@ class AddAccountUITests: XCTestCase {
         // TO-DO: I can't get the type-search-bar-tap-first-element to work because it apparently couldn't find the element after searching. I'll look into this in depth next time.
     }
     
+    // For the next two tests: 
+    // An error should appear when the Account Name or the Initial Amount is empty, and the Done button was pressed.
     func testErrorScenario01() {
         self.proceedToAddAccountScreen()
         
@@ -207,6 +221,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapErrorAlertOkButton()
     }
     
+    // Confirm that we are able to successfully add a new account
     func testSuccess() {
         // Successfully add a non-default account
         self.addAccountSuccess("test", amount: "120", currencyName: "Japan", isDefault: false)
@@ -218,6 +233,7 @@ class AddAccountUITests: XCTestCase {
         accountScreen.assertCellIsDefaultAccount(1)
     }
     
+    // Confirm that an error occurs if we add two accounts of the same name
     func testExistingAccountError() {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         self.addAccountSuccess("test", amount: "123456789012.34", currencyName: "Japan", isDefault: false)
@@ -225,6 +241,8 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapErrorAlertOkButton()
     }
     
+    // Add a default account. Add another default account.
+    // Confirm that the only default account is the LATEST ACCOUNT that the user specifies as default.
     func testDoubleDefaultAccount() {
         self.addAccountSuccess("test1", amount: "1024", currencyName: "Japan", isDefault: true)
         self.addAccountSuccess("test2", amount: "2048", currencyName: "United Kingdom", isDefault: true)
@@ -234,6 +252,7 @@ class AddAccountUITests: XCTestCase {
         accountScreen.assertCellIsDefaultAccount(1)
     }
     
+    // Confirm that the currency search bar works
     func testSearchBar() {
         self.proceedToAddAccountScreen()
         
@@ -252,6 +271,7 @@ class AddAccountUITests: XCTestCase {
 
     // MARK: ACC-0002 Test Cases
     
+    // Confirm that all the swipe features in the Add Account Screen works
     func testAllAddAccountFeatures() {
         self.addAccountSuccess("test1", amount: "256", currencyName: "Japan", isDefault: false)
         self.addAccountSuccess("test2", amount: "512", currencyName: "United Kingdom", isDefault: false)
@@ -264,6 +284,7 @@ class AddAccountUITests: XCTestCase {
         accountScreen.swipeCellLeftAndViewWithIndex(1)
     }
     
+    // Confirm that tapping an account is possible.
     func testTapAccount() {
         self.addAccountSuccess("test1", amount: "128", currencyName: "Japan", isDefault: false)
         
@@ -271,4 +292,23 @@ class AddAccountUITests: XCTestCase {
         accountScreen.tapCellWithIndex(0)
     }
     
+    // MARK: ACC-0003 Test Cases
+    
+    // Test that editing is possible: when tapping an account, we proceed to the edit screen.
+    // Assert that the currency, account name, and amount are correct (1050 vs 10.50)
+    
+    // Test that the buttons are correct: a default account must have two disabled buttons
+    // while a non-default account must have two tappable icons.
+    
+    // Proceed to the Edit Account Screen and update the account name and initial amount.
+    // Change the currency and head back. Assert that the values displayed are correct.
+    
+    // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
+    // Assert that we pop back to the Accounts Screen with the deleted account removed.
+    
+    // Proceed to the Edit Account Screen with a non-default account. Tap the Set as Default button.
+    // Assert that both buttons have their text changed and are now set as disabled.
+    // Return to the accounts screen and assert that the default account icon has changed.
+    
+    // Change the account and hit Save. Assert that the relevant data has been changed.
 }

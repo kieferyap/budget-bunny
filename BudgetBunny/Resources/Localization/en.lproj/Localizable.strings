@@ -11,9 +11,8 @@
 "LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "The default account to use for everyday transactions";
 "LABEL_LOADING" = "Loading...";
 "BUTTON_DONE" = "Done";
-"ERRORLABEL_ACCOUNT_NAME_TOO_LONG" = "Error: the name of the account must not exceed 50 characters.";
-"LABEL_OK" = "OK";
 "ERRORLABEL_ERROR_TITLE" = "Error";
+"LABEL_OK" = "OK";
 "ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "The name and initial amount must not be left blank.";
 "ERRORLABEL_INTERNAL_ERROR" = "An internal error has occured. Please try again later.";
 "BUTTON_DELETE" = "Delete";
@@ -27,9 +26,9 @@
 "ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "The account name already exists.";
 "BUTTON_VIEW" = "View";
 "BUTTON_SET_AS_DEFAULT" = "Set as Default";
-"BUTTON_SET_DEFAULT" = "Set\ndefault";
-"BUTTON_DEFAULT_ACCOUNT_MESSAGE" = "This is the default account.";
-"BUTTON_DEFAULT_ACCOUNT_DESCRIPTION" = "Default accounts cannot be deleted.";
 "LABEL_WARNING_DELETE_ACCOUNT_TITLE" = "Warning: This action cannot be undone.";
 "LABEL_WARNING_DELETE_ACCOUNT_MESSAGE" = "The account, and all its associated transactions will be deleted. Are you sure?";
 "BUTTON_CANCEL" = "Cancel";
+"BUTTON_SET_DEFAULT" = "Set\nDefault";
+"BUTTON_DEFAULT_ACCOUNT_MESSAGE" = "This is the default account.";
+"BUTTON_DEFAULT_ACCOUNT_DESCRIPTION" = "Default accounts cannot be deleted.";
