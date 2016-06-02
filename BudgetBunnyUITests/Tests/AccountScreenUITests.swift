@@ -294,14 +294,66 @@ class AddAccountUITests: XCTestCase {
     
     // MARK: ACC-0003 Test Cases
     
-    // Test that editing is possible: when tapping an account, we proceed to the edit screen.
-    // Assert that the currency, account name, and amount are correct (1050 vs 10.50)
-    
-    // Test that the buttons are correct: a default account must have two disabled buttons
-    // while a non-default account must have two tappable icons.
-    
-    // Proceed to the Edit Account Screen and update the account name and initial amount.
-    // Change the currency and head back. Assert that the values displayed are correct.
+    // Test that editing is possible, and that the button functionality is correct.
+    // Test that the buttons are correct:
+    func testEditScreenCorrectFields() {
+        let account1 = ["test1", "1050", "Japan", "Japan: JPY (¥)"]
+        let account2 = ["test2", "10.50", "United States", "United States: USD ($)"]
+        let name = 0, amount = 1, country = 2, currencyText = 3
+        let idxDefault: UInt = 0, idxNormal: UInt = 1
+        
+        self.addAccountSuccess(
+            account1[name] ,
+            amount: account1[amount] ,
+            currencyName: account1[country] ,
+            isDefault: true
+        )
+        self.addAccountSuccess(
+            account2[name],
+            amount: account2[amount],
+            currencyName: account2[country],
+            isDefault: false
+        )
+        
+        // When tapping an account, we proceed to the edit screen.
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(idxDefault)
+        
+        // Assert that the currency, account name, and amount are correct (1050 vs 10.50)
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.assertTextFieldEquality(account1[name])
+        addAccountScreen.assertTextFieldEquality(account1[amount])
+        addAccountScreen.assertStaticTextEquality(account1[currencyText])
+        addAccountScreen.returnToAccountScreen()
+        
+        accountScreen.tapCellWithIndex(idxNormal)
+        addAccountScreen.assertTextFieldEquality(account2[name])
+        addAccountScreen.assertTextFieldEquality(account2[amount])
+        addAccountScreen.assertStaticTextEquality(account2[currencyText])
+        addAccountScreen.returnToAccountScreen()
+        
+        // Assert that a default account must have two disabled buttons
+        accountScreen.tapCellWithIndex(idxDefault)
+        addAccountScreen.assertButtonEnabled("This is the default account", isEnabled: false)
+        addAccountScreen.assertButtonEnabled("Default accounts cannot be deleted", isEnabled: false)
+        addAccountScreen.returnToAccountScreen()
+        
+        // while a non-default account must have two tappable icons.
+        accountScreen.tapCellWithIndex(idxNormal)
+        addAccountScreen.assertButtonEnabled("Set as Default", isEnabled: true)
+        addAccountScreen.assertButtonEnabled("Delete account", isEnabled: true)
+        addAccountScreen.returnToAccountScreen()
+        
+        
+        
+        
+        
+        
+        // Proceed to the Edit Account Screen and update the account name and initial amount.
+//        accountScreen.swipeCellLeftAndViewWithIndex(0)
+        
+        // Change the currency and head back. Assert that the values displayed are correct.
+    }
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
     // Assert that we pop back to the Accounts Screen with the deleted account removed.

@@ -51,6 +51,14 @@ class AddAccountScreen: BaseScreen {
         XCTAssertTrue(self.app.staticTexts[key].exists)
     }
     
+    func returnToAccountScreen() {
+        self.app.navigationBars["Add New Account"].buttons["Account"].tap()
+    }
+    
+    func assertButtonEnabled(buttonName: String, isEnabled: Bool) {
+        XCTAssertEqual(self.app.tables.buttons[buttonName].enabled, isEnabled)
+    }
+    
     func tapOutside() {
         self.app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Table).element.tap()
     }
