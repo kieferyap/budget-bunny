@@ -35,6 +35,10 @@ class AccountScreen: BaseScreen {
         XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
     }
     
+    func assertCellCount(count: UInt) {
+        XCTAssertEqual(XCUIApplication().tables.count, count)
+    }
+    
     func assertCellTextWithIndex(index: UInt, textToFind: String) {
         XCTAssertTrue(self.getTableElementAtIndex(index).staticTexts[textToFind].exists)
     }

@@ -14,6 +14,7 @@ class AddAccountUITests: XCTestCase {
     
     /*
       *  Important note! Hardware > Keyboard > Connect Hardware Keyboard must be unchecked.
+      *  Make sure that Auto Correction is turned off
     */
     
     var app = XCUIApplication();
@@ -52,7 +53,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.typeAccountNameTextField(name)
         
         addAccountScreen.tapOutside()
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField(amount)
         
         addAccountScreen.tapCurrencyCell()
@@ -75,7 +76,7 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.tapCurrencyCell()
         
         // TO-DO: Tap the cell, instead of the textfields
@@ -95,7 +96,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(accountName)
         
         addAccountScreen.tapOutside()
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField(initialAmount)
         addAccountScreen.assertTextFieldEquality(initialAmount)
     
@@ -124,7 +125,7 @@ class AddAccountUITests: XCTestCase {
         
         // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField(length30)
         addAccountScreen.assertTextFieldEquality(length15)
     }
@@ -138,7 +139,7 @@ class AddAccountUITests: XCTestCase {
         
         // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField(multiDecimal)
         addAccountScreen.assertTextFieldEquality(singleDecimal)
     }
@@ -152,7 +153,7 @@ class AddAccountUITests: XCTestCase {
         let accountName = "test"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField(decimalOnly)
         
         addAccountScreen.tapOutside()
@@ -215,7 +216,7 @@ class AddAccountUITests: XCTestCase {
         
         // Test 01: Account name is empty
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextField()
+        addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.typeAmountTextField("120")
         addAccountScreen.tapDoneButton()
         addAccountScreen.tapErrorAlertOkButton()
@@ -295,10 +296,10 @@ class AddAccountUITests: XCTestCase {
     // MARK: ACC-0003 Test Cases
     
     // Test that editing is possible, and that the button functionality is correct.
-    // Test that the buttons are correct:
     func testEditScreenCorrectFields() {
         let account1 = ["test1", "1050", "Japan", "Japan: JPY (¥)"]
         let account2 = ["test2", "10.50", "United States", "United States: USD ($)"]
+        let account2New = ["test3", "2010", "United Kingdom"]
         let name = 0, amount = 1, country = 2, currencyText = 3
         let idxDefault: UInt = 0, idxNormal: UInt = 1
         
@@ -318,45 +319,46 @@ class AddAccountUITests: XCTestCase {
         // When tapping an account, we proceed to the edit screen.
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
         accountScreen.tapCellWithIndex(idxDefault)
-        
-        // Assert that the currency, account name, and amount are correct (1050 vs 10.50)
+
+        // Assert that the currency, account name, and amount of the default account are correct
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.assertTextFieldEquality(account1[name])
         addAccountScreen.assertTextFieldEquality(account1[amount])
         addAccountScreen.assertStaticTextEquality(account1[currencyText])
+
+        // Assert that a default account must have two disabled buttons
+        addAccountScreen.assertButtonEnabled("This is the default account.", isEnabled: false)
+        addAccountScreen.assertButtonEnabled("Default accounts cannot be deleted.", isEnabled: false)
         addAccountScreen.returnToAccountScreen()
         
+        // Assert that the currency, account name, and amount of the normal account are correct
         accountScreen.tapCellWithIndex(idxNormal)
         addAccountScreen.assertTextFieldEquality(account2[name])
         addAccountScreen.assertTextFieldEquality(account2[amount])
         addAccountScreen.assertStaticTextEquality(account2[currencyText])
-        addAccountScreen.returnToAccountScreen()
         
-        // Assert that a default account must have two disabled buttons
-        accountScreen.tapCellWithIndex(idxDefault)
-        addAccountScreen.assertButtonEnabled("This is the default account", isEnabled: false)
-        addAccountScreen.assertButtonEnabled("Default accounts cannot be deleted", isEnabled: false)
-        addAccountScreen.returnToAccountScreen()
-        
-        // while a non-default account must have two tappable icons.
-        accountScreen.tapCellWithIndex(idxNormal)
+        // ...while a non-default account must have two tappable icons.
         addAccountScreen.assertButtonEnabled("Set as Default", isEnabled: true)
         addAccountScreen.assertButtonEnabled("Delete account", isEnabled: true)
-        addAccountScreen.returnToAccountScreen()
-        
-        
-        
-        
-        
         
         // Proceed to the Edit Account Screen and update the account name and initial amount.
-//        accountScreen.swipeCellLeftAndViewWithIndex(0)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.clearAndEnterText(account2[name], newText: account2New[name])
+        addAccountScreen.tapAmountTextFieldEditing()
+        addAccountScreen.clearAndEnterText(account2[amount], newText: account2New[amount])
+        addAccountScreen.tapCurrencyCell()
         
-        // Change the currency and head back. Assert that the values displayed are correct.
+        // Tap the currency and head back. Assert that the values displayed are correct.
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName(account2New[country])
+        currencyPickerScreen.tapBackButton()
+        addAccountScreen.assertStaticTextEquality(account2New[name])
+        addAccountScreen.assertStaticTextEquality(account2New[amount])
+        
+        // Tap the delete button.
+        addAccountScreen.tapDeleteButton()
+        accountScreen.assertCellCount(1)        
     }
-    
-    // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
-    // Assert that we pop back to the Accounts Screen with the deleted account removed.
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the Set as Default button.
     // Assert that both buttons have their text changed and are now set as disabled.

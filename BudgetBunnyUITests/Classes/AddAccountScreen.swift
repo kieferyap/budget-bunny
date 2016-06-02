@@ -20,11 +20,15 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapAccountNameTextField() {
-        self.app.tables.textFields["My Wallet"].tap()
+        self.app.tables.staticTexts["Account Name"].tap()
     }
     
-    func tapAmountTextField() {
-        self.app.tables.textFields["100"].tap()
+    func tapAmountTextFieldAdding() {
+        self.app.tables.staticTexts["Starting Balance"].tap()
+    }
+    
+    func tapAmountTextFieldEditing() {
+        self.app.tables.staticTexts["Starting Balance"].tap()
     }
     
     func tapIsDefaultSwitch() {
@@ -40,7 +44,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func typeAmountTextField(input: String) {
-        self.app.tables.textFields["100"].typeText(input)
+        self.app.tables.textFields.elementAtIndex(1).typeText(input)
     }
     
     func assertTextFieldEquality(key: String) {
@@ -57,6 +61,19 @@ class AddAccountScreen: BaseScreen {
     
     func assertButtonEnabled(buttonName: String, isEnabled: Bool) {
         XCTAssertEqual(self.app.tables.buttons[buttonName].enabled, isEnabled)
+    }
+    
+    func tapDeleteButton() {
+        self.tapButton("Delete account")
+        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
+    }
+    
+    func tapButton(buttonName: String) {
+        self.app.tables.buttons[buttonName].tap()
+    }
+    
+    func clearAndEnterText(oldText: String, newText: String) {
+        self.app.tables.textFields[oldText].clearAndEnterText(newText)
     }
     
     func tapOutside() {
