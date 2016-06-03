@@ -15,6 +15,10 @@ class AddAccountScreen: BaseScreen {
         self.app.navigationBars["Add New Account"].buttons["Done"].tap()
     }
     
+    func tapSaveButton() {
+        self.app.navigationBars["Add New Account"].buttons["Save"].tap()
+    }
+    
     func tapErrorAlertOkButton() {
         self.app.alerts["Error"].collectionViews.buttons["OK"].tap()
     }

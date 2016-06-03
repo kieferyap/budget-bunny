@@ -22,6 +22,7 @@
 		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* BunnyModel.swift */; };
+		FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -104,6 +105,7 @@
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
+		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB6CED231CEDE48800FB222E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				FB9CD8B31CB49DB40031E3B8 /* Classes */,
 				FB9CD8B41CB49DB70031E3B8 /* Tests */,
 				FB97C32B1CB4975000C35BC0 /* Info.plist */,
+				FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */,
 			);
 			path = BudgetBunnyUITests;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */,
 				FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */,
 				FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */,
+				FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */,
 				FBBEBF731CDD8411000AE2C9 /* AccountScreen.swift in Sources */,
 				FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */,
 				FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */,
@@ -838,6 +842,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap2.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -852,6 +857,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap2.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -886,6 +892,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap.BudgetBunnyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TEST_TARGET_NAME = BudgetBunny;
 				USES_XCTRUNNER = YES;
 			};
@@ -898,6 +905,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap.BudgetBunnyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TEST_TARGET_NAME = BudgetBunny;
 				USES_XCTRUNNER = YES;
 			};

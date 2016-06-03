@@ -295,74 +295,130 @@ class AddAccountUITests: XCTestCase {
     
     // MARK: ACC-0003 Test Cases
     
-    // Test that editing is possible, and that the button functionality is correct.
-    func testEditScreenCorrectFields() {
-        let account1 = ["test1", "1050", "Japan", "Japan: JPY (¥)"]
-        let account2 = ["test2", "10.50", "United States", "United States: USD ($)"]
-        let account2New = ["test3", "2010", "United Kingdom"]
-        let name = 0, amount = 1, country = 2, currencyText = 3
-        let idxDefault: UInt = 0, idxNormal: UInt = 1
+    // Executed as a starting test case for all ACC-0003 test cases
+    func addTestingAccounts() {
+        self.proceedToAccountTab()
         
         self.addAccountSuccess(
-            account1[name] ,
-            amount: account1[amount] ,
-            currencyName: account1[country] ,
+            TestConstants.Accounts.account1[TestConstants.Accounts.name] ,
+            amount: TestConstants.Accounts.account1[TestConstants.Accounts.amount] ,
+            currencyName: TestConstants.Accounts.account1[TestConstants.Accounts.country] ,
             isDefault: true
         )
         self.addAccountSuccess(
-            account2[name],
-            amount: account2[amount],
-            currencyName: account2[country],
+            TestConstants.Accounts.account2[TestConstants.Accounts.name],
+            amount: TestConstants.Accounts.account2[TestConstants.Accounts.amount],
+            currencyName: TestConstants.Accounts.account2[TestConstants.Accounts.country],
             isDefault: false
         )
+    }
+    
+    // Test that editing is possible: when tapping an account, we proceed to the edit screen.
+    // Confirm that the currency, account name, and amount are correct (1050 vs 10.50)
+    func testEditScreenCorrectFields() {
+        self.addTestingAccounts()
         
         // When tapping an account, we proceed to the edit screen.
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
-        accountScreen.tapCellWithIndex(idxDefault)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxDefault)
 
         // Assert that the currency, account name, and amount of the default account are correct
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.assertTextFieldEquality(account1[name])
-        addAccountScreen.assertTextFieldEquality(account1[amount])
-        addAccountScreen.assertStaticTextEquality(account1[currencyText])
-
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.name])
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.amount])
+        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account1[TestConstants.Accounts.currencyText])
+        addAccountScreen.returnToAccountScreen()
+        
+        // Assert that the currency, account name, and amount of the normal account are correct
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.name])
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.amount])
+        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2[TestConstants.Accounts.currencyText])
+    }
+    
+    // Test that the buttons are correct: a default account must have two disabled buttons
+    // while a non-default account must have two tappable icons.
+    func testEditScreenCorrectButtons() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxDefault)
+        
         // Assert that a default account must have two disabled buttons
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.assertButtonEnabled("This is the default account.", isEnabled: false)
         addAccountScreen.assertButtonEnabled("Default accounts cannot be deleted.", isEnabled: false)
         addAccountScreen.returnToAccountScreen()
         
-        // Assert that the currency, account name, and amount of the normal account are correct
-        accountScreen.tapCellWithIndex(idxNormal)
-        addAccountScreen.assertTextFieldEquality(account2[name])
-        addAccountScreen.assertTextFieldEquality(account2[amount])
-        addAccountScreen.assertStaticTextEquality(account2[currencyText])
-        
         // ...while a non-default account must have two tappable icons.
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         addAccountScreen.assertButtonEnabled("Set as Default", isEnabled: true)
         addAccountScreen.assertButtonEnabled("Delete account", isEnabled: true)
+    }
+    
+    // Proceed to the Edit Account Screen and update the account name and initial amount.
+    // Change the currency and head back. Assert that the values displayed are correct.
+    func testChangeEditScreenFields() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxDefault)
         
         // Proceed to the Edit Account Screen and update the account name and initial amount.
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.clearAndEnterText(account2[name], newText: account2New[name])
+        addAccountScreen.clearAndEnterText(
+            TestConstants.Accounts.account2[TestConstants.Accounts.name],
+            newText: TestConstants.Accounts.account2New[TestConstants.Accounts.name]
+        )
         addAccountScreen.tapAmountTextFieldEditing()
-        addAccountScreen.clearAndEnterText(account2[amount], newText: account2New[amount])
+        addAccountScreen.clearAndEnterText(
+            TestConstants.Accounts.account2[TestConstants.Accounts.amount],
+            newText: TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
         addAccountScreen.tapCurrencyCell()
         
         // Tap the currency and head back. Assert that the values displayed are correct.
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapElementWithCountryName(account2New[country])
+        currencyPickerScreen.tapElementWithCountryName(TestConstants.Accounts.account2New[TestConstants.Accounts.country])
         currencyPickerScreen.tapBackButton()
-        addAccountScreen.assertStaticTextEquality(account2New[name])
-        addAccountScreen.assertStaticTextEquality(account2New[amount])
+        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
+        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
+    }
+    
+    // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
+    // Assert that we pop back to the Accounts Screen with the deleted account removed.
+    func testDeleteButton() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         // Tap the delete button.
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapDeleteButton()
-        accountScreen.assertCellCount(1)        
+        accountScreen.assertCellCount(1)
     }
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the Set as Default button.
     // Assert that both buttons have their text changed and are now set as disabled.
     // Return to the accounts screen and assert that the default account icon has changed.
+    func testSetDefaultButton() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapButton("Set as Default")
+        addAccountScreen.tapSaveButton()
+        
+        accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
+        accountScreen.assertCellIsNotDefaultAccount(TestConstants.Accounts.idxDefault)
+    }
+    
+    func testDeleteTextField() {
+        
+    }
     
     // Change the account and hit Save. Assert that the relevant data has been changed.
 }
