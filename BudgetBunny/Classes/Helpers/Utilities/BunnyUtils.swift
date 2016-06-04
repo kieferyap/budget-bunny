@@ -76,4 +76,10 @@ class BunnyUtils: NSObject {
         return rows
     }
     
+    class func preserveValue(value: NSObject, completion: () -> Void) -> NSObject {
+        let temporaryValue = value
+        completion()
+        return temporaryValue
+    }
+    
 }

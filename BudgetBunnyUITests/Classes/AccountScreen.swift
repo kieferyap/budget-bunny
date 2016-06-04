@@ -21,22 +21,22 @@ class AccountScreen: BaseScreen {
     
     func swipeCellLeftAndSetAsDefaultWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        XCUIApplication().tables.buttons["Set Default"].tap()
+        self.app.tables.buttons["Set Default"].tap()
     }
     
     func swipeCellLeftAndViewWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        XCUIApplication().tables.buttons["View"].tap()
+        self.app.tables.buttons["View"].tap()
     }
     
     func swipeCellLeftAndDeleteWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        XCUIApplication().tables.buttons["Delete"].tap()
-        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
+        self.app.tables.buttons["Delete"].tap()
+        self.app.sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
     }
     
     func assertCellCount(count: UInt) {
-        XCTAssertEqual(XCUIApplication().tables.count, count)
+        XCTAssertEqual(self.app.tables.cells.count, count)
     }
     
     func assertCellTextWithIndex(index: UInt, textToFind: String) {
@@ -60,7 +60,7 @@ class AccountScreen: BaseScreen {
     }
     
     private func getTableElementAtIndex(index: UInt) -> XCUIElement {
-        return XCUIApplication().tables.cells.elementAtIndex(index)
+        return self.app.tables.cells.elementAtIndex(index)
     }
 
 }

@@ -178,7 +178,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         
         // Gather the input values
-        let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxNameCell)
+        let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxNameCell).stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        )
         let accountInitValue = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxAmountCell)
         var isDefaultAccountBool = false
         let accountInitValueFloat = (accountInitValue as NSString).doubleValue
@@ -188,6 +190,11 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         if self.sourceInformation == Constants.SourceInformation.accountNew {
             let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsGroup, row: screenConstants.idxDefaultCell)
             isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
+        }
+            
+        // If we're editing, however, we should just preserve the current value for isDefaultAccount
+        else {
+            isDefaultAccountBool = (self.accountInformation?.isDefault)!
         }
         
         // Set up the error validators
@@ -345,7 +352,9 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         let indexPathDelete = NSIndexPath.init(forRow: idxDeleteCell, inSection: idxAccountActionsGroup)
         
         self.accountInformation?.isDefault = true
-        self.viewDidLoad()
+        self.selectedCountryIdentifier = BunnyUtils.preserveValue(self.selectedCountryIdentifier) {
+            self.viewDidLoad()
+        } as! String
         self.tableView.reloadRowsAtIndexPaths(
             [indexPathDefault, indexPathDelete],
             withRowAnimation: UITableViewRowAnimation.Fade

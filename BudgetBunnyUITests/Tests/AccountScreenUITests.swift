@@ -79,7 +79,9 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapAmountTextFieldAdding()
         addAccountScreen.tapCurrencyCell()
         
-        // TO-DO: Tap the cell, instead of the textfields
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapBackButton()
+        addAccountScreen.tapAllInfoCells()
     }
     
     // Type anything on both the Account Name, and Initial Amount Textfields. 
@@ -116,7 +118,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(length25)
     }
     
-    // Confirm that the Initial Amount textfield has a 22 character limit.
+    // Confirm that the Initial Amount textfield has a 15 character limit.
     func testAmountTextFieldLength() {
         self.proceedToAddAccountScreen()
         
@@ -269,6 +271,12 @@ class AddAccountUITests: XCTestCase {
         currencyPickerScreen.tapSearchBarCancel()
         currencyPickerScreen.tapBackButton()
     }
+    
+    func testTrim() {
+        self.addAccountSuccess("     test1     ", amount: "1024", currencyName: "Japan", isDefault: true)
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.assertCellTextWithIndex(0, textToFind: "test1")
+    }
 
     // MARK: ACC-0002 Test Cases
     
@@ -367,14 +375,15 @@ class AddAccountUITests: XCTestCase {
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.clearAndEnterText(
-            TestConstants.Accounts.account2[TestConstants.Accounts.name],
-            newText: TestConstants.Accounts.account2New[TestConstants.Accounts.name]
+        addAccountScreen.deleteAndEnterAlphanumericText(
+            TestConstants.Accounts.account2New[TestConstants.Accounts.name],
+            deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextFieldEditing()
-        addAccountScreen.clearAndEnterText(
-            TestConstants.Accounts.account2[TestConstants.Accounts.amount],
-            newText: TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
+        addAccountScreen.deleteAndEnterDecimalText(
+            TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
+            deleteDuration: 2.5
+        )
         addAccountScreen.tapCurrencyCell()
         
         // Tap the currency and head back. Assert that the values displayed are correct.
@@ -396,13 +405,14 @@ class AddAccountUITests: XCTestCase {
         // Tap the delete button.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapDeleteButton()
+        sleep(3)
         accountScreen.assertCellCount(1)
     }
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the Set as Default button.
     // Assert that both buttons have their text changed and are now set as disabled.
     // Return to the accounts screen and assert that the default account icon has changed.
-    func testSetDefaultButton() {
+    func testSetDefaultButtonSave() {
         self.addTestingAccounts()
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
@@ -416,9 +426,59 @@ class AddAccountUITests: XCTestCase {
         accountScreen.assertCellIsNotDefaultAccount(TestConstants.Accounts.idxDefault)
     }
     
-    func testDeleteTextField() {
+    // Essentially the same as testSetDefaultButtonSave, but we use the back button instead
+    func testSetDefaultButtonBack() {
+        self.addTestingAccounts()
         
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapButton("Set as Default")
+        addAccountScreen.returnToAccountScreen()
+        
+        accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
+        accountScreen.assertCellIsNotDefaultAccount(TestConstants.Accounts.idxDefault)
     }
     
     // Change the account and hit Save. Assert that the relevant data has been changed.
+    func testEditAccountSave() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.deleteAndEnterAlphanumericText(
+            TestConstants.Accounts.account2New[TestConstants.Accounts.name],
+            deleteDuration: 2.5
+        )
+        addAccountScreen.tapAmountTextFieldEditing()
+        addAccountScreen.deleteAndEnterDecimalText(
+            TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
+            deleteDuration: 2.5
+        )
+        addAccountScreen.tapCurrencyCell()
+        
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName(
+            TestConstants.Accounts.account2New[TestConstants.Accounts.country]
+        )
+        currencyPickerScreen.tapBackButton()
+        addAccountScreen.tapButton("Set as Default")
+        addAccountScreen.tapSaveButton()
+        sleep(3)
+        
+        accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
+        accountScreen.assertCellIsNotDefaultAccount(TestConstants.Accounts.idxDefault)
+        accountScreen.assertCellTextWithIndex(
+            TestConstants.Accounts.idxNormal,
+            textToFind: TestConstants.Accounts.account2New[TestConstants.Accounts.name]
+        )
+        accountScreen.assertCellTextWithIndex(
+            TestConstants.Accounts.idxNormal,
+            textToFind: TestConstants.Accounts.account2New[TestConstants.Accounts.processedCurrency]
+        )
+    }
 }

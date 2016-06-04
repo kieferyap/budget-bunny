@@ -40,7 +40,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapCurrencyCell() {
-        self.app.tables.staticTexts["United States: USD ($)"].tap()
+        self.app.tables.cells.elementAtIndex(2).tap()
     }
     
     func typeAccountNameTextField(input: String) {
@@ -76,12 +76,24 @@ class AddAccountScreen: BaseScreen {
         self.app.tables.buttons[buttonName].tap()
     }
     
-    func clearAndEnterText(oldText: String, newText: String) {
-        self.app.tables.textFields[oldText].clearAndEnterText(newText)
+    func deleteAndEnterDecimalText(newText: String, deleteDuration: Double) {
+        XCUIApplication().keys["Delete"].pressForDuration(deleteDuration)
+        self.app.tables.textFields.elementAtIndex(1).typeText(newText)
+    }
+    
+    func deleteAndEnterAlphanumericText(newText: String, deleteDuration: Double) {
+        XCUIApplication().keys["delete"].pressForDuration(deleteDuration)
+        self.app.tables.textFields.elementAtIndex(0).typeText(newText)
     }
     
     func tapOutside() {
         self.app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Table).element.tap()
+    }
+    
+    func tapAllInfoCells() {
+        self.app.tables.cells.elementAtIndex(0).tap()
+        self.app.tables.cells.elementAtIndex(2).tap()
+        self.app.tables.cells.elementAtIndex(1).tap()
     }
     
 }

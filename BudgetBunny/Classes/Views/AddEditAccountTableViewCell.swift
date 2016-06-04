@@ -73,6 +73,7 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             
         case Constants.CellIdentifiers.addAccountAction:
             self.actionButton.setTitle(fieldText, forState: UIControlState.Normal)
+            self.actionButton.exclusiveTouch = true // I have tried everything. BunnyButton crashes, the category doesn't get called, etc. There is no way to set the exclusiveTouch of all UIButtons to true. Welp. Guess I'll have to set EVERY SINGLE BUTTON'S EXCLUSIVE TOUCH TO TRUE THEN. If I don't, users will be able to press two buttons at once and execute BOTH functions at the same time. (which is actually a pretty cool bug if you think about it. Anyway, this comment is getting too long, so I'll stop here.
             
             BunnyUtils.keyExistsForCellSettings(accountModel, key: constants.keyButtonColor, completion: { (object) in
                 self.actionButton.tintColor = object as! UIColor
