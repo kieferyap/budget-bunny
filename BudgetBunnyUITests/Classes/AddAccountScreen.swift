@@ -40,7 +40,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapCurrencyCell() {
-        self.app.tables.cells.elementAtIndex(2).tap()
+        self.app.tables.cells.elementAtIndex(1).tap()
     }
     
     func typeAccountNameTextField(input: String) {

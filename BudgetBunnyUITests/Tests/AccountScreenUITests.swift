@@ -272,6 +272,7 @@ class AddAccountUITests: XCTestCase {
         currencyPickerScreen.tapBackButton()
     }
     
+    // Confirm that the account name input field is trimmed.
     func testTrim() {
         self.addAccountSuccess("     test1     ", amount: "1024", currencyName: "Japan", isDefault: true)
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
@@ -370,7 +371,7 @@ class AddAccountUITests: XCTestCase {
         self.addTestingAccounts()
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
-        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxDefault)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
@@ -390,8 +391,8 @@ class AddAccountUITests: XCTestCase {
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapElementWithCountryName(TestConstants.Accounts.account2New[TestConstants.Accounts.country])
         currencyPickerScreen.tapBackButton()
-        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
-        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
+        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
     }
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
@@ -480,5 +481,22 @@ class AddAccountUITests: XCTestCase {
             TestConstants.Accounts.idxNormal,
             textToFind: TestConstants.Accounts.account2New[TestConstants.Accounts.processedCurrency]
         )
+    }
+    
+    // Confirm that it is not possible to edit the account and change its name to an existing account name
+    func testMultipleAccountNameEdit() {
+        self.addTestingAccounts()
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
+        
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.deleteAndEnterAlphanumericText(
+            TestConstants.Accounts.account1[TestConstants.Accounts.name],
+            deleteDuration: 2.5
+        )
+        addAccountScreen.tapSaveButton()
+        addAccountScreen.tapErrorAlertOkButton()
     }
 }

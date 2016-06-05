@@ -184,6 +184,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         let accountInitValue = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxAmountCell)
         var isDefaultAccountBool = false
         let accountInitValueFloat = (accountInitValue as NSString).doubleValue
+        var oldName = ""
         
         // If this is a new account, then we should get the isDefault table cell.
         // Edit mode does not have this cell, so. yeah.
@@ -195,6 +196,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         // If we're editing, however, we should just preserve the current value for isDefaultAccount
         else {
             isDefaultAccountBool = (self.accountInformation?.isDefault)!
+            oldName = (self.accountInformation?.accountName)!
         }
         
         // Set up the error validators
@@ -211,20 +213,17 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             objectToValidate: accountInitValue,
             errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
         )
+        let accountnameUniquenessValidator = AttributeUniquenessValidator(
+            objectToValidate: accountNameModel,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME,
+            oldName: oldName
+        )
         
         // Add the error validators
         let validator = Validator()
         validator.addValidator(emptyAccountValidator)
         validator.addValidator(emptyCurrencyValidator)
-        
-        // We need to check for account name uniqueness if we're entering a new account
-        if self.sourceInformation == Constants.SourceInformation.accountNew {
-            let accountnameUniquenessValidator = AttributeUniquenessValidator(
-                objectToValidate: accountNameModel,
-                errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME
-            )
-            validator.addValidator(accountnameUniquenessValidator)
-        }
+        validator.addValidator(accountnameUniquenessValidator)
         
         // Validate the fields
         validator.validate { (errorMessage) in
