@@ -24,7 +24,8 @@ extension UIViewController {
 
     func setTitleLocalizationKey(key: String) {
         let title = BunnyUtils.uncommentedLocalizedString(key)
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController!.view.backgroundColor = UIColor.whiteColor()
+        //self.navigationController?.navigationBar.translucent = false
         self.navigationItem.title = title
     }
     
