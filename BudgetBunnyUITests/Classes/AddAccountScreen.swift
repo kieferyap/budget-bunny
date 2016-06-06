@@ -12,31 +12,48 @@ import XCTest
 class AddAccountScreen: BaseScreen {
     
     func tapDoneButton() {
-        self.app.navigationBars["Add New Account"].buttons["Done"].tap()
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        ].tap()
     }
     
     func tapSaveButton() {
-        self.app.navigationBars["Add New Account"].buttons["Save"].tap()
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_EDIT_ACCOUNT)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
+        ].tap()
     }
     
     func tapErrorAlertOkButton() {
-        self.app.alerts["Error"].collectionViews.buttons["OK"].tap()
+        self.app.alerts[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
+        ].collectionViews.buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
+        ].tap()
     }
     
     func tapAccountNameTextField() {
-        self.app.tables.staticTexts["Account Name"].tap()
+        self.app.tables.staticTexts[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME)
+        ].tap()
     }
     
-    func tapAmountTextFieldAdding() {
-        self.app.tables.staticTexts["Starting Balance"].tap()
-    }
-    
-    func tapAmountTextFieldEditing() {
+    func tapAmountTextField() {
         self.app.tables.cells.elementAtIndex(2).tap()
     }
     
     func tapIsDefaultSwitch() {
-        self.app.tables.cells.switches["Default Account, The default account to use for everyday transactions"].tap()
+        self.app.tables.cells.switches[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT)
+                .stringByAppendingString(", ")
+                .stringByAppendingString(
+                    BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION
+                    )
+            )
+        ].tap()
     }
     
     func tapCurrencyCell() {
@@ -44,7 +61,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func typeAccountNameTextField(input: String) {
-        self.app.tables.textFields["My Wallet"].typeText(input)
+        self.app.tables.textFields.elementAtIndex(0).typeText(input)
     }
     
     func typeAmountTextField(input: String) {
@@ -59,8 +76,20 @@ class AddAccountScreen: BaseScreen {
         XCTAssertTrue(self.app.staticTexts[key].exists)
     }
     
-    func returnToAccountScreen() {
-        self.app.navigationBars["Add New Account"].buttons["Account"].tap()
+    func returnToAccountScreenFromAdd() {
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+        ].tap()
+    }
+    
+    func returnToAccountScreenFromEdit() {
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_EDIT_ACCOUNT)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+        ].tap()
     }
     
     func assertButtonEnabled(buttonName: String, isEnabled: Bool) {
@@ -68,8 +97,13 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapDeleteButton() {
-        self.tapButton("Delete Account")
-        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete Account"].tap()
+        self.tapButton(BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT))
+        
+        XCUIApplication().sheets[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE)
+        ].collectionViews.buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT)
+        ].tap()
     }
     
     func tapButton(buttonName: String) {

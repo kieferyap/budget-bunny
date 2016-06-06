@@ -40,9 +40,9 @@ struct Constants {
         // Navigation bar localization keys
         static let tabBarKeys = [
             "MENULABEL_ACCOUNT",
-            "LABEL_OK",
-            "LABEL_OK",
-            "LABEL_OK"
+            "MENULABEL_BUDGETS",
+            "MENULABEL_DASHBOARD",
+            "MENULABEL_RECORDS"
         ]
     }
     struct Storyboards {

@@ -174,6 +174,10 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 26	LABEL_CURRENT_AMOUNT	Current Balance	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
 23	BUTTON_DELETE_ACCOUNT	Delete Account	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.968125
 29	BUTTON_SET_DEFAULT	Set\\nDefault	[Not localized yet]	[Not localized yet]	2016-05-29 17:17:59.750267
+35	MENULABEL_EDIT_ACCOUNT	Edit Account	[Not localized yet]	[Not localized yet]	2016-06-06 22:47:07.784103
+36	MENULABEL_BUDGETS	Budgets	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.819856
+37	MENULABEL_DASHBOARD	Dashboard	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.82618
+38	MENULABEL_RECORDS	Records	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.830419
 \.
 
 
@@ -181,7 +185,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 34, true);
+SELECT pg_catalog.setval('localizable_words_seq', 38, true);
 
 
 --

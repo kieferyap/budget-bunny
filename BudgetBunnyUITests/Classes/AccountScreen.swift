@@ -12,7 +12,9 @@ import XCTest
 class AccountScreen: BaseScreen {
         
     func tapAddAccountButton() {
-        self.app.navigationBars[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.MENULABEL_ACCOUNT)].buttons["+"].tap()
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+        ].buttons["+"].tap()
     }
     
     func swipeCellLeftWithIndex(index: UInt) {
@@ -21,21 +23,26 @@ class AccountScreen: BaseScreen {
     
     func swipeCellLeftAndSetAsDefaultWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_SET_DEFAULT)].tap()
+        self.app.tables.buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_DEFAULT)
+                .stringByReplacingOccurrencesOfString("\n", withString: " ")
+        ].tap()
     }
     
     func swipeCellLeftAndViewWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_VIEW)].tap()
+        self.app.tables.buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_VIEW)
+        ].tap()
     }
     
     func swipeCellLeftAndDeleteWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_DELETE)].tap()
+        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)].tap()
         self.app.sheets[
-            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE)
         ].collectionViews.buttons[
-            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_DELETE_ACCOUNT)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT)
         ].tap()
     }
     
@@ -52,11 +59,17 @@ class AccountScreen: BaseScreen {
     }
     
     func assertCellIsDefaultAccount(index: UInt) {
-        self.assertCellTextWithIndex(index, textToFind: BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_DEFAULT))
+        self.assertCellTextWithIndex(
+            index,
+            textToFind: BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DEFAULT)
+        )
     }
     
     func assertCellIsNotDefaultAccount(index: UInt) {
-        self.assertCellTextInexistenceWithIndex(index, textToFind: BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_DEFAULT))
+        self.assertCellTextInexistenceWithIndex(
+            index,
+            textToFind: BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DEFAULT)
+        )
     }
     
     func tapCellWithIndex(index: UInt) {

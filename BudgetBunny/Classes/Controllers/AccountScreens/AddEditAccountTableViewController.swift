@@ -27,13 +27,13 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
         
         var accountNameValue = ""
         var initialAmountValue = ""
         var isAccountDefault = false
         var buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
         var startingBalanceKey = StringConstants.LABEL_STARTING_BALANCE
+        var titleKey = StringConstants.MENULABEL_ADD_ACCOUNT
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
         self.addAccountTable = Array.init(count: 2, repeatedValue: [])
         
@@ -46,6 +46,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
             var accountObject: NSManagedObject!
             buttonTitle = "Save"
+            titleKey = StringConstants.MENULABEL_EDIT_ACCOUNT
             
             // accountInformation should never really be nil while editing, so this is just a safety measure.
             if self.accountInformation != nil {
@@ -153,8 +154,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)
         
-        // Done button
+        // Set navigation bar elements
         self.doneButton.title = buttonTitle
+        self.setTitleLocalizationKey(titleKey)
     }
     
     // This method uses the currently selected currency identifier (en_US) to return its information (United States, USD, etc.)

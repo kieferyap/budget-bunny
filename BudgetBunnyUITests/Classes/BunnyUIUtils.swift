@@ -11,7 +11,7 @@ import UIKit
 class BunnyUIUtils: NSObject {
     
     // Returns an uncommented localized string, given the key. The comments are normally used for your localization team, but, well...)
-    class func uncommentedLocalizedString(object: AnyClass, key: String) -> String {
-        return NSLocalizedString(key, bundle: NSBundle.init(forClass: object), comment: "")
+    class func uncommentedLocalizedString(key: String) -> String {
+        return NSLocalizedString(key, bundle: NSBundle.init(forClass: self.classForCoder()), comment: "")
     }
 }

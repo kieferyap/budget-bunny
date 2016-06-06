@@ -33,3 +33,7 @@
 "LABEL_CURRENT_AMOUNT" = "Current Balance";
 "BUTTON_DELETE_ACCOUNT" = "Delete Account";
 "BUTTON_SET_DEFAULT" = "Set\nDefault";
+"MENULABEL_EDIT_ACCOUNT" = "Edit Account";
+"MENULABEL_BUDGETS" = "Budgets";
+"MENULABEL_DASHBOARD" = "Dashboard";
+"MENULABEL_RECORDS" = "Records";

@@ -15,6 +15,7 @@ class AddAccountUITests: XCTestCase {
     /*
       *  Important note! Hardware > Keyboard > Connect Hardware Keyboard must be unchecked.
       *  Make sure that Auto Correction is turned off
+      *  The device's language must be in English
     */
     
     var app = XCUIApplication();
@@ -53,13 +54,13 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.typeAccountNameTextField(name)
         
         addAccountScreen.tapOutside()
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(amount)
         
         addAccountScreen.tapCurrencyCell()
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapElementWithCountryName(currencyName)
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToAdd()
         
         if isDefault {
             addAccountScreen.tapIsDefaultSwitch()
@@ -76,11 +77,11 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.tapCurrencyCell()
         
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToAdd()
         addAccountScreen.tapAllInfoCells()
     }
     
@@ -98,7 +99,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(accountName)
         
         addAccountScreen.tapOutside()
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
         addAccountScreen.assertTextFieldEquality(initialAmount)
     
@@ -127,7 +128,7 @@ class AddAccountUITests: XCTestCase {
         
         // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(length30)
         addAccountScreen.assertTextFieldEquality(length15)
     }
@@ -141,7 +142,7 @@ class AddAccountUITests: XCTestCase {
         
         // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(multiDecimal)
         addAccountScreen.assertTextFieldEquality(singleDecimal)
     }
@@ -155,7 +156,7 @@ class AddAccountUITests: XCTestCase {
         let accountName = "test"
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(decimalOnly)
         
         addAccountScreen.tapOutside()
@@ -184,13 +185,13 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapCurrencyCell()
     
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToAdd()
         addAccountScreen.assertStaticTextEquality(usdCurrency)
         
         // Test 02: Tapping the currency cell and changing the currency should change the cell
         addAccountScreen.tapCurrencyCell()
         currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToAdd()
         addAccountScreen.assertStaticTextEquality(japanCurrency)
         
         // TO-DO: I can't get the type-search-bar-tap-first-element to work because it apparently couldn't find the element after searching. I'll look into this in depth next time.
@@ -218,7 +219,7 @@ class AddAccountUITests: XCTestCase {
         
         // Test 01: Account name is empty
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapAmountTextFieldAdding()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField("120")
         addAccountScreen.tapDoneButton()
         addAccountScreen.tapErrorAlertOkButton()
@@ -269,7 +270,7 @@ class AddAccountUITests: XCTestCase {
         currencyPickerScreen.tapSearchBarClearText()
         currencyPickerScreen.tapSearchBar()
         currencyPickerScreen.tapSearchBarCancel()
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToAdd()
     }
     
     // Confirm that the account name input field is trimmed.
@@ -336,7 +337,7 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.name])
         addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.amount])
         addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account1[TestConstants.Accounts.currencyText])
-        addAccountScreen.returnToAccountScreen()
+        addAccountScreen.returnToAccountScreenFromEdit()
         
         // Assert that the currency, account name, and amount of the normal account are correct
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
@@ -355,14 +356,26 @@ class AddAccountUITests: XCTestCase {
         
         // Assert that a default account must have two disabled buttons
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.assertButtonEnabled("This is the default account.", isEnabled: false)
-        addAccountScreen.assertButtonEnabled("Default accounts cannot be deleted.", isEnabled: false)
-        addAccountScreen.returnToAccountScreen()
+        addAccountScreen.assertButtonEnabled(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_MESSAGE),
+            isEnabled: false
+        )
+        addAccountScreen.assertButtonEnabled(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_DESCRIPTION),
+            isEnabled: false
+        )
+        addAccountScreen.returnToAccountScreenFromEdit()
         
         // ...while a non-default account must have two tappable icons.
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
-        addAccountScreen.assertButtonEnabled("Set as Default", isEnabled: true)
-        addAccountScreen.assertButtonEnabled("Delete Account", isEnabled: true)
+        addAccountScreen.assertButtonEnabled(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT),
+            isEnabled: true
+        )
+        addAccountScreen.assertButtonEnabled(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
+            isEnabled: true
+        )
     }
     
     // Proceed to the Edit Account Screen and update the account name and initial amount.
@@ -380,7 +393,7 @@ class AddAccountUITests: XCTestCase {
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
-        addAccountScreen.tapAmountTextFieldEditing()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.deleteAndEnterDecimalText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
@@ -390,7 +403,7 @@ class AddAccountUITests: XCTestCase {
         // Tap the currency and head back. Assert that the values displayed are correct.
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapElementWithCountryName(TestConstants.Accounts.account2New[TestConstants.Accounts.country])
-        currencyPickerScreen.tapBackButton()
+        currencyPickerScreen.tapBackButtonToEdit()
         addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
         addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
     }
@@ -420,7 +433,9 @@ class AddAccountUITests: XCTestCase {
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapButton("Set as Default")
+        addAccountScreen.tapButton(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
+        )
         addAccountScreen.tapSaveButton()
         
         accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
@@ -435,8 +450,10 @@ class AddAccountUITests: XCTestCase {
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapButton("Set as Default")
-        addAccountScreen.returnToAccountScreen()
+        addAccountScreen.tapButton(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
+        )
+        addAccountScreen.returnToAccountScreenFromEdit()
         
         accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
         accountScreen.assertCellIsNotDefaultAccount(TestConstants.Accounts.idxDefault)
@@ -455,7 +472,7 @@ class AddAccountUITests: XCTestCase {
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
-        addAccountScreen.tapAmountTextFieldEditing()
+        addAccountScreen.tapAmountTextField()
         addAccountScreen.deleteAndEnterDecimalText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
@@ -466,8 +483,10 @@ class AddAccountUITests: XCTestCase {
         currencyPickerScreen.tapElementWithCountryName(
             TestConstants.Accounts.account2New[TestConstants.Accounts.country]
         )
-        currencyPickerScreen.tapBackButton()
-        addAccountScreen.tapButton("Set as Default")
+        currencyPickerScreen.tapBackButtonToEdit()
+        addAccountScreen.tapButton(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
+        )
         addAccountScreen.tapSaveButton()
         sleep(3)
         

@@ -116,4 +116,5 @@ UPDATE localizable_words SET localization_en = 'Set\nDefault' WHERE wording_key 
 UPDATE localizable_words SET localization_en = 'Current Balance' WHERE wording_key = 'LABEL_CURRENT_AMOUNT';
 UPDATE localizable_words SET localization_en = 'Delete Account' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT';
 
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_EDIT_ACCOUNT', 'Edit Account', '[Not localized yet]', '[Not localized yet]');
 
