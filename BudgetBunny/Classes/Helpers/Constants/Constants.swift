@@ -37,8 +37,15 @@ struct Constants {
         static let keySelector = "selector"
         static let keyEnabled = "enabled"
         static let keyButtonColor = "color"
+        // Navigation bar localization keys
+        static let tabBarKeys = [
+            "MENULABEL_ACCOUNT",
+            "LABEL_OK",
+            "LABEL_OK",
+            "LABEL_OK"
+        ]
     }
     struct Storyboards {
         static let mainStoryboard = "Main"
-    }    
+    }
 }

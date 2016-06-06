@@ -9,7 +9,7 @@
         <!--addEditAccount-->
         <scene sceneID="iIT-3l-opr">
             <objects>
-                <tableViewController storyboardIdentifier="AddEditAccountTableViewController" id="tGE-fd-eFe" customClass="AddEditAccountTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddEditAccountTableViewController" hidesBottomBarWhenPushed="YES" id="tGE-fd-eFe" customClass="AddEditAccountTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="fIY-yk-uD0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -572,10 +572,10 @@
             </objects>
             <point key="canvasLocation" x="51" y="884"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Bunny Tab Bar Controller-->
         <scene sceneID="pRY-U3-ZAW">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="05B-qG-Fz3" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="05B-qG-Fz3" customClass="BunnyTabBarController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="M8Z-WQ-sDW">
                         <autoresizingMask key="autoresizingMask"/>

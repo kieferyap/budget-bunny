@@ -69,6 +69,7 @@
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */; };
 		FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */; };
+		FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */; };
 		FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE3F9801CFD404A00C56107 /* AccountUtils.swift */; };
 		FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -158,6 +159,7 @@
 		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
 		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BunnyTextField.swift; path = "Custom Classes/BunnyTextField.swift"; sourceTree = "<group>"; };
+		FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BunnyTabBarController.swift; path = "Custom Classes/BunnyTabBarController.swift"; sourceTree = "<group>"; };
 		FBE3F9801CFD404A00C56107 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUtils.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -358,7 +360,7 @@
 		FB97C3411CB49B5A00C35BC0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FBDF48321D051E5800C9E2D8 /* Custom Classes */,
+				FBDF48321D051E5800C9E2D8 /* Bunnies */,
 				FBE3F9831CFD80DD00C56107 /* Constants */,
 				FBE3F9851CFD80FE00C56107 /* Extensions */,
 				FBE3F9821CFD80CD00C56107 /* Utilities */,
@@ -450,12 +452,13 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		FBDF48321D051E5800C9E2D8 /* Custom Classes */ = {
+		FBDF48321D051E5800C9E2D8 /* Bunnies */ = {
 			isa = PBXGroup;
 			children = (
 				FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */,
+				FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */,
 			);
-			name = "Custom Classes";
+			name = Bunnies;
 			sourceTree = "<group>";
 		};
 		FBE3F9821CFD80CD00C56107 /* Utilities */ = {
@@ -658,6 +661,7 @@
 				FBB238EE1CF984AD0011C59D /* ModelConstants.swift in Sources */,
 				FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */,
 				FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */,
+				FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
