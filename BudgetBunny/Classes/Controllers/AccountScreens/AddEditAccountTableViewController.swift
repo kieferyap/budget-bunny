@@ -29,10 +29,11 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         super.viewDidLoad()
         self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
         
-        var accountNameValue: String = ""
-        var initialAmountValue: String = ""
-        var isAccountDefault: Bool = false
-        var buttonTitle: String = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        var accountNameValue = ""
+        var initialAmountValue = ""
+        var isAccountDefault = false
+        var buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        var startingBalanceKey = StringConstants.LABEL_STARTING_BALANCE
         self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
         self.addAccountTable = Array.init(count: 2, repeatedValue: [])
         
@@ -55,6 +56,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 initialAmountValue = String.init(format: floatFormat, amountDouble)
                 isAccountDefault = (self.accountInformation?.isDefault)!
                 accountObject = (self.accountInformation?.accountObject)!
+                startingBalanceKey = StringConstants.LABEL_CURRENT_AMOUNT
                 
                 self.selectedCountryIdentifier = (self.accountInformation?.currencyIdentifier)!
             }
@@ -131,7 +133,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             cellSettings: [:]
         )
         let initialAmountCell = AddEditAccountCell(
-            fieldKey: StringConstants.LABEL_STARTING_BALANCE,
+            fieldKey: startingBalanceKey,
             placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
             cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
             cellSettings: [

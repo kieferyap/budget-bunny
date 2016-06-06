@@ -362,7 +362,7 @@ class AddAccountUITests: XCTestCase {
         // ...while a non-default account must have two tappable icons.
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         addAccountScreen.assertButtonEnabled("Set as Default", isEnabled: true)
-        addAccountScreen.assertButtonEnabled("Delete account", isEnabled: true)
+        addAccountScreen.assertButtonEnabled("Delete Account", isEnabled: true)
     }
     
     // Proceed to the Edit Account Screen and update the account name and initial amount.

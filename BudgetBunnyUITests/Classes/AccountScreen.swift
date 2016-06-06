@@ -32,7 +32,7 @@ class AccountScreen: BaseScreen {
     func swipeCellLeftAndDeleteWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
         self.app.tables.buttons["Delete"].tap()
-        self.app.sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
+        self.app.sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete Account"].tap()
     }
     
     func assertCellCount(count: UInt) {

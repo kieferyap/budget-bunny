@@ -32,7 +32,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapAmountTextFieldEditing() {
-        self.app.tables.staticTexts["Starting Balance"].tap()
+        self.app.tables.cells.elementAtIndex(2).tap()
     }
     
     func tapIsDefaultSwitch() {
@@ -68,8 +68,8 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapDeleteButton() {
-        self.tapButton("Delete account")
-        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
+        self.tapButton("Delete Account")
+        XCUIApplication().sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete Account"].tap()
     }
     
     func tapButton(buttonName: String) {
