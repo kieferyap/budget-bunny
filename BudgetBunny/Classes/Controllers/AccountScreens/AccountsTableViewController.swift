@@ -182,7 +182,8 @@ class AccountsTableViewController: UITableViewController {
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         segue.destinationViewController.sourceInformation = Constants.SourceInformation.accountNew
-        (segue.destinationViewController as! AddEditAccountTableViewController).accountInformation = nil
+        let destinationViewController = segue.destinationViewController as! AddEditAccountTableViewController
+        destinationViewController.accountInformation = nil
     }
  
 }

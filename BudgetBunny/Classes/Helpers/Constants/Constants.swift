@@ -24,7 +24,28 @@ struct Constants {
         static let addEditTable = "AddEditAccountTableViewController"
         static let currencyPickerTable = "CurrencyPickerTableViewController"
     }
+    struct KeyboardTypes {
+        static let alphanumeric = 0
+        static let decimal = 1
+    }
+    struct AppKeys {
+        // Textfield constants
+        static let keyKeyboardType = "keyboardType"
+        static let keyMaxLength = "maxLength"
+        static let keyTextFieldValue = "value"
+        // Button constants
+        static let keySelector = "selector"
+        static let keyEnabled = "enabled"
+        static let keyButtonColor = "color"
+        // Navigation bar localization keys
+        static let tabBarKeys = [
+            "MENULABEL_ACCOUNT",
+            "LABEL_OK",
+            "LABEL_OK",
+            "LABEL_OK"
+        ]
+    }
     struct Storyboards {
         static let mainStoryboard = "Main"
-    }    
+    }
 }

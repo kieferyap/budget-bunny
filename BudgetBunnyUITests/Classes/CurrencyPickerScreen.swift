@@ -16,7 +16,7 @@ class CurrencyPickerScreen: BaseScreen {
     }
     
     func tapSearchBarCancel() {
-        self.app.buttons["Cancel"].tap()
+        self.app.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_CANCEL)].tap()
     }
     
     func tapSearchBarClearText() {
@@ -24,15 +24,15 @@ class CurrencyPickerScreen: BaseScreen {
     }
     
     func tapBackButton() {
-        self.app.navigationBars["Currency"].buttons["Add New Account"].tap()
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.MENULABEL_CURRENCY_PICKER)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.MENULABEL_ADD_ACCOUNT)
+        ].tap()
     }
     
     func tapElementWithCountryName(countryName: String) {
         self.app.tables.cells.staticTexts[countryName].tap()
-    }
-    
-    func tapFirstElement() {
-        self.app.childrenMatchingType(.Window).elementBoundByIndex(0).tap()
     }
     
     func typeSearchBar(query: String) {

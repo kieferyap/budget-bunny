@@ -76,10 +76,61 @@ class BunnyUtils: NSObject {
         return rows
     }
     
+    // This is used to preserve the value of an object which may be changed over the course of the code
     class func preserveValue(value: NSObject, completion: () -> Void) -> NSObject {
         let temporaryValue = value
         completion()
         return temporaryValue
     }
     
+    // Prepares the textfield. Assumes that each text field has a maxLength, keyboardType, and textValue. Used whenever there is a text field. Returns true if the textfield has been successfully prepared. False, if otherwise.
+    class func prepareTextField(textField: BunnyTextField, placeholderText: String, textColor: UIColor, model: BunnyCell) -> Bool {
+        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
+        textField.textColor = textColor
+        
+        guard let maxLength = model.cellSettings[Constants.AppKeys.keyMaxLength] else {
+            return false
+        }
+        guard let keyboardType = model.cellSettings[Constants.AppKeys.keyKeyboardType] else {
+            return false
+        }
+        guard let textValue = model.cellSettings[Constants.AppKeys.keyTextFieldValue] else {
+            return false
+        }
+        
+        textField.setKeyboardProperties(
+            keyboardType as! Int,
+            maxLength: maxLength as! Int,
+            text: textValue as! String
+        )
+        return true
+    }
+    
+    // Prepares the button.
+    class func prepareButton(button: UIButton, text: String, model: BunnyCell, target: NSObject) -> Bool {
+        button.setTitle(text, forState: UIControlState.Normal)
+        button.exclusiveTouch = true
+        
+        guard let buttonColor = model.cellSettings[Constants.AppKeys.keyButtonColor] else {
+            return false
+        }
+        guard let isButtonEnabled = model.cellSettings[Constants.AppKeys.keyEnabled] else {
+            return false
+        }
+        guard let selectorName = model.cellSettings[Constants.AppKeys.keySelector] else {
+            return false
+        }
+        
+        button.tintColor = buttonColor as! UIColor
+        button.enabled = isButtonEnabled as! Bool
+        
+        if button.enabled {
+            button.addTarget(
+                target,
+                action: Selector(selectorName as! String),
+                forControlEvents: UIControlEvents.TouchUpInside
+            )
+        }
+        return true
+    }
 }

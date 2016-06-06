@@ -19,12 +19,6 @@ struct ScreenConstants {
         static let accountCellHeight = 60.0
         
         static let keyHeight = "height"
-        static let keyIsNumpad = "isKeyboardNumpad"
-        static let keyMaxLength = "maxLength"
-        static let keyTextFieldValue = "value"
-        static let keySelector = "selector"
-        static let keyEnabled = "enabled"
-        static let keyButtonColor = "color"
         static let keyManagedObject = "managedObject"
         
         static let selectorDelete = "deleteAccount"
