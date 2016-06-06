@@ -12,7 +12,7 @@ import XCTest
 class AccountScreen: BaseScreen {
         
     func tapAddAccountButton() {
-        self.app.navigationBars["Account"].buttons["+"].tap()
+        self.app.navigationBars[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.MENULABEL_ACCOUNT)].buttons["+"].tap()
     }
     
     func swipeCellLeftWithIndex(index: UInt) {
@@ -21,18 +21,22 @@ class AccountScreen: BaseScreen {
     
     func swipeCellLeftAndSetAsDefaultWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons["Set Default"].tap()
+        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_SET_DEFAULT)].tap()
     }
     
     func swipeCellLeftAndViewWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons["View"].tap()
+        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_VIEW)].tap()
     }
     
     func swipeCellLeftAndDeleteWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
-        self.app.tables.buttons["Delete"].tap()
-        self.app.sheets["Warning: This action cannot be undone."].collectionViews.buttons["Delete account"].tap()
+        self.app.tables.buttons[BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_DELETE)].tap()
+        self.app.sheets[
+            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE)
+        ].collectionViews.buttons[
+            BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.BUTTON_DELETE_ACCOUNT)
+        ].tap()
     }
     
     func assertCellCount(count: UInt) {
@@ -48,11 +52,11 @@ class AccountScreen: BaseScreen {
     }
     
     func assertCellIsDefaultAccount(index: UInt) {
-        self.assertCellTextWithIndex(index, textToFind: "DEFAULT")
+        self.assertCellTextWithIndex(index, textToFind: BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_DEFAULT))
     }
     
     func assertCellIsNotDefaultAccount(index: UInt) {
-        self.assertCellTextInexistenceWithIndex(index, textToFind: "DEFAULT")
+        self.assertCellTextInexistenceWithIndex(index, textToFind: BunnyUIUtils.uncommentedLocalizedString(self.classForCoder, key: StringConstants.LABEL_DEFAULT))
     }
     
     func tapCellWithIndex(index: UInt) {

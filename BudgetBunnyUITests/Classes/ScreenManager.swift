@@ -13,19 +13,19 @@ import XCTest
 class ScreenManager: NSObject {
     
     class func tapAccountsTab(app: XCUIApplication) {
-        self.tapTab("accounts", app: app)
+        self.tapTab(BunnyUIUtils.uncommentedLocalizedString(self, key: StringConstants.MENULABEL_ACCOUNT), app: app)
     }
     
     class func tapBudgetsTab(app: XCUIApplication) {
-        self.tapTab("budgets", app: app)
+        self.tapTab(BunnyUIUtils.uncommentedLocalizedString(self, key: StringConstants.LABEL_OK), app: app)
     }
     
     class func tapRecordsTab(app: XCUIApplication) {
-        self.tapTab("records", app: app)
+        self.tapTab(BunnyUIUtils.uncommentedLocalizedString(self, key: StringConstants.LABEL_OK), app: app)
     }
     
     class func tapDashboardTab(app: XCUIApplication) {
-        self.tapTab("dashboard", app: app)
+        self.tapTab(BunnyUIUtils.uncommentedLocalizedString(self, key: StringConstants.LABEL_OK), app: app)
     }
     
     class func tapTab(tabName: String, app: XCUIApplication) {
