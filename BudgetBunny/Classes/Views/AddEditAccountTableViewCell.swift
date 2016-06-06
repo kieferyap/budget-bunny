@@ -9,17 +9,16 @@
 import CoreData
 import UIKit
 
-class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
+class AddEditAccountTableViewCell: UITableViewCell {
 
     @IBOutlet weak var field: UILabel!
     @IBOutlet weak var value: UILabel!
-    @IBOutlet weak var textfield: UITextField!
+    @IBOutlet weak var textfield: BunnyTextField!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var accountSwitch: UISwitch!
     var model: AddEditAccountCell?
     var fieldMaxLength: Int = 0
     weak var delegate:AddEditAccountDelegate?
-    let constants = ScreenConstants.AddEditAccount.self
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,29 +36,12 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         switch accountModel.cellIdentifier {
         case Constants.CellIdentifiers.addAccountFieldValue:
             self.field.text = fieldText
-            self.textfield.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
-            self.textfield.textColor = Constants.Colors.darkGray
-            
-            BunnyUtils.keyExistsForCellSettings(accountModel,
-                                                key: constants.keyMaxLength,
-                                                completion: { (object) in
-                self.fieldMaxLength = object as! Int
-                self.textfield.delegate = self
-            })
-            
-            BunnyUtils.keyExistsForCellSettings(accountModel,
-                                                key: constants.keyTextFieldValue,
-                                                completion: { (object) in
-                let textValue = object as? String
-                if textValue != "" {
-                    self.textfield.text = object as? String
-                }
-            })
-            
-            let keyboardType = accountModel.cellSettings[constants.keyIsNumpad]
-            if keyboardType != nil {
-                self.textfield.keyboardType = UIKeyboardType.DecimalPad
-            }
+            BunnyUtils.prepareTextField(
+                self.textfield,
+                placeholderText: placeholderText,
+                textColor: Constants.Colors.darkGray,
+                model: accountModel
+            )
             break
             
         case Constants.CellIdentifiers.addAccountChevron:
@@ -72,22 +54,12 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
             break
             
         case Constants.CellIdentifiers.addAccountAction:
-            self.actionButton.setTitle(fieldText, forState: UIControlState.Normal)
-            self.actionButton.exclusiveTouch = true // I have tried everything. BunnyButton crashes, the category doesn't get called, etc. There is no way to set the exclusiveTouch of all UIButtons to true. Welp. Guess I'll have to set EVERY SINGLE BUTTON'S EXCLUSIVE TOUCH TO TRUE THEN. If I don't, users will be able to press two buttons at once and execute BOTH functions at the same time. (which is actually a pretty cool bug if you think about it. Anyway, this comment is getting too long, so I'll stop here.
-            
-            BunnyUtils.keyExistsForCellSettings(accountModel, key: constants.keyButtonColor, completion: { (object) in
-                self.actionButton.tintColor = object as! UIColor
-            })
-            
-            BunnyUtils.keyExistsForCellSettings(accountModel, key: constants.keyEnabled, completion: { (object) in
-                let isEnabled = object as! Bool
-                self.actionButton.enabled = isEnabled
-                
-                if isEnabled {
-                    let selectorName = self.model!.cellSettings[self.constants.keySelector] as! String
-                    self.actionButton.addTarget(self, action: Selector(selectorName), forControlEvents: UIControlEvents.TouchUpInside)
-                }
-            })
+            BunnyUtils.prepareButton(
+                self.actionButton,
+                text: fieldText,
+                model: accountModel,
+                target: self
+            )
             break
             
         case Constants.CellIdentifiers.addAccountSwitch:
@@ -126,10 +98,10 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setDefault() {
-        BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyEnabled, completion: { (object) in
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
-                BunnyUtils.keyExistsForCellSettings(self.model!, key: self.constants.keyManagedObject) { (object) in
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
                     let managedObject = object as! NSManagedObject
                     let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
                     activeRecord.selectAllObjects({ (fetchedObjects) -> Void in
@@ -156,11 +128,11 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func deleteAccount() {
-        BunnyUtils.keyExistsForCellSettings(self.model!, key: constants.keyEnabled, completion: { (object) in
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
                 let alertController = AccountUtils.accountDeletionPopup({
-                    BunnyUtils.keyExistsForCellSettings(self.model!, key: self.constants.keyManagedObject) { (object) in
+                    BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
                         let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
                         activeRecord.deleteObject(object as! NSManagedObject, completion: {
                             self.delegate?.popViewController()
@@ -191,22 +163,6 @@ class AddEditAccountTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         return returnValue
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let text = textField.text else {
-            return true
-        }
-        
-        let newLength = text.characters.count + string.characters.count - range.length
-        var shouldChangeCharacter = newLength <= self.fieldMaxLength
-        
-        if text.rangeOfString(".") != nil && string == "." {
-            shouldChangeCharacter = false
-        }
-        
-        return shouldChangeCharacter
     }
 
 }

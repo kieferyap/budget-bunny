@@ -71,8 +71,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 placeholder: "",
                 cellIdentifier: Constants.CellIdentifiers.addAccountAction,
                 cellSettings: [
-                    screenConstants.keySelector: screenConstants.selectorSetDefault,
-                    screenConstants.keyEnabled: isKeyEnabled,
+                    Constants.AppKeys.keySelector: screenConstants.selectorSetDefault,
+                    Constants.AppKeys.keyEnabled: isKeyEnabled,
+                    Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen,
                     screenConstants.keyManagedObject: accountObject
                 ]
             )
@@ -82,10 +83,10 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 placeholder: "",
                 cellIdentifier: Constants.CellIdentifiers.addAccountAction,
                 cellSettings: [
-                    screenConstants.keySelector: screenConstants.selectorDelete,
-                    screenConstants.keyEnabled: isKeyEnabled,
-                    screenConstants.keyManagedObject: accountObject,
-                    screenConstants.keyButtonColor: Constants.Colors.dangerColor
+                    Constants.AppKeys.keySelector: screenConstants.selectorDelete,
+                    Constants.AppKeys.keyEnabled: isKeyEnabled,
+                    Constants.AppKeys.keyButtonColor: Constants.Colors.dangerColor,
+                    screenConstants.keyManagedObject: accountObject
                 ]
             )
             
@@ -120,8 +121,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
             cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
             cellSettings: [
-                screenConstants.keyMaxLength: screenConstants.accountNameMaxLength,
-                screenConstants.keyTextFieldValue: accountNameValue
+                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                Constants.AppKeys.keyMaxLength: screenConstants.accountNameMaxLength,
+                Constants.AppKeys.keyTextFieldValue: accountNameValue
             ]
         )
         let currencyCell = AddEditAccountCell(
@@ -135,9 +137,9 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
             cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
             cellSettings: [
-                screenConstants.keyIsNumpad: true,
-                screenConstants.keyMaxLength: screenConstants.initialAmountMaxLength,
-                screenConstants.keyTextFieldValue: initialAmountValue
+                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                Constants.AppKeys.keyMaxLength: screenConstants.initialAmountMaxLength,
+                Constants.AppKeys.keyTextFieldValue: initialAmountValue
             ]
         )
         

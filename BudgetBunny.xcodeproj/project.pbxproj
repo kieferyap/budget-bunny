@@ -68,6 +68,7 @@
 		FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD06A7A1CE4E47200C32672 /* AccountCell.swift */; };
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */; };
+		FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */; };
 		FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE3F9801CFD404A00C56107 /* AccountUtils.swift */; };
 		FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
+		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BunnyTextField.swift; path = "Custom Classes/BunnyTextField.swift"; sourceTree = "<group>"; };
 		FBE3F9801CFD404A00C56107 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUtils.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		FB97C3411CB49B5A00C35BC0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FBDF48321D051E5800C9E2D8 /* Custom Classes */,
 				FBE3F9831CFD80DD00C56107 /* Constants */,
 				FBE3F9851CFD80FE00C56107 /* Extensions */,
 				FBE3F9821CFD80CD00C56107 /* Utilities */,
@@ -445,6 +448,14 @@
 				FB97C3291CB4975000C35BC0 /* LocationUITests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		FBDF48321D051E5800C9E2D8 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */,
+			);
+			name = "Custom Classes";
 			sourceTree = "<group>";
 		};
 		FBE3F9821CFD80CD00C56107 /* Utilities */ = {
@@ -626,6 +637,7 @@
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
 				FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */,
 				FB6CED241CEDE48800FB222E /* Validator.swift in Sources */,
+				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
 				FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
