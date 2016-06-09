@@ -18,7 +18,7 @@ There are plenty of budgeting apps out there, but I'm making my own version beca
 
 ### Project Specification Overview:
 
-- Xcode Version: Xcode 7.3
+- Xcode Version: Xcode 7.3.1
 - Hardware: iPhone/iPad
 - OS: iOS 8.1 - 9.3
 - Supported Languages: English, Japanese, Chinese (Simplified)
