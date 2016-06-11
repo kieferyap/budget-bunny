@@ -84,11 +84,17 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_ERROR_TITLE', 'Error', '[Not localizaed yet]', '[Not localizaed yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_OK', 'OK', 'OK', 'OK');
 
+-- 5/10/2016
 UPDATE localizable_words SET localization_en = 'The name and initial amount must not be left blank.' WHERE wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
 UPDATE localizable_words SET localization_en = 'An internal error has occured. Please try again later.' WHERE wording_key = 'ERRORLABEL_INTERNAL_ERROR';
+
+-- 5/15/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DELETE', 'Delete', '削除', '[Not localized yet]');
+
+-- 5/16/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DEFAULT', 'DEFAULT', 'デフォルト', '[Not localized yet]');
 
+-- 5/21/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_NO_ACCOUNTS', 'There are no accounts yet.\n\nTo add a new account, tap the + sign located at the upper right corner of the screen.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SAVE', 'Save', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SET_AS_DEFAULT', 'Set as default', '[Not localized yet]', '[Not localized yet]');
@@ -98,6 +104,7 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_CURRENT_AMOUNT', 'Current amount', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_ACCOUNT_NAME', 'The account name already exists.', '[Not localized yet]', '[Not localized yet]');
 
+-- 5/26/2016
 UPDATE localizable_words SET localization_en = 'Set\nDefault' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_VIEW', 'View', '[Not localized yet]', '[Not localized yet]');
 
@@ -117,4 +124,18 @@ UPDATE localizable_words SET localization_en = 'Current Balance' WHERE wording_k
 UPDATE localizable_words SET localization_en = 'Delete Account' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT';
 
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_EDIT_ACCOUNT', 'Edit Account', '[Not localized yet]', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_BUDGETS', 'Budgets', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_DASHBOARD', 'Dashboard', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_RECORDS', 'Records', '[Not localized yet]', '[Not localized yet]');
+
+-- 06/11/2016
+UPDATE localizable_words SET wording_key = 'BUTTON_DELETE_ACCOUNT_DISABLED' WHERE localizable_word_id = 31;
+UPDATE localizable_words SET wording_key = 'BUTTON_SET_AS_DEFAULT_DISABLED' WHERE localizable_word_id = 30;
+UPDATE localizable_words SET wording_key = 'BUTTON_EDIT' WHERE localizable_word_id = 28;
+UPDATE localizable_words SET localization_en = 'Edit' WHERE localizable_word_id = 28;
+DELETE FROM localizable_words WHERE localizable_word_id = 13;
+UPDATE localizable_words SET wording_key = 'GUIDELABEL_LOADING' WHERE localizable_word_id = 11;
+UPDATE localizable_words SET wording_key = 'GUIDELABEL_NO_ACCOUNTS' WHERE localizable_word_id = 20;
+UPDATE localizable_words SET wording_key = 'LABEL_CURRENT_BALANCE' WHERE localizable_word_id = 26;
 

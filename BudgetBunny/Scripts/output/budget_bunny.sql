@@ -150,34 +150,33 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 8	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-05-01 19:45:58.317714
 9	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-05-01 19:45:58.32213
 10	LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION	The default account to use for everyday transactions	毎日に使うアカウント	毎天用的帐户	2016-05-01 19:45:58.327688
-11	LABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
 12	BUTTON_DONE	Done	完了	完成	2016-05-01 19:46:00.824602
-13	ERRORLABEL_ACCOUNT_NAME_TOO_LONG	Error: the name of the account must not exceed 50 characters.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.213004
 15	LABEL_OK	OK	OK	OK	2016-05-01 19:58:59.708225
 16	ERRORLABEL_ERROR_TITLE	Error	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 20:29:22.122071
 14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and initial amount must not be left blank.	[Not localizaed yet]	[Not localizaed yet]	2016-05-01 19:58:57.219882
 17	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	[Not localizaed yet]	[Not localizaed yet]	2016-05-10 01:04:25.576925
 18	BUTTON_DELETE	Delete	削除	[Not localized yet]	2016-05-15 16:44:05.227482
 19	LABEL_DEFAULT	DEFAULT	デフォルト	[Not localized yet]	2016-05-15 20:54:52.783206
-20	LABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.711997
 21	BUTTON_SAVE	Save	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.958043
 24	LABEL_ACCOUNT_INFO	Information	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.972225
 25	LABEL_ACCOUNT_ACTIONS	Actions	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.976371
 27	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	[Not localized yet]	[Not localized yet]	2016-05-21 21:22:39.38273
-28	BUTTON_VIEW	View	[Not localized yet]	[Not localized yet]	2016-05-28 16:58:29.215243
 22	BUTTON_SET_AS_DEFAULT	Set as Default	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.963768
-30	BUTTON_DEFAULT_ACCOUNT_MESSAGE	This is the default account.	[Not localized yet]	[Not localized yet]	2016-06-01 01:45:23.069191
-31	BUTTON_DEFAULT_ACCOUNT_DESCRIPTION	Default accounts cannot be deleted.	[Not localized yet]	[Not localized yet]	2016-06-01 01:45:23.348516
 32	LABEL_WARNING_DELETE_ACCOUNT_TITLE	Warning: This action cannot be undone.	[Not localized yet]	[Not localized yet]	2016-06-01 01:57:06.664948
 33	LABEL_WARNING_DELETE_ACCOUNT_MESSAGE	The account, and all its associated transactions will be deleted. Are you sure?	[Not localized yet]	[Not localized yet]	2016-06-01 01:57:06.689566
 34	BUTTON_CANCEL	Cancel	[Not localized yet]	[Not localized yet]	2016-06-01 01:57:06.693366
-26	LABEL_CURRENT_AMOUNT	Current Balance	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
 23	BUTTON_DELETE_ACCOUNT	Delete Account	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.968125
 29	BUTTON_SET_DEFAULT	Set\\nDefault	[Not localized yet]	[Not localized yet]	2016-05-29 17:17:59.750267
 35	MENULABEL_EDIT_ACCOUNT	Edit Account	[Not localized yet]	[Not localized yet]	2016-06-06 22:47:07.784103
 36	MENULABEL_BUDGETS	Budgets	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.819856
 37	MENULABEL_DASHBOARD	Dashboard	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.82618
 38	MENULABEL_RECORDS	Records	[Not localized yet]	[Not localized yet]	2016-06-07 01:38:11.830419
+31	BUTTON_DELETE_ACCOUNT_DISABLED	Default accounts cannot be deleted.	[Not localized yet]	[Not localized yet]	2016-06-01 01:45:23.348516
+30	BUTTON_SET_AS_DEFAULT_DISABLED	This is the default account.	[Not localized yet]	[Not localized yet]	2016-06-01 01:45:23.069191
+28	BUTTON_EDIT	Edit	[Not localized yet]	[Not localized yet]	2016-05-28 16:58:29.215243
+11	GUIDELABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
+20	GUIDELABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.711997
+26	LABEL_CURRENT_BALANCE	Current Balance	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
 \.
 
 

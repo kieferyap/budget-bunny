@@ -60,7 +60,7 @@ class AccountsTableViewController: UITableViewController {
         
         let deleteButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
         let setDefaultButtonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_DEFAULT)
-        let viewTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_VIEW)
+        let viewTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_EDIT)
         
         let row = indexPath.row
         let account: AccountCell = self.accountTable[row]
@@ -142,7 +142,7 @@ class AccountsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BunnyUtils.tableRowsWithLoadingTitle(
-            StringConstants.LABEL_NO_ACCOUNTS,
+            StringConstants.GUIDELABEL_NO_ACCOUNTS,
             tableModel: self.accountTable,
             tableView: self.tableView
         ) { () -> Int in

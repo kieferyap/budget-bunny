@@ -57,7 +57,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
                 initialAmountValue = String.init(format: floatFormat, amountDouble)
                 isAccountDefault = (self.accountInformation?.isDefault)!
                 accountObject = (self.accountInformation?.accountObject)!
-                startingBalanceKey = StringConstants.LABEL_CURRENT_AMOUNT
+                startingBalanceKey = StringConstants.LABEL_CURRENT_BALANCE
                 
                 self.selectedCountryIdentifier = (self.accountInformation?.currencyIdentifier)!
             }
@@ -65,8 +65,8 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             // If the account is a default account, then certain actions cannot be used.
             if isAccountDefault {
                 isKeyEnabled = false
-                defaultButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_MESSAGE) 
-                deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_DESCRIPTION)
+                defaultButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT_DISABLED)
+                deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT_DISABLED)
             }
             
             let setDefaultAccountCell = AddEditAccountCell(

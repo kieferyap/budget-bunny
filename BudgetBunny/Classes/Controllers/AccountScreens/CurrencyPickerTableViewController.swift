@@ -60,7 +60,7 @@ class CurrencyPickerTableViewController: UITableViewController, UISearchResultsU
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BunnyUtils.tableRowsWithLoadingTitle(
-            StringConstants.LABEL_LOADING,
+            StringConstants.GUIDELABEL_LOADING,
             tableModel: self.currencyTable,
             tableView: self.tableView
         ) { () -> Int in
