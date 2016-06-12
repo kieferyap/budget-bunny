@@ -1,5 +1,6 @@
 
 \subsection{Adding a New Account}
+\label{sec:add-account}
 
 The Add New Account screen enables users to add a new account by specifying the account's name, currency used and starting balance. The user can also specify whether or not to use this account as the default account to use for everyday transactions.
 
@@ -28,8 +29,9 @@ The Add New Account screen enables users to add a new account by specifying the 
         {Localization Key: MENULABEL\_ADD\_ACCOUNT}
     \row{2. Done Button}
     	{Button}
-        {When tapped, the app checks on whether or not both the Account Name and the Initial Amount have been filled. \doublenewline
-        If both textfields have been filled, then all fields (that is: account name, currency, initial amount, is default) will be saved into the core data. If not, then an error will pop up, prompting the user to have both textfields filled up. \doublenewline
+        {
+        When tapped, the app performs form validation and saves all the account information -- the account name, currency, starting balance, and whether or not to use the account as default -- into the database. \doublenewline
+        For more details on the form validation, please see Section 4.1.2. \doublenewline
         Localization Key: BUTTON\_DONE
         } 
     \row{3. Account Name Cell}
@@ -43,7 +45,7 @@ The Add New Account screen enables users to add a new account by specifying the 
         Localization Keys: LABEL\_NAME, TEXTFIELD\_NAME\_PLACEHOLDER} 
     \row{4. Currency Cell}
     	{Table Cell}
-        {This table cell consists of two label UI elements. \doublenewline
+        {This table cell consists of two UI Label elements. \doublenewline
         
         When this table cell is tapped, the cell will be briefly filled with a light green background, then fade out as the screen transitions to the Currency Selection screen. The default currency depends on the user's device locale.\doublenewline 
         
@@ -54,7 +56,7 @@ The Add New Account screen enables users to add a new account by specifying the 
 	\header{Screen Component}
     	{Type}
         {Description}
-    \row{5. Initial Amount Cell}
+    \row{5. Starting Balance Cell}
     	{Table Cell}
         {This table cell consists of two UI elements: A label and a textfield. \doublenewline
         
@@ -74,7 +76,7 @@ The Add New Account screen enables users to add a new account by specifying the 
     	{Alert Controller}
         {This alert controller has two labels. \doublenewline
         
-        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps "Done".\doublenewline
+        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps \"Done\".\doublenewline
         
         Localization Keys: ERRORLABEL\_ERROR\_TITLE, ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
 }
@@ -87,16 +89,25 @@ The Add New Account screen enables users to add a new account by specifying the 
     	{This error is triggered when the Done button is pressed and a similar account name already exists in the Core Data. \doublenewline
         
         Localization Key: ERRORLABEL\_ DUPLICATE\_ACCOUNT\_NAME}
-    \errorrow{Duplicate Account Name}
+    \errorrow{Required Fields Unfilled}
     	{This error is triggered when the Done button is pressed and the account name or the amount has not been filled. \doublenewline
         
         Localization Key: ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
     
     \errorrow{Multiple Decimals}
-    	{No error alert is displayed, but this check exists in the textfield, where decimals can only be input once.}
+    	{This check confirms that decimals can only be inputted once. It only exists in textfields that have numeric input. \doublenewline
+        
+        If a decimal is in the input, and the user keys in another decimal point, the textfield will not respond. There will be no error alert displayed. \doublenewline
+        
+        If the user pastes text that has two decimal points, then the textfield will not respond as well. Once again, there will be no error alert displayed.
+        }
         
     \errorrow{Maximum Length}
-    	{No error alert is displayed, but this check exists in the textfield, where there is a maximum length for the textfield.}
+    	{This check confirms that the length of the input text is less than or equal to a given number. It is present in all textfields. \doublenewline
+        
+        Once the maximum length is reached, the user will no longer be able to input any new character. No error alert is displayed.\doublenewline
+        
+        If the user pastes text that is longer than the maximum length, it will fail to paste and no error alert is displayed.}
 }
 
 \subsubsection{Use Cases}

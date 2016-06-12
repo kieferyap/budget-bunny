@@ -104,32 +104,38 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_CURRENT_AMOUNT', 'Current amount', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_ACCOUNT_NAME', 'The account name already exists.', '[Not localized yet]', '[Not localized yet]');
 
--- 5/26/2016
+-- 5/28/2016
 UPDATE localizable_words SET localization_en = 'Set\nDefault' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_VIEW', 'View', '[Not localized yet]', '[Not localized yet]');
 
+-- 5/30/2016
 UPDATE localizable_words SET localization_en = 'Set as Default' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_SET_DEFAULT', 'Set\ndefault', '[Not localized yet]', '[Not localized yet]');
 
+-- 5/31/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WARNING_DELETE_ACCOUNT_TITLE', 'Warning: This action cannot be undone.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WARNING_DELETE_ACCOUNT_MESSAGE', 'The account, and all its associated transactions will be deleted. Are you sure?', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_CANCEL', 'Cancel', '[Not localized yet]', '[Not localized yet]');
 
+-- 6/1/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DEFAULT_ACCOUNT_MESSAGE', 'This is the default account.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('BUTTON_DEFAULT_ACCOUNT_DESCRIPTION', 'Default accounts cannot be deleted.', '[Not localized yet]', '[Not localized yet]');
 
 UPDATE localizable_words SET localization_en = 'Set\nDefault' WHERE wording_key = 'BUTTON_SET_DEFAULT';
 
+-- 6/6/2016
 UPDATE localizable_words SET localization_en = 'Current Balance' WHERE wording_key = 'LABEL_CURRENT_AMOUNT';
 UPDATE localizable_words SET localization_en = 'Delete Account' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT';
 
+-- 6/7/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_EDIT_ACCOUNT', 'Edit Account', '[Not localized yet]', '[Not localized yet]');
 
+-- 6/10/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_BUDGETS', 'Budgets', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_DASHBOARD', 'Dashboard', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_RECORDS', 'Records', '[Not localized yet]', '[Not localized yet]');
 
--- 06/11/2016
+-- 6/11/2016
 UPDATE localizable_words SET wording_key = 'BUTTON_DELETE_ACCOUNT_DISABLED' WHERE localizable_word_id = 31;
 UPDATE localizable_words SET wording_key = 'BUTTON_SET_AS_DEFAULT_DISABLED' WHERE localizable_word_id = 30;
 UPDATE localizable_words SET wording_key = 'BUTTON_EDIT' WHERE localizable_word_id = 28;

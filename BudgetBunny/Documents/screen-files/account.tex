@@ -1,7 +1,7 @@
 
 \subsection{Account List Display}
 
-The Account List screen displays the name, current amount, and default status of the accounts that the user has added. It allows the user to delete an account, or set it as default by swiping the list item left. When an account item is tapped, the user is taken to a screen where the account details can be viewed and edited. Note that an account marked as default cannot be deleted, so when swiping left, the only available option is "view", which has the same functionality as tapping the account list item.
+The Account List screen displays the name and the current amount of the accounts that the user has added. It also displays a flag indicating  whether or not an account has been marked as default. It allows the user to delete an account, or set it as default by swiping the list item left. When an account item is tapped, the user is taken to a screen where the account details can be viewed and edited. Note that an account marked as default cannot be deleted, so when swiping left, the only available option is \"Edit\", which has the same functionality as tapping the account list item.
 
 \subsubsection{Application Screenshots}
 \begin{figure}[h]
@@ -29,7 +29,7 @@ The Account List screen displays the name, current amount, and default status of
         {Localization Key: MENULABEL\_ACCOUNT}
     \row{2. Add Button}
     	{Button}
-        {When tapped, the screen transitions to the Add New Account Screen. (Section 4.1)} 
+        {When tapped, the screen transitions to the Edit Account Screen. (Section 4.4)} 
     \row{3. Account Name Label}
     	{Label}
         {A label that displays the name of the account.} 
@@ -38,17 +38,17 @@ The Account List screen displays the name, current amount, and default status of
         {A label that displays the account's currency and the amount.} 
     \row{5. Chevron Icon}
     	{Table cell icon}
-        {Indicates that when the entire cell can be tapped. When tapped, the cell transitions to the Edit Account Screen (Section 4.4)}
+        {Indicates that when the entire cell can be tapped. When tapped, the screen transitions to the Edit Account Screen (Section 4.4)}
     \row{6. Default Icon}
     	{View Element}
         {An indicator showing whether or not an account is marked as default. There can only be one default account at any one time. \doublenewline
         
         Localization Key: LABEL\_DEFAULT}
-    \row{7. View Button}
+    \row{7. Edit Button}
     	{Table Cell Button}
         {This button is displayed when the swiped cell is not a default account. When tapped, the screen transitions to the Edit Account Screen (Section 4.4) \doublenewline
         
-        Localization Key: BUTTON\_VIEW}
+        Localization Key: BUTTON\_EDIT}
 }
 
 
@@ -72,5 +72,5 @@ The Account List screen displays the name, current amount, and default status of
         
         This scenario theoretically should not happen under normal circumstances, as there is no way for the user to delete an account marked as default, and when the app is freshly installed, there will be one account available, and it is marked as default. \doublenewline
         
-        Localization Key: LABEL\_NO\_ACCOUNTS} 
+        Localization Key: GUIDELABEL\_NO\_ACCOUNTS} 
 }
