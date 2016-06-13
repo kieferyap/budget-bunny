@@ -1,9 +1,12 @@
 
 \subsection{Account List Display}
+\label{sec:account}
 
 The Account List screen displays the name and the current amount of the accounts that the user has added. It also displays a flag indicating  whether or not an account has been marked as default. It allows the user to delete an account, or set it as default by swiping the list item left. When an account item is tapped, the user is taken to a screen where the account details can be viewed and edited. Note that an account marked as default cannot be deleted, so when swiping left, the only available option is \"Edit\", which has the same functionality as tapping the account list item.
 
 \subsubsection{Application Screenshots}
+\label{sec:account-screenshots}
+
 \begin{figure}[h]
  
 \begin{subfigure}{0.5\textwidth}
@@ -29,7 +32,7 @@ The Account List screen displays the name and the current amount of the accounts
         {Localization Key: MENULABEL\_ACCOUNT}
     \row{2. Add Button}
     	{Button}
-        {When tapped, the screen transitions to the Edit Account Screen. (Section 4.4)} 
+        {When tapped, the screen transitions to the Edit Account Screen. (See section: \nameref{sec:edit-account})} 
     \row{3. Account Name Label}
     	{Label}
         {A label that displays the name of the account.} 
@@ -38,7 +41,7 @@ The Account List screen displays the name and the current amount of the accounts
         {A label that displays the account's currency and the amount.} 
     \row{5. Chevron Icon}
     	{Table cell icon}
-        {Indicates that when the entire cell can be tapped. When tapped, the screen transitions to the Edit Account Screen (Section 4.4)}
+        {Indicates that when the entire cell can be tapped. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{sec:edit-account})}
     \row{6. Default Icon}
     	{View Element}
         {An indicator showing whether or not an account is marked as default. There can only be one default account at any one time. \doublenewline
@@ -46,7 +49,7 @@ The Account List screen displays the name and the current amount of the accounts
         Localization Key: LABEL\_DEFAULT}
     \row{7. Edit Button}
     	{Table Cell Button}
-        {This button is displayed when the swiped cell is not a default account. When tapped, the screen transitions to the Edit Account Screen (Section 4.4) \doublenewline
+        {This button is displayed when the swiped cell is not a default account. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{sec:edit-account}) \doublenewline
         
         Localization Key: BUTTON\_EDIT}
 }

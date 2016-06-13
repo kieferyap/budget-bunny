@@ -5,6 +5,8 @@
 The Add New Account screen enables users to add a new account by specifying the account's name, currency used and starting balance. The user can also specify whether or not to use this account as the default account to use for everyday transactions.
 
 \subsubsection{Application Screenshots}
+\label{sec:add-account-screenshots}
+
 \begin{figure}[h]
  
 \begin{subfigure}{0.5\textwidth}
@@ -31,7 +33,7 @@ The Add New Account screen enables users to add a new account by specifying the 
     	{Button}
         {
         When tapped, the app performs form validation and saves all the account information -- the account name, currency, starting balance, and whether or not to use the account as default -- into the database. \doublenewline
-        For more details on the form validation, please see Section 4.1.2. \doublenewline
+        For more details on the form validation, please see the \nameref{sec:add-account-error-scenarios} section. \doublenewline
         Localization Key: BUTTON\_DONE
         } 
     \row{3. Account Name Cell}
@@ -76,12 +78,13 @@ The Add New Account screen enables users to add a new account by specifying the 
     	{Alert Controller}
         {This alert controller has two labels. \doublenewline
         
-        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps \"Done\".\doublenewline
+        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps "Done".\doublenewline
         
         Localization Keys: ERRORLABEL\_ERROR\_TITLE, ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
 }
 
 \subsubsection{Error Scenarios}
+\label{sec:add-account-error-scenarios}
 
 \errortable{
 	\errorheader{Title}{Description}
@@ -111,3 +114,4 @@ The Add New Account screen enables users to add a new account by specifying the 
 }
 
 \subsubsection{Use Cases}
+\label{sec:add-account-use-cases}
