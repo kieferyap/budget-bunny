@@ -25,8 +25,8 @@ extension UIViewController {
     func setTitleLocalizationKey(key: String) {
         let title = BunnyUtils.uncommentedLocalizedString(key)
         self.navigationController!.view.backgroundColor = UIColor.whiteColor()
-        //self.navigationController?.navigationBar.translucent = false
         self.navigationItem.title = title
+        self.navigationController?.navigationBar.exclusiveTouch = true
     }
     
     func dismissKeyboard() {

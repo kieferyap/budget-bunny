@@ -45,7 +45,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
             var defaultButtonText = StringConstants.BUTTON_SET_AS_DEFAULT
             var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
             var accountObject: NSManagedObject!
-            buttonTitle = "Save"
+            buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
             titleKey = StringConstants.MENULABEL_EDIT_ACCOUNT
             
             // accountInformation should never really be nil while editing, so this is just a safety measure.
