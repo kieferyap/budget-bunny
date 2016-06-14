@@ -89,6 +89,20 @@
 	\newline ~ \newline
 }
 
+% All Sections, Subsections, and Subsubsections must have labels so that they can be easily referenced
+\newcommand{\bbsection}[2]{
+	\section{#1}
+    \label{#2}
+}
+\newcommand{\bbsubsection}[2]{
+	\subsection{#1}
+    \label{#2}
+}
+\newcommand{\bbsubsubsection}[2]{
+	\subsubsection{#1}
+    \label{#2}
+}
+
 \begin{document}
 
 \maketitle 
