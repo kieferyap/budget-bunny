@@ -15,7 +15,7 @@ The currency selection screen enables users to search and select a currency to u
   \label{fig:currency-1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0001-2}
+  \includegraphics[scale=0.35]{ACC-0001-4}
   \caption{Currency Loading Screen}
   \label{fig:currency-2}
 \end{subfigure}
@@ -34,23 +34,26 @@ The currency selection screen enables users to search and select a currency to u
     	{Search Bar}
         {When tapped, a QWERTY keyboard is displayed, and the search textfield is given focus. \doublenewline
         
-        At the same time, the width of the textfield shortens, giving way to the Cancel button which, when tapped, dismisses the keyboard and returns it to the state shown in the screenshot. 
+        At the same time, the width of the textfield shortens, giving way to the Cancel button which, when tapped, dismisses the keyboard and returns it to the state shown in the screenshot.\doublenewline
+        
+        Note that because the search bar is placed at the header of the table, it will move together as the user scrolls and it is not fixed on the top of the screen. 
         } 
         
-    \row{3. Currency Selection Cell}
-    	{Table Cell}
-        {This table cell consists of three UI labels showing the currency's country, code, and symbol. \doublenewline
-        
-        Tap anywhere in the cell and a checkmark will appear on its right side, indicating that a type of currency has been selected.
-        } 
-        
-    \row{4. Loading Screen}
+    \row{3. Loading Screen}
     	{Label}
         {This label is displayed while the currency data is being loaded. \doublenewline
         
         While loading, the user cannot scroll.\doublenewline 
         
-        Localization Key: GUIDELABEL\_LOADING} 
+        Localization Key: GUIDELABEL\_LOADING
+        } 
+        
+    \row{4. Currency Selection Cell}
+    	{Table Cell}
+        {This table cell consists of three UI labels showing the currency's country, code, and symbol. \doublenewline
+        
+        Tap anywhere in the cell and a checkmark will appear on its right side, indicating that a type of currency has been selected.
+        } 
 }
 
 \subsubsection{Use Cases}
