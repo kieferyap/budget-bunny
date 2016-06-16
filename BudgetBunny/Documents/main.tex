@@ -108,6 +108,21 @@
 	\item \textbf{#1} (\textit{#2}): #3 
 }
 
+% Use Case Descriptions
+\newcommand{\usecase}[8]{
+	\begin{description}
+    	\item[\textbf{Use Case ID:}] #1
+    	\item[\textbf{- Title:}] #2
+        \item[\textbf{- Description:}] #3
+        \item[\textbf{- Precondition:}] #4
+        \item[\textbf{- Postcondition:}] #5
+        \item[\textbf{- Main Success Scenario:}] #6
+        \item[\textbf{- Extensions:}] #7
+        \item[\textbf{- Usage Frequency:}] #8
+        \item[]
+    \end{description}
+}
+
 \begin{document}
 
 \maketitle 
