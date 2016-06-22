@@ -10,7 +10,7 @@ Unless otherwise stated, the primary actor for all use cases is the user of the 
 \usecase{ACC-0001}
 	{Create Account}
     {The user creates a new account, supplying its name, currency, and initial amount. All fields are required. The user may also set the newly created account as default.}
-    {There are no pre-conditions.} %% There WILL be a precondition, once we add a check where we make sure that there is a maximum number of accounts.
+    {The number of accounts in the core data is not more than 20, which is the maximum number of accounts.}
     {The account is added into the core data.}
     {The user enters the name in alphanumeric characters, and the initial amount in numeric characters, both within the limits of the text field's length. The user then chooses the account's currency, and taps the Done button, saving the newly created account into the core data.}
     {
