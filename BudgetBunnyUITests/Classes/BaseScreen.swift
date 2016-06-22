@@ -21,4 +21,12 @@ class BaseScreen: NSObject {
         return self.init(app: app)
     }
     
+    func tapErrorAlertOkButton() {
+        self.app.alerts[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
+            ].collectionViews.buttons[
+                BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
+            ].tap()
+    }
+    
 }

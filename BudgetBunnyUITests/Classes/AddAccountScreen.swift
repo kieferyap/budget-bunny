@@ -27,14 +27,6 @@ class AddAccountScreen: BaseScreen {
         ].tap()
     }
     
-    func tapErrorAlertOkButton() {
-        self.app.alerts[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
-        ].collectionViews.buttons[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
-        ].tap()
-    }
-    
     func tapAccountNameTextField() {
         self.app.tables.staticTexts[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_NAME)

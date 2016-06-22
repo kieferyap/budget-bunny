@@ -303,6 +303,25 @@ class AddAccountUITests: XCTestCase {
         accountScreen.tapCellWithIndex(0)
     }
     
+    // Confirm that the maximum cell amount check is working.
+    func testAccountCount() {
+        let maxAmount = 3
+        for i in 0 ..< maxAmount {
+            self.addAccountSuccess(
+                String(i),
+                amount: "128",
+                currencyName: "Japan",
+                isDefault: true
+            )
+        }
+        
+        // Tapping the + button must result in an error
+        self.proceedToAccountTab()
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.tapAddAccountButton()
+        accountScreen.tapErrorAlertOkButton()
+    }
+    
     // MARK: ACC-0003 Test Cases
     
     // Executed as a starting test case for all ACC-0003 test cases
