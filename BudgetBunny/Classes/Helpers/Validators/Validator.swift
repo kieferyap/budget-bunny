@@ -16,15 +16,14 @@ class Validator: NSObject {
         self.validators.append(validator)
     }
     
-    func validate(completion: (errorMessage: String) -> Void) {
+    func validate(completion: (errorMessageKey: String) -> Void) {
         for validator in self.validators {
             if !validator.validateObject() {
-                let message = BunnyUtils.uncommentedLocalizedString(validator.errorStringKey)
-                completion(errorMessage: message)
+                completion(errorMessageKey: validator.errorStringKey)
                 return
             }
         }
-        completion(errorMessage: "")
+        completion(errorMessageKey: "")
     }
     
 }

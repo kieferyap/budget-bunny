@@ -13,6 +13,7 @@ class AccountsTableViewController: UITableViewController {
     
     private var accountTable: [AccountCell] = []
     private let constants = ScreenConstants.Account.self
+    private var isAccountCountMax = false
     
     // Set the title in the navigation bar
     override func viewDidLoad() {
@@ -25,6 +26,9 @@ class AccountsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.loadData()
         self.tableView.reloadData()
+        
+        // Count the number of accounts
+        self.isAccountCountMax = self.accountTable.count == constants.accountMaxCount
     }
     
     // Fetch from the core data, and append each element into the table
@@ -181,9 +185,18 @@ class AccountsTableViewController: UITableViewController {
     // MARK: - Navigation
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        segue.destinationViewController.sourceInformation = Constants.SourceInformation.accountNew
-        let destinationViewController = segue.destinationViewController as! AddEditAccountTableViewController
-        destinationViewController.accountInformation = nil
+        if self.isAccountCountMax {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_ACCOUNTS
+            )
+        }
+        else {
+            segue.destinationViewController.sourceInformation = Constants.SourceInformation.accountNew
+            let destinationViewController = segue.destinationViewController as! AddEditAccountTableViewController
+            destinationViewController.accountInformation = nil
+        }
     }
  
 }

@@ -177,6 +177,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 11	GUIDELABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
 20	GUIDELABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:42.711997
 26	LABEL_CURRENT_BALANCE	Current Balance	[Not localized yet]	[Not localized yet]	2016-05-21 20:52:43.054826
+39	ERRORLABEL_TOO_MANY_ACCOUNTS	The number of accounts created has been exceeded.\\nKindly delete an account before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-23 01:02:37.812749
 \.
 
 
@@ -184,7 +185,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 38, true);
+SELECT pg_catalog.setval('localizable_words_seq', 39, true);
 
 
 --

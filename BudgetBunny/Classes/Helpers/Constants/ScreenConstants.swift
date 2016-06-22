@@ -1,6 +1,7 @@
 struct ScreenConstants {
     struct Account {
         static let sectionCount = 1
+        static let accountMaxCount = 3
     }
     struct AddEditAccount {
         static let idxAccountInfoGroup = 0

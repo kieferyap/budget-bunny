@@ -36,3 +36,4 @@
 "GUIDELABEL_LOADING" = "Loading...";
 "GUIDELABEL_NO_ACCOUNTS" = "There are no accounts yet.\n\nTo add a new account, tap the + sign located at the upper right corner of the screen.";
 "LABEL_CURRENT_BALANCE" = "Current Balance";
+"ERRORLABEL_TOO_MANY_ACCOUNTS" = "The number of accounts created has been exceeded.\nKindly delete an account before proceeding.";

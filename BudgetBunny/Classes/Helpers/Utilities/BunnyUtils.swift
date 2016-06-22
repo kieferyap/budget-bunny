@@ -31,12 +31,14 @@ class BunnyUtils: NSObject {
     }
     
     // Method name is self-explanatory. I'm not a huge fan of the whole Copy-Paste Design Pattern, so this factory method will have to do. When summoned, this method will deal 65536 damage to all your enemies.
-    class func showAlertWithOKButton(viewController: UIViewController, title: String, message: String) {
+    class func showAlertWithOKButton(viewController: UIViewController, titleKey: String, messageKey: String) {
         let okMessage = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_OK)
         
-        let alertController = UIAlertController.init(title: title,
-                                                message: message,
-                                         preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController.init(
+            title: BunnyUtils.uncommentedLocalizedString(titleKey),
+            message: BunnyUtils.uncommentedLocalizedString(messageKey),
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
 
         let okAction = UIAlertAction.init(title: okMessage, style: UIAlertActionStyle.Default, handler: nil)
         

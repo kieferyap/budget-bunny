@@ -145,3 +145,7 @@ UPDATE localizable_words SET wording_key = 'GUIDELABEL_LOADING' WHERE localizabl
 UPDATE localizable_words SET wording_key = 'GUIDELABEL_NO_ACCOUNTS' WHERE localizable_word_id = 20;
 UPDATE localizable_words SET wording_key = 'LABEL_CURRENT_BALANCE' WHERE localizable_word_id = 26;
 
+-- 6/23/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_ACCOUNTS', 'The number of accounts created has been exceeded.\nKindly delete an account before proceeding.', '[Not localized yet]', '[Not localized yet]');
+
+

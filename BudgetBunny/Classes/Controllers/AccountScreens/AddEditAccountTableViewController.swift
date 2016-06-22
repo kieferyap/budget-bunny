@@ -232,11 +232,14 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
         validator.addValidator(accountnameUniquenessValidator)
         
         // Validate the fields
-        validator.validate { (errorMessage) in
+        validator.validate { (errorMessageKey) in
             // If there is an error message, display it and don't do anything else.
-            if errorMessage != "" {
-                let title = BunnyUtils.uncommentedLocalizedString(StringConstants.ERRORLABEL_ERROR_TITLE)
-                BunnyUtils.showAlertWithOKButton(self, title: title, message: errorMessage)
+            if errorMessageKey != "" {
+                BunnyUtils.showAlertWithOKButton(
+                    self,
+                    titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                    messageKey: errorMessageKey
+                )
             }
                 
             // If there are no errors, save the fields
