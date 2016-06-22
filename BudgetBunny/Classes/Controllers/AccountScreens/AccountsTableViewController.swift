@@ -11,8 +11,8 @@ import CoreData
 
 class AccountsTableViewController: UITableViewController {
     
-    var accountTable: [AccountCell] = []
-    let constants = ScreenConstants.Account.self
+    private var accountTable: [AccountCell] = []
+    private let constants = ScreenConstants.Account.self
     
     // Set the title in the navigation bar
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class AccountsTableViewController: UITableViewController {
     }
     
     // Fetch from the core data, and append each element into the table
-    func loadData() {
+    private func loadData() {
         self.accountTable = []
         
         let model = BunnyModel(tableName: ModelConstants.Entities.account)

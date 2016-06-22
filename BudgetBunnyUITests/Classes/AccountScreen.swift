@@ -32,7 +32,7 @@ class AccountScreen: BaseScreen {
     func swipeCellLeftAndViewWithIndex(index: UInt){
         self.swipeCellLeftWithIndex(index)
         self.app.tables.buttons[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_VIEW)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_EDIT)
         ].tap()
     }
     

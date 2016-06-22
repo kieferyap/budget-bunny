@@ -357,11 +357,11 @@ class AddAccountUITests: XCTestCase {
         // Assert that a default account must have two disabled buttons
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.assertButtonEnabled(
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_MESSAGE),
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT_DISABLED),
             isEnabled: false
         )
         addAccountScreen.assertButtonEnabled(
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DEFAULT_ACCOUNT_DESCRIPTION),
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT_DISABLED),
             isEnabled: false
         )
         addAccountScreen.returnToAccountScreenFromEdit()

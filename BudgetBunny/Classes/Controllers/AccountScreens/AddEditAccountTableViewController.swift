@@ -19,11 +19,11 @@ protocol AddEditAccountDelegate: class {
 
 class AddEditAccountTableViewController: UITableViewController, UITextFieldDelegate {
 
-    var addAccountTable:[[AddEditAccountCell]] = [[]]
-    var selectedCountryIdentifier: String = ""
+    private var addAccountTable:[[AddEditAccountCell]] = [[]]
+    private var selectedCountryIdentifier: String = ""
     var accountInformation: AccountCell?
-    let screenConstants = ScreenConstants.AddEditAccount.self
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    private let screenConstants = ScreenConstants.AddEditAccount.self
+    @IBOutlet weak private var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,7 +160,7 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     // This method uses the currently selected currency identifier (en_US) to return its information (United States, USD, etc.)
-    func getCurrencyStringWithIdentifier() -> String {
+    private func getCurrencyStringWithIdentifier() -> String {
         let identifier = self.selectedCountryIdentifier
         
         let currency = Currency()
@@ -175,13 +175,13 @@ class AddEditAccountTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     // Grabs the value for each cell (Account Name: "My Bank Account" --> "My Bank Account"), used for saving the data
-    func getTableViewCellValue(section: Int, row: Int) -> String {
+    private func getTableViewCellValue(section: Int, row: Int) -> String {
         let indexPath = NSIndexPath.init(forRow: row, inSection: section)
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditAccountTableViewCell
         return cell.getValue()
     }
     
-    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+    @IBAction private func doneButtonPressed(sender: UIBarButtonItem) {
         
         // Gather the input values
         let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxNameCell).stringByTrimmingCharactersInSet(

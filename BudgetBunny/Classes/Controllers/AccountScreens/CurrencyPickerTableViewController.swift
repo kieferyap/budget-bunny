@@ -10,12 +10,12 @@ import UIKit
 
 class CurrencyPickerTableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var currencyTable: NSArray = []
-    var filteredCurrencies: NSArray = []
-    var isSearching: Bool = false
-    var selectedCountryIdentifier: String = ""
-    let searchController = UISearchController(searchResultsController: nil)
-    let constants = ScreenConstants.Currency.self
+    private var currencyTable: NSArray = []
+    private var filteredCurrencies: NSArray = []
+    private var isSearching: Bool = false
+    private var selectedCountryIdentifier: String = ""
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let constants = ScreenConstants.Currency.self
     weak var delegate:AddEditAccountDelegate?
 
     override func viewDidLoad() {
