@@ -149,6 +149,50 @@ UPDATE localizable_words SET wording_key = 'LABEL_CURRENT_BALANCE' WHERE localiz
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_ACCOUNTS', 'The number of accounts created has been exceeded.\nKindly delete an account before proceeding.', '[Not localized yet]', '[Not localized yet]');
 
 -- 6/23/2016
+UPDATE localizable_words SET localization_jp = 'アカウント' WHERE wording_key = 'MENULABEL_ACCOUNT';
+UPDATE localizable_words SET localization_jp = '追加' WHERE wording_key = 'MENULABEL_ADD_ACCOUNT';
+UPDATE localizable_words SET localization_jp = '通貨' WHERE wording_key = 'MENULABEL_CURRENCY_PICKER';
+UPDATE localizable_words SET localization_jp = 'アカウント名' WHERE wording_key = 'LABEL_NAME';
+UPDATE localizable_words SET localization_jp = '私の財布' WHERE wording_key = 'TEXTFIELD_NAME_PLACEHOLDER';
+UPDATE localizable_words SET localization_jp = '通貨' WHERE wording_key = 'LABEL_CURRENCY';
+UPDATE localizable_words SET localization_jp = '開始残高' WHERE wording_key = 'LABEL_STARTING_BALANCE';
+UPDATE localizable_words SET localization_jp = '1000' WHERE wording_key = 'TEXTFIELD_STARTING_BALANCE_PLACEHOLDER';
+UPDATE localizable_words SET localization_jp = 'デフォルトのアカウント' WHERE wording_key = 'LABEL_IS_DEFAULT_ACCOUNT';
+UPDATE localizable_words SET localization_jp = '毎日に使うアカウント' WHERE wording_key = 'LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION';
+UPDATE localizable_words SET localization_jp = '完了' WHERE wording_key = 'BUTTON_DONE';
+UPDATE localizable_words SET localization_jp = 'OK' WHERE wording_key = 'LABEL_OK';
+UPDATE localizable_words SET localization_jp = 'エラー' WHERE wording_key = 'ERRORLABEL_ERROR_TITLE';
+UPDATE localizable_words SET localization_jp = 'アカウントの名前とアカウントの残高を入力してください。' WHERE wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
+UPDATE localizable_words SET localization_jp = '内部エラーが発生しました。' WHERE wording_key = 'ERRORLABEL_INTERNAL_ERROR';
+UPDATE localizable_words SET localization_jp = '削除' WHERE wording_key = 'BUTTON_DELETE';
+UPDATE localizable_words SET localization_jp = 'デフォルト' WHERE wording_key = 'LABEL_DEFAULT';
+UPDATE localizable_words SET localization_jp = '保存' WHERE wording_key = 'BUTTON_SAVE';
+UPDATE localizable_words SET localization_jp = 'ローディング中...' WHERE wording_key = 'GUIDELABEL_LOADING';
+UPDATE localizable_words SET localization_jp = '[アカウントがありません。\n\n新しいアカウントを追加するには、+ をタップしてください。' WHERE wording_key = 'GUIDELABEL_NO_ACCOUNTS';
+UPDATE localizable_words SET localization_jp = '[Not localized yet]' WHERE wording_key = 'LABEL_ACCOUNT_INFO';
+UPDATE localizable_words SET localization_jp = '[Not localized yet]' WHERE wording_key = 'LABEL_ACCOUNT_ACTIONS';
+UPDATE localizable_words SET localization_jp = 'アカウントの名前が既に存在します。' WHERE wording_key = 'ERRORLABEL_DUPLICATE_ACCOUNT_NAME';
+UPDATE localizable_words SET localization_jp = 'デフォルトとして設定' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT';
+UPDATE localizable_words SET localization_jp = 'このアクションは元に戻すことはできません' WHERE wording_key = 'LABEL_WARNING_DELETE_ACCOUNT_TITLE';
+UPDATE localizable_words SET localization_jp = 'アカウントとアカウントの取引を削除します。' WHERE wording_key = 'LABEL_WARNING_DELETE_ACCOUNT_MESSAGE';
+UPDATE localizable_words SET localization_jp = 'キャンセル' WHERE wording_key = 'BUTTON_CANCEL';
+UPDATE localizable_words SET localization_jp = 'アカウントを削除' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT';
+UPDATE localizable_words SET localization_jp = 'デフォルト\nとして設定' WHERE wording_key = 'BUTTON_SET_DEFAULT';
+UPDATE localizable_words SET localization_jp = '編集' WHERE wording_key = 'MENULABEL_EDIT_ACCOUNT';
+UPDATE localizable_words SET localization_jp = 'バジェット' WHERE wording_key = 'MENULABEL_BUDGETS';
+UPDATE localizable_words SET localization_jp = 'ダッシュボード' WHERE wording_key = 'MENULABEL_DASHBOARD';
+UPDATE localizable_words SET localization_jp = '記録' WHERE wording_key = 'MENULABEL_RECORDS';
+UPDATE localizable_words SET localization_jp = 'このアカウントはデフォルトです' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT_DISABLED';
+UPDATE localizable_words SET localization_jp = 'デフォルトアカウントは削除することができません' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT_DISABLED';
+UPDATE localizable_words SET localization_jp = '編集' WHERE wording_key = 'BUTTON_EDIT';
+UPDATE localizable_words SET localization_jp = '経常収支' WHERE wording_key = 'LABEL_CURRENT_BALANCE';
+UPDATE localizable_words SET localization_jp = 'アカウント数の上限を超えています。' WHERE wording_key = 'ERRORLABEL_TOO_MANY_ACCOUNTS';
+UPDATE localizable_words SET localization_en = 'The name and amount must not be left blank.' WHERE wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
+DELETE FROM localizable_words WHERE wording_key = 'LABEL_ACCOUNT_INFO';
+DELETE FROM localizable_words WHERE wording_key = 'LABEL_ACCOUNT_ACTIONS';
+
+UPDATE localizable_words SET localization_jp = 'このアカウントはデフォルトです' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT_DISABLED';
+UPDATE localizable_words SET localization_jp = '削除できません' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT_DISABLED';
 
 /*
 The name and AMOUNT must not be left blank.

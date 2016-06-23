@@ -305,7 +305,7 @@ class AddAccountUITests: XCTestCase {
     
     // Confirm that the maximum cell amount check is working.
     func testAccountCount() {
-        let maxAmount = 3
+        let maxAmount = 5
         for i in 0 ..< maxAmount {
             self.addAccountSuccess(
                 String(i),
