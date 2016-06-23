@@ -537,4 +537,40 @@ class AddAccountUITests: XCTestCase {
         addAccountScreen.tapSaveButton()
         addAccountScreen.tapErrorAlertOkButton()
     }
+    
+    func testRunThrough() {
+        
+        self.addAccountSuccess("My Wallet", amount: "0", currencyName: "United States", isDefault: true)
+        self.addAccountSuccess("Bank Account X", amount: "880000", currencyName: "Japan", isDefault: false)
+        self.addAccountSuccess("Bank Account Y", amount: "25000", currencyName: "United States", isDefault: false)
+        
+        // START OF RECORDING! Remove the code in the App Delegate which deletes the Core Data.
+        self.addAccountSuccess("Coin Purse", amount: "55.25", currencyName: "United States", isDefault: true)
+        
+        let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
+        accountScreen.swipeCellLeftAndDeleteWithIndex(0)
+        accountScreen.tapCellWithIndex(1)
+        
+        // Proceed to the Edit Account Screen and update the account name and initial amount.
+        let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
+        addAccountScreen.tapAccountNameTextField()
+        addAccountScreen.deleteAndEnterAlphanumericText(
+            "Bank Account Z",
+            deleteDuration: 2.5
+        )
+        addAccountScreen.tapAmountTextField()
+        addAccountScreen.deleteAndEnterDecimalText(
+            "17000",
+            deleteDuration: 2.5
+        )
+        addAccountScreen.tapCurrencyCell()
+        
+        // Tap the currency and head back. Assert that the values displayed are correct.
+        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
+        currencyPickerScreen.tapElementWithCountryName("United Kingdom")
+        currencyPickerScreen.tapBackButtonToEdit()
+        
+        addAccountScreen.tapSaveButton()
+        sleep(5)
+    }
 }
