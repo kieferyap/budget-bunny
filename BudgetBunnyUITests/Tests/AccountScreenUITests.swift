@@ -545,6 +545,7 @@ class AddAccountUITests: XCTestCase {
         self.addAccountSuccess("Bank Account Y", amount: "25000", currencyName: "United States", isDefault: false)
         
         // START OF RECORDING! Remove the code in the App Delegate which deletes the Core Data.
+        sleep(5)
         self.addAccountSuccess("Coin Purse", amount: "55.25", currencyName: "United States", isDefault: true)
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
