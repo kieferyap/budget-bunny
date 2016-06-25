@@ -370,7 +370,7 @@
                     <navigationItem key="navigationItem" title="budgets" id="jRK-CR-iuI">
                         <barButtonItem key="rightBarButtonItem" title="+" id="FKp-Qx-Utr">
                             <connections>
-                                <segue destination="Qoy-rD-m4p" kind="show" id="1pY-SK-RFO"/>
+                                <segue destination="Hhs-Mw-bfx" kind="show" id="D52-Kc-zGB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -379,32 +379,108 @@
             </objects>
             <point key="canvasLocation" x="1021" y="1636"/>
         </scene>
-        <!--newEditBudget-->
-        <scene sceneID="31S-Et-Ush">
+        <!--addEditBudget-->
+        <scene sceneID="etL-tf-UCU">
             <objects>
-                <viewController id="Qoy-rD-m4p" customClass="NewEditBudgetViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Mr-jZ-lt8"/>
-                        <viewControllerLayoutGuide type="bottom" id="i6d-q5-9mC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TIw-HD-05o">
+                <tableViewController id="Hhs-Mw-bfx" customClass="AddEditBudgetTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="MPo-Oj-HCL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="teg-oX-hBl">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="newEditBudget" id="msc-Xu-wo1">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="MwL-AU-goE"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetFieldValueCell" id="eOz-l8-VI4" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOz-l8-VI4" id="ZD9-q4-lsU">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2B2-jI-jbA">
+                                            <rect key="frame" x="8" y="11" width="33" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ux7-Jk-nFf" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                            <rect key="frame" x="49" y="11" width="543" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ux7-Jk-nFf" firstAttribute="centerY" secondItem="ZD9-q4-lsU" secondAttribute="centerY" id="4lz-vB-Al3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ux7-Jk-nFf" secondAttribute="trailing" id="E6M-aY-zfs"/>
+                                        <constraint firstItem="2B2-jI-jbA" firstAttribute="centerY" secondItem="ZD9-q4-lsU" secondAttribute="centerY" id="Elx-o9-6ou"/>
+                                        <constraint firstItem="ux7-Jk-nFf" firstAttribute="leading" secondItem="2B2-jI-jbA" secondAttribute="trailing" constant="8" id="Jt5-im-f3O"/>
+                                        <constraint firstItem="ux7-Jk-nFf" firstAttribute="leading" secondItem="2B2-jI-jbA" secondAttribute="trailing" constant="8" id="QJD-lM-Sa1"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="2B2-jI-jbA" secondAttribute="leading" id="jPw-7F-Fdu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="field" destination="2B2-jI-jbA" id="EOB-Fd-iwA"/>
+                                    <outlet property="textfield" destination="ux7-Jk-nFf" id="W8a-Tm-c9e"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pls-gg-jEO" id="but-xc-N4l">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-sH-Jac">
+                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="leading" secondItem="but-xc-N4l" secondAttribute="leadingMargin" id="6oU-67-e3H"/>
+                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="trailing" secondItem="but-xc-N4l" secondAttribute="trailingMargin" id="Qez-Gd-7h8"/>
+                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="centerY" secondItem="but-xc-N4l" secondAttribute="centerY" id="gp2-ra-oZl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="field" destination="3hD-sH-Jac" id="ndQ-Dy-GlN"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="202" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qEW-OW-SlX" id="dDa-Xz-zec">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add new category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jEd-d9-egf" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jEd-d9-egf" firstAttribute="trailing" secondItem="dDa-Xz-zec" secondAttribute="trailingMargin" id="AhC-dx-J6c"/>
+                                        <constraint firstItem="jEd-d9-egf" firstAttribute="leading" secondItem="dDa-Xz-zec" secondAttribute="leadingMargin" id="Hfr-NQ-Eee"/>
+                                        <constraint firstItem="jEd-d9-egf" firstAttribute="centerY" secondItem="dDa-Xz-zec" secondAttribute="centerY" id="P1K-vj-6rR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textfield" destination="jEd-d9-egf" id="MAt-AK-65N"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hhs-Mw-bfx" id="BKl-Nh-6WN"/>
+                            <outlet property="delegate" destination="Hhs-Mw-bfx" id="5yT-ox-dZa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="addEditBudget" id="gXu-Ii-XQE">
+                        <barButtonItem key="rightBarButtonItem" title="done" id="jvd-Ts-I38"/>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YT4-iD-oBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTZ-u9-2Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021" y="2473"/>
+            <point key="canvasLocation" x="1021" y="2370"/>
         </scene>
         <!--addTransaction-->
         <scene sceneID="j5c-e7-e8U">

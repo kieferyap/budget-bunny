@@ -12,6 +12,7 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
 
     var type: Int = 0
     var maxLength: Int = 0
+    var returnCompletion: (text: String) -> Void = { (text) in return () }
     
     func setKeyboardProperties(type: Int, maxLength: Int, text: String) {
         switch type {
@@ -23,6 +24,7 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
             break
         }
         
+        self.text = ""
         if text != "" {
             self.text = text
         }
@@ -47,6 +49,11 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
         }
         
         return shouldChangeCharacter
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.returnCompletion(text: self.text!)
+        return true
     }
     
 }

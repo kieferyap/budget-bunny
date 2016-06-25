@@ -17,12 +17,7 @@ class AddEditAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var accountSwitch: UISwitch!
     var model: AddEditAccountCell?
-    var fieldMaxLength: Int = 0
     weak var delegate:AddEditAccountDelegate?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     func setAccountModel(accountModel: AddEditAccountCell) {
         self.model = accountModel

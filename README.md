@@ -1,12 +1,12 @@
 # Budget Bunny
 
-[![Build Status](https://travis-ci.org/kieferyap/budget-bunny.svg?branch=master)](https://travis-ci.org/kieferyap/budget-bunny)
-
-![Progress](http://progressed.io/bar/25?title=Progress)  
+[![Build Status](https://travis-ci.org/kieferyap/budget-bunny.svg?branch=master)](https://travis-ci.org/kieferyap/budget-bunny) ![Progress](http://progressed.io/bar/25?title=Progress)  
 
 Budget Bunny is an iOS application that helps you manage your expenses and budgets. It is currently a work in progress.
 
 ----------------------- 
+
+## Screenshots
 
 ![Accounts Screen](https://github.com/kieferyap/budget-bunny/blob/develop/BudgetBunny/Documents/images/accounts-usecase.gif "Accounts Screen")
 

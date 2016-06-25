@@ -15,6 +15,10 @@ struct Constants {
         static let addAccountCurrency = "addAccountCurrencyCell"
         static let addAccountSwitch = "addAccountSwitchCell"
         static let account = "AccountCell"
+        
+        static let addBudgetFieldValue = "addBudgetFieldValueCell"
+        static let addBudgetCategory = "addBudgetCategoryCell"
+        static let addBudgetNewCategory = "addBudgetNewCategoryCell"
     }
     struct SourceInformation {
         static let accountNew = 0

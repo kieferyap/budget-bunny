@@ -37,4 +37,9 @@ struct ScreenConstants {
         static let codeSearchParameter = "SELF.currencyCode CONTAINS[c] %@ OR "
         static let symbolSearchParameter = "SELF.currencySymbol CONTAINS[c] %@"
     }
+    struct AddEditBudget {
+        static let sectionCount = 2
+        static let idxInformationGroup = 0
+        static let idxCategoryGroup = 1
+    }
 }

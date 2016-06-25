@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB02567F1D1D236400352B19 /* AddEditBudgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02567E1D1D236400352B19 /* AddEditBudgetCell.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
@@ -26,12 +27,13 @@
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
+		FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */; };
 		FB6CED241CEDE48800FB222E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CED231CEDE48800FB222E /* Validator.swift */; };
 		FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */; };
 		FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */; };
 		FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */; };
 		FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F61CBDF4010037A881 /* BudgetViewController.swift */; };
-		FB8550F91CBDF41F0037A881 /* NewEditBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F81CBDF41F0037A881 /* NewEditBudgetViewController.swift */; };
+		FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */; };
 		FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */; };
 		FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */; };
 		FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FE1CBE27950037A881 /* RecordsViewController.swift */; };
@@ -96,6 +98,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB02567E1D1D236400352B19 /* AddEditBudgetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetCell.swift; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
@@ -113,12 +116,13 @@
 		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewCell.swift; sourceTree = "<group>"; };
 		FB6CED231CEDE48800FB222E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F61CBDF4010037A881 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
-		FB8550F81CBDF41F0037A881 /* NewEditBudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEditBudgetViewController.swift; sourceTree = "<group>"; };
+		FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewController.swift; sourceTree = "<group>"; };
 		FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTransactionViewController.swift; sourceTree = "<group>"; };
 		FB8550FE1CBE27950037A881 /* RecordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */,
 				FB238F2D1CEE101900636CCC /* AttributeModel.swift */,
 				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
+				FB02567E1D1D236400352B19 /* AddEditBudgetCell.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -338,7 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8550F61CBDF4010037A881 /* BudgetViewController.swift */,
-				FB8550F81CBDF41F0037A881 /* NewEditBudgetViewController.swift */,
+				FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */,
 			);
 			path = BudgetScreens;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */,
 				FB3401C01CC4E6680038C1BB /* AddEditAccountTableViewCell.swift */,
 				FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */,
+				FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -651,9 +657,10 @@
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
 				FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */,
+				FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
 				FB9CD8A91CB49D100031E3B8 /* Transaction+CoreDataProperties.swift in Sources */,
-				FB8550F91CBDF41F0037A881 /* NewEditBudgetViewController.swift in Sources */,
+				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
 				FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */,
 				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
@@ -686,6 +693,7 @@
 				FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */,
 				FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */,
 				FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */,
+				FB02567F1D1D236400352B19 /* AddEditBudgetCell.swift in Sources */,
 				FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */,
 				FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,

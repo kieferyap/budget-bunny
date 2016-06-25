@@ -17,7 +17,7 @@ protocol AddEditAccountDelegate: class {
     func setSelectedCurrencyIdentifier(identifier: String)
 }
 
-class AddEditAccountTableViewController: UITableViewController, UITextFieldDelegate {
+class AddEditAccountTableViewController: UITableViewController {
 
     private var addAccountTable:[[AddEditAccountCell]] = [[]]
     private var selectedCountryIdentifier: String = ""
