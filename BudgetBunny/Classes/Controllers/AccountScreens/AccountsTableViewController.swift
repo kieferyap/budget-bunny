@@ -164,12 +164,17 @@ class AccountsTableViewController: UITableViewController {
         
         let cell: AccountCell = self.accountTable[indexPath.row]
         let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
-        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable)
-            as! AddEditAccountTableViewController
+        var vc: AddEditAccountTableViewController!
         
-        destinationViewController.sourceInformation = Constants.SourceInformation.accountEditing
-        destinationViewController.accountInformation = cell
-        self.navigationController?.pushViewController(destinationViewController, animated: true)
+        self.prepareNextViewController(
+            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable),
+            sourceInformation: Constants.SourceInformation.accountEditing
+        ) { (destinationViewController) in
+            vc = destinationViewController as! AddEditAccountTableViewController
+            vc.accountInformation = cell
+        }
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -193,9 +198,13 @@ class AccountsTableViewController: UITableViewController {
             )
         }
         else {
-            segue.destinationViewController.sourceInformation = Constants.SourceInformation.accountNew
-            let destinationViewController = segue.destinationViewController as! AddEditAccountTableViewController
-            destinationViewController.accountInformation = nil
+            self.prepareNextViewController(
+                segue.destinationViewController,
+                sourceInformation: Constants.SourceInformation.accountNew
+            ) { (destinationViewController) in
+                let vc = destinationViewController as! AddEditAccountTableViewController
+                vc.accountInformation = nil
+            }
         }
     }
  

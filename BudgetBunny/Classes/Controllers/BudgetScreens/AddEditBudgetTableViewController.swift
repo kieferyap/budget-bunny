@@ -19,31 +19,35 @@ class AddEditBudgetTableViewController: UITableViewController {
     private var categoryList: [AddEditBudgetCell] = []
     private var selectedCategoryCell: AddEditBudgetCell?
     private let screenConstants = ScreenConstants.AddEditBudget.self
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    var frequencyKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.addBudgetTable = Array.init(count: 2, repeatedValue: [])
+        self.addBudgetTable = Array.init(
+            count: screenConstants.sectionCount,
+            repeatedValue: []
+        )
         
         // TO-DO: Why not placeholderKey? We clearly have fieldKey. >:U
         let nameCell = AddEditBudgetCell(
-            fieldKey: "Budget Name",
-            placeholder: "Food",
+            fieldKey: StringConstants.LABEL_BUDGET_NAME,
+            placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: 10,
+                Constants.AppKeys.keyMaxLength: screenConstants.budgetNameMaxLength,
                 Constants.AppKeys.keyTextFieldValue: ""
             ]
         )
         
         let budgetCell = AddEditBudgetCell(
-            fieldKey: "Xly Budget",
-            placeholder: "1000",
+            fieldKey: self.frequencyKey,
+            placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                Constants.AppKeys.keyMaxLength: 10,
+                Constants.AppKeys.keyMaxLength: screenConstants.budgetAmountMaxLength,
                 Constants.AppKeys.keyTextFieldValue: ""
             ]
         )
@@ -54,10 +58,12 @@ class AddEditBudgetTableViewController: UITableViewController {
         
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)
+        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
     }
     
     func updateCategorySection() {
-        // Will be used in the editing
+        // Will (probably) be used in editing
         /*
          let categoryCell = AddEditBudgetCell(
          fieldKey: "Breakfast",
@@ -66,15 +72,16 @@ class AddEditBudgetTableViewController: UITableViewController {
          cellSettings: [:]
          )
          */
+        
         self.addBudgetTable[screenConstants.idxCategoryGroup] = []
         
         let addCategoryCell = AddEditBudgetCell(
             fieldKey: "",
-            placeholder: "Add New Category",
+            placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetNewCategory,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: 10,
+                Constants.AppKeys.keyMaxLength: screenConstants.categoryNameMaxLength,
                 Constants.AppKeys.keyTextFieldValue: ""
             ]
         )
@@ -117,24 +124,6 @@ class AddEditBudgetTableViewController: UITableViewController {
         
         return cell
     }
-    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
-//        var cellHeight: CGFloat = CGFloat(screenConstants.defaultCellHeight)
-//        BunnyUtils.keyExistsForCellSettings(cellItem, key: screenConstants.keyHeight) { (object) in
-//            cellHeight = object as! CGFloat
-//        }
-//        return cellHeight
-//    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -148,17 +137,32 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     }
     
     func addNewCategory(categoryName: String) {
+        // Check if category name already exists
         let newCategoryItem = AddEditBudgetCell(
             fieldKey: categoryName,
-            placeholder: "",
+            placeholderKey: "",
             cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
             cellSettings: [:]
         )
-        self.categoryList.append(newCategoryItem)
-        self.dismissKeyboard()
         
-        let indexSet = NSIndexSet.init(index: screenConstants.idxCategoryGroup)
-        self.updateCategorySection()
-        self.tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
+        let categoryUniquenessValidator = CategoryUniquenessValidator(
+            objectToValidate: newCategoryItem,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            parentArray: self.categoryList
+        )
+        
+        // TO-DO: Category name editing and category name deletion
+        let validator = Validator(viewController: self)
+        validator.addValidator(categoryUniquenessValidator)
+        validator.validate { (success) in
+            if success {
+                self.categoryList.append(newCategoryItem)
+                self.dismissKeyboard()
+                
+                let indexSet = NSIndexSet.init(index: self.screenConstants.idxCategoryGroup)
+                self.updateCategorySection()
+                self.tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
+            }
+        }
     }
 }

@@ -15,10 +15,10 @@ class AddEditBudgetCell: BunnyCell {
     var placeholder: String = ""
     var isSelected: Bool = false
     
-    init(fieldKey: String, placeholder: String, cellIdentifier: String, cellSettings: NSDictionary) {
+    init(fieldKey: String, placeholderKey: String, cellIdentifier: String, cellSettings: NSDictionary) {
         super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
         self.field = BunnyUtils.uncommentedLocalizedString(fieldKey)
-        self.placeholder = placeholder
+        self.placeholder = BunnyUtils.uncommentedLocalizedString(placeholderKey)
     }
     
     func setCellPlaceholder(placeholder: String) {

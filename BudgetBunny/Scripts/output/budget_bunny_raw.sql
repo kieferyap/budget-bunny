@@ -194,47 +194,17 @@ DELETE FROM localizable_words WHERE wording_key = 'LABEL_ACCOUNT_ACTIONS';
 UPDATE localizable_words SET localization_jp = 'このアカウントはデフォルトです' WHERE wording_key = 'BUTTON_SET_AS_DEFAULT_DISABLED';
 UPDATE localizable_words SET localization_jp = '削除できません' WHERE wording_key = 'BUTTON_DELETE_ACCOUNT_DISABLED';
 
-/*
-The name and AMOUNT must not be left blank.
-REMOVE LABEL_ACCOUNT_INFO and LABEL_ACCOUNT_ACTIONS
-
-"MENULABEL_ACCOUNT" = "アカウント";
-"MENULABEL_ADD_ACCOUNT" = "追加";
-"MENULABEL_CURRENCY_PICKER" = "通貨";
-"LABEL_NAME" = "アカウント名";
-"TEXTFIELD_NAME_PLACEHOLDER" = "私の財布";
-"LABEL_CURRENCY" = "通貨";
-"LABEL_STARTING_BALANCE" = "開始残高";
-"TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "1000";
-"LABEL_IS_DEFAULT_ACCOUNT" = "デフォルトのアカウント";
-"LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION" = "毎日に使うアカウント";
-"BUTTON_DONE" = "完了";
-"LABEL_OK" = "OK";
-"ERRORLABEL_ERROR_TITLE" = "エラー";
-"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "アカウントの名前とアカウントの残高を入力してください。";
-"ERRORLABEL_INTERNAL_ERROR" = "内部エラーが発生しました。";
-"BUTTON_DELETE" = "削除";
-"LABEL_DEFAULT" = "デフォルト";
-"BUTTON_SAVE" = "保存";
-"GUIDELABEL_LOADING" = "ローディング中...";
-"GUIDELABEL_NO_ACCOUNTS" = "[アカウントがありません。\n\n新しいアカウントを追加するには、+ をタップしてください。";
-"LABEL_ACCOUNT_INFO" = "[Not localized yet]";
-"LABEL_ACCOUNT_ACTIONS" = "[Not localized yet]";
-"ERRORLABEL_DUPLICATE_ACCOUNT_NAME" = "アカウントの名前が既に存在します。";
-"BUTTON_SET_AS_DEFAULT" = "デフォルトとして設定";
-"LABEL_WARNING_DELETE_ACCOUNT_TITLE" = "このアクションは元に戻すことはできません";
-"LABEL_WARNING_DELETE_ACCOUNT_MESSAGE" = "アカウントとアカウントの取引を削除します。";
-"BUTTON_CANCEL" = "キャンセル";
-"BUTTON_DELETE_ACCOUNT" = "アカウントを削除";
-"BUTTON_SET_DEFAULT" = "デフォルト\nとして設定";
-"MENULABEL_EDIT_ACCOUNT" = "編集";
-"MENULABEL_BUDGETS" = "バジェット";
-"MENULABEL_DASHBOARD" = "ダッシュボード";
-"MENULABEL_RECORDS" = "記録";
-"BUTTON_DELETE_ACCOUNT_DISABLED" = "このアカウントはデフォルトです";
-"BUTTON_SET_AS_DEFAULT_DISABLED" = "デフォルトアカウントは削除することができません";
-"BUTTON_EDIT" = "編集";
-"LABEL_CURRENT_BALANCE" = "経常収支";
-"ERRORLABEL_TOO_MANY_ACCOUNTS" = "アカウント数の上限を超えています。";
-*/
-
+-- 6/26/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('MENULABEL_ADD_BUDGET', 'Add Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_BUDGET', 'Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_BUDGET_NAME', 'Budget Name', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_BUDGET_PLACEHOLDER', 'Food and Groceries', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_MONTHLY_BUDGET', 'Monthly Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WEEKLY_BUDGET', 'Weekly Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DAILY_BUDGET', 'Daily Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_MONTHLY', 'Monthly', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_WEEKLY', 'Weekly', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DAILY', 'Daily', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_XLY_BUDGET_PLACEHOLDER', '1000', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_NEW_CATEGORY_PLACEHOLDER', 'Add New Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_CATEGORY_NAME', 'The category name already exists in this budget.', '[Not localized yet]', '[Not localized yet]');

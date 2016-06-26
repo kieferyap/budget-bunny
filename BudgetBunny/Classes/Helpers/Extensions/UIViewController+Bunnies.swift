@@ -33,4 +33,14 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func prepareNextViewController(
+        destinationViewController: UIViewController,
+        sourceInformation: Int,
+        completion: (destinationViewController: UIViewController) -> Void
+    ) {
+        destinationViewController.hidesBottomBarWhenPushed = true
+        destinationViewController.sourceInformation = sourceInformation
+        completion(destinationViewController: destinationViewController)
+    }
+    
 }

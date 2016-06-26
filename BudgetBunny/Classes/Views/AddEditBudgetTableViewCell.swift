@@ -46,7 +46,7 @@ class AddEditBudgetTableViewCell: UITableViewCell {
             self.textfield.text = ""
             BunnyUtils.prepareTextField(
                 self.textfield,
-                placeholderText: "ASKLJAHDASJ",
+                placeholderText: placeholderText,
                 textColor: Constants.Colors.darkGray,
                 model: budgetModel
             )

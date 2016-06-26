@@ -147,9 +147,14 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 23	BUTTON_DELETE_ACCOUNT	Delete Account	アカウントを削除	[Not localized yet]	2016-05-21 20:52:42.968125
 8	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-05-01 19:45:58.317714
 31	BUTTON_DELETE_ACCOUNT_DISABLED	Default accounts cannot be deleted.	削除できません	[Not localized yet]	2016-06-01 01:45:23.348516
+40	MENULABEL_ADD_BUDGET	Add Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:04.955272
+41	LABEL_BUDGET	Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.216897
+42	LABEL_BUDGET_NAME	Budget Name	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.222798
 9	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-05-01 19:45:58.32213
+43	TEXTFIELD_BUDGET_PLACEHOLDER	Food and Groceries	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.227585
 29	BUTTON_SET_DEFAULT	Set\\nDefault	デフォルト\\nとして設定	[Not localized yet]	2016-05-29 17:17:59.750267
 35	MENULABEL_EDIT_ACCOUNT	Edit Account	編集	[Not localized yet]	2016-06-06 22:47:07.784103
+44	LABEL_MONTHLY	Monthly	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.23151
 1	MENULABEL_ACCOUNT	Account	アカウント	帐户	2016-05-01 19:45:58.215002
 2	MENULABEL_ADD_ACCOUNT	Add New Account	追加	新帐户	2016-05-01 19:45:58.256828
 3	MENULABEL_CURRENCY_PICKER	Currency	通貨	货币	2016-05-01 19:45:58.260746
@@ -159,23 +164,31 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 12	BUTTON_DONE	Done	完了	完成	2016-05-01 19:46:00.824602
 15	LABEL_OK	OK	OK	OK	2016-05-01 19:58:59.708225
 16	ERRORLABEL_ERROR_TITLE	Error	エラー	[Not localizaed yet]	2016-05-01 20:29:22.122071
+45	LABEL_WEEKLY	Weekly	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.235436
 17	ERRORLABEL_INTERNAL_ERROR	An internal error has occured. Please try again later.	内部エラーが発生しました。	[Not localizaed yet]	2016-05-10 01:04:25.576925
 18	BUTTON_DELETE	Delete	削除	[Not localized yet]	2016-05-15 16:44:05.227482
 19	LABEL_DEFAULT	DEFAULT	デフォルト	[Not localized yet]	2016-05-15 20:54:52.783206
 21	BUTTON_SAVE	Save	保存	[Not localized yet]	2016-05-21 20:52:42.958043
 11	GUIDELABEL_LOADING	Loading...	ローディング中...	加載...	2016-05-01 19:45:58.331333
 20	GUIDELABEL_NO_ACCOUNTS	There are no accounts yet.\\n\\nTo add a new account, tap the + sign located at the upper right corner of the screen.	[アカウントがありません。\\n\\n新しいアカウントを追加するには、+ をタップしてください。	[Not localized yet]	2016-05-21 20:52:42.711997
+46	LABEL_DAILY	Daily	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.312173
+47	TEXTFIELD_XLY_BUDGET_PLACEHOLDER	1000	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.316798
 27	ERRORLABEL_DUPLICATE_ACCOUNT_NAME	The account name already exists.	アカウントの名前が既に存在します。	[Not localized yet]	2016-05-21 21:22:39.38273
 22	BUTTON_SET_AS_DEFAULT	Set as Default	デフォルトとして設定	[Not localized yet]	2016-05-21 20:52:42.963768
 32	LABEL_WARNING_DELETE_ACCOUNT_TITLE	Warning: This action cannot be undone.	このアクションは元に戻すことはできません	[Not localized yet]	2016-06-01 01:57:06.664948
 36	MENULABEL_BUDGETS	Budgets	バジェット	[Not localized yet]	2016-06-07 01:38:11.819856
 37	MENULABEL_DASHBOARD	Dashboard	ダッシュボード	[Not localized yet]	2016-06-07 01:38:11.82618
 38	MENULABEL_RECORDS	Records	記録	[Not localized yet]	2016-06-07 01:38:11.830419
+48	TEXTFIELD_NEW_CATEGORY_PLACEHOLDER	Add New Category	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.321636
 28	BUTTON_EDIT	Edit	編集	[Not localized yet]	2016-05-28 16:58:29.215243
 26	LABEL_CURRENT_BALANCE	Current Balance	経常収支	[Not localized yet]	2016-05-21 20:52:43.054826
 39	ERRORLABEL_TOO_MANY_ACCOUNTS	The number of accounts created has been exceeded.\\nKindly delete an account before proceeding.	アカウント数の上限を超えています。	[Not localized yet]	2016-06-23 01:02:37.812749
 14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
+49	ERRORLABEL_DUPLICATE_CATEGORY_NAME	The category name already exists in this budget.	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.327302
 30	BUTTON_SET_AS_DEFAULT_DISABLED	This is the default account.	このアカウントはデフォルトです	[Not localized yet]	2016-06-01 01:45:23.069191
+50	LABEL_MONTHLY_BUDGET	Monthly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.41209
+51	LABEL_WEEKLY_BUDGET	Weekly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.415938
+52	LABEL_DAILY_BUDGET	Daily Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.420882
 \.
 
 
@@ -183,7 +196,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 39, true);
+SELECT pg_catalog.setval('localizable_words_seq', 52, true);
 
 
 --

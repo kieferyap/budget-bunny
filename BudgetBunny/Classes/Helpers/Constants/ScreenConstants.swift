@@ -37,9 +37,18 @@ struct ScreenConstants {
         static let codeSearchParameter = "SELF.currencyCode CONTAINS[c] %@ OR "
         static let symbolSearchParameter = "SELF.currencySymbol CONTAINS[c] %@"
     }
+    struct Budget {
+        static let monthly = 0
+        static let weekly = 1
+        static let daily = 2
+    }
     struct AddEditBudget {
         static let sectionCount = 2
         static let idxInformationGroup = 0
         static let idxCategoryGroup = 1
+        
+        static let budgetNameMaxLength = 25
+        static let budgetAmountMaxLength = 15
+        static let categoryNameMaxLength = 25
     }
 }

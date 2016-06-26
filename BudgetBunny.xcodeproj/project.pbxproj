@@ -28,11 +28,12 @@
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */; };
+		FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */; };
+		FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */; };
 		FB6CED241CEDE48800FB222E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CED231CEDE48800FB222E /* Validator.swift */; };
 		FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */; };
 		FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */; };
 		FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */; };
-		FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F61CBDF4010037A881 /* BudgetViewController.swift */; };
 		FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */; };
 		FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */; };
 		FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */; };
@@ -117,11 +118,12 @@
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewCell.swift; sourceTree = "<group>"; };
+		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
+		FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryUniquenessValidator.swift; sourceTree = "<group>"; };
 		FB6CED231CEDE48800FB222E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F41CBDE6300037A881 /* CurrencyPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTableViewController.swift; sourceTree = "<group>"; };
-		FB8550F61CBDF4010037A881 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewController.swift; sourceTree = "<group>"; };
 		FB8550FA1CBE0DB70037A881 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FB8550FC1CBE0DC90037A881 /* AddNewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTransactionViewController.swift; sourceTree = "<group>"; };
@@ -342,8 +344,8 @@
 		FB97C33E1CB49B4400C35BC0 /* BudgetScreens */ = {
 			isa = PBXGroup;
 			children = (
-				FB8550F61CBDF4010037A881 /* BudgetViewController.swift */,
 				FB8550F81CBDF41F0037A881 /* AddEditBudgetTableViewController.swift */,
+				FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */,
 			);
 			path = BudgetScreens;
 			sourceTree = "<group>";
@@ -500,6 +502,7 @@
 				FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */,
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
+				FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -652,7 +655,6 @@
 				FB9CD8AB1CB49D100031E3B8 /* Budget+CoreDataProperties.swift in Sources */,
 				FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */,
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
-				FB8550F71CBDF4010037A881 /* BudgetViewController.swift in Sources */,
 				FB6CED241CEDE48800FB222E /* Validator.swift in Sources */,
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
@@ -669,6 +671,7 @@
 				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
+				FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */,
 				FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */,
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
@@ -681,6 +684,7 @@
 				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
 				FB9CD8AC1CB49D100031E3B8 /* Budget.swift in Sources */,
+				FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
 				FB9CD8A71CB49D100031E3B8 /* Record+CoreDataProperties.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,

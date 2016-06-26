@@ -226,24 +226,16 @@ class AddEditAccountTableViewController: UITableViewController {
         )
         
         // Add the error validators
-        let validator = Validator()
+        let validator = Validator(viewController: self)
         validator.addValidator(emptyAccountValidator)
         validator.addValidator(emptyCurrencyValidator)
         validator.addValidator(accountnameUniquenessValidator)
         
         // Validate the fields
-        validator.validate { (errorMessageKey) in
-            // If there is an error message, display it and don't do anything else.
-            if errorMessageKey != "" {
-                BunnyUtils.showAlertWithOKButton(
-                    self,
-                    titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                    messageKey: errorMessageKey
-                )
-            }
-                
+        validator.validate { (success) in
+            
             // If there are no errors, save the fields
-            else {
+            if success {
                 // Adding a new account
                 let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 

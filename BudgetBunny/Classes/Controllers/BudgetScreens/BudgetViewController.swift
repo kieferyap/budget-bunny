@@ -2,7 +2,7 @@
 //  BudgetViewController.swift
 //  BudgetBunny
 //
-//  Created by Kiefer Yap on 4/13/16.
+//  Created by Kiefer Yap on 6/26/16.
 //  Copyright © 2016 Kiefer Yap. All rights reserved.
 //
 
@@ -10,21 +10,50 @@ import UIKit
 
 class BudgetViewController: UIViewController {
 
+    @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
+    private let screenConstants = ScreenConstants.Budget.self
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_BUDGETS)
+        self.timeSegmentedControl.setTitle(
+            BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_MONTHLY),
+            forSegmentAtIndex: screenConstants.monthly
+        )
+        self.timeSegmentedControl.setTitle(
+            BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WEEKLY),
+            forSegmentAtIndex: screenConstants.weekly
+        )
+        self.timeSegmentedControl.setTitle(
+            BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DAILY),
+            forSegmentAtIndex: screenConstants.daily
+        )
     }
-    
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        var frequencyKey = ""
+        switch self.timeSegmentedControl.selectedSegmentIndex {
+        case screenConstants.monthly:
+            frequencyKey = StringConstants.LABEL_MONTHLY_BUDGET
+            break
+        case screenConstants.weekly:
+            frequencyKey = StringConstants.LABEL_WEEKLY_BUDGET
+            break
+        case screenConstants.daily:
+            frequencyKey = StringConstants.LABEL_DAILY_BUDGET
+            break
+        default:
+            break
+        }
 
+        self.prepareNextViewController(
+            segue.destinationViewController,
+            sourceInformation: -1 // Will be implemented in BUD-0003, I think.
+        ) { (destinationViewController) in
+            let vc = destinationViewController as! AddEditBudgetTableViewController
+            vc.frequencyKey = frequencyKey
+        }
+    }
 }

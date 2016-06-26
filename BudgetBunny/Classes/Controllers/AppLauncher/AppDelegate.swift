@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = universalTintColor
         UITabBar.appearance().tintColor = universalTintColor
         
-        // Override point for customization after application launch.
+        // UI Testing is underway: delete core data, set max account to 5
         let environment = NSProcessInfo.processInfo().environment;
         if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
             ScreenConstants.Account.accountMaxCount = 5

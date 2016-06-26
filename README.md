@@ -1,8 +1,10 @@
 # Budget Bunny
 
-[![Build Status](https://travis-ci.org/kieferyap/budget-bunny.svg?branch=master)](https://travis-ci.org/kieferyap/budget-bunny) ![Progress](http://progressed.io/bar/25?title=Progress)  
+![Progress](http://progressed.io/bar/25?title=Progress%20(v1.0)) [![Build Status](https://travis-ci.org/kieferyap/budget-bunny.svg?branch=master)](https://travis-ci.org/kieferyap/budget-bunny) (TO-DO: Unit-testing and code coverage emblems.)
 
-Budget Bunny is an iOS application that helps you manage your expenses and budgets. It is currently a work in progress.
+Budget Bunny is an iOS application that helps you manage your expenses and budgets. It is currently a work in progress. 
+
+...A painfully slow work in progress. (I realize that it's been 2 months holycrap.) Sorry about that. I currently have a full-time job, and I only have time to work on this after I get home, and I'm usually pretty tired by then. I also sometimes work on this in the weekends while I'm in the train. Still, working on this project feels relaxing (unlike *coughworkcough*), so I don't mind nibbling my way through bit by bit. Like a bunny.
 
 ----------------------- 
 

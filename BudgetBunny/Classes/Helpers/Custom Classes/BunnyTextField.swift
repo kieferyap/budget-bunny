@@ -15,6 +15,12 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
     var returnCompletion: (text: String) -> Void = { (text) in return () }
     
     func setKeyboardProperties(type: Int, maxLength: Int, text: String) {
+        // UI Testing is underway: disable autocorrect
+        let environment = NSProcessInfo.processInfo().environment;
+        if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
+            self.autocorrectionType = UITextAutocorrectionType.No
+        }
+        
         switch type {
         case Constants.KeyboardTypes.decimal:
             self.keyboardType = UIKeyboardType.DecimalPad
@@ -30,6 +36,7 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
         }
         self.type = type
         self.maxLength = maxLength
+        self.returnKeyType = UIReturnKeyType.Done
         self.delegate = self
     }
     
