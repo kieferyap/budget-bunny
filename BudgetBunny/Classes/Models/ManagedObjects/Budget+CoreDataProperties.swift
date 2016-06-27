@@ -2,7 +2,7 @@
 //  Budget+CoreDataProperties.swift
 //  BudgetBunny
 //
-//  Created by Kiefer Yap on 4/6/16.
+//  Created by Kiefer Yap on 6/27/16.
 //  Copyright © 2016 Kiefer Yap. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,9 +14,9 @@ import CoreData
 
 extension Budget {
 
-    @NSManaged var dailyBudget: NSNumber?
+    @NSManaged var monthlyBudget: NSNumber?
     @NSManaged var name: String?
-    @NSManaged var accountId: Account?
+    @NSManaged var monthlyRemainingBudget: NSNumber?
     @NSManaged var budgetCategoryId: Category?
     @NSManaged var budgetTransactionId: Transaction?
 

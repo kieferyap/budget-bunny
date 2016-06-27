@@ -30,6 +30,20 @@
 		FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */; };
 		FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */; };
 		FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */; };
+		FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1101D2137BB009EC80C /* Category+CoreDataProperties.swift */; };
+		FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1111D2137BB009EC80C /* Category.swift */; };
+		FB6AC1201D2137BB009EC80C /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1121D2137BB009EC80C /* Budget+CoreDataProperties.swift */; };
+		FB6AC1211D2137BB009EC80C /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1131D2137BB009EC80C /* Budget.swift */; };
+		FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1141D2137BB009EC80C /* Wishitem+CoreDataProperties.swift */; };
+		FB6AC1231D2137BB009EC80C /* Wishitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1151D2137BB009EC80C /* Wishitem.swift */; };
+		FB6AC1241D2137BB009EC80C /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1161D2137BB009EC80C /* Record+CoreDataProperties.swift */; };
+		FB6AC1251D2137BB009EC80C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1171D2137BB009EC80C /* Record.swift */; };
+		FB6AC1261D2137BB009EC80C /* Target+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1181D2137BB009EC80C /* Target+CoreDataProperties.swift */; };
+		FB6AC1271D2137BB009EC80C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1191D2137BB009EC80C /* Target.swift */; };
+		FB6AC1281D2137BB009EC80C /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC11A1D2137BB009EC80C /* Account+CoreDataProperties.swift */; };
+		FB6AC1291D2137BB009EC80C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC11B1D2137BB009EC80C /* Account.swift */; };
+		FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC11C1D2137BB009EC80C /* Transaction+CoreDataProperties.swift */; };
+		FB6AC12B1D2137BB009EC80C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC11D1D2137BB009EC80C /* Transaction.swift */; };
 		FB6CED241CEDE48800FB222E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CED231CEDE48800FB222E /* Validator.swift */; };
 		FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */; };
 		FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */; };
@@ -47,20 +61,6 @@
 		FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB97C3101CB4975000C35BC0 /* Assets.xcassets */; };
 		FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C31E1CB4975000C35BC0 /* BudgetBunnyTests.swift */; };
 		FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3291CB4975000C35BC0 /* LocationUITests.swift */; };
-		FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8951CB49D100031E3B8 /* Account+CoreDataProperties.swift */; };
-		FB9CD8A41CB49D100031E3B8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8961CB49D100031E3B8 /* Account.swift */; };
-		FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8971CB49D100031E3B8 /* Category+CoreDataProperties.swift */; };
-		FB9CD8A61CB49D100031E3B8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8981CB49D100031E3B8 /* Category.swift */; };
-		FB9CD8A71CB49D100031E3B8 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8991CB49D100031E3B8 /* Record+CoreDataProperties.swift */; };
-		FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89A1CB49D100031E3B8 /* Record.swift */; };
-		FB9CD8A91CB49D100031E3B8 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89B1CB49D100031E3B8 /* Transaction+CoreDataProperties.swift */; };
-		FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89C1CB49D100031E3B8 /* Transaction.swift */; };
-		FB9CD8AB1CB49D100031E3B8 /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89D1CB49D100031E3B8 /* Budget+CoreDataProperties.swift */; };
-		FB9CD8AC1CB49D100031E3B8 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89E1CB49D100031E3B8 /* Budget.swift */; };
-		FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD89F1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift */; };
-		FB9CD8AE1CB49D100031E3B8 /* Wishitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A01CB49D100031E3B8 /* Wishitem.swift */; };
-		FB9CD8AF1CB49D100031E3B8 /* Target+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A11CB49D100031E3B8 /* Target+CoreDataProperties.swift */; };
-		FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CD8A21CB49D100031E3B8 /* Target.swift */; };
 		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
 		FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */; };
 		FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB238EB1CF9585A0011C59D /* ScreenConstants.swift */; };
@@ -120,6 +120,20 @@
 		FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewCell.swift; sourceTree = "<group>"; };
 		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryUniquenessValidator.swift; sourceTree = "<group>"; };
+		FB6AC1101D2137BB009EC80C /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC1111D2137BB009EC80C /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FB6AC1121D2137BB009EC80C /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC1131D2137BB009EC80C /* Budget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		FB6AC1141D2137BB009EC80C /* Wishitem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wishitem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC1151D2137BB009EC80C /* Wishitem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wishitem.swift; sourceTree = "<group>"; };
+		FB6AC1161D2137BB009EC80C /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC1171D2137BB009EC80C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		FB6AC1181D2137BB009EC80C /* Target+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Target+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC1191D2137BB009EC80C /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		FB6AC11A1D2137BB009EC80C /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC11B1D2137BB009EC80C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		FB6AC11C1D2137BB009EC80C /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FB6AC11D1D2137BB009EC80C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		FB6CED231CEDE48800FB222E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		FB8550F01CBDE2990037A881 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
 		FB8550F21CBDE4FF0037A881 /* AddEditAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountTableViewController.swift; sourceTree = "<group>"; };
@@ -145,20 +159,6 @@
 		FB97C3251CB4975000C35BC0 /* BudgetBunnyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetBunnyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB97C3291CB4975000C35BC0 /* LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUITests.swift; sourceTree = "<group>"; };
 		FB97C32B1CB4975000C35BC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB9CD8951CB49D100031E3B8 /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD8961CB49D100031E3B8 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		FB9CD8971CB49D100031E3B8 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD8981CB49D100031E3B8 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		FB9CD8991CB49D100031E3B8 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD89A1CB49D100031E3B8 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
-		FB9CD89B1CB49D100031E3B8 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD89C1CB49D100031E3B8 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		FB9CD89D1CB49D100031E3B8 /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD89E1CB49D100031E3B8 /* Budget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
-		FB9CD89F1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wishitem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD8A01CB49D100031E3B8 /* Wishitem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wishitem.swift; sourceTree = "<group>"; };
-		FB9CD8A11CB49D100031E3B8 /* Target+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Target+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FB9CD8A21CB49D100031E3B8 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountCell.swift; sourceTree = "<group>"; };
 		FBB238EB1CF9585A0011C59D /* ScreenConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenConstants.swift; sourceTree = "<group>"; };
@@ -293,20 +293,20 @@
 		FB97C33A1CB499DE00C35BC0 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				FB9CD8951CB49D100031E3B8 /* Account+CoreDataProperties.swift */,
-				FB9CD8961CB49D100031E3B8 /* Account.swift */,
-				FB9CD89D1CB49D100031E3B8 /* Budget+CoreDataProperties.swift */,
-				FB9CD89E1CB49D100031E3B8 /* Budget.swift */,
-				FB9CD8971CB49D100031E3B8 /* Category+CoreDataProperties.swift */,
-				FB9CD8981CB49D100031E3B8 /* Category.swift */,
-				FB9CD8991CB49D100031E3B8 /* Record+CoreDataProperties.swift */,
-				FB9CD89A1CB49D100031E3B8 /* Record.swift */,
-				FB9CD8A11CB49D100031E3B8 /* Target+CoreDataProperties.swift */,
-				FB9CD8A21CB49D100031E3B8 /* Target.swift */,
-				FB9CD89B1CB49D100031E3B8 /* Transaction+CoreDataProperties.swift */,
-				FB9CD89C1CB49D100031E3B8 /* Transaction.swift */,
-				FB9CD89F1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift */,
-				FB9CD8A01CB49D100031E3B8 /* Wishitem.swift */,
+				FB6AC1101D2137BB009EC80C /* Category+CoreDataProperties.swift */,
+				FB6AC1111D2137BB009EC80C /* Category.swift */,
+				FB6AC1121D2137BB009EC80C /* Budget+CoreDataProperties.swift */,
+				FB6AC1131D2137BB009EC80C /* Budget.swift */,
+				FB6AC1141D2137BB009EC80C /* Wishitem+CoreDataProperties.swift */,
+				FB6AC1151D2137BB009EC80C /* Wishitem.swift */,
+				FB6AC1161D2137BB009EC80C /* Record+CoreDataProperties.swift */,
+				FB6AC1171D2137BB009EC80C /* Record.swift */,
+				FB6AC1181D2137BB009EC80C /* Target+CoreDataProperties.swift */,
+				FB6AC1191D2137BB009EC80C /* Target.swift */,
+				FB6AC11A1D2137BB009EC80C /* Account+CoreDataProperties.swift */,
+				FB6AC11B1D2137BB009EC80C /* Account.swift */,
+				FB6AC11C1D2137BB009EC80C /* Transaction+CoreDataProperties.swift */,
+				FB6AC11D1D2137BB009EC80C /* Transaction.swift */,
 			);
 			path = ManagedObjects;
 			sourceTree = "<group>";
@@ -652,48 +652,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB9CD8AB1CB49D100031E3B8 /* Budget+CoreDataProperties.swift in Sources */,
 				FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */,
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
+				FB6AC1281D2137BB009EC80C /* Account+CoreDataProperties.swift in Sources */,
 				FB6CED241CEDE48800FB222E /* Validator.swift in Sources */,
+				FB6AC1251D2137BB009EC80C /* Record.swift in Sources */,
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
-				FB9CD8AA1CB49D100031E3B8 /* Transaction.swift in Sources */,
 				FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
-				FB9CD8A91CB49D100031E3B8 /* Transaction+CoreDataProperties.swift in Sources */,
+				FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */,
+				FB6AC1271D2137BB009EC80C /* Target.swift in Sources */,
+				FB6AC1291D2137BB009EC80C /* Account.swift in Sources */,
+				FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
-				FB9CD8AD1CB49D100031E3B8 /* Wishitem+CoreDataProperties.swift in Sources */,
+				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
 				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
+				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
 				FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */,
-				FB9CD8A41CB49D100031E3B8 /* Account.swift in Sources */,
-				FB9CD8A51CB49D100031E3B8 /* Category+CoreDataProperties.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
 				FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */,
 				FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */,
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
-				FB9CD8B01CB49D100031E3B8 /* Target.swift in Sources */,
+				FB6AC1201D2137BB009EC80C /* Budget+CoreDataProperties.swift in Sources */,
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
 				FBB238EE1CF984AD0011C59D /* ModelConstants.swift in Sources */,
+				FB6AC1241D2137BB009EC80C /* Record+CoreDataProperties.swift in Sources */,
 				FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */,
 				FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */,
 				FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */,
 				FB3401C11CC4E6680038C1BB /* AddEditAccountTableViewCell.swift in Sources */,
-				FB9CD8A81CB49D100031E3B8 /* Record.swift in Sources */,
+				FB6AC1261D2137BB009EC80C /* Target+CoreDataProperties.swift in Sources */,
+				FB6AC1231D2137BB009EC80C /* Wishitem.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
-				FB9CD8AC1CB49D100031E3B8 /* Budget.swift in Sources */,
 				FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
-				FB9CD8A71CB49D100031E3B8 /* Record+CoreDataProperties.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,
-				FB9CD8AE1CB49D100031E3B8 /* Wishitem.swift in Sources */,
 				FB8A9B9A1CC65AC40017D0D3 /* CurrencyManager.swift in Sources */,
 				FB8551031CBE27F50037A881 /* DataViewController.swift in Sources */,
-				FB9CD8AF1CB49D100031E3B8 /* Target+CoreDataProperties.swift in Sources */,
+				FB6AC12B1D2137BB009EC80C /* Transaction.swift in Sources */,
 				FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */,
-				FB9CD8A31CB49D100031E3B8 /* Account+CoreDataProperties.swift in Sources */,
 				FB97C3071CB4974F00C35BC0 /* AppDelegate.swift in Sources */,
 				FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */,
 				FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */,
@@ -702,9 +702,9 @@
 				FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,
 				FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */,
+				FB6AC1211D2137BB009EC80C /* Budget.swift in Sources */,
 				FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */,
 				FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */,
-				FB9CD8A61CB49D100031E3B8 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

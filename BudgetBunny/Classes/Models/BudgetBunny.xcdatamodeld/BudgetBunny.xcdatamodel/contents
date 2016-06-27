@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="accountBudgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="accountId" inverseEntity="Budget" syncable="YES"/>
         <relationship name="accountRecordId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="accountId" inverseEntity="Record" syncable="YES"/>
         <relationship name="accountTargetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="accountId" inverseEntity="Target" syncable="YES"/>
         <relationship name="accountTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="accountId" inverseEntity="Transaction" syncable="YES"/>
         <relationship name="accountTransferTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="transferAccountId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Budget" representedClassName="Budget" syncable="YES">
-        <attribute name="dailyBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="monthlyBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="monthlyRemainingBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="accountId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBudgetId" inverseEntity="Account" syncable="YES"/>
         <relationship name="budgetCategoryId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="budgetId" inverseEntity="Category" syncable="YES"/>
         <relationship name="budgetTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="budgetId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="isIncome" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="monthlyAmount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="budgetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="budgetCategoryId" inverseEntity="Budget" syncable="YES"/>
         <relationship name="categoryTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="categoryId" inverseEntity="Transaction" syncable="YES"/>
@@ -53,9 +53,9 @@
         <relationship name="targetId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="targetWishitemId" inverseEntity="Target" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-119" positionY="-178" width="128" height="180"/>
+        <element name="Account" positionX="-119" positionY="-178" width="128" height="163"/>
         <element name="Budget" positionX="-342" positionY="-189" width="128" height="118"/>
-        <element name="Category" positionX="-279" positionY="99" width="128" height="103"/>
+        <element name="Category" positionX="-279" positionY="99" width="128" height="118"/>
         <element name="Record" positionX="223" positionY="-189" width="128" height="88"/>
         <element name="Target" positionX="178" positionY="282" width="128" height="118"/>
         <element name="Transaction" positionX="162" positionY="15" width="128" height="178"/>

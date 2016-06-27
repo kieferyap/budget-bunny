@@ -29,6 +29,22 @@ class BudgetViewController: UIViewController {
             forSegmentAtIndex: screenConstants.daily
         )
     }
+    
+    // Load the table data
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
+    }
+    
+    // Fetch from the core data, and append each element into the table
+    private func loadData() {
+        let model = BunnyModel(tableName: ModelConstants.Entities.budget)
+        model.selectAllObjects { (fetchedObjects) in
+            for budget in fetchedObjects {
+                print(budget)
+            }
+        }
+    }
 
     // MARK: - Navigation
     // Activated when + is tapped

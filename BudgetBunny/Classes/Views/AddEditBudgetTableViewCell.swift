@@ -80,6 +80,5 @@ class AddEditBudgetTableViewCell: UITableViewCell {
         default:
             break
         }
-
     }
 }

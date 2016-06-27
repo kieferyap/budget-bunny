@@ -89,6 +89,110 @@ class AddEditBudgetTableViewController: UITableViewController {
         self.addBudgetTable[screenConstants.idxCategoryGroup] = self.categoryList
         self.addBudgetTable[screenConstants.idxCategoryGroup].append(addCategoryCell)
     }
+    
+    // Grabs the value for each cell, used for saving the data
+    private func getTableViewCellValue(section: Int, row: Int) -> String {
+        let indexPath = NSIndexPath.init(forRow: row, inSection: section)
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditBudgetTableViewCell
+        return (cell.textfield.text?.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        ))!
+    }
+    
+    @IBAction func doneButtonPressed(sender: AnyObject) {
+        // Gather the input values
+        let budgetName = self.getTableViewCellValue(
+            screenConstants.idxInformationGroup,
+            row: screenConstants.idxNameCell
+        )
+        let budgetAmount = self.getTableViewCellValue(
+            screenConstants.idxInformationGroup,
+            row: screenConstants.idxAmountCell
+        )
+        let budgetAmountFloat = (budgetAmount as NSString).doubleValue
+        
+        // Set up the error validators
+        let budgetNameModel = AttributeModel(
+            tableName: ModelConstants.Entities.budget,
+            key: ModelConstants.Budget.name,
+            value: budgetName
+        )
+        let emptyNameValidator = EmptyStringValidator(
+            objectToValidate: budgetName,
+            errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY //TO-DO: Change this!
+        )
+        let emptyAmountValidator = EmptyStringValidator(
+            objectToValidate: budgetAmount,
+            errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY //TO-DO: Change this!
+        )
+        let nameUniquenessValidator = AttributeUniquenessValidator(
+            objectToValidate: budgetNameModel,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME, //TO-DO: Change this!
+            oldName: ""
+        )
+        
+        // Add the error validators
+        let validator = Validator(viewController: self)
+        validator.addValidator(emptyNameValidator)
+        validator.addValidator(emptyAmountValidator)
+        validator.addValidator(nameUniquenessValidator)
+        
+        // Validate the fields
+        validator.validate { (success) in
+            
+            // If there are no errors, save the fields
+            if success {
+                // Adding a new account
+                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.budget)
+                
+                // Set the values of the account and insert it
+                var values = NSDictionary.init(
+                    objects: [
+                        budgetName,
+                        budgetAmountFloat,
+                        budgetAmountFloat
+                    ],
+                    forKeys: [
+                        ModelConstants.Budget.name,
+                        ModelConstants.Budget.monthlyBudget,
+                        ModelConstants.Budget.monthlyRemainingBudget
+                    ]
+                )
+                
+                // The active record should insert if the account is new, but update if it is being edited
+                let model = activeRecord.insertObject(values)
+                
+                // Add the related categories
+                for item in self.categoryList {
+                    let categoryName = item.field.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                    )
+                    
+                    activeRecord.changeTableName(ModelConstants.Entities.category)
+                    values = NSDictionary.init(
+                        objects: [
+                            categoryName,
+                            false,
+                            0.0,
+                            model
+                        ],
+                        forKeys: [
+                            ModelConstants.Category.name,
+                            ModelConstants.Category.isIncome,
+                            ModelConstants.Category.monthlyAmount,
+                            ModelConstants.Category.budgetId
+                        ]
+                    )
+
+                }
+                
+                activeRecord.insertObject(values)
+                activeRecord.save()
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

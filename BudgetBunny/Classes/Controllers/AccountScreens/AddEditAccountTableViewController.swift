@@ -193,7 +193,7 @@ class AddEditAccountTableViewController: UITableViewController {
         var oldName = ""
         
         // If this is a new account, then we should get the isDefault table cell.
-        // Edit mode does not have this cell, so. yeah.
+        // Edit mode does not have this cell.
         if self.sourceInformation == Constants.SourceInformation.accountNew {
             let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsGroup, row: screenConstants.idxDefaultCell)
             isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
@@ -211,15 +211,15 @@ class AddEditAccountTableViewController: UITableViewController {
             key: ModelConstants.Account.name,
             value: accountName
         )
-        let emptyAccountValidator = EmptyStringValidator(
+        let emptyNameValidator = EmptyStringValidator(
             objectToValidate: accountName,
             errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
         )
-        let emptyCurrencyValidator = EmptyStringValidator(
+        let emptyAmountValidator = EmptyStringValidator(
             objectToValidate: accountInitValue,
             errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
         )
-        let accountnameUniquenessValidator = AttributeUniquenessValidator(
+        let nameUniquenessValidator = AttributeUniquenessValidator(
             objectToValidate: accountNameModel,
             errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME,
             oldName: oldName
@@ -227,9 +227,9 @@ class AddEditAccountTableViewController: UITableViewController {
         
         // Add the error validators
         let validator = Validator(viewController: self)
-        validator.addValidator(emptyAccountValidator)
-        validator.addValidator(emptyCurrencyValidator)
-        validator.addValidator(accountnameUniquenessValidator)
+        validator.addValidator(emptyNameValidator)
+        validator.addValidator(emptyAmountValidator)
+        validator.addValidator(nameUniquenessValidator)
         
         // Validate the fields
         validator.validate { (success) in

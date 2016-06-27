@@ -46,6 +46,8 @@ struct ScreenConstants {
         static let sectionCount = 2
         static let idxInformationGroup = 0
         static let idxCategoryGroup = 1
+        static let idxNameCell = 0
+        static let idxAmountCell = 1
         
         static let budgetNameMaxLength = 25
         static let budgetAmountMaxLength = 15
