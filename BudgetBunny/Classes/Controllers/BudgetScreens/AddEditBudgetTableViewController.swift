@@ -119,15 +119,15 @@ class AddEditBudgetTableViewController: UITableViewController {
         )
         let emptyNameValidator = EmptyStringValidator(
             objectToValidate: budgetName,
-            errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY //TO-DO: Change this!
+            errorStringKey:  StringConstants.ERRORLABEL_NAME_AMOUNT_NOT_EMPTY
         )
         let emptyAmountValidator = EmptyStringValidator(
             objectToValidate: budgetAmount,
-            errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY //TO-DO: Change this!
+            errorStringKey: StringConstants.ERRORLABEL_NAME_AMOUNT_NOT_EMPTY
         )
         let nameUniquenessValidator = AttributeUniquenessValidator(
             objectToValidate: budgetNameModel,
-            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_ACCOUNT_NAME, //TO-DO: Change this!
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_BUDGET_NAME,
             oldName: ""
         )
         
@@ -241,6 +241,15 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     }
     
     func addNewCategory(categoryName: String) {
+        guard self.categoryList.count < screenConstants.categoryMaxCount else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES
+            )
+            return
+        }
+        
         // Check if category name already exists
         let newCategoryItem = AddEditBudgetCell(
             fieldKey: categoryName,

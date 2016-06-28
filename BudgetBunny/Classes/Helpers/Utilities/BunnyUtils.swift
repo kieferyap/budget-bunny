@@ -109,6 +109,7 @@ class BunnyUtils: NSObject {
     }
     
     // Prepares the button.
+    // TO-DO: Setting the return key text
     class func prepareButton(button: UIButton, text: String, model: BunnyCell, target: NSObject) -> Bool {
         button.setTitle(text, forState: UIControlState.Normal)
         button.exclusiveTouch = true

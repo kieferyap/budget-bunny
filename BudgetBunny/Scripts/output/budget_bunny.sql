@@ -183,12 +183,14 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 28	BUTTON_EDIT	Edit	編集	[Not localized yet]	2016-05-28 16:58:29.215243
 26	LABEL_CURRENT_BALANCE	Current Balance	経常収支	[Not localized yet]	2016-05-21 20:52:43.054826
 39	ERRORLABEL_TOO_MANY_ACCOUNTS	The number of accounts created has been exceeded.\\nKindly delete an account before proceeding.	アカウント数の上限を超えています。	[Not localized yet]	2016-06-23 01:02:37.812749
-14	ERRORLABEL_NAME_CURRENCY_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
 49	ERRORLABEL_DUPLICATE_CATEGORY_NAME	The category name already exists in this budget.	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.327302
 30	BUTTON_SET_AS_DEFAULT_DISABLED	This is the default account.	このアカウントはデフォルトです	[Not localized yet]	2016-06-01 01:45:23.069191
 50	LABEL_MONTHLY_BUDGET	Monthly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.41209
 51	LABEL_WEEKLY_BUDGET	Weekly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.415938
 52	LABEL_DAILY_BUDGET	Daily Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.420882
+53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\nKindly delete an category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.331202
+54	ERRORLABEL_DUPLICATE_BUDGET_NAME	The budget name already exists.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.359737
+14	ERRORLABEL_NAME_AMOUNT_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
 \.
 
 
@@ -196,7 +198,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 52, true);
+SELECT pg_catalog.setval('localizable_words_seq', 54, true);
 
 
 --

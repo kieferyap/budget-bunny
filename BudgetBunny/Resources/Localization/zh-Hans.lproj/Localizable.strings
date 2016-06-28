@@ -42,9 +42,11 @@
 "BUTTON_EDIT" = "[Not localized yet]";
 "LABEL_CURRENT_BALANCE" = "[Not localized yet]";
 "ERRORLABEL_TOO_MANY_ACCOUNTS" = "[Not localized yet]";
-"ERRORLABEL_NAME_CURRENCY_NOT_EMPTY" = "[Not localizaed yet]";
 "ERRORLABEL_DUPLICATE_CATEGORY_NAME" = "[Not localized yet]";
 "BUTTON_SET_AS_DEFAULT_DISABLED" = "[Not localized yet]";
 "LABEL_MONTHLY_BUDGET" = "[Not localized yet]";
 "LABEL_WEEKLY_BUDGET" = "[Not localized yet]";
 "LABEL_DAILY_BUDGET" = "[Not localized yet]";
+"ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
+"ERRORLABEL_DUPLICATE_BUDGET_NAME" = "[Not localized yet]";
+"ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "[Not localizaed yet]";

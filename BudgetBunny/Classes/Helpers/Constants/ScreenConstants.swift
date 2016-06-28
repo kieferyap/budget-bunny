@@ -1,7 +1,7 @@
 struct ScreenConstants {
     struct Account {
         static let sectionCount = 1
-        static var accountMaxCount = 20
+        static var accountMaxCount = 20 //var because it's changed during testing
     }
     struct AddEditAccount {
         static let idxAccountInfoGroup = 0
@@ -52,5 +52,7 @@ struct ScreenConstants {
         static let budgetNameMaxLength = 25
         static let budgetAmountMaxLength = 15
         static let categoryNameMaxLength = 25
+        
+        static var categoryMaxCount = 20
     }
 }

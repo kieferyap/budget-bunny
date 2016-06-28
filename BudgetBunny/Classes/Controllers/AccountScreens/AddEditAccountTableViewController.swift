@@ -213,11 +213,11 @@ class AddEditAccountTableViewController: UITableViewController {
         )
         let emptyNameValidator = EmptyStringValidator(
             objectToValidate: accountName,
-            errorStringKey:  StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
+            errorStringKey:  StringConstants.ERRORLABEL_NAME_AMOUNT_NOT_EMPTY
         )
         let emptyAmountValidator = EmptyStringValidator(
             objectToValidate: accountInitValue,
-            errorStringKey: StringConstants.ERRORLABEL_NAME_CURRENCY_NOT_EMPTY
+            errorStringKey: StringConstants.ERRORLABEL_NAME_AMOUNT_NOT_EMPTY
         )
         let nameUniquenessValidator = AttributeUniquenessValidator(
             objectToValidate: accountNameModel,

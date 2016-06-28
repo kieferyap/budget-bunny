@@ -26,9 +26,6 @@ class AccountsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.loadData()
         self.tableView.reloadData()
-        
-        // Count the number of accounts
-        self.isAccountCountMax = self.accountTable.count == constants.accountMaxCount
     }
     
     // Fetch from the core data, and append each element into the table
@@ -190,21 +187,21 @@ class AccountsTableViewController: UITableViewController {
     // MARK: - Navigation
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if self.isAccountCountMax {
+        guard self.accountTable.count < ScreenConstants.Account.accountMaxCount else {
             BunnyUtils.showAlertWithOKButton(
                 self,
                 titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
                 messageKey: StringConstants.ERRORLABEL_TOO_MANY_ACCOUNTS
             )
+            return
         }
-        else {
-            self.prepareNextViewController(
-                segue.destinationViewController,
-                sourceInformation: Constants.SourceInformation.accountNew
-            ) { (destinationViewController) in
-                let vc = destinationViewController as! AddEditAccountTableViewController
-                vc.accountInformation = nil
-            }
+        
+        self.prepareNextViewController(
+            segue.destinationViewController,
+            sourceInformation: Constants.SourceInformation.accountNew
+        ) { (destinationViewController) in
+            let vc = destinationViewController as! AddEditAccountTableViewController
+            vc.accountInformation = nil
         }
     }
  
