@@ -38,16 +38,46 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapAddBudgetButton()
     }
     
-    func testTing() {
+    // MARK: BUD-0001 Test Cases
+    
+    // Test element existence
+    func testExistence() {
         self.proceedToAddBudgetScreen()
         
         let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         addBudgetScreen.tapBudgetNameTextField()
+        addBudgetScreen.typeBudgetNameTextField("Transportation")
         addBudgetScreen.tapAmountTextField()
+        addBudgetScreen.typeAmountTextField("1024")
         addBudgetScreen.tapAddCategoryTextField()
-        
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        addBudgetScreen.typeCategoryTextField("Trains")
     }
+    
+    // Confirm that text field length limits are enforced.
+    func testTextFieldLengths() {
+        self.proceedToAddBudgetScreen()
+        
+        let length30 = "123456789012345678901234567890"
+        let length25 = "1234567890123456789012345"
+        let length15 = "123456789012345"
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.tapBudgetNameTextField()
+        addBudgetScreen.typeBudgetNameTextField(length30)
+        addBudgetScreen.tapAmountTextField()
+        addBudgetScreen.typeAmountTextField(length30)
+        addBudgetScreen.tapAddCategoryTextField()
+        addBudgetScreen.typeCategoryTextField(length30)
+        
+        addBudgetScreen.assertBudgetNameTextFieldEquality(length25)
+        addBudgetScreen.assertAmountTextFieldEquality(length15)
+        addBudgetScreen.assertCategoryTextFieldEquality(length25)
+    }
+    
+    // Confirm that new categories are being added into the list.
+    
+    // Confirm that decimals are being added properly. (Users cannot key in "1..25")
+    
+    // Confirm that the five error scenarios are working. (Missing name, missing amount, maximum categories, duplicate categories, CATEGORIES WITH NOTHING IN IT)
     
 }

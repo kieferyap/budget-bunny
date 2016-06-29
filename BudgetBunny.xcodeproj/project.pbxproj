@@ -455,12 +455,12 @@
 				FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */,
 				FBF32F971D23D74D0023E116 /* BudgetScreen.swift */,
 				FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */,
+				FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */,
 				FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */,
 				FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */,
 				FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */,
 				FB0DBABF1D00964600980BE5 /* XCUIElement.swift */,
 				FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */,
-				FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
