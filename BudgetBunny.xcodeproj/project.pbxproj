@@ -78,6 +78,9 @@
 		FBDF483F1D056A5800C9E2D8 /* BunnyUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */; };
 		FBDF48401D056D3300C9E2D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 		FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE3F9801CFD404A00C56107 /* AccountUtils.swift */; };
+		FBF32F981D23D74D0023E116 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F971D23D74D0023E116 /* BudgetScreen.swift */; };
+		FBF32F9A1D23D7A20023E116 /* BudgetScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F991D23D7A20023E116 /* BudgetScreenUITests.swift */; };
+		FBF32F9C1D23D86A0023E116 /* AddBudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */; };
 		FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +177,9 @@
 		FBE3F9801CFD404A00C56107 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUtils.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		FBF32F971D23D74D0023E116 /* BudgetScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
+		FBF32F991D23D7A20023E116 /* BudgetScreenUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetScreenUITests.swift; sourceTree = "<group>"; };
+		FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudgetScreen.swift; sourceTree = "<group>"; };
 		FBFE42F61CCF34A1000206FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F81CCF34A3000206FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBFE42F91CCF34A5000206FE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -447,12 +453,14 @@
 			isa = PBXGroup;
 			children = (
 				FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */,
+				FBF32F971D23D74D0023E116 /* BudgetScreen.swift */,
 				FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */,
 				FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */,
 				FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */,
 				FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */,
 				FB0DBABF1D00964600980BE5 /* XCUIElement.swift */,
 				FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */,
+				FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				FBBEBF701CDD8382000AE2C9 /* AccountScreenUITests.swift */,
+				FBF32F991D23D7A20023E116 /* BudgetScreenUITests.swift */,
 				FB97C3291CB4975000C35BC0 /* LocationUITests.swift */,
 			);
 			path = Tests;
@@ -724,14 +733,17 @@
 				FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */,
 				FBDF483B1D056A1700C9E2D8 /* StringConstants.swift in Sources */,
 				FBBEBF711CDD8382000AE2C9 /* AccountScreenUITests.swift in Sources */,
+				FBF32F9C1D23D86A0023E116 /* AddBudgetScreen.swift in Sources */,
 				FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */,
 				FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */,
 				FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */,
 				FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */,
 				FBBEBF731CDD8411000AE2C9 /* AccountScreen.swift in Sources */,
 				FBDF483F1D056A5800C9E2D8 /* BunnyUIUtils.swift in Sources */,
+				FBF32F981D23D74D0023E116 /* BudgetScreen.swift in Sources */,
 				FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */,
 				FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */,
+				FBF32F9A1D23D7A20023E116 /* BudgetScreenUITests.swift in Sources */,
 				FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

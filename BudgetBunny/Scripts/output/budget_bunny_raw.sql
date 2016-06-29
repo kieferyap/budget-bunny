@@ -211,6 +211,6 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 
 -- 6/28/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_CATEGORIES', 'The number of categories created has been exceeded.\nKindly delete an category before proceeding.', '[Not localized yet]', '[Not localized yet]');
-INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NAME_AMOUNT_NOT_EMPTY', 'Error: the name and amount must not be left blank.', '[Not localizaed yet]', '[Not localizaed yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_BUDGET_NAME', 'The budget name already exists.', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET wording_key = 'ERRORLABEL_NAME_AMOUNT_NOT_EMPTY' where wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
 
