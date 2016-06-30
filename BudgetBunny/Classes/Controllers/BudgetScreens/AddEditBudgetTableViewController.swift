@@ -9,7 +9,6 @@
 import UIKit
 
 protocol AddEditBudgetDelegate: class {
-    func unmarkAllCategoriesExceptFor(cellModel: AddEditBudgetCell)
     func addNewCategory(categoryName: String)
 }
 
@@ -17,7 +16,6 @@ class AddEditBudgetTableViewController: UITableViewController {
 
     private var addBudgetTable: [[AddEditBudgetCell]] = [[]]
     private var categoryList: [AddEditBudgetCell] = []
-    private var selectedCategoryCell: AddEditBudgetCell?
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
@@ -59,7 +57,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         // Keyboard must be dismissed when regions outside of it is tapped
         BunnyUtils.addKeyboardDismisserListener(self)
         self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
-        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_ACCOUNT)
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
     }
     
     func updateCategorySection() {
@@ -217,15 +215,6 @@ class AddEditBudgetTableViewController: UITableViewController {
         cell.setBudgetCellModel(cellItem)
         cell.delegate = self
         
-        if self.selectedCategoryCell != nil {
-            cell.model?.isSelected = false
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            if cellItem.field == self.selectedCategoryCell!.field {
-                cell.model?.isSelected = true
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-            }
-        }
-        
         return cell
     }
 
@@ -233,19 +222,23 @@ class AddEditBudgetTableViewController: UITableViewController {
 
 extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     
-    func unmarkAllCategoriesExceptFor(cellModel: AddEditBudgetCell) {
-        self.selectedCategoryCell = cellModel
-        self.updateCategorySection()
-        let indexSet = NSIndexSet.init(index: screenConstants.idxCategoryGroup)
-        self.tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
-    }
-    
     func addNewCategory(categoryName: String) {
+        let trimmedCategoryName = categoryName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
         guard self.categoryList.count < screenConstants.categoryMaxCount else {
             BunnyUtils.showAlertWithOKButton(
                 self,
                 titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
                 messageKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES
+            )
+            return
+        }
+        
+        guard trimmedCategoryName != "" else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY
             )
             return
         }

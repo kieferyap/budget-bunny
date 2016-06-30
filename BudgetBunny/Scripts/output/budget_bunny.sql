@@ -191,6 +191,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\nKindly delete an category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.331202
 54	ERRORLABEL_DUPLICATE_BUDGET_NAME	The budget name already exists.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.359737
 14	ERRORLABEL_NAME_AMOUNT_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
+55	ERRORLABEL_CATEGORY_NOT_EMPTY	The category name must not be left blank.	[Not localized yet]	[Not localized yet]	2016-06-30 15:19:21.908227
 \.
 
 
@@ -198,7 +199,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 54, true);
+SELECT pg_catalog.setval('localizable_words_seq', 55, true);
 
 
 --

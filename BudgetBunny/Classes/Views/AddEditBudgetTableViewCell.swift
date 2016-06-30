@@ -38,8 +38,7 @@ class AddEditBudgetTableViewCell: UITableViewCell {
             
         case Constants.CellIdentifiers.addBudgetCategory:
             self.field.text = fieldText
-            selectionColor.backgroundColor = Constants.Colors.lightGreen
-            self.accessoryType = UITableViewCellAccessoryType.None
+            self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             break
             
         case Constants.CellIdentifiers.addBudgetNewCategory:
@@ -70,7 +69,7 @@ class AddEditBudgetTableViewCell: UITableViewCell {
             break
             
         case Constants.CellIdentifiers.addBudgetCategory:
-            self.delegate?.unmarkAllCategoriesExceptFor(self.model!)
+            // Once tapped, the category will be editable and deletable
             break
             
         case Constants.CellIdentifiers.addBudgetNewCategory:

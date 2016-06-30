@@ -20,7 +20,7 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func tapAddCategoryTextField() {
-        self.tapTextFieldAtElement(2)
+        self.app.tables.cells.textFields["Add New Category"].tap()
     }
     
     func typeBudgetNameTextField(input: String) {
@@ -34,8 +34,9 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func typeCategoryTextField(input: String) {
+        let inputEntered = input.stringByAppendingString("\r")
         self.tapAddCategoryTextField()
-        self.typeTextFieldAtElement(2, input: input)
+        self.app.tables.cells.textFields["Add New Category"].typeText(inputEntered)
     }
     
     func assertBudgetNameTextFieldEquality(desiredValue: String) {
@@ -48,6 +49,11 @@ class AddBudgetScreen: BaseScreen {
     
     func assertCategoryTextFieldEquality(desiredValue: String) {
         self.assertTextFieldEquality(2, desiredValue: desiredValue)
+    }
+    
+    func assertTextEqualityOfCategoryAtIndex(index: UInt, match: String) {
+        let translatedIndex = index + 2
+        self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
     }
     
     private func assertTextFieldEquality(index: Int, desiredValue: String) {

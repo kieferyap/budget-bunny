@@ -75,6 +75,39 @@ class BudgetScreenUITests: XCTestCase {
     }
     
     // Confirm that new categories are being added into the list.
+    func testAddCategories() {
+        self.proceedToAddBudgetScreen()
+        
+        let categoryA = "Breakfast"
+        let categoryB = "Lunch"
+        let categoryC = "Dinner"
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.typeCategoryTextField(categoryA)
+        addBudgetScreen.typeCategoryTextField(categoryB)
+        addBudgetScreen.typeCategoryTextField(categoryC)
+        
+        addBudgetScreen.assertTextEqualityOfCategoryAtIndex(0, match: categoryA)
+        addBudgetScreen.assertTextEqualityOfCategoryAtIndex(1, match: categoryB)
+        addBudgetScreen.assertTextEqualityOfCategoryAtIndex(2, match: categoryC)
+        
+        
+//        let app = XCUIApplication()
+//        app.tabBars.buttons["Budgets"].tap()
+//        app.navigationBars["Budgets"].buttons["+"].tap()
+//        
+//        let tablesQuery = app.tables
+//        let addNewCategoryTextField = tablesQuery.cells.textFields["Add New Category"]
+//        addNewCategoryTextField.tap()
+//        addNewCategoryTextField.tap()
+//        tablesQuery.childrenMatchingType(.Cell).elementBoundByIndex(2).childrenMatchingType(.TextField).element
+//        app.typeText("\r")
+//        addNewCategoryTextField.tap()
+//        addNewCategoryTextField.tap()
+//        self.app.tables.childrenMatchingType(.Cell).elementBoundByIndex(3).childrenMatchingType(.TextField).element
+//        app.typeText("\r")
+        
+    }
     
     // Confirm that decimals are being added properly. (Users cannot key in "1..25")
     

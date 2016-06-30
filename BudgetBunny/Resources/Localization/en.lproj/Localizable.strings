@@ -50,3 +50,4 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "The number of categories created has been exceeded.\nKindly delete an category before proceeding.";
 "ERRORLABEL_DUPLICATE_BUDGET_NAME" = "The budget name already exists.";
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "The name and amount must not be left blank.";
+"ERRORLABEL_CATEGORY_NOT_EMPTY" = "The category name must not be left blank.";

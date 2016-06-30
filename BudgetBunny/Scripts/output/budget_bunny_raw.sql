@@ -214,3 +214,5 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_BUDGET_NAME', 'The budget name already exists.', '[Not localized yet]', '[Not localized yet]');
 UPDATE localizable_words SET wording_key = 'ERRORLABEL_NAME_AMOUNT_NOT_EMPTY' where wording_key = 'ERRORLABEL_NAME_CURRENCY_NOT_EMPTY';
 
+-- 6/30/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_CATEGORY_NOT_EMPTY', 'The category name must not be left blank.', '[Not localized yet]', '[Not localized yet]');
