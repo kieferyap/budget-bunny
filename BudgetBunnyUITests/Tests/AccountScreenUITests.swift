@@ -140,7 +140,6 @@ class AddAccountUITests: XCTestCase {
         let multiDecimal = "1..25"
         let singleDecimal = "1.25"
         
-        // Assert that the 22-character limit is enforced in the Account Name
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(multiDecimal)

@@ -4,7 +4,7 @@
 
 Budget Bunny is an iOS application that helps you manage your expenses and budgets. It is currently a work in progress. 
 
-...A painfully slow work in progress. (I realize that it's been 2 months holycrap.) Sorry about that. I currently have a full-time job, and I only have time to work on this after I get home, and I'm usually pretty tired by then. I also sometimes work on this in the weekends while I'm in the train. Still, working on this project feels relaxing (unlike *coughworkcough*), so I don't mind nibbling my way through bit by bit. Like a bunny.
+...A painfully slow work in progress. (I realize that it's been 2 months holycrap.) Sorry about that. I currently have a full-time job, and I only have time to work on this after I get home, and I'm usually pretty tired by then. I also sometimes work on this in the weekends while I'm in the train. Still, working on this project feels relaxing, so I don't mind nibbling my way through bit by bit. Like a bunny.
 
 ----------------------- 
 

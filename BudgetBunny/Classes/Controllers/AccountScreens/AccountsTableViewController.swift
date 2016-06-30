@@ -82,7 +82,7 @@ class AccountsTableViewController: UITableViewController {
                 })
                 self.presentViewController(alertController, animated: true, completion: nil)
                                 
-                //TO-DO: Remove all transactions that are involved with the account
+                // TO-DO: Remove all transactions that are involved with the account
             }
             
             // Set the "Set Default" button

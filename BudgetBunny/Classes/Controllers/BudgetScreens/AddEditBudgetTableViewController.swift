@@ -257,6 +257,7 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             parentArray: self.categoryList
         )
         
+        // TO-DO: Sort the categories alphabetically
         // TO-DO: Category name editing and category name deletion
         let validator = Validator(viewController: self)
         validator.addValidator(categoryUniquenessValidator)

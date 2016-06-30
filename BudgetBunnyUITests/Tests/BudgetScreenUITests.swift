@@ -71,7 +71,7 @@ class BudgetScreenUITests: XCTestCase {
         
         addBudgetScreen.assertBudgetNameTextFieldEquality(length25)
         addBudgetScreen.assertAmountTextFieldEquality(length15)
-        addBudgetScreen.assertCategoryTextFieldEquality(length25)
+        addBudgetScreen.assertTextEqualityOfCategoryAtIndex(0, match:length25)
     }
     
     // Confirm that new categories are being added into the list.
@@ -80,8 +80,8 @@ class BudgetScreenUITests: XCTestCase {
         
         let categoryA = "Breakfast"
         let categoryB = "Lunch"
-        let categoryC = "Dinner"
-        
+        let categoryC = "Dinner"        
+
         let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         addBudgetScreen.typeCategoryTextField(categoryA)
         addBudgetScreen.typeCategoryTextField(categoryB)
@@ -91,26 +91,49 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.assertTextEqualityOfCategoryAtIndex(1, match: categoryB)
         addBudgetScreen.assertTextEqualityOfCategoryAtIndex(2, match: categoryC)
         
-        
-//        let app = XCUIApplication()
-//        app.tabBars.buttons["Budgets"].tap()
-//        app.navigationBars["Budgets"].buttons["+"].tap()
-//        
-//        let tablesQuery = app.tables
-//        let addNewCategoryTextField = tablesQuery.cells.textFields["Add New Category"]
-//        addNewCategoryTextField.tap()
-//        addNewCategoryTextField.tap()
-//        tablesQuery.childrenMatchingType(.Cell).elementBoundByIndex(2).childrenMatchingType(.TextField).element
-//        app.typeText("\r")
-//        addNewCategoryTextField.tap()
-//        addNewCategoryTextField.tap()
-//        self.app.tables.childrenMatchingType(.Cell).elementBoundByIndex(3).childrenMatchingType(.TextField).element
-//        app.typeText("\r")
-        
     }
     
     // Confirm that decimals are being added properly. (Users cannot key in "1..25")
+    func testMultiDecimal() {
+        self.proceedToAddBudgetScreen()
+        
+        let multiDecimal = "1..25"
+        let singleDecimal = "1.25"
+        
+        // Assert that the 22-character limit is enforced in the Account Name
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.tapAmountTextField()
+        addBudgetScreen.typeAmountTextField(multiDecimal)
+        addBudgetScreen.assertAmountTextFieldEquality(singleDecimal)
+    }
     
-    // Confirm that the five error scenarios are working. (Missing name, missing amount, maximum categories, duplicate categories, CATEGORIES WITH NOTHING IN IT)
+    // Confirm that the five error scenarios are working. (Missing name, missing amount, maximum categories)
     
+    // Test duplicate categories
+    func testDuplicateCategories() {
+        self.proceedToAddBudgetScreen()
+        let testCategory = "Test Category"
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.typeCategoryTextField(testCategory)
+        addBudgetScreen.typeCategoryTextField(testCategory)
+        
+        addBudgetScreen.tapErrorAlertOkButton()
+    }
+    
+    // Test adding a blank category
+    func testBlankCategories() {
+        self.proceedToAddBudgetScreen()
+        let testCategory = "      "
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.typeCategoryTextField(testCategory)
+        addBudgetScreen.tapErrorAlertOkButton()
+    }
+    
+    // Test trimming for all textfields
+    
+    func testTest() {
+        
+    }
 }

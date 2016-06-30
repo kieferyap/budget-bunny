@@ -86,6 +86,7 @@ class BunnyUtils: NSObject {
     }
     
     // Prepares the textfield. Assumes that each text field has a maxLength, keyboardType, and textValue. Used whenever there is a text field. Returns true if the textfield has been successfully prepared. False, if otherwise.
+    // TO-DO: I should be able to customize the Enter key. ("Done", "Continue", etc.)
     class func prepareTextField(textField: BunnyTextField, placeholderText: String, textColor: UIColor, model: BunnyCell) -> Bool {
         textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
         textField.textColor = textColor
@@ -109,7 +110,6 @@ class BunnyUtils: NSObject {
     }
     
     // Prepares the button.
-    // TO-DO: Setting the return key text
     class func prepareButton(button: UIButton, text: String, model: BunnyCell, target: NSObject) -> Bool {
         button.setTitle(text, forState: UIControlState.Normal)
         button.exclusiveTouch = true

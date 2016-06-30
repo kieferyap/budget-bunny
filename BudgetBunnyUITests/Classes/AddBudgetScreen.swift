@@ -20,7 +20,7 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func tapAddCategoryTextField() {
-        self.app.tables.cells.textFields["Add New Category"].tap()
+        self.app.tables.textFields["Add New Category"].tap()
     }
     
     func typeBudgetNameTextField(input: String) {
@@ -34,9 +34,9 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func typeCategoryTextField(input: String) {
-        let inputEntered = input.stringByAppendingString("\r")
         self.tapAddCategoryTextField()
-        self.app.tables.cells.textFields["Add New Category"].typeText(inputEntered)
+        self.app.tables.textFields["Add New Category"].typeText(input)
+        self.app.keyboards.buttons["Done"].tap()
     }
     
     func assertBudgetNameTextFieldEquality(desiredValue: String) {
@@ -47,17 +47,13 @@ class AddBudgetScreen: BaseScreen {
         self.assertTextFieldEquality(1, desiredValue: desiredValue)
     }
     
-    func assertCategoryTextFieldEquality(desiredValue: String) {
-        self.assertTextFieldEquality(2, desiredValue: desiredValue)
-    }
-    
     func assertTextEqualityOfCategoryAtIndex(index: UInt, match: String) {
         let translatedIndex = index + 2
         self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
     }
     
-    private func assertTextFieldEquality(index: Int, desiredValue: String) {
-        let textFieldValue = self.app.tables.textFields.elementAtIndex(0).value as! String
+    private func assertTextFieldEquality(index: UInt, desiredValue: String) {
+        let textFieldValue = self.app.tables.textFields.elementAtIndex(index).value as! String
         XCTAssertEqual(textFieldValue, desiredValue)
     }
     
