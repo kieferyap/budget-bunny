@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let environment = NSProcessInfo.processInfo().environment;
         if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
             ScreenConstants.Account.accountMaxCount = 5
+            ScreenConstants.AddEditBudget.categoryMaxCount = 5
             let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
             model.deleteAllObjects()
         }

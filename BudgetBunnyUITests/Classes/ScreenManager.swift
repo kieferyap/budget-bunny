@@ -29,6 +29,7 @@ class ScreenManager: NSObject {
     }
     
     class func tapTab(tabName: String, app: XCUIApplication) {
+        sleep(5) // Delay needed for tap to work due to problems in UI Testing
         let tabBars = XCUIApplication().tabBars
         tabBars.buttons[tabName].tap()
     }

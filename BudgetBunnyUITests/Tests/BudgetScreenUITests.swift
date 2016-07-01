@@ -107,8 +107,6 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.assertAmountTextFieldEquality(singleDecimal)
     }
     
-    // Confirm that the five error scenarios are working. (Missing name, missing amount, maximum categories)
-    
     // Test duplicate categories
     func testDuplicateCategories() {
         self.proceedToAddBudgetScreen()
@@ -131,9 +129,55 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapErrorAlertOkButton()
     }
     
-    // Test trimming for all textfields
-    
-    func testTest() {
+    // Test missing fields: both, and amount
+    func testMissingAmount() {
+        self.proceedToAddBudgetScreen()
         
+        // Test 01: Both are empty
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+        
+        // Test 02: Name is empty
+        addBudgetScreen.typeAmountTextField("123.45")
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+        
+    }
+    
+    // Test missing fields: name, and category
+    func testMissingName() {
+        self.proceedToAddBudgetScreen()
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.typeBudgetNameTextField("test")
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+    }
+    
+    // Test no categories
+    func testNoCategories() {
+        self.proceedToAddBudgetScreen()
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.tapBudgetNameTextField()
+        addBudgetScreen.typeBudgetNameTextField("Transportation")
+        addBudgetScreen.tapAmountTextField()
+        addBudgetScreen.typeAmountTextField("1024")
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+    }
+    
+    // Test maximum categories
+    func testMaximumCategories() {
+        self.proceedToAddBudgetScreen()
+        
+        let maxCount = 5
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        for i in 0 ..< maxCount {
+            addBudgetScreen.typeCategoryTextField(String(i))
+        }
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
     }
 }

@@ -52,6 +52,14 @@ class AddBudgetScreen: BaseScreen {
         self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
     }
     
+    func tapDoneButton() {
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        ].tap()
+    }
+    
     private func assertTextFieldEquality(index: UInt, desiredValue: String) {
         let textFieldValue = self.app.tables.textFields.elementAtIndex(index).value as! String
         XCTAssertEqual(textFieldValue, desiredValue)

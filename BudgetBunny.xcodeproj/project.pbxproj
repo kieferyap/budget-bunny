@@ -15,6 +15,7 @@
 		FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */; };
 		FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2D1CEE101900636CCC /* AttributeModel.swift */; };
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
+		FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */; };
 		FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */; };
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
 		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
@@ -110,6 +111,7 @@
 		FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeUniquenessValidator.swift; sourceTree = "<group>"; };
 		FB238F2D1CEE101900636CCC /* AttributeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeModel.swift; sourceTree = "<group>"; };
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
+		FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyArrayValidator.swift; sourceTree = "<group>"; };
 		FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
 		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
 				FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */,
+				FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				FB6AC1291D2137BB009EC80C /* Account.swift in Sources */,
 				FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
+				FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */,
 				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
 				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
 				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,

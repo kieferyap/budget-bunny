@@ -128,12 +128,17 @@ class AddEditBudgetTableViewController: UITableViewController {
             errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_BUDGET_NAME,
             oldName: ""
         )
+        let categoryCountValidator = EmptyArrayValidator(
+            objectToValidate: self.categoryList,
+            errorStringKey: StringConstants.ERRORLABEL_NO_CATEGORIES
+        )
         
         // Add the error validators
         let validator = Validator(viewController: self)
         validator.addValidator(emptyNameValidator)
         validator.addValidator(emptyAmountValidator)
         validator.addValidator(nameUniquenessValidator)
+        validator.addValidator(categoryCountValidator)
         
         // Validate the fields
         validator.validate { (success) in

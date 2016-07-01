@@ -216,3 +216,7 @@ UPDATE localizable_words SET wording_key = 'ERRORLABEL_NAME_AMOUNT_NOT_EMPTY' wh
 
 -- 6/30/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_CATEGORY_NOT_EMPTY', 'The category name must not be left blank.', '[Not localized yet]', '[Not localized yet]');
+
+-- 7/1/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NO_CATEGORIES', 'Please add at least one category.', '[Not localized yet]', '[Not localized yet]');
+

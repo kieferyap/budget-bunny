@@ -51,3 +51,4 @@
 "ERRORLABEL_DUPLICATE_BUDGET_NAME" = "The budget name already exists.";
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "The name and amount must not be left blank.";
 "ERRORLABEL_CATEGORY_NOT_EMPTY" = "The category name must not be left blank.";
+"ERRORLABEL_NO_CATEGORIES" = "Please add at least one category.";
