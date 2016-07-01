@@ -107,12 +107,12 @@ class AddAccountScreen: BaseScreen {
     }
     
     func deleteAndEnterAmountText(newText: String, deleteDuration: Double) {
-        XCUIApplication().keys["Delete"].pressForDuration(deleteDuration)
+        self.app.keys["Delete"].pressForDuration(deleteDuration)
         self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAmountTextField).typeText(newText)
     }
     
     func deleteAndEnterAccountNameText(newText: String, deleteDuration: Double) {
-        XCUIApplication().keys["delete"].pressForDuration(deleteDuration)
+        self.app.keys["delete"].pressForDuration(deleteDuration)
         self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAccountNameTextField).typeText(newText)
     }
     

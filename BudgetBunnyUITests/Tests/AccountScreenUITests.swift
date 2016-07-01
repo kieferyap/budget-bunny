@@ -406,12 +406,12 @@ class AddAccountUITests: XCTestCase {
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAmountText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterAccountNameText(
+        addAccountScreen.deleteAndEnterAmountText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
         )
@@ -485,12 +485,12 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAmountText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterAccountNameText(
+        addAccountScreen.deleteAndEnterAmountText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
         )
@@ -528,7 +528,7 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAmountText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             TestConstants.Accounts.account1[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
@@ -553,12 +553,12 @@ class AddAccountUITests: XCTestCase {
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAmountText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             "Bank Account Z",
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterAccountNameText(
+        addAccountScreen.deleteAndEnterAmountText(
             "17000",
             deleteDuration: 2.5
         )

@@ -17,19 +17,21 @@ class ScreenManager: NSObject {
     }
     
     class func tapBudgetsTab(app: XCUIApplication) {
+        sleep(5)
         self.tapTab(BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_BUDGETS), app: app)
     }
     
     class func tapRecordsTab(app: XCUIApplication) {
+        sleep(5)
         self.tapTab(BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_DASHBOARD), app: app)
     }
     
     class func tapDashboardTab(app: XCUIApplication) {
+        sleep(5)
         self.tapTab(BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_RECORDS), app: app)
     }
     
     class func tapTab(tabName: String, app: XCUIApplication) {
-        sleep(5) // Delay needed for tap to work due to problems in UI Testing
         let tabBars = XCUIApplication().tabBars
         tabBars.buttons[tabName].tap()
     }
