@@ -34,7 +34,7 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapAmountTextField() {
-        self.app.tables.cells.elementAtIndex(2).tap()
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxAmountCell).tap()
     }
     
     func tapIsDefaultSwitch() {
@@ -49,23 +49,27 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapCurrencyCell() {
-        self.app.tables.cells.elementAtIndex(1).tap()
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxCurrencyCell).tap()
     }
     
     func typeAccountNameTextField(input: String) {
-        self.app.tables.textFields.elementAtIndex(0).typeText(input)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAccountNameTextField).typeText(input)
     }
     
     func typeAmountTextField(input: String) {
-        self.app.tables.textFields.elementAtIndex(1).typeText(input)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAmountTextField).typeText(input)
     }
     
-    func assertTextFieldEquality(key: String) {
-        XCTAssertTrue(self.app.tables.textFields[key].exists)
+    func assertAccountNameTextFieldEquality(desiredValue: String) {
+        self.assertTextFieldEquality(TestConstants.AddAccount.idxAccountNameTextField, desiredValue: desiredValue)
     }
     
-    func assertStaticTextEquality(key: String) {
-        XCTAssertTrue(self.app.staticTexts[key].exists)
+    func assertAmountTextFieldEquality(desiredValue: String) {
+        self.assertTextFieldEquality(TestConstants.AddAccount.idxAmountTextField, desiredValue: desiredValue)
+    }
+    
+    func assertCurrencyLabelEquality(desiredValue: String) {
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxCurrencyCell).staticTexts[desiredValue].exists
     }
     
     func returnToAccountScreenFromAdd() {
@@ -102,14 +106,14 @@ class AddAccountScreen: BaseScreen {
         self.app.tables.buttons[buttonName].tap()
     }
     
-    func deleteAndEnterDecimalText(newText: String, deleteDuration: Double) {
+    func deleteAndEnterAmountText(newText: String, deleteDuration: Double) {
         XCUIApplication().keys["Delete"].pressForDuration(deleteDuration)
-        self.app.tables.textFields.elementAtIndex(1).typeText(newText)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAmountTextField).typeText(newText)
     }
     
-    func deleteAndEnterAlphanumericText(newText: String, deleteDuration: Double) {
+    func deleteAndEnterAccountNameText(newText: String, deleteDuration: Double) {
         XCUIApplication().keys["delete"].pressForDuration(deleteDuration)
-        self.app.tables.textFields.elementAtIndex(0).typeText(newText)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddAccount.idxAccountNameTextField).typeText(newText)
     }
     
     func tapOutside() {
@@ -117,9 +121,13 @@ class AddAccountScreen: BaseScreen {
     }
     
     func tapAllInfoCells() {
-        self.app.tables.cells.elementAtIndex(0).tap()
-        self.app.tables.cells.elementAtIndex(2).tap()
-        self.app.tables.cells.elementAtIndex(1).tap()
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxAccountNameCell).tap()
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxCurrencyCell).tap()
+        self.app.tables.cells.elementAtIndex(TestConstants.AddAccount.idxAmountCell).tap()
     }
     
+    private func assertTextFieldEquality(index: UInt, desiredValue: String) {
+        let textFieldValue = self.app.tables.textFields.elementAtIndex(index).value as! String
+        XCTAssertEqual(textFieldValue, desiredValue)
+    }
 }

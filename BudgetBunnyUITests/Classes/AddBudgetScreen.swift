@@ -12,11 +12,11 @@ import XCTest
 class AddBudgetScreen: BaseScreen {
     
     func tapBudgetNameTextField() {
-        self.tapTextFieldAtElement(0)
+        self.tapTextFieldAtElement(TestConstants.AddBudget.idxBudgetNameCell)
     }
     
     func tapAmountTextField() {
-        self.tapTextFieldAtElement(1)
+        self.tapTextFieldAtElement(TestConstants.AddBudget.idxAmountCell)
     }
     
     func tapAddCategoryTextField() {
@@ -25,12 +25,12 @@ class AddBudgetScreen: BaseScreen {
     
     func typeBudgetNameTextField(input: String) {
         self.tapBudgetNameTextField()
-        self.typeTextFieldAtElement(0, input: input)
+        self.typeTextFieldAtElement(TestConstants.AddBudget.idxBudgetNameCell, input: input)
     }
     
     func typeAmountTextField(input: String) {
         self.tapAmountTextField()
-        self.typeTextFieldAtElement(1, input: input)
+        self.typeTextFieldAtElement(TestConstants.AddBudget.idxAmountCell, input: input)
     }
     
     func typeCategoryTextField(input: String) {
@@ -40,15 +40,15 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func assertBudgetNameTextFieldEquality(desiredValue: String) {
-        self.assertTextFieldEquality(0, desiredValue: desiredValue)
+        self.assertTextFieldEquality(TestConstants.AddBudget.idxBudgetNameCell, desiredValue: desiredValue)
     }
     
     func assertAmountTextFieldEquality(desiredValue: String) {
-        self.assertTextFieldEquality(1, desiredValue: desiredValue)
+        self.assertTextFieldEquality(TestConstants.AddBudget.idxAmountCell, desiredValue: desiredValue)
     }
     
     func assertTextEqualityOfCategoryAtIndex(index: UInt, match: String) {
-        let translatedIndex = index + 2
+        let translatedIndex = (index + TestConstants.AddBudget.categoryIndexOffset)
         self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
     }
     

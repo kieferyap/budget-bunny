@@ -96,13 +96,12 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(accountName)
-        addAccountScreen.assertTextFieldEquality(accountName)
+        addAccountScreen.assertAccountNameTextFieldEquality(accountName)
         
         addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
-        addAccountScreen.assertTextFieldEquality(initialAmount)
-    
+        addAccountScreen.assertAmountTextFieldEquality(initialAmount)
     }
     
     // Confirm that the Account Name textfield has a 25 character limit
@@ -116,7 +115,7 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(length30)
-        addAccountScreen.assertTextFieldEquality(length25)
+        addAccountScreen.assertAccountNameTextFieldEquality(length25)
     }
     
     // Confirm that the Initial Amount textfield has a 15 character limit.
@@ -130,7 +129,7 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(length30)
-        addAccountScreen.assertTextFieldEquality(length15)
+        addAccountScreen.assertAmountTextFieldEquality(length15)
     }
     
     // Confirm that users cannot add two decimal points in the Amount field 
@@ -143,7 +142,7 @@ class AddAccountUITests: XCTestCase {
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(multiDecimal)
-        addAccountScreen.assertTextFieldEquality(singleDecimal)
+        addAccountScreen.assertAmountTextFieldEquality(singleDecimal)
     }
     
     // Confirm that a 0 is automatically added in the front.
@@ -180,18 +179,18 @@ class AddAccountUITests: XCTestCase {
         
         // Test 01: Tapping the currency cell and returning should not change the current cell
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.assertStaticTextEquality(usdCurrency)
+        addAccountScreen.assertCurrencyLabelEquality(usdCurrency)
         addAccountScreen.tapCurrencyCell()
     
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapBackButtonToAdd()
-        addAccountScreen.assertStaticTextEquality(usdCurrency)
+        addAccountScreen.assertCurrencyLabelEquality(usdCurrency)
         
         // Test 02: Tapping the currency cell and changing the currency should change the cell
         addAccountScreen.tapCurrencyCell()
         currencyPickerScreen.tapElementWithCountryName(japanSearchKey)
         currencyPickerScreen.tapBackButtonToAdd()
-        addAccountScreen.assertStaticTextEquality(japanCurrency)
+        addAccountScreen.assertCurrencyLabelEquality(japanCurrency)
         
         // TO-DO: I can't get the type-search-bar-tap-first-element to work because it apparently couldn't find the element after searching. I'll look into this in depth next time.
     }
@@ -352,16 +351,16 @@ class AddAccountUITests: XCTestCase {
 
         // Assert that the currency, account name, and amount of the default account are correct
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.name])
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.amount])
-        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account1[TestConstants.Accounts.currencyText])
+        addAccountScreen.assertAccountNameTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.name])
+        addAccountScreen.assertAmountTextFieldEquality(TestConstants.Accounts.account1[TestConstants.Accounts.amount])
+        addAccountScreen.assertCurrencyLabelEquality(TestConstants.Accounts.account1[TestConstants.Accounts.currencyText])
         addAccountScreen.returnToAccountScreenFromEdit()
         
         // Assert that the currency, account name, and amount of the normal account are correct
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.name])
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.amount])
-        addAccountScreen.assertStaticTextEquality(TestConstants.Accounts.account2[TestConstants.Accounts.currencyText])
+        addAccountScreen.assertAccountNameTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.name])
+        addAccountScreen.assertAmountTextFieldEquality(TestConstants.Accounts.account2[TestConstants.Accounts.amount])
+        addAccountScreen.assertCurrencyLabelEquality(TestConstants.Accounts.account2[TestConstants.Accounts.currencyText])
     }
     
     // Test that the buttons are correct: a default account must have two disabled buttons
@@ -407,12 +406,12 @@ class AddAccountUITests: XCTestCase {
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAlphanumericText(
+        addAccountScreen.deleteAndEnterAmountText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterDecimalText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
         )
@@ -422,8 +421,8 @@ class AddAccountUITests: XCTestCase {
         let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
         currencyPickerScreen.tapElementWithCountryName(TestConstants.Accounts.account2New[TestConstants.Accounts.country])
         currencyPickerScreen.tapBackButtonToEdit()
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
-        addAccountScreen.assertTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
+        addAccountScreen.assertAccountNameTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.name])
+        addAccountScreen.assertAmountTextFieldEquality(TestConstants.Accounts.account2New[TestConstants.Accounts.amount])
     }
     
     // Proceed to the Edit Account Screen with a non-default account. Tap the delete button.
@@ -486,12 +485,12 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAlphanumericText(
+        addAccountScreen.deleteAndEnterAmountText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterDecimalText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             TestConstants.Accounts.account2New[TestConstants.Accounts.amount],
             deleteDuration: 2.5
         )
@@ -529,7 +528,7 @@ class AddAccountUITests: XCTestCase {
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAlphanumericText(
+        addAccountScreen.deleteAndEnterAmountText(
             TestConstants.Accounts.account1[TestConstants.Accounts.name],
             deleteDuration: 2.5
         )
@@ -554,12 +553,12 @@ class AddAccountUITests: XCTestCase {
         // Proceed to the Edit Account Screen and update the account name and initial amount.
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
         addAccountScreen.tapAccountNameTextField()
-        addAccountScreen.deleteAndEnterAlphanumericText(
+        addAccountScreen.deleteAndEnterAmountText(
             "Bank Account Z",
             deleteDuration: 2.5
         )
         addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterDecimalText(
+        addAccountScreen.deleteAndEnterAccountNameText(
             "17000",
             deleteDuration: 2.5
         )
