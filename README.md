@@ -10,7 +10,7 @@ Budget Bunny is an iOS application that helps you manage your expenses and budge
 
 ## Screenshots
 
-![Accounts Screen](https://github.com/kieferyap/budget-bunny/blob/develop/BudgetBunny/Documents/images/accounts-usecase.gif "Accounts Screen")
+![Accounts Screen](https://github.com/kieferyap/budget-bunny/blob/develop/BudgetBunny/Resources/Others/accounts-usecase.gif "Accounts Screen")
 
 -----------------------
 
