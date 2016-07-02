@@ -6,7 +6,6 @@
 "BUTTON_DELETE_ACCOUNT" = "Delete Account";
 "TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "100";
 "BUTTON_DELETE_ACCOUNT_DISABLED" = "Default accounts cannot be deleted.";
-"MENULABEL_ADD_BUDGET" = "Add Budget";
 "LABEL_BUDGET" = "Budget";
 "LABEL_BUDGET_NAME" = "Budget Name";
 "LABEL_IS_DEFAULT_ACCOUNT" = "Default Account";
@@ -14,7 +13,7 @@
 "BUTTON_SET_DEFAULT" = "Set\nDefault";
 "MENULABEL_EDIT_ACCOUNT" = "Edit Account";
 "LABEL_MONTHLY" = "Monthly";
-"MENULABEL_ACCOUNT" = "Account";
+"ERRORLABEL_NO_CATEGORIES" = "Please add at least one category.";
 "MENULABEL_ADD_ACCOUNT" = "Add New Account";
 "MENULABEL_CURRENCY_PICKER" = "Currency";
 "LABEL_NAME" = "Account Name";
@@ -38,6 +37,7 @@
 "MENULABEL_BUDGETS" = "Budgets";
 "MENULABEL_DASHBOARD" = "Dashboard";
 "MENULABEL_RECORDS" = "Records";
+"ERRORLABEL_CATEGORY_NOT_EMPTY" = "The category name must not be left blank.";
 "TEXTFIELD_NEW_CATEGORY_PLACEHOLDER" = "Add New Category";
 "BUTTON_EDIT" = "Edit";
 "LABEL_CURRENT_BALANCE" = "Current Balance";
@@ -50,5 +50,5 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "The number of categories created has been exceeded.\nKindly delete an category before proceeding.";
 "ERRORLABEL_DUPLICATE_BUDGET_NAME" = "The budget name already exists.";
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "The name and amount must not be left blank.";
-"ERRORLABEL_CATEGORY_NOT_EMPTY" = "The category name must not be left blank.";
-"ERRORLABEL_NO_CATEGORIES" = "Please add at least one category.";
+"MENULABEL_ACCOUNT" = "Accounts";
+"MENULABEL_ADD_BUDGET" = "Add New Budget";

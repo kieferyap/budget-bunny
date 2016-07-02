@@ -6,7 +6,6 @@
 "BUTTON_DELETE_ACCOUNT" = "[Not localized yet]";
 "TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "600";
 "BUTTON_DELETE_ACCOUNT_DISABLED" = "[Not localized yet]";
-"MENULABEL_ADD_BUDGET" = "[Not localized yet]";
 "LABEL_BUDGET" = "[Not localized yet]";
 "LABEL_BUDGET_NAME" = "[Not localized yet]";
 "LABEL_IS_DEFAULT_ACCOUNT" = "默认帐户";
@@ -14,7 +13,7 @@
 "BUTTON_SET_DEFAULT" = "[Not localized yet]";
 "MENULABEL_EDIT_ACCOUNT" = "[Not localized yet]";
 "LABEL_MONTHLY" = "[Not localized yet]";
-"MENULABEL_ACCOUNT" = "帐户";
+"ERRORLABEL_NO_CATEGORIES" = "[Not localized yet]";
 "MENULABEL_ADD_ACCOUNT" = "新帐户";
 "MENULABEL_CURRENCY_PICKER" = "货币";
 "LABEL_NAME" = "货币的名称";
@@ -38,6 +37,7 @@
 "MENULABEL_BUDGETS" = "[Not localized yet]";
 "MENULABEL_DASHBOARD" = "[Not localized yet]";
 "MENULABEL_RECORDS" = "[Not localized yet]";
+"ERRORLABEL_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
 "TEXTFIELD_NEW_CATEGORY_PLACEHOLDER" = "[Not localized yet]";
 "BUTTON_EDIT" = "[Not localized yet]";
 "LABEL_CURRENT_BALANCE" = "[Not localized yet]";
@@ -50,5 +50,5 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
 "ERRORLABEL_DUPLICATE_BUDGET_NAME" = "[Not localized yet]";
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "[Not localizaed yet]";
-"ERRORLABEL_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
-"ERRORLABEL_NO_CATEGORIES" = "[Not localized yet]";
+"MENULABEL_ACCOUNT" = "帐户";
+"MENULABEL_ADD_BUDGET" = "[Not localized yet]";

@@ -147,7 +147,6 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 23	BUTTON_DELETE_ACCOUNT	Delete Account	アカウントを削除	[Not localized yet]	2016-05-21 20:52:42.968125
 8	TEXTFIELD_STARTING_BALANCE_PLACEHOLDER	100	1000	600	2016-05-01 19:45:58.317714
 31	BUTTON_DELETE_ACCOUNT_DISABLED	Default accounts cannot be deleted.	削除できません	[Not localized yet]	2016-06-01 01:45:23.348516
-40	MENULABEL_ADD_BUDGET	Add Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:04.955272
 41	LABEL_BUDGET	Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.216897
 42	LABEL_BUDGET_NAME	Budget Name	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.222798
 9	LABEL_IS_DEFAULT_ACCOUNT	Default Account	デフォルトのアカウント	默认帐户	2016-05-01 19:45:58.32213
@@ -155,7 +154,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 29	BUTTON_SET_DEFAULT	Set\\nDefault	デフォルト\\nとして設定	[Not localized yet]	2016-05-29 17:17:59.750267
 35	MENULABEL_EDIT_ACCOUNT	Edit Account	編集	[Not localized yet]	2016-06-06 22:47:07.784103
 44	LABEL_MONTHLY	Monthly	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.23151
-1	MENULABEL_ACCOUNT	Account	アカウント	帐户	2016-05-01 19:45:58.215002
+55	ERRORLABEL_NO_CATEGORIES	Please add at least one category.	[Not localized yet]	[Not localized yet]	2016-07-02 19:39:08.737418
 2	MENULABEL_ADD_ACCOUNT	Add New Account	追加	新帐户	2016-05-01 19:45:58.256828
 3	MENULABEL_CURRENCY_PICKER	Currency	通貨	货币	2016-05-01 19:45:58.260746
 4	LABEL_NAME	Account Name	アカウント名	货币的名称	2016-05-01 19:45:58.26445
@@ -179,6 +178,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 36	MENULABEL_BUDGETS	Budgets	バジェット	[Not localized yet]	2016-06-07 01:38:11.819856
 37	MENULABEL_DASHBOARD	Dashboard	ダッシュボード	[Not localized yet]	2016-06-07 01:38:11.82618
 38	MENULABEL_RECORDS	Records	記録	[Not localized yet]	2016-06-07 01:38:11.830419
+56	ERRORLABEL_CATEGORY_NOT_EMPTY	The category name must not be left blank.	[Not localized yet]	[Not localized yet]	2016-07-02 19:39:57.0491
 48	TEXTFIELD_NEW_CATEGORY_PLACEHOLDER	Add New Category	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.321636
 28	BUTTON_EDIT	Edit	編集	[Not localized yet]	2016-05-28 16:58:29.215243
 26	LABEL_CURRENT_BALANCE	Current Balance	経常収支	[Not localized yet]	2016-05-21 20:52:43.054826
@@ -188,11 +188,11 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 50	LABEL_MONTHLY_BUDGET	Monthly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.41209
 51	LABEL_WEEKLY_BUDGET	Weekly Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.415938
 52	LABEL_DAILY_BUDGET	Daily Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:59:13.420882
-53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\nKindly delete an category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.331202
-54	ERRORLABEL_DUPLICATE_BUDGET_NAME	The budget name already exists.	[Not localized yet]	[Not localized yet]	2016-06-28 11:19:24.359737
+53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\nKindly delete an category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-30 01:40:44.607786
+54	ERRORLABEL_DUPLICATE_BUDGET_NAME	The budget name already exists.	[Not localized yet]	[Not localized yet]	2016-06-30 01:40:44.712521
 14	ERRORLABEL_NAME_AMOUNT_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
-55	ERRORLABEL_CATEGORY_NOT_EMPTY	The category name must not be left blank.	[Not localized yet]	[Not localized yet]	2016-06-30 15:19:21.908227
-56	ERRORLABEL_NO_CATEGORIES	Please add at least one category.	[Not localized yet]	[Not localized yet]	2016-07-01 10:20:37.029822
+1	MENULABEL_ACCOUNT	Accounts	アカウント	帐户	2016-05-01 19:45:58.215002
+40	MENULABEL_ADD_BUDGET	Add New Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:04.955272
 \.
 
 

@@ -180,4 +180,7 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapDoneButton()
         addBudgetScreen.tapErrorAlertOkButton()
     }
+    
+    // Test the monthly/weekly/daily selection tabs
+    
 }

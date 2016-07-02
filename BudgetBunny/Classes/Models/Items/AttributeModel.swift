@@ -13,9 +13,9 @@ class AttributeModel: NSObject {
 
     var tableName: String
     var format: String
-    var value: String
+    var value: NSObject
     
-    init(tableName: String, key: String, value: String) {
+    init(tableName: String, key: String, value: NSObject) {
         self.tableName = tableName
         let formattedString = String.init(format: "%@ == ", key)
         self.format = formattedString.stringByAppendingString("%@")

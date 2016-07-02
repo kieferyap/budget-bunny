@@ -35,7 +35,7 @@ class BunnyModel: NSObject {
         if parameters != [:] {
             var predicateArray = [NSPredicate]()
             for (key, value) in parameters {
-                let predicate = NSPredicate(format: key as! String, value as! NSString)
+                let predicate = NSPredicate(format: key as! String, value as! NSObject)
                 predicateArray.append(predicate)
             }
             let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicateArray)

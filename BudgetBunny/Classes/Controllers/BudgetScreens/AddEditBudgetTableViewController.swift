@@ -27,7 +27,31 @@ class AddEditBudgetTableViewController: UITableViewController {
             repeatedValue: []
         )
         
-        // TO-DO: Why not placeholderKey? We clearly have fieldKey. >:U
+        // Get the currency symbol of the default account
+        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+        let currency = Currency()
+        currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
+        var currencySymbol = currency.currencySymbol
+        
+        let accountModel = AttributeModel(
+            tableName: ModelConstants.Entities.account,
+            key: ModelConstants.Account.isDefault,
+            value: true
+        )
+
+        activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
+            if fetchedObjects.count > 0 {
+                let defaultAccount = fetchedObjects[0] as! Account
+                let currency = Currency()
+                currency.setAttributes(defaultAccount.currency!)
+                currencySymbol = currency.currencySymbol
+            }
+        }
+        let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
+            .stringByAppendingString(" (")
+            .stringByAppendingString(currencySymbol)
+            .stringByAppendingString(")")
+        
         let nameCell = AddEditBudgetCell(
             fieldKey: StringConstants.LABEL_BUDGET_NAME,
             placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
@@ -39,8 +63,8 @@ class AddEditBudgetTableViewController: UITableViewController {
             ]
         )
         
-        let budgetCell = AddEditBudgetCell(
-            fieldKey: self.frequencyKey,
+        let amountCell = AddEditBudgetCell(
+            fieldKey: amountText,
             placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
             cellSettings: [
@@ -51,7 +75,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         )
         
         self.addBudgetTable[screenConstants.idxInformationGroup].append(nameCell)
-        self.addBudgetTable[screenConstants.idxInformationGroup].append(budgetCell)
+        self.addBudgetTable[screenConstants.idxInformationGroup].append(amountCell)
         self.updateCategorySection()
         
         // Keyboard must be dismissed when regions outside of it is tapped

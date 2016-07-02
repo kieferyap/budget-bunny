@@ -6,7 +6,6 @@
 "BUTTON_DELETE_ACCOUNT" = "アカウントを削除";
 "TEXTFIELD_STARTING_BALANCE_PLACEHOLDER" = "1000";
 "BUTTON_DELETE_ACCOUNT_DISABLED" = "削除できません";
-"MENULABEL_ADD_BUDGET" = "[Not localized yet]";
 "LABEL_BUDGET" = "[Not localized yet]";
 "LABEL_BUDGET_NAME" = "[Not localized yet]";
 "LABEL_IS_DEFAULT_ACCOUNT" = "デフォルトのアカウント";
@@ -14,7 +13,7 @@
 "BUTTON_SET_DEFAULT" = "デフォルト\nとして設定";
 "MENULABEL_EDIT_ACCOUNT" = "編集";
 "LABEL_MONTHLY" = "[Not localized yet]";
-"MENULABEL_ACCOUNT" = "アカウント";
+"ERRORLABEL_NO_CATEGORIES" = "[Not localized yet]";
 "MENULABEL_ADD_ACCOUNT" = "追加";
 "MENULABEL_CURRENCY_PICKER" = "通貨";
 "LABEL_NAME" = "アカウント名";
@@ -38,6 +37,7 @@
 "MENULABEL_BUDGETS" = "バジェット";
 "MENULABEL_DASHBOARD" = "ダッシュボード";
 "MENULABEL_RECORDS" = "記録";
+"ERRORLABEL_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
 "TEXTFIELD_NEW_CATEGORY_PLACEHOLDER" = "[Not localized yet]";
 "BUTTON_EDIT" = "編集";
 "LABEL_CURRENT_BALANCE" = "経常収支";
@@ -50,5 +50,5 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
 "ERRORLABEL_DUPLICATE_BUDGET_NAME" = "[Not localized yet]";
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "アカウントの名前とアカウントの残高を入力してください。";
-"ERRORLABEL_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
-"ERRORLABEL_NO_CATEGORIES" = "[Not localized yet]";
+"MENULABEL_ACCOUNT" = "アカウント";
+"MENULABEL_ADD_BUDGET" = "[Not localized yet]";
