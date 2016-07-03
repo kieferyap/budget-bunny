@@ -8,9 +8,12 @@
 
 import UIKit
 
-class BudgetViewController: UIViewController {
+class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var budgetTableView: UITableView!
+    private var budgetTable: [BudgetCell] = []
+    private var incomeTable: [BudgetCell] = [] // Should be IncomeCell
     private let screenConstants = ScreenConstants.Budget.self
     
     override func viewDidLoad() {
@@ -18,15 +21,15 @@ class BudgetViewController: UIViewController {
         self.setTitleLocalizationKey(StringConstants.MENULABEL_BUDGETS)
         self.timeSegmentedControl.setTitle(
             BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_MONTHLY),
-            forSegmentAtIndex: screenConstants.monthly
+            forSegmentAtIndex: screenConstants.idxMonthly
         )
         self.timeSegmentedControl.setTitle(
             BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WEEKLY),
-            forSegmentAtIndex: screenConstants.weekly
+            forSegmentAtIndex: screenConstants.idxWeekly
         )
         self.timeSegmentedControl.setTitle(
             BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DAILY),
-            forSegmentAtIndex: screenConstants.daily
+            forSegmentAtIndex: screenConstants.idxDaily
         )
     }
     
@@ -41,10 +44,80 @@ class BudgetViewController: UIViewController {
         let model = BunnyModel(tableName: ModelConstants.Entities.budget)
         model.selectAllObjects { (fetchedObjects) in
             for budget in fetchedObjects {
-                print(budget)
+                
+                let budgetItem: BudgetCell = BudgetCell(
+                    budgetObject: budget,
+                    budgetName: budget.valueForKey(ModelConstants.Budget.name) as! String,
+                    budgetAmount: budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double,
+                    amountRemaining: budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double
+                )
+                
+                self.budgetTable.append(budgetItem)
             }
         }
     }
+    
+    // MARK: - Table view data source
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return screenConstants.sectionCount
+    }
+    
+    // Hey, wait a minute. Don't we have two sections for this?
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return BunnyUtils.tableRowsWithLoadingTitle(
+            StringConstants.GUIDELABEL_NO_ACCOUNTS, //TO-DO: GUIDELABEL_NO_BUDGETS
+            tableModel: self.budgetTable,
+            tableView: self.budgetTableView
+        ) { () -> Int in
+            return self.budgetTable.count
+        }
+    }
+    
+    // On selection, set the values of the destination view controller and push it into the view controller stack
+    
+    /*
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section == screenConstants.idxBudgetSection {
+            
+        }
+        let cell: AccountCell = self.budgetTable[indexPath.row]
+        let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
+        var vc: AddEditAccountTableViewController!
+        
+        self.prepareNextViewController(
+            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable),
+            sourceInformation: Constants.SourceInformation.accountEditing
+        ) { (destinationViewController) in
+            vc = destinationViewController as! AddEditAccountTableViewController
+            vc.accountInformation = cell
+        }
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+     */
+    
+    // TO-DO: Header titles for ALL "Add"/"Edit" Screens
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellItem: BunnyCell
+        let cellClass: UITableViewCell
+        
+        switch indexPath.section {
+        case self.screenConstants.idxBudgetSection:
+            cellItem = self.budgetTable[indexPath.row]
+            break
+        default:
+            break
+        }
+        
+        let cellIdentifier = cellItem.cellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
+        
+        cell.setAccountModel(cellItem)
+        return cell
+    }
+
 
     // MARK: - Navigation
     // Activated when + is tapped

@@ -39,17 +39,23 @@ class AddBudgetScreen: BaseScreen {
         self.app.keyboards.buttons["Done"].tap()
     }
     
-    func assertBudgetNameTextFieldEquality(desiredValue: String) {
-        self.assertTextFieldEquality(TestConstants.AddBudget.idxBudgetNameCell, desiredValue: desiredValue)
+    func assertBudgetNameTextFieldEquality(match: String) {
+        self.assertTextFieldEquality(TestConstants.AddBudget.idxBudgetNameCell, match: match)
     }
     
-    func assertAmountTextFieldEquality(desiredValue: String) {
-        self.assertTextFieldEquality(TestConstants.AddBudget.idxAmountCell, desiredValue: desiredValue)
+    func assertAmountTextFieldEquality(match: String) {
+        self.assertTextFieldEquality(TestConstants.AddBudget.idxAmountCell, match: match)
     }
     
     func assertTextEqualityOfCategoryAtIndex(index: UInt, match: String) {
         let translatedIndex = (index + TestConstants.AddBudget.categoryIndexOffset)
         self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
+    }
+    
+    func assertAmountStaticTextEquality(match: String) {
+        self.app.tables.cells
+            .elementAtIndex(TestConstants.AddBudget.idxAmountCell)
+            .staticTexts[match].exists
     }
     
     func tapDoneButton() {
@@ -60,9 +66,17 @@ class AddBudgetScreen: BaseScreen {
         ].tap()
     }
     
-    private func assertTextFieldEquality(index: UInt, desiredValue: String) {
+    func tapBackButton() {
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_BUDGETS)
+        ].tap()
+    }
+    
+    private func assertTextFieldEquality(index: UInt, match: String) {
         let textFieldValue = self.app.tables.textFields.elementAtIndex(index).value as! String
-        XCTAssertEqual(textFieldValue, desiredValue)
+        XCTAssertEqual(textFieldValue, match)
     }
     
     private func tapTextFieldAtElement(index: UInt) {

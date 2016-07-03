@@ -136,4 +136,10 @@ class BunnyUtils: NSObject {
         }
         return true
     }
+    
+    class func getCurrencyObjectFromIdentifier(identifier: String) -> Currency {
+        let currency = Currency()
+        currency.setAttributes(identifier)
+        return currency
+    }
 }

@@ -38,9 +38,13 @@ struct ScreenConstants {
         static let symbolSearchParameter = "SELF.currencySymbol CONTAINS[c] %@"
     }
     struct Budget {
-        static let monthly = 0
-        static let weekly = 1
-        static let daily = 2
+        static let idxMonthly = 0
+        static let idxWeekly = 1
+        static let idxDaily = 2
+        
+        static let sectionCount = 2
+        static let idxBudgetSection = 0
+        static let idxIncomeSection = 1
     }
     struct AddEditBudget {
         static let sectionCount = 2
