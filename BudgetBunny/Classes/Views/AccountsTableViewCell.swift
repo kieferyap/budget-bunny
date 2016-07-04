@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountsTableViewCell: UITableViewCell {
+class AccountsTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
 
     @IBOutlet weak var isDefaultLabel: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!
@@ -17,7 +17,8 @@ class AccountsTableViewCell: UITableViewCell {
     
     var model: AccountCell?
     
-    func setAccountModel(model: AccountCell) {
+    func setModelObject(modelObject: BunnyCell) {
+        let model = modelObject as! AccountCell
         
         // Prepare UI elements
         let defaultString = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DEFAULT)

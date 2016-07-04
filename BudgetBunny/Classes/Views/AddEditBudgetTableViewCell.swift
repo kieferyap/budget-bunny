@@ -8,14 +8,15 @@
 
 import UIKit
 
-class AddEditBudgetTableViewCell: UITableViewCell {
+class AddEditBudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
 
     @IBOutlet weak var field: UILabel!
     @IBOutlet weak var textfield: BunnyTextField!
     var model: AddEditBudgetCell?
     weak var delegate:AddEditBudgetDelegate?
     
-    func setBudgetCellModel(budgetModel: AddEditBudgetCell) {
+    func setModelObject(modelObject: BunnyCell) {
+        let budgetModel = modelObject as! AddEditBudgetCell
         self.model = budgetModel
         
         let selectionColor = UIView()

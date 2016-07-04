@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class AddEditAccountTableViewCell: UITableViewCell {
+class AddEditAccountTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
 
     @IBOutlet weak var field: UILabel!
     @IBOutlet weak var value: UILabel!
@@ -19,7 +19,8 @@ class AddEditAccountTableViewCell: UITableViewCell {
     var model: AddEditAccountCell?
     weak var delegate:AddEditAccountDelegate?
 
-    func setAccountModel(accountModel: AddEditAccountCell) {
+    func setModelObject(modelObject: BunnyCell) {
+        let accountModel = modelObject as! AddEditAccountCell
         self.model = accountModel
         
         let selectionColor = UIView()

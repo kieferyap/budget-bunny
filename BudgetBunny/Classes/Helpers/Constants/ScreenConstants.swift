@@ -45,6 +45,9 @@ struct ScreenConstants {
         static let sectionCount = 2
         static let idxBudgetSection = 0
         static let idxIncomeSection = 1
+        
+        static let weakenedPercentage: Float = 0.5
+        static let dangerPercentage: Float = 0.25
     }
     struct AddEditBudget {
         static let sectionCount = 2

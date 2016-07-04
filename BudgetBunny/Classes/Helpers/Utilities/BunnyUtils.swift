@@ -142,4 +142,31 @@ class BunnyUtils: NSObject {
         currency.setAttributes(identifier)
         return currency
     }
+    
+    class func getCurrencyObjectOfDefaultAccount(completion: (defaultCurrency: Currency) -> Void) {
+        // Get the currency symbol of the default account
+        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+        let currency = Currency()
+        currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
+        
+        let accountModel = AttributeModel(
+            tableName: ModelConstants.Entities.account,
+            key: ModelConstants.Account.isDefault,
+            value: true
+        )
+        
+        activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
+            if fetchedObjects.count > 0 {
+                let defaultAccount = fetchedObjects[0] as! Account
+                let currency = Currency()
+                print(defaultAccount)
+                currency.setAttributes(
+                    defaultAccount.valueForKey(ModelConstants.Account.currency) as! String
+                )
+                completion(defaultCurrency:currency)
+            }
+            
+        }
+        
+    }
 }

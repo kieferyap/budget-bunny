@@ -41,20 +41,35 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Fetch from the core data, and append each element into the table
     private func loadData() {
-        let model = BunnyModel(tableName: ModelConstants.Entities.budget)
-        model.selectAllObjects { (fetchedObjects) in
-            for budget in fetchedObjects {
-                
-                let budgetItem: BudgetCell = BudgetCell(
-                    budgetObject: budget,
-                    budgetName: budget.valueForKey(ModelConstants.Budget.name) as! String,
-                    budgetAmount: budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double,
-                    amountRemaining: budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double
-                )
-                
-                self.budgetTable.append(budgetItem)
+        BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
+            let defaultCurrencyIdentifier = defaultCurrency.identifier
+            self.budgetTable = []
+            
+            var i = 0
+            let tempArray = [0.6, 0.4, 0.2]
+            
+            let model = BunnyModel(tableName: ModelConstants.Entities.budget)
+            model.selectAllObjects { (fetchedObjects) in
+                for budget in fetchedObjects {
+                    
+                    let budgetItem: BudgetCell = BudgetCell(
+                        budgetObject: budget,
+                        budgetName: budget.valueForKey(ModelConstants.Budget.name) as! String,
+                        budgetAmount: budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double,
+                        amountRemaining: (budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double)*tempArray[i],
+                        currencyIdentifier: defaultCurrencyIdentifier
+                    )
+                    
+                    self.budgetTable.append(budgetItem)
+                    i+=1
+                }
             }
+            
+            self.budgetTableView.delegate = self;
+            self.budgetTableView.dataSource = self;
+            self.budgetTableView.scrollEnabled = true;
         }
+        
     }
     
     // MARK: - Table view data source
@@ -64,13 +79,16 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Hey, wait a minute. Don't we have two sections for this?
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BunnyUtils.tableRowsWithLoadingTitle(
-            StringConstants.GUIDELABEL_NO_ACCOUNTS, //TO-DO: GUIDELABEL_NO_BUDGETS
-            tableModel: self.budgetTable,
-            tableView: self.budgetTableView
-        ) { () -> Int in
-            return self.budgetTable.count
+        if section == screenConstants.idxBudgetSection {
+            return BunnyUtils.tableRowsWithLoadingTitle(
+                StringConstants.GUIDELABEL_NO_ACCOUNTS, //TO-DO: GUIDELABEL_NO_BUDGETS
+                tableModel: self.budgetTable,
+                tableView: self.budgetTableView
+            ) { () -> Int in
+                return self.budgetTable.count
+            }
         }
+        return 0
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
@@ -100,22 +118,22 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // TO-DO: Header titles for ALL "Add"/"Edit" Screens
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellItem: BunnyCell
-        let cellClass: UITableViewCell
+        var cellItem = BunnyCell(cellIdentifier: "", cellSettings: [:])
         
         switch indexPath.section {
         case self.screenConstants.idxBudgetSection:
             cellItem = self.budgetTable[indexPath.row]
             break
+        // TO-DO: Case for Income type
         default:
             break
         }
         
         let cellIdentifier = cellItem.cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
-        cell.setAccountModel(cellItem)
-        return cell
+        cell.setModelObject(cellItem)
+        return cell as! UITableViewCell
     }
 
 
@@ -124,13 +142,13 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var frequencyKey = ""
         switch self.timeSegmentedControl.selectedSegmentIndex {
-        case screenConstants.monthly:
+        case self.screenConstants.idxMonthly:
             frequencyKey = StringConstants.LABEL_MONTHLY_BUDGET
             break
-        case screenConstants.weekly:
+        case self.screenConstants.idxWeekly:
             frequencyKey = StringConstants.LABEL_WEEKLY_BUDGET
             break
-        case screenConstants.daily:
+        case self.screenConstants.idxDaily:
             frequencyKey = StringConstants.LABEL_DAILY_BUDGET
             break
         default:

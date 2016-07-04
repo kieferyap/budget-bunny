@@ -91,6 +91,8 @@ class AccountsTableViewController: UITableViewController {
                 var refreshingIndexPath: NSIndexPath!
                 let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 
+                // TO-DO: Reset all budgets when the default account has been reset IF the currency is different than the original.
+                
                 model.selectAllObjects({ (fetchedObjects) -> Void in
                     // For each element
                     for (index, element) in fetchedObjects.enumerate() {
@@ -179,7 +181,7 @@ class AccountsTableViewController: UITableViewController {
         let cellIdentifier: String = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
         
-        cell.setAccountModel(cellItem)
+        cell.setModelObject(cellItem)
         return cell
     }
     

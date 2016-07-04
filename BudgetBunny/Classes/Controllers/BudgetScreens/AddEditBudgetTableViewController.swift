@@ -28,60 +28,46 @@ class AddEditBudgetTableViewController: UITableViewController {
         )
         
         // Get the currency symbol of the default account
-        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
-        let currency = Currency()
-        currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
-        var currencySymbol = currency.currencySymbol
-        
-        let accountModel = AttributeModel(
-            tableName: ModelConstants.Entities.account,
-            key: ModelConstants.Account.isDefault,
-            value: true
-        )
-
-        activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
-            if fetchedObjects.count > 0 {
-                let defaultAccount = fetchedObjects[0] as! Account
-                let currency = Currency()
-                currency.setAttributes(defaultAccount.currency!)
-                currencySymbol = currency.currencySymbol
-            }
+        BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
+            let currencySymbol = defaultCurrency.currencySymbol
+            
+            let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
+                .stringByAppendingString(" (")
+                .stringByAppendingString(currencySymbol)
+                .stringByAppendingString(")")
+            
+            let nameCell = AddEditBudgetCell(
+                fieldKey: StringConstants.LABEL_BUDGET_NAME,
+                placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
+                cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                cellSettings: [
+                    Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                    Constants.AppKeys.keyMaxLength: self.screenConstants.budgetNameMaxLength,
+                    Constants.AppKeys.keyTextFieldValue: ""
+                ]
+            )
+            
+            let amountCell = AddEditBudgetCell(
+                fieldKey: amountText,
+                placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
+                cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                cellSettings: [
+                    Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                    Constants.AppKeys.keyMaxLength: self.screenConstants.budgetAmountMaxLength,
+                    Constants.AppKeys.keyTextFieldValue: ""
+                ]
+            )
+            
+            self.addBudgetTable[self.screenConstants.idxInformationGroup].append(nameCell)
+            self.addBudgetTable[self.screenConstants.idxInformationGroup].append(amountCell)
+            self.updateCategorySection()
+            
+            // Keyboard must be dismissed when regions outside of it is tapped
+            BunnyUtils.addKeyboardDismisserListener(self)
+            self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+            self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
         }
-        let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
-            .stringByAppendingString(" (")
-            .stringByAppendingString(currencySymbol)
-            .stringByAppendingString(")")
         
-        let nameCell = AddEditBudgetCell(
-            fieldKey: StringConstants.LABEL_BUDGET_NAME,
-            placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
-            cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: screenConstants.budgetNameMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
-            ]
-        )
-        
-        let amountCell = AddEditBudgetCell(
-            fieldKey: amountText,
-            placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
-            cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                Constants.AppKeys.keyMaxLength: screenConstants.budgetAmountMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
-            ]
-        )
-        
-        self.addBudgetTable[screenConstants.idxInformationGroup].append(nameCell)
-        self.addBudgetTable[screenConstants.idxInformationGroup].append(amountCell)
-        self.updateCategorySection()
-        
-        // Keyboard must be dismissed when regions outside of it is tapped
-        BunnyUtils.addKeyboardDismisserListener(self)
-        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
-        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
     }
     
     func updateCategorySection() {
@@ -241,7 +227,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         let cellIdentifier: String = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditBudgetTableViewCell
 
-        cell.setBudgetCellModel(cellItem)
+        cell.setModelObject(cellItem)
         cell.delegate = self
         
         return cell

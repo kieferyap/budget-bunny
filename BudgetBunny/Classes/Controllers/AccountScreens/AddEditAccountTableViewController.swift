@@ -314,7 +314,7 @@ class AddEditAccountTableViewController: UITableViewController {
         let cellIdentifier: String = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
         
-        cell.setAccountModel(cellItem)
+        cell.setModelObject(cellItem)
         cell.delegate = self
         
         return cell
