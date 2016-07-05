@@ -351,18 +351,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="budgetName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBR-yA-LVg">
-                                                    <rect key="frame" x="8" y="17" width="150" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="FOc-xN-Ddn"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMr-s4-eUn">
-                                                    <rect key="frame" x="387" y="25" width="197" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="387" y="28" width="197" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -379,8 +370,19 @@
                                                     </constraints>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arP-SP-cP0">
-                                                    <rect key="frame" x="168" y="26" width="197" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="168" y="29" width="197" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBR-yA-LVg">
+                                                    <rect key="frame" x="8" y="9" width="150" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="FOc-xN-Ddn"/>
+                                                    </constraints>
+                                                    <string key="text">budget
+name</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -407,6 +409,65 @@
                                             <outlet property="progressHeight" destination="Abl-s4-D0u" id="V9S-Or-v0D"/>
                                             <outlet property="remainingAmount" destination="arP-SP-cP0" id="Wsz-PU-a1o"/>
                                             <outlet property="totalAmount" destination="gMr-s4-eUn" id="OIT-up-Hjy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeCell" rowHeight="44" id="1Th-D7-5SK" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="105" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Th-D7-5SK" id="4Ap-ut-K2R">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incomeName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-hE-On2">
+                                                    <rect key="frame" x="16" y="11" width="368" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incomeAmount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-PW-j5i">
+                                                    <rect key="frame" x="392" y="11" width="200" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="4dm-b1-deh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="leading" secondItem="Cch-hE-On2" secondAttribute="trailing" constant="8" id="ABm-hp-tBw"/>
+                                                <constraint firstItem="Cch-hE-On2" firstAttribute="leading" secondItem="4Ap-ut-K2R" secondAttribute="leadingMargin" constant="8" id="Hg5-3f-0eu"/>
+                                                <constraint firstItem="Cch-hE-On2" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="QVe-Ao-V2M"/>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="trailing" secondItem="4Ap-ut-K2R" secondAttribute="trailingMargin" id="nlO-8W-F1n"/>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="vab-bg-d13"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="incomeAmountLabel" destination="GkJ-PW-j5i" id="mPZ-7h-tAX"/>
+                                            <outlet property="incomeCategoryLabel" destination="Cch-hE-On2" id="arY-O2-J0w"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addIncomeCell" rowHeight="44" id="BM7-bf-Jod" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="149" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BM7-bf-Jod" id="gKQ-Ra-c08">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add new income category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-R7-24c" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FUy-R7-24c" firstAttribute="leading" secondItem="gKQ-Ra-c08" secondAttribute="leadingMargin" id="AQy-6q-iFr"/>
+                                                <constraint firstItem="FUy-R7-24c" firstAttribute="centerY" secondItem="gKQ-Ra-c08" secondAttribute="centerY" id="jVL-de-hb7"/>
+                                                <constraint firstItem="FUy-R7-24c" firstAttribute="trailing" secondItem="gKQ-Ra-c08" secondAttribute="trailingMargin" id="n0A-7s-WXV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addNewIncomeTextfield" destination="FUy-R7-24c" id="6uu-mj-zyt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

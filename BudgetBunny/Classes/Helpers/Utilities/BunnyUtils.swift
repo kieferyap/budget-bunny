@@ -109,7 +109,6 @@ class BunnyUtils: NSObject {
         return true
     }
     
-    // Prepares the button.
     class func prepareButton(button: UIButton, text: String, model: BunnyCell, target: NSObject) -> Bool {
         button.setTitle(text, forState: UIControlState.Normal)
         button.exclusiveTouch = true
@@ -144,7 +143,6 @@ class BunnyUtils: NSObject {
     }
     
     class func getCurrencyObjectOfDefaultAccount(completion: (defaultCurrency: Currency) -> Void) {
-        // Get the currency symbol of the default account
         let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
         let currency = Currency()
         currency.setAttributes(NSLocale.currentLocale().localeIdentifier)

@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol BudgetDelegate: class {
+    func addNewIncome(incomeName: String)
+}
+
 class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
-    private var budgetTable: [BudgetCell] = []
-    private var incomeTable: [BudgetCell] = [] // Should be IncomeCell
+    private var budgetTable: [[BunnyCell]] = [[]]
+    private var incomeList: [IncomeCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     
     override func viewDidLoad() {
@@ -31,22 +35,43 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DAILY),
             forSegmentAtIndex: screenConstants.idxDaily
         )
+        self.budgetTable = Array.init(
+            count: screenConstants.sectionCount,
+            repeatedValue: []
+        )
     }
     
     // Load the table data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadData()
+        self.updateIncomeSection()
+    }
+    
+    private func updateIncomeSection() {
+        self.budgetTable[self.screenConstants.idxIncomeSection] = []
+        
+        let addNewIncome = IncomeCell(
+            fieldKey: "",
+            valueKey: "",
+            placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
+            cellIdentifier: Constants.CellIdentifiers.addIncome,
+            cellSettings: [
+                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                Constants.AppKeys.keyMaxLength: screenConstants.incomeNameMaxLength,
+                Constants.AppKeys.keyTextFieldValue: ""
+            ]
+        )
+        
+        self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
+        self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
     }
     
     // Fetch from the core data, and append each element into the table
     private func loadData() {
         BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
             let defaultCurrencyIdentifier = defaultCurrency.identifier
-            self.budgetTable = []
-            
-            var i = 0
-            let tempArray = [0.6, 0.4, 0.2]
+            self.budgetTable[self.screenConstants.idxBudgetSection] = []
             
             let model = BunnyModel(tableName: ModelConstants.Entities.budget)
             model.selectAllObjects { (fetchedObjects) in
@@ -56,12 +81,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         budgetObject: budget,
                         budgetName: budget.valueForKey(ModelConstants.Budget.name) as! String,
                         budgetAmount: budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double,
-                        amountRemaining: (budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double)*tempArray[i],
+                        amountRemaining: budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double,
                         currencyIdentifier: defaultCurrencyIdentifier
                     )
                     
-                    self.budgetTable.append(budgetItem)
-                    i+=1
+                    self.budgetTable[self.screenConstants.idxBudgetSection].append(budgetItem)
                 }
             }
             
@@ -79,16 +103,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Hey, wait a minute. Don't we have two sections for this?
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == screenConstants.idxBudgetSection {
-            return BunnyUtils.tableRowsWithLoadingTitle(
-                StringConstants.GUIDELABEL_NO_ACCOUNTS, //TO-DO: GUIDELABEL_NO_BUDGETS
-                tableModel: self.budgetTable,
-                tableView: self.budgetTableView
-            ) { () -> Int in
-                return self.budgetTable.count
-            }
-        }
-        return 0
+        return self.budgetTable[section].count
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
@@ -118,21 +133,16 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // TO-DO: Header titles for ALL "Add"/"Edit" Screens
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cellItem = BunnyCell(cellIdentifier: "", cellSettings: [:])
-        
-        switch indexPath.section {
-        case self.screenConstants.idxBudgetSection:
-            cellItem = self.budgetTable[indexPath.row]
-            break
-        // TO-DO: Case for Income type
-        default:
-            break
-        }
-        
+        let cellItem: BunnyCell = self.budgetTable[indexPath.section][indexPath.row]
         let cellIdentifier = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
         cell.setModelObject(cellItem)
+        
+        if indexPath.section == self.screenConstants.idxIncomeSection {
+            (cell as! IncomeTableViewCell).delegate = self
+        }
+        
         return cell as! UITableViewCell
     }
 
@@ -163,4 +173,63 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             vc.frequencyKey = frequencyKey
         }
     }
+}
+
+extension BudgetViewController: BudgetDelegate {
+
+    func addNewIncome(incomeName: String) {
+        let trimmedIncomeName = incomeName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        guard self.incomeList.count < screenConstants.incomeMaxCount else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES
+            )
+            return
+        }
+        
+        guard trimmedIncomeName != "" else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY
+            )
+            return
+        }
+        
+        
+        // Check if category name already exists
+        let newCategoryItem = IncomeCell(
+            fieldKey: trimmedIncomeName,
+            valueKey: "0",
+            placeholderKey: "",
+            cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+            cellSettings: [:]
+        )
+        
+        
+//        let categoryUniquenessValidator = CategoryUniquenessValidator(
+//            objectToValidate: newCategoryItem,
+//            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+//            parentArray: self.categoryList
+//        )
+ 
+        
+        // TO-DO: Sort the income alphabetically
+        // TO-DO: Category name editing and category name deletion
+//        let validator = Validator(viewController: self)
+//        validator.addValidator(categoryUniquenessValidator)
+//        validator.validate { (success) in
+//            if success {
+                self.incomeList.append(newCategoryItem)
+                self.dismissKeyboard()
+                
+                let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
+                self.updateIncomeSection()
+                self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
+//            }
+//        }
+    }
+
 }

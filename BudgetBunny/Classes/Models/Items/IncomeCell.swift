@@ -12,4 +12,14 @@ import CoreData
 
 class IncomeCell: BunnyCell {
 
+    var field: String = ""
+    var value: String = ""
+    var placeholder: String = ""
+    
+    init(fieldKey: String, valueKey: String, placeholderKey: String, cellIdentifier: String, cellSettings: NSDictionary) {
+        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+        self.field = BunnyUtils.uncommentedLocalizedString(fieldKey)
+        self.value = BunnyUtils.uncommentedLocalizedString(valueKey)
+        self.placeholder = BunnyUtils.uncommentedLocalizedString(placeholderKey)
+    }
 }
