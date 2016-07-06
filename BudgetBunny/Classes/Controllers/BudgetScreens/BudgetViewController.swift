@@ -39,6 +39,10 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             count: screenConstants.sectionCount,
             repeatedValue: []
         )
+        
+        self.budgetTableView.delegate = self;
+        self.budgetTableView.dataSource = self;
+        self.budgetTableView.scrollEnabled = true;
     }
     
     // Load the table data
@@ -89,9 +93,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
             
-            self.budgetTableView.delegate = self;
-            self.budgetTableView.dataSource = self;
-            self.budgetTableView.scrollEnabled = true;
+            self.budgetTableView.reloadData()
         }
         
     }
@@ -208,6 +210,9 @@ extension BudgetViewController: BudgetDelegate {
             if success {
                 self.incomeList.append(newIncomeCell)
                 self.dismissKeyboard()
+                
+                // Save the new income
+                
                 
                 let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
                 self.updateIncomeSection()

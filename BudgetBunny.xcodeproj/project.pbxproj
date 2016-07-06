@@ -614,7 +614,7 @@
 				TargetAttributes = {
 					FB97C3021CB4974F00C35BC0 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 5XKM8VQ32H;
+						DevelopmentTeam = 48X7DGHEMJ;
 					};
 					FB97C3191CB4975000C35BC0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -917,7 +917,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BudgetBunny/Resources/PropertyLists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap2.BudgetBunny;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap6.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -932,7 +932,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BudgetBunny/Resources/PropertyLists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap2.BudgetBunny;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap6.BudgetBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
