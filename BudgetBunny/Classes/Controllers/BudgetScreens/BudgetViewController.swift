@@ -108,28 +108,14 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
     
-    /*
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == screenConstants.idxIncomeSection {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! IncomeTableViewCell
+            cell.performAction()
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        if indexPath.section == screenConstants.idxBudgetSection {
-            
-        }
-        let cell: AccountCell = self.budgetTable[indexPath.row]
-        let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
-        var vc: AddEditAccountTableViewController!
-        
-        self.prepareNextViewController(
-            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable),
-            sourceInformation: Constants.SourceInformation.accountEditing
-        ) { (destinationViewController) in
-            vc = destinationViewController as! AddEditAccountTableViewController
-            vc.accountInformation = cell
-        }
-        
-        self.navigationController?.pushViewController(vc, animated: true)
     }
-     */
     
     // TO-DO: Header titles for ALL "Add"/"Edit" Screens
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -198,9 +184,8 @@ extension BudgetViewController: BudgetDelegate {
             return
         }
         
-        
         // Check if category name already exists
-        let newCategoryItem = IncomeCell(
+        let newIncomeCell = IncomeCell(
             fieldKey: trimmedIncomeName,
             valueKey: "0",
             placeholderKey: "",
@@ -208,28 +193,27 @@ extension BudgetViewController: BudgetDelegate {
             cellSettings: [:]
         )
         
-        
-//        let categoryUniquenessValidator = CategoryUniquenessValidator(
-//            objectToValidate: newCategoryItem,
-//            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
-//            parentArray: self.categoryList
-//        )
+        // Uniqueness validator
+        let incomeUniquenessValidator = IncomeUniquenessValidator(
+            objectToValidate: newIncomeCell,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            parentArray: self.incomeList
+        )
  
-        
         // TO-DO: Sort the income alphabetically
-        // TO-DO: Category name editing and category name deletion
-//        let validator = Validator(viewController: self)
-//        validator.addValidator(categoryUniquenessValidator)
-//        validator.validate { (success) in
-//            if success {
-                self.incomeList.append(newCategoryItem)
+        // TO-DO: Income name editing and category name deletion
+        let validator = Validator(viewController: self)
+        validator.addValidator(incomeUniquenessValidator)
+        validator.validate { (success) in
+            if success {
+                self.incomeList.append(newIncomeCell)
                 self.dismissKeyboard()
                 
                 let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
                 self.updateIncomeSection()
                 self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
-//            }
-//        }
+            }
+        }
     }
 
 }

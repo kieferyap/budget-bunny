@@ -51,6 +51,10 @@ class BudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         }
         self.progressBar.tintColor = tintColor
         self.progressBar.trackTintColor = trackTintColor
+        
+        // Selection color
+        let selectionColor = UIView()
+        selectionColor.backgroundColor = Constants.Colors.lightGreen
+        self.selectedBackgroundView = selectionColor
     }
-
 }

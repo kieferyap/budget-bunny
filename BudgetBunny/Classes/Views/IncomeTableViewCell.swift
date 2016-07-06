@@ -40,5 +40,22 @@ class IncomeTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         default:
             break
         }
+        
+        // Selection color
+        let selectionColor = UIView()
+        selectionColor.backgroundColor = Constants.Colors.lightGreen
+        self.selectedBackgroundView = selectionColor
+    }
+    
+    func performAction() {
+        switch self.model!.cellIdentifier {
+        case Constants.CellIdentifiers.addIncome:
+            self.addNewIncomeTextfield.becomeFirstResponder()
+            break
+        case Constants.CellIdentifiers.budgetIncome:
+            break
+        default:
+            break
+        }
     }
 }
