@@ -12,18 +12,18 @@ class IncomeUniquenessValidator: NSObject, ValidatorProtocol {
     
     var objectToValidate: NSObject
     var errorStringKey: String
-    var parentArray: [IncomeCell]
+    var parentArray: [DoubleLabelCell]
     
-    init(objectToValidate: NSObject, errorStringKey: String, parentArray: [IncomeCell]) {
+    init(objectToValidate: NSObject, errorStringKey: String, parentArray: [DoubleLabelCell]) {
         self.objectToValidate = objectToValidate
         self.errorStringKey = errorStringKey
         self.parentArray = parentArray
     }
     
     func validateObject() -> Bool {
-        let object = self.objectToValidate as! IncomeCell
+        let object = self.objectToValidate as! DoubleLabelCell
         for item in parentArray {
-            if item.field == object.field {
+            if item.labelTitle == object.labelTitle {
                 return false
             }
         }

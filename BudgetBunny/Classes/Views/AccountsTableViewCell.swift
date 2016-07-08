@@ -58,5 +58,6 @@ class AccountsTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         self.selectedBackgroundView = selectionColor;
     }
     
-    
+    func performAction() {
+    }
 }

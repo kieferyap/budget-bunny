@@ -17,7 +17,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
     private var budgetTable: [[BunnyCell]] = [[]]
-    private var incomeList: [IncomeCell] = []
+    private var incomeList: [DoubleLabelCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     
     override func viewDidLoad() {
@@ -53,11 +53,31 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func updateIncomeSection() {
-        self.budgetTable[self.screenConstants.idxIncomeSection] = []
+        // Fetch all the income categories
+        let categoryModel = AttributeModel(
+            tableName: ModelConstants.Entities.category,
+            key: ModelConstants.Category.isIncome,
+            value: true
+        )
         
-        let addNewIncome = IncomeCell(
-            fieldKey: "",
-            valueKey: "",
+        self.incomeList = []
+        let model = BunnyModel(tableName: ModelConstants.Entities.category)
+        model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
+            for category in fetchedObjects {
+                let amountDouble = category.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                let amountString = String(amountDouble)
+                
+                let newIncomeCell = DoubleLabelCell(
+                    labelTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
+                    labelValueKey: amountString,
+                    cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+                    cellSettings: [:]
+                )
+                self.incomeList.append(newIncomeCell)
+            }
+        })
+        
+        let addNewIncome = TextFieldCell(
             placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addIncome,
             cellSettings: [
@@ -109,11 +129,9 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
-    
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == screenConstants.idxIncomeSection {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! IncomeTableViewCell
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! DoubleLabelTableViewCell
             cell.performAction()
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -127,8 +145,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.setModelObject(cellItem)
         
-        if indexPath.section == self.screenConstants.idxIncomeSection {
-            (cell as! IncomeTableViewCell).delegate = self
+        if indexPath.section == self.screenConstants.idxIncomeSection && indexPath.row == self.incomeList.count {
+            (cell as! TextFieldTableViewCell).delegate = self
         }
         
         return cell as! UITableViewCell
@@ -187,10 +205,9 @@ extension BudgetViewController: BudgetDelegate {
         }
         
         // Check if category name already exists
-        let newIncomeCell = IncomeCell(
-            fieldKey: trimmedIncomeName,
-            valueKey: "0",
-            placeholderKey: "",
+        let newIncomeCell = DoubleLabelCell(
+            labelTitleKey: trimmedIncomeName,
+            labelValueKey: "",
             cellIdentifier: Constants.CellIdentifiers.budgetIncome,
             cellSettings: [:]
         )
@@ -208,11 +225,27 @@ extension BudgetViewController: BudgetDelegate {
         validator.addValidator(incomeUniquenessValidator)
         validator.validate { (success) in
             if success {
-                self.incomeList.append(newIncomeCell)
                 self.dismissKeyboard()
                 
                 // Save the new income
+                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
                 
+                // Set the values of the account and insert it
+                let values = NSDictionary.init(
+                    objects: [
+                        trimmedIncomeName,
+                        true,
+                        0.0
+                    ],
+                    forKeys: [
+                        ModelConstants.Category.name,
+                        ModelConstants.Category.isIncome,
+                        ModelConstants.Category.monthlyAmount
+                    ]
+                )
+                
+                activeRecord.insertObject(values)
+                activeRecord.save()
                 
                 let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
                 self.updateIncomeSection()
