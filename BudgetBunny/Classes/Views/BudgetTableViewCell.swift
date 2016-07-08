@@ -57,7 +57,4 @@ class BudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         selectionColor.backgroundColor = Constants.Colors.lightGreen
         self.selectedBackgroundView = selectionColor
     }
-    
-    func performAction() {
-    }
 }

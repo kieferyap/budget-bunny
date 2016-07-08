@@ -17,7 +17,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
     private var budgetTable: [[BunnyCell]] = [[]]
-    private var incomeList: [DoubleLabelCell] = []
+    private var incomeList: [IncomeCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     
     override func viewDidLoad() {
@@ -53,42 +53,55 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func updateIncomeSection() {
-        // Fetch all the income categories
-        let categoryModel = AttributeModel(
-            tableName: ModelConstants.Entities.category,
-            key: ModelConstants.Category.isIncome,
-            value: true
-        )
+        BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
+            let defaultCurrencyIdentifier = defaultCurrency.identifier
+            let currency = BunnyUtils.getCurrencyObjectFromIdentifier(defaultCurrencyIdentifier)
+         
+            // Fetch all the income categories
+            let categoryModel = AttributeModel(
+                tableName: ModelConstants.Entities.category,
+                key: ModelConstants.Category.isIncome,
+                value: true
+            )
+            
+            self.incomeList = []
+            let model = BunnyModel(tableName: ModelConstants.Entities.category)
+            model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
+                for category in fetchedObjects {
+                    let amountDouble = category.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                    let amountString = currency.currencySymbol
+                        .stringByAppendingString(" ")
+                        .stringByAppendingString(String(format: "%.2f", amountDouble)
+                    )
+                    
+                    let newIncomeCell = IncomeCell(
+                        fieldKey: category.valueForKey(ModelConstants.Category.name) as! String,
+                        valueKey: amountString,
+                        placeholderKey: "",
+                        cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+                        cellSettings: [:]
+                    )
+                    self.incomeList.append(newIncomeCell)
+                }
+            })
+            
+            let addNewIncome = IncomeCell(
+                fieldKey: "",
+                valueKey: "",
+                placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
+                cellIdentifier: Constants.CellIdentifiers.addIncome,
+                cellSettings: [
+                    Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                    Constants.AppKeys.keyMaxLength: self.screenConstants.incomeNameMaxLength,
+                    Constants.AppKeys.keyTextFieldValue: ""
+                ]
+            )
+            
+            self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
+            self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
+        }
         
-        self.incomeList = []
-        let model = BunnyModel(tableName: ModelConstants.Entities.category)
-        model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
-            for category in fetchedObjects {
-                let amountDouble = category.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
-                let amountString = String(amountDouble)
-                
-                let newIncomeCell = DoubleLabelCell(
-                    labelTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
-                    labelValueKey: amountString,
-                    cellIdentifier: Constants.CellIdentifiers.budgetIncome,
-                    cellSettings: [:]
-                )
-                self.incomeList.append(newIncomeCell)
-            }
-        })
         
-        let addNewIncome = TextFieldCell(
-            placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
-            cellIdentifier: Constants.CellIdentifiers.addIncome,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: screenConstants.incomeNameMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
-            ]
-        )
-        
-        self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
-        self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
     }
     
     // Fetch from the core data, and append each element into the table
@@ -129,9 +142,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == screenConstants.idxIncomeSection {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! DoubleLabelTableViewCell
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! IncomeTableViewCell
             cell.performAction()
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -145,8 +160,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.setModelObject(cellItem)
         
-        if indexPath.section == self.screenConstants.idxIncomeSection && indexPath.row == self.incomeList.count {
-            (cell as! TextFieldTableViewCell).delegate = self
+        if indexPath.section == self.screenConstants.idxIncomeSection {
+            (cell as! IncomeTableViewCell).delegate = self
         }
         
         return cell as! UITableViewCell
@@ -205,9 +220,10 @@ extension BudgetViewController: BudgetDelegate {
         }
         
         // Check if category name already exists
-        let newIncomeCell = DoubleLabelCell(
-            labelTitleKey: trimmedIncomeName,
-            labelValueKey: "",
+        let newIncomeCell = IncomeCell(
+            fieldKey: trimmedIncomeName,
+            valueKey: "0",
+            placeholderKey: "",
             cellIdentifier: Constants.CellIdentifiers.budgetIncome,
             cellSettings: [:]
         )

@@ -10,5 +10,4 @@ import UIKit
 
 protocol BunnyTableViewCellProtocol: class {
     func setModelObject(modelObject: BunnyCell)
-    func performAction()
 }

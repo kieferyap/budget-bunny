@@ -2,25 +2,24 @@
 //  IncomeCell.swift
 //  BudgetBunny
 //
-//  Created by Kiefer Yap on 7/8/16.
+//  Created by Kiefer Yap on 7/3/16.
 //  Copyright © 2016 Kiefer Yap. All rights reserved.
 //
 
 import Foundation
+import UIKit
+import CoreData
 
-class IncomeCell: DoubleLabelCell {
+class IncomeCell: BunnyCell {
 
-    var incomeValue: Double = 0.0
-    var currencyIdentifier: String = ""
+    var field: String = ""
+    var value: String = ""
+    var placeholder: String = ""
     
-    init(incomeValue: Double, labelTitleKey: String, labelValueKey: String, cellIdentifier: String, cellSettings: NSDictionary) {
-        self.incomeValue = incomeValue
-        super.init(
-            labelTitleKey: labelTitleKey,
-            labelValueKey: labelValueKey,
-            cellIdentifier: cellIdentifier,
-            cellSettings: cellSettings
-        )
+    init(fieldKey: String, valueKey: String, placeholderKey: String, cellIdentifier: String, cellSettings: NSDictionary) {
+        super.init(cellIdentifier: cellIdentifier, cellSettings: cellSettings)
+        self.field = BunnyUtils.uncommentedLocalizedString(fieldKey)
+        self.value = BunnyUtils.uncommentedLocalizedString(valueKey)
+        self.placeholder = BunnyUtils.uncommentedLocalizedString(placeholderKey)
     }
-    
 }
