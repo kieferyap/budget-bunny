@@ -10,6 +10,7 @@ import UIKit
 import ObjectiveC
 
 private var sourceInformationKey: UInt8 = 0
+private var modelDataKey: UInt8 = 0
 
 extension UIViewController {
     
@@ -19,6 +20,15 @@ extension UIViewController {
         }
         set (newValue) {
             objc_setAssociatedObject(self, &sourceInformationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    var modelData: Array<Array<BunnyCell>>! {
+        get {
+            return (objc_getAssociatedObject(self, &modelDataKey) as? Array)!
+        }
+        set (newValue) {
+            objc_setAssociatedObject(self, &modelDataKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -41,6 +51,18 @@ extension UIViewController {
         destinationViewController.hidesBottomBarWhenPushed = true
         destinationViewController.sourceInformation = sourceInformation
         completion(destinationViewController: destinationViewController)
+    }
+    
+    func prepareModelData(sectionCount: Int, completion: () -> Void) {
+        self.modelData = Array.init(count: sectionCount, repeatedValue: [])
+        completion()
+        
+        // Keyboard must be dismissed when regions outside of it is tapped
+        BunnyUtils.addKeyboardDismisserListener(self)
+    }
+    
+    func appendCellAtSectionIndex(idxSection: Int, idxRow: Int, cellData: BunnyCell) {
+        self.modelData[idxSection].insert(cellData, atIndex: idxRow)
     }
     
 }

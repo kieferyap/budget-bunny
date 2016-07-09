@@ -2,17 +2,19 @@ struct ScreenConstants {
     struct Account {
         static let sectionCount = 1
         static var accountMaxCount = 20 //var because it's changed during testing
+        static let idxAccountSection = 0
     }
     struct AddEditAccount {
-        static let idxAccountInfoGroup = 0
+        static let idxAccountInfoSection = 0
         static let idxNameCell = 0
         static let idxCurrencyCell = 1
         static let idxAmountCell = 2
         
-        static let idxAccountActionsGroup = 1
+        static let idxAccountActionsSection = 1
         static let idxDefaultCell = 0
         static let idxDeleteCell = 1
         
+        static let sectionCount = 2
         static let accountNameMaxLength = 25
         static let initialAmountMaxLength = 15
         

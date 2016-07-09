@@ -19,7 +19,6 @@ protocol AddEditAccountDelegate: class {
 
 class AddEditAccountTableViewController: UITableViewController {
 
-    private var addAccountTable:[[AddEditAccountCell]] = [[]]
     private var selectedCountryIdentifier: String = ""
     var accountInformation: AccountCell?
     private let screenConstants = ScreenConstants.AddEditAccount.self
@@ -27,136 +26,143 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var accountNameValue = ""
-        var initialAmountValue = ""
-        var isAccountDefault = false
-        var buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
-        var startingBalanceKey = StringConstants.LABEL_STARTING_BALANCE
-        var titleKey = StringConstants.MENULABEL_ADD_ACCOUNT
-        self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
-        self.addAccountTable = Array.init(count: 2, repeatedValue: [])
-        
-        switch self.sourceInformation {
-        
-        // If we are in editing mode, then we should set the textfields based on the account we are editing.
-        case Constants.SourceInformation.accountEditing:
-            var isKeyEnabled = true
-            var defaultButtonText = StringConstants.BUTTON_SET_AS_DEFAULT
-            var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
-            var accountObject: NSManagedObject!
-            buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
-            titleKey = StringConstants.MENULABEL_EDIT_ACCOUNT
+        self.prepareModelData(screenConstants.sectionCount) { 
+            var accountNameValue = ""
+            var initialAmountValue = ""
+            var isAccountDefault = false
+            var buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+            var startingBalanceKey = StringConstants.LABEL_STARTING_BALANCE
+            var titleKey = StringConstants.MENULABEL_ADD_ACCOUNT
+            self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
             
-            // accountInformation should never really be nil while editing, so this is just a safety measure.
-            if self.accountInformation != nil {
-                let amountDouble: Double = (self.accountInformation?.amount)!
-                let floatFormat: String = amountDouble.isInteger ? "%.0f" : "%.2f"
+            switch self.sourceInformation {
                 
-                accountNameValue = (self.accountInformation?.accountName)!
-                initialAmountValue = String.init(format: floatFormat, amountDouble)
-                isAccountDefault = (self.accountInformation?.isDefault)!
-                accountObject = (self.accountInformation?.accountObject)!
-                startingBalanceKey = StringConstants.LABEL_CURRENT_BALANCE
+            // If we are in editing mode, then we should set the textfields based on the account we are editing.
+            case Constants.SourceInformation.accountEditing:
                 
-                self.selectedCountryIdentifier = (self.accountInformation?.currencyIdentifier)!
+                var isKeyEnabled = true
+                var defaultButtonText = StringConstants.BUTTON_SET_AS_DEFAULT
+                var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
+                var accountObject: NSManagedObject!
+                
+                buttonTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
+                titleKey = StringConstants.MENULABEL_EDIT_ACCOUNT
+                
+                if self.accountInformation != nil {
+                    let amountDouble: Double = (self.accountInformation?.amount)!
+                    let floatFormat: String = amountDouble.isInteger ? "%.0f" : "%.2f"
+                    
+                    accountNameValue = (self.accountInformation?.alphaElementTitle)!
+                    initialAmountValue = String.init(format: floatFormat, amountDouble)
+                    isAccountDefault = (self.accountInformation?.isDefault)!
+                    accountObject = (self.accountInformation?.accountObject)!
+                    startingBalanceKey = StringConstants.LABEL_CURRENT_BALANCE
+                    
+                    self.selectedCountryIdentifier = (self.accountInformation?.currencyIdentifier)!
+                }
+                
+                if isAccountDefault {
+                    isKeyEnabled = false
+                    defaultButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT_DISABLED)
+                    deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT_DISABLED)
+                }
+                
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxAccountActionsSection,
+                    idxRow: self.screenConstants.idxDefaultCell,
+                    cellData: SingleElementCell(
+                        alphaElementTitleKey: defaultButtonText,
+                        cellIdentifier: Constants.CellIdentifiers.addAccountAction,
+                        cellSettings: [
+                            Constants.AppKeys.keySelector: self.screenConstants.selectorSetDefault,
+                            Constants.AppKeys.keyEnabled: isKeyEnabled,
+                            Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen,
+                            self.screenConstants.keyManagedObject: accountObject
+                        ]
+                    )
+                )
+                
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxAccountActionsSection,
+                    idxRow: self.screenConstants.idxDeleteCell,
+                    cellData: SingleElementCell(
+                        alphaElementTitleKey: deleteButtonText,
+                        cellIdentifier: Constants.CellIdentifiers.addAccountAction,
+                        cellSettings: [
+                            Constants.AppKeys.keySelector: self.screenConstants.selectorDelete,
+                            Constants.AppKeys.keyEnabled: isKeyEnabled,
+                            Constants.AppKeys.keyButtonColor: Constants.Colors.dangerColor,
+                            self.screenConstants.keyManagedObject: accountObject
+                        ]
+                    )
+                )
+                
+            // If we are trying to create a new account, however, all the textfields should remain blank
+            case Constants.SourceInformation.accountNew:
+                
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxAccountActionsSection,
+                    idxRow: self.screenConstants.idxDefaultCell,
+                    cellData: TripleElementCell(
+                        alphaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT,
+                        betaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION,
+                        gammaElementTitleKey: self.screenConstants.falseString,
+                        cellIdentifier: Constants.CellIdentifiers.addAccountSwitch,
+                        cellSettings: [
+                            self.screenConstants.keyHeight: self.screenConstants.accountCellHeight
+                        ]
+                    )
+                )
+                
+            default:
+                break
             }
             
-            // If the account is a default account, then certain actions cannot be used.
-            if isAccountDefault {
-                isKeyEnabled = false
-                defaultButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT_DISABLED)
-                deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT_DISABLED)
-            }
-            
-            let setDefaultAccountCell = AddEditAccountCell(
-                fieldKey: defaultButtonText,
-                placeholder: "",
-                cellIdentifier: Constants.CellIdentifiers.addAccountAction,
-                cellSettings: [
-                    Constants.AppKeys.keySelector: screenConstants.selectorSetDefault,
-                    Constants.AppKeys.keyEnabled: isKeyEnabled,
-                    Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen,
-                    screenConstants.keyManagedObject: accountObject
-                ]
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxAccountInfoSection,
+                idxRow: self.screenConstants.idxNameCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: StringConstants.LABEL_NAME,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_NAME_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.accountNameMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: accountNameValue
+                    ]
+                )
             )
             
-            let deleteAccountCell = AddEditAccountCell(
-                fieldKey: deleteButtonText,
-                placeholder: "",
-                cellIdentifier: Constants.CellIdentifiers.addAccountAction,
-                cellSettings: [
-                    Constants.AppKeys.keySelector: screenConstants.selectorDelete,
-                    Constants.AppKeys.keyEnabled: isKeyEnabled,
-                    Constants.AppKeys.keyButtonColor: Constants.Colors.dangerColor,
-                    screenConstants.keyManagedObject: accountObject
-                ]
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxAccountInfoSection,
+                idxRow: self.screenConstants.idxCurrencyCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: StringConstants.LABEL_CURRENCY,
+                    betaElementTitleKey: self.getCurrencyStringWithIdentifier(),
+                    cellIdentifier: Constants.CellIdentifiers.addAccountChevron,
+                    cellSettings: [:]
+                )
             )
             
-            self.addAccountTable[screenConstants.idxAccountActionsGroup]
-                .insert(setDefaultAccountCell, atIndex: screenConstants.idxDefaultCell)
-            self.addAccountTable[screenConstants.idxAccountActionsGroup]
-                .insert(deleteAccountCell, atIndex: screenConstants.idxDeleteCell)
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxAccountInfoSection,
+                idxRow: self.screenConstants.idxAmountCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: startingBalanceKey,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.initialAmountMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: initialAmountValue
+                    ]
+                )
+            )
             
-            break
-            
-        // If we are trying to create a new account, however, all the textfields should remain blank
-        case Constants.SourceInformation.accountNew:
-            
-            // In Add Account mode, the second section instead contains a Set Default switch
-            let defaultAccountCell = AddEditAccountCell(
-                fieldKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT,
-                placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION),
-                cellIdentifier: Constants.CellIdentifiers.addAccountSwitch,
-                cellSettings: [screenConstants.keyHeight: screenConstants.accountCellHeight])
-            
-            self.addAccountTable[screenConstants.idxAccountActionsGroup].insert(defaultAccountCell, atIndex: screenConstants.idxDefaultCell)
-            
-            break
-            
-        default:
-            break
+            // Set navigation bar elements
+            self.doneButton.title = buttonTitle
+            self.setTitleLocalizationKey(titleKey)
         }
-        
-        // Cell information
-        let nameCell = AddEditAccountCell(
-            fieldKey: StringConstants.LABEL_NAME,
-            placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_NAME_PLACEHOLDER),
-            cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: screenConstants.accountNameMaxLength,
-                Constants.AppKeys.keyTextFieldValue: accountNameValue
-            ]
-        )
-        let currencyCell = AddEditAccountCell(
-            fieldKey: StringConstants.LABEL_CURRENCY,
-            placeholder: self.getCurrencyStringWithIdentifier(),
-            cellIdentifier: Constants.CellIdentifiers.addAccountChevron,
-            cellSettings: [:]
-        )
-        let initialAmountCell = AddEditAccountCell(
-            fieldKey: startingBalanceKey,
-            placeholder: BunnyUtils.uncommentedLocalizedString(StringConstants.TEXTFIELD_STARTING_BALANCE_PLACEHOLDER),
-            cellIdentifier: Constants.CellIdentifiers.addAccountFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                Constants.AppKeys.keyMaxLength: screenConstants.initialAmountMaxLength,
-                Constants.AppKeys.keyTextFieldValue: initialAmountValue
-            ]
-        )
-        
-        // Information group
-        self.addAccountTable[screenConstants.idxAccountInfoGroup].insert(nameCell, atIndex: screenConstants.idxNameCell)
-        self.addAccountTable[screenConstants.idxAccountInfoGroup].insert(currencyCell, atIndex: screenConstants.idxCurrencyCell)
-        self.addAccountTable[screenConstants.idxAccountInfoGroup].insert(initialAmountCell, atIndex: screenConstants.idxAmountCell)
-        
-        // Keyboard must be dismissed when regions outside of it is tapped
-        BunnyUtils.addKeyboardDismisserListener(self)
-        
-        // Set navigation bar elements
-        self.doneButton.title = buttonTitle
-        self.setTitleLocalizationKey(titleKey)
     }
     
     // This method uses the currently selected currency identifier (en_US) to return its information (United States, USD, etc.)

@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 import CoreData
 
-class BudgetCell: BunnyCell {
+class BudgetCell: TripleElementCell {
 
-    var budgetName: String = ""
     var budgetAmount: Double = 0.0
-    var amountRemaining: Double = 0.0
+    var remainingAmount: Double = 0.0
     var budgetObject: NSManagedObject
     var currencyIdentifier: String = ""
     
@@ -22,31 +21,20 @@ class BudgetCell: BunnyCell {
         budgetObject: NSManagedObject,
         budgetName: String,
         budgetAmount: Double,
-        amountRemaining: Double,
+        remainingAmount: Double,
         currencyIdentifier: String
     ) {
+        super.init(
+            alphaElementTitleKey: budgetName,
+            betaElementTitleKey: BunnyUtils.getFormattedAmount(budgetAmount, identifier: currencyIdentifier),
+            gammaElementTitleKey: BunnyUtils.getFormattedAmount(remainingAmount, identifier: currencyIdentifier),
+            cellIdentifier: Constants.CellIdentifiers.budget,
+            cellSettings: [:]
+        )
         self.budgetObject = budgetObject
-        self.budgetName = budgetName
         self.budgetAmount = budgetAmount
-        self.amountRemaining = amountRemaining
+        self.remainingAmount = remainingAmount
         self.currencyIdentifier = currencyIdentifier
-        super.init(cellIdentifier: Constants.CellIdentifiers.budget, cellSettings: [:])
-    }
-    
-    func getFormattedBudgetAmount() -> String {
-        return self.getFormattedAmount(self.budgetAmount)
-    }
-    
-    func getFormattedAmountRemaining() -> String {
-        return self.getFormattedAmount(self.amountRemaining)
-    }
-    
-    private func getFormattedAmount(input: Double) -> String {
-        let inputString = String(format: "%.2f", input)
-        let currency = BunnyUtils.getCurrencyObjectFromIdentifier(self.currencyIdentifier)
-        return currency.currencySymbol
-            .stringByAppendingString(" ")
-            .stringByAppendingString(inputString)
     }
     
 }

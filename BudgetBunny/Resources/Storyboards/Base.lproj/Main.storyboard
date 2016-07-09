@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LMZ-I6-RnC" id="oE2-H7-L0U">
@@ -28,7 +28,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Ps-euU" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholderText" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Ps-euU" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
                                             <rect key="frame" x="49" y="11" width="543" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -43,11 +43,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="alphaUIElement" destination="eAs-iV-ZJW" id="gVe-R5-aNS"/>
+                                    <outlet property="betaUIElement" destination="zNz-Ps-euU" id="voQ-IW-2Qx"/>
                                     <outlet property="field" destination="eAs-iV-ZJW" id="4f3-wc-Wi8"/>
                                     <outlet property="textfield" destination="zNz-Ps-euU" id="rkc-Uq-0M5"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wn4-Op-jsU" id="D9N-b0-Y9v">
@@ -80,7 +82,7 @@
                                     <outlet property="value" destination="mm6-va-18q" id="hJ8-VO-pFC"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountActionCell" rowHeight="44" id="Mdm-d9-KPl" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountActionCell" rowHeight="44" id="Mdm-d9-KPl" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPl" id="2jn-4e-eT9">
@@ -103,7 +105,7 @@
                                     <outlet property="actionButton" destination="XJF-QW-d5t" id="vJF-29-J3Y"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="246" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPm" id="2jn-4e-eT8">
@@ -255,7 +257,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="AccountsTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMq-Q2-rQJ" id="h0C-K8-QWc">
@@ -297,7 +299,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="accountNameLabel" destination="vaF-sw-zUb" id="vsJ-V8-dsp"/>
+                                    <outlet property="alphaUIElement" destination="vaF-sw-zUb" id="E6G-TS-cx0"/>
                                     <outlet property="amountLabel" destination="0rZ-it-zmz" id="GrR-qI-7iJ"/>
+                                    <outlet property="betaUIElement" destination="0rZ-it-zmz" id="vop-Jy-YYA"/>
+                                    <outlet property="gammaUIElement" destination="FtN-eT-4oI" id="pFU-nB-R7P"/>
                                     <outlet property="isDefaultLabel" destination="FtN-eT-4oI" id="5ho-Jj-an5"/>
                                     <outlet property="isDefaultLabelWidth" destination="SQr-Xg-aOE" id="lfg-JY-i1U"/>
                                 </connections>

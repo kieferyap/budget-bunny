@@ -165,6 +165,11 @@ class BunnyUtils: NSObject {
             }
             
         }
-        
+    }
+    
+    class func getFormattedAmount(input: Double, identifier: String) -> String {
+        let inputString = String(format: "%.2f", input)
+        let currency = BunnyUtils.getCurrencyObjectFromIdentifier(identifier)
+        return "\(currency.currencySymbol) \(inputString)"
     }
 }
