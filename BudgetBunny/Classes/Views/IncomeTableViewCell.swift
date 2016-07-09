@@ -10,18 +10,19 @@ import UIKit
 
 class IncomeTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
 
+    @IBOutlet weak var noBudgetLabel: UILabel!
     @IBOutlet weak var incomeCategoryLabel: UILabel!
     @IBOutlet weak var incomeAmountLabel: UILabel!
     @IBOutlet weak var addNewIncomeTextfield: BunnyTextField!
-    var model: IncomeCell?
+    var model: BunnyCell?
     weak var delegate: BudgetDelegate?
     
     func setModelObject(modelObject: BunnyCell) {
-        let incomeModel = modelObject as! IncomeCell
-        self.model = incomeModel
+        self.model = modelObject
         
-        switch incomeModel.cellIdentifier {
+        switch modelObject.cellIdentifier {
         case Constants.CellIdentifiers.addIncome:
+            let incomeModel = modelObject as! IncomeCell
             BunnyUtils.prepareTextField(
                 self.addNewIncomeTextfield,
                 placeholderText: incomeModel.placeholder,
@@ -31,12 +32,14 @@ class IncomeTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
             self.addNewIncomeTextfield.returnCompletion = { (text) in
                 self.delegate?.addNewIncome(text)
             }
-            break
         case Constants.CellIdentifiers.budgetIncome:
+            let incomeModel = modelObject as! IncomeCell
             self.incomeCategoryLabel.text = incomeModel.field
             self.incomeAmountLabel.text = incomeModel.value
             self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            break
+        case Constants.CellIdentifiers.budgetInexistence:
+            let inexistenceModel = modelObject as! NoBudgetCell
+            self.noBudgetLabel.text = inexistenceModel.noBudgetString
         default:
             break
         }

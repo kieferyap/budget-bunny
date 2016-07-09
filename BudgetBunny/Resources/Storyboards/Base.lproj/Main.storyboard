@@ -470,6 +470,29 @@ name</string>
                                             <outlet property="addNewIncomeTextfield" destination="FUy-R7-24c" id="6uu-mj-zyt"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="193" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HtF-4z-Hpc" id="dCn-Aq-Yxn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="does not exist label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-pv-Nba">
+                                                    <rect key="frame" x="226" y="11" width="148" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="centerY" secondItem="dCn-Aq-Yxn" secondAttribute="centerY" id="7Ho-b4-OWj"/>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="centerX" secondItem="dCn-Aq-Yxn" secondAttribute="centerX" id="cHY-u6-Oye"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noBudgetLabel" destination="wPO-pv-Nba" id="k4a-s0-WoM"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

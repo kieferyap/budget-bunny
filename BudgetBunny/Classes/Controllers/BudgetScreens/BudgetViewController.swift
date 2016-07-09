@@ -138,12 +138,30 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Hey, wait a minute. Don't we have two sections for this?
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.budgetTable[section].count
+        let cellCount = self.budgetTable[section].count
+        if cellCount == 0 {
+            var noBudgetStringKey = ""
+            switch section {
+            case screenConstants.idxBudgetSection:
+                noBudgetStringKey = "No budgets found."
+            case screenConstants.idxIncomeSection:
+                noBudgetStringKey = "No accounts found."
+            default:
+                break
+            }
+            
+            let inexistenceCell = NoBudgetCell(
+                noBudgetStringKey: noBudgetStringKey,
+                cellIdentifier: Constants.CellIdentifiers.budgetInexistence,
+                cellSettings: [:]
+            )
+            self.budgetTable[section].append(inexistenceCell)
+        }
+        
+        return cellCount
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
-    
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == screenConstants.idxIncomeSection {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! IncomeTableViewCell
@@ -156,15 +174,22 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellItem: BunnyCell = self.budgetTable[indexPath.section][indexPath.row]
         let cellIdentifier = cellItem.cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
-        
-        cell.setModelObject(cellItem)
-        
-        if indexPath.section == self.screenConstants.idxIncomeSection {
-            (cell as! IncomeTableViewCell).delegate = self
+        if cellIdentifier != Constants.CellIdentifiers.budgetInexistence {
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
+            
+            cell.setModelObject(cellItem)
+            
+            if indexPath.section == self.screenConstants.idxIncomeSection {
+                (cell as! IncomeTableViewCell).delegate = self
+            }
+            
+            return cell as! UITableViewCell
         }
-        
-        return cell as! UITableViewCell
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! IncomeTableViewCell
+            cell.setModelObject(cellItem)
+            return cell
+        }
     }
 
 

@@ -23,6 +23,7 @@ struct Constants {
         static let budget = "budgetCell"
         static let budgetIncome = "incomeCell"
         static let addIncome = "addIncomeCell"
+        static let budgetInexistence = "budgetInexistenceCell"
     }
     struct SourceInformation {
         static let accountNew = 0

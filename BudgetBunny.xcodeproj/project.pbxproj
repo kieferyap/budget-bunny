@@ -68,6 +68,7 @@
 		FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C31E1CB4975000C35BC0 /* BudgetBunnyTests.swift */; };
 		FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3291CB4975000C35BC0 /* LocationUITests.swift */; };
 		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
+		FBA301C01D312BED00E870D5 /* NoBudgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA301BF1D312BED00E870D5 /* NoBudgetCell.swift */; };
 		FBA845B91CC277F000C26380 /* AddEditAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */; };
 		FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB238EB1CF9585A0011C59D /* ScreenConstants.swift */; };
 		FBB238EE1CF984AD0011C59D /* ModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB238ED1CF984AD0011C59D /* ModelConstants.swift */; };
@@ -176,6 +177,7 @@
 		FB97C3291CB4975000C35BC0 /* LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUITests.swift; sourceTree = "<group>"; };
 		FB97C32B1CB4975000C35BC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		FBA301BF1D312BED00E870D5 /* NoBudgetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoBudgetCell.swift; sourceTree = "<group>"; };
 		FBA845B81CC277F000C26380 /* AddEditAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAccountCell.swift; sourceTree = "<group>"; };
 		FBB238EB1CF9585A0011C59D /* ScreenConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenConstants.swift; sourceTree = "<group>"; };
 		FBB238ED1CF984AD0011C59D /* ModelConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelConstants.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				FB6B60291D28F29D00C81ED2 /* BudgetCell.swift */,
 				FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */,
 				FB6B602B1D28F2B100C81ED2 /* IncomeCell.swift */,
+				FBA301BF1D312BED00E870D5 /* NoBudgetCell.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				FB8550FB1CBE0DB70037A881 /* DashboardViewController.swift in Sources */,
 				FB6AC1281D2137BB009EC80C /* Account+CoreDataProperties.swift in Sources */,
 				FB6CED241CEDE48800FB222E /* Validator.swift in Sources */,
+				FBA301C01D312BED00E870D5 /* NoBudgetCell.swift in Sources */,
 				FB6AC1251D2137BB009EC80C /* Record.swift in Sources */,
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB6B602C1D28F2B100C81ED2 /* IncomeCell.swift in Sources */,
