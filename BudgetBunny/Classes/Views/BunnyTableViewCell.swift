@@ -14,7 +14,12 @@ protocol BunnyTableViewCellProtocol: class {
 
 class BunnyTableViewCell: UITableViewCell {
 
-    var cellActions: [(cellIdentifier: String, completion: () -> Void, getValue: () -> String)] = []
+    var cellActions: [(
+        cellIdentifier: String,
+        completion: () -> Void,
+        getValue: () -> String,
+        performAction: () -> Void
+    )] = []
     var model: BunnyCell!
     var delegate: AnyObject!
     
@@ -25,8 +30,18 @@ class BunnyTableViewCell: UITableViewCell {
         self.checkForCellTypes(model.cellIdentifier)
     }
     
-    func addCellType(cellIdentifier: String, completion: () -> Void, getValue: () -> String) {
-        self.cellActions.append((cellIdentifier: cellIdentifier, completion: completion, getValue: getValue))
+    func addCellType(
+        cellIdentifier: String,
+        completion: () -> Void,
+        getValue: () -> String,
+        performAction: () -> Void
+    ) {
+        self.cellActions.append((
+            cellIdentifier: cellIdentifier,
+            completion: completion,
+            getValue: getValue,
+            performAction: performAction
+        ))
     }
     
     func setSelectedBackgroundColor(color: UIColor) {
@@ -35,10 +50,19 @@ class BunnyTableViewCell: UITableViewCell {
         self.selectedBackgroundView = selectionColor
     }
     
-    func getValue(cellIdentifier: String) -> String {
+    func getValue() -> String {
         for action in self.cellActions {
-            if action.cellIdentifier == cellIdentifier {
+            if action.cellIdentifier == model.cellIdentifier {
                 return action.getValue()
+            }
+        }
+    }
+    
+    func performAction() {
+        for action in self.cellActions {
+            if action.cellIdentifier == model.cellIdentifier {
+                action.performAction()
+                break
             }
         }
     }

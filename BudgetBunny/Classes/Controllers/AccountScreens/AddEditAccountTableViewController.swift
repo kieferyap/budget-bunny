@@ -183,17 +183,18 @@ class AddEditAccountTableViewController: UITableViewController {
     // Grabs the value for each cell (Account Name: "My Bank Account" --> "My Bank Account"), used for saving the data
     private func getTableViewCellValue(section: Int, row: Int) -> String {
         let indexPath = NSIndexPath.init(forRow: row, inSection: section)
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditAccountTableViewCell
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
         return cell.getValue()
     }
     
     @IBAction private func doneButtonPressed(sender: UIBarButtonItem) {
         
         // Gather the input values
-        let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxNameCell).stringByTrimmingCharactersInSet(
+        let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoSection, row: screenConstants.idxNameCell).stringByTrimmingCharactersInSet(
                 NSCharacterSet.whitespaceAndNewlineCharacterSet()
         )
-        let accountInitValue = self.getTableViewCellValue(screenConstants.idxAccountInfoGroup, row: screenConstants.idxAmountCell)
+        
+        let accountInitValue = self.getTableViewCellValue(screenConstants.idxAccountInfoSection, row: screenConstants.idxAmountCell)
         var isDefaultAccountBool = false
         let accountInitValueFloat = (accountInitValue as NSString).doubleValue
         var oldName = ""
@@ -201,14 +202,14 @@ class AddEditAccountTableViewController: UITableViewController {
         // If this is a new account, then we should get the isDefault table cell.
         // Edit mode does not have this cell.
         if self.sourceInformation == Constants.SourceInformation.accountNew {
-            let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsGroup, row: screenConstants.idxDefaultCell)
+            let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsSection, row: screenConstants.idxDefaultCell)
             isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
         }
             
         // If we're editing, however, we should just preserve the current value for isDefaultAccount
         else {
             isDefaultAccountBool = (self.accountInformation?.isDefault)!
-            oldName = (self.accountInformation?.accountName)!
+            oldName = (self.accountInformation?.alphaElementTitle)!
         }
         
         // Set up the error validators
@@ -302,15 +303,15 @@ class AddEditAccountTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.addAccountTable.count
+        return self.modelData.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.addAccountTable[section].count
+        return self.modelData[section].count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddEditAccountTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
         cell.performAction()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
