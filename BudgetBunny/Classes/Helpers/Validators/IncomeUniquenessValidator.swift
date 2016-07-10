@@ -8,8 +8,8 @@
 
 import UIKit
 
-class IncomeUniquenessValidator: NSObject, ValidatorProtocol {
-    
+class IncomeUniquenessValidator: NSObject/*, ValidatorProtocol*/ {
+    /*
     var objectToValidate: NSObject
     var errorStringKey: String
     var parentArray: [IncomeCell]
@@ -29,5 +29,6 @@ class IncomeUniquenessValidator: NSObject, ValidatorProtocol {
         }
         return true
     }
+ */
     
 }

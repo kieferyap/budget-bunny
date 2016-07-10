@@ -56,6 +56,7 @@ class BunnyTableViewCell: UITableViewCell {
                 return action.getValue()
             }
         }
+        return ""
     }
     
     func performAction() {

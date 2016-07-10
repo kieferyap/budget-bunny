@@ -24,6 +24,10 @@ class BudgetCell: TripleElementCell {
         remainingAmount: Double,
         currencyIdentifier: String
     ) {
+        self.budgetObject = budgetObject
+        self.budgetAmount = budgetAmount
+        self.remainingAmount = remainingAmount
+        self.currencyIdentifier = currencyIdentifier
         super.init(
             alphaElementTitleKey: budgetName,
             betaElementTitleKey: BunnyUtils.getFormattedAmount(budgetAmount, identifier: currencyIdentifier),
@@ -31,10 +35,6 @@ class BudgetCell: TripleElementCell {
             cellIdentifier: Constants.CellIdentifiers.budget,
             cellSettings: [:]
         )
-        self.budgetObject = budgetObject
-        self.budgetAmount = budgetAmount
-        self.remainingAmount = remainingAmount
-        self.currencyIdentifier = currencyIdentifier
     }
     
 }

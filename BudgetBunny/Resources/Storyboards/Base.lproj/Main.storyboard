@@ -45,8 +45,6 @@
                                 <connections>
                                     <outlet property="alphaUIElement" destination="eAs-iV-ZJW" id="gVe-R5-aNS"/>
                                     <outlet property="betaUIElement" destination="zNz-Ps-euU" id="voQ-IW-2Qx"/>
-                                    <outlet property="field" destination="eAs-iV-ZJW" id="4f3-wc-Wi8"/>
-                                    <outlet property="textfield" destination="zNz-Ps-euU" id="rkc-Uq-0M5"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
@@ -78,8 +76,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="IjL-Dx-Dcm" id="ous-hF-NYe"/>
-                                    <outlet property="value" destination="mm6-va-18q" id="hJ8-VO-pFC"/>
+                                    <outlet property="alphaUIElement" destination="IjL-Dx-Dcm" id="pRs-T3-NNR"/>
+                                    <outlet property="betaUIElement" destination="mm6-va-18q" id="uGV-QC-bWn"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountActionCell" rowHeight="44" id="Mdm-d9-KPl" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
@@ -102,7 +100,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="actionButton" destination="XJF-QW-d5t" id="vJF-29-J3Y"/>
+                                    <outlet property="alphaUIElement" destination="XJF-QW-d5t" id="CGo-0o-2XQ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
@@ -142,9 +140,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accountSwitch" destination="MYf-pt-WJT" id="km0-74-Spz"/>
-                                    <outlet property="field" destination="CrT-Rn-Pg3" id="16d-h9-ebw"/>
-                                    <outlet property="value" destination="jlN-Ed-rCN" id="Jxu-p3-FmN"/>
+                                    <outlet property="alphaUIElement" destination="CrT-Rn-Pg3" id="yIT-r1-JgR"/>
+                                    <outlet property="betaUIElement" destination="jlN-Ed-rCN" id="dLj-qH-zBs"/>
+                                    <outlet property="gammaUIElement" destination="MYf-pt-WJT" id="OKa-0j-kbt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -257,7 +255,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="AccountsTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMq-Q2-rQJ" id="h0C-K8-QWc">
@@ -298,11 +296,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accountNameLabel" destination="vaF-sw-zUb" id="vsJ-V8-dsp"/>
-                                    <outlet property="alphaUIElement" destination="vaF-sw-zUb" id="E6G-TS-cx0"/>
-                                    <outlet property="amountLabel" destination="0rZ-it-zmz" id="GrR-qI-7iJ"/>
-                                    <outlet property="betaUIElement" destination="0rZ-it-zmz" id="vop-Jy-YYA"/>
-                                    <outlet property="gammaUIElement" destination="FtN-eT-4oI" id="pFU-nB-R7P"/>
+                                    <outlet property="accountNameLabel" destination="vaF-sw-zUb" id="BWr-F2-e5N"/>
+                                    <outlet property="amountLabel" destination="0rZ-it-zmz" id="SdN-t5-A1h"/>
                                     <outlet property="isDefaultLabel" destination="FtN-eT-4oI" id="5ho-Jj-an5"/>
                                     <outlet property="isDefaultLabelWidth" destination="SQr-Xg-aOE" id="lfg-JY-i1U"/>
                                 </connections>

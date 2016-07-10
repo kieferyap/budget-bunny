@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AddEditBudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
-
+class AddEditBudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
+/*
     @IBOutlet weak var field: UILabel!
     @IBOutlet weak var textfield: BunnyTextField!
     var model: AddEditBudgetCell?
@@ -81,4 +81,5 @@ class AddEditBudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
             break
         }
     }
+ */
 }

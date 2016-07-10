@@ -13,8 +13,7 @@ protocol AddEditBudgetDelegate: class {
 }
 
 class AddEditBudgetTableViewController: UITableViewController {
-
-    private var addBudgetTable: [[AddEditBudgetCell]] = [[]]
+/*
     private var categoryList: [AddEditBudgetCell] = []
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -287,4 +286,5 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             }
         }
     }
+ */
 }

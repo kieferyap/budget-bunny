@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol {
 
@@ -18,19 +19,80 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addAccountAction,
                 completion: {
-                    let accountModel = model as! DoubleElementCell
+                    let buttonModel = model as! SingleElementCell
                     let alphaButton = self.alphaUIElement as! UIButton
                     
                     BunnyUtils.prepareButton(
                         alphaButton,
-                        text: accountModel.alphaElementTitle,
-                        model: accountModel,
+                        text: buttonModel.alphaElementTitle,
+                        model: buttonModel,
                         target: self
+                    )
+                },
+                getValue: {
+                    // A button does not have a return value
+                    return ""
+                },
+                performAction:  {
+                    let buttonModel = model as! SingleElementCell
+                    let alphaButton = self.alphaUIElement as! UIButton
+                    alphaButton.performSelector(
+                        Selector(
+                            buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
+                        )
                     )
                 }
             )
             
         }
+    }
+    
+    // Button selectors
+    func setDefault() {
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
+            let isEnabled = object as! Bool
+            if isEnabled {
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
+                    let managedObject = object as! NSManagedObject
+                    let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                    activeRecord.selectAllObjects({ (fetchedObjects) -> Void in
+                        // For each element
+                        for object in fetchedObjects {
+                            // If the element is the currently selected element, set isDefault to true.
+                            if object == managedObject {
+                                object.setValue(true, forKey: ModelConstants.Account.isDefault)
+                            }
+                                
+                                // Else, if the element is the previously default account, set isDefault to false.
+                            else if object.valueForKey(ModelConstants.Account.isDefault) as! Bool == true {
+                                object.setValue(false, forKey: ModelConstants.Account.isDefault)
+                            }
+                        }
+                        
+                        // Save the model, reload the data, etc.
+                        activeRecord.save()
+                    })
+                    (self.delegate as! AddEditAccountDelegate).setAsDefault()
+                }
+            }
+        })
+    }
+    
+    func deleteAccount() {
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
+            let isEnabled = object as! Bool
+            if isEnabled {
+                let alertController = AccountUtils.accountDeletionPopup({
+                    BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
+                        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                        activeRecord.deleteObject(object as! NSManagedObject, completion: {
+                            (self.delegate as! AddEditAccountDelegate).popViewController()
+                        })
+                    }
+                })
+                (self.delegate as! AddEditAccountDelegate).presentViewController(alertController)
+            }
+        })
     }
     
 }

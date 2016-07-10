@@ -12,8 +12,8 @@ protocol BudgetDelegate: class {
     func addNewIncome(incomeName: String)
 }
 
-class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class BudgetViewController: UIViewController /*, UITableViewDelegate, UITableViewDataSource*/ {
+/*
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
     private var budgetTable: [[BunnyCell]] = [[]]
@@ -294,5 +294,5 @@ extension BudgetViewController: BudgetDelegate {
             }
         }
     }
-
+*/
 }

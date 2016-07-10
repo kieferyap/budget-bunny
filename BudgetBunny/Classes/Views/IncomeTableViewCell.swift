@@ -8,8 +8,8 @@
 
 import UIKit
 
-class IncomeTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
-
+class IncomeTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
+/*
     @IBOutlet weak var noBudgetLabel: UILabel!
     @IBOutlet weak var incomeCategoryLabel: UILabel!
     @IBOutlet weak var incomeAmountLabel: UILabel!
@@ -61,4 +61,5 @@ class IncomeTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
             break
         }
     }
+ */
 }

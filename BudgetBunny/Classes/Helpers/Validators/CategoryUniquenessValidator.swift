@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CategoryUniquenessValidator: NSObject, ValidatorProtocol {
-        
+class CategoryUniquenessValidator: NSObject/*, ValidatorProtocol*/ {
+ /*
     var objectToValidate: NSObject
     var errorStringKey: String
     var parentArray: [AddEditBudgetCell]
@@ -29,5 +29,5 @@ class CategoryUniquenessValidator: NSObject, ValidatorProtocol {
         }
         return true
     }        
-    
+    */
 }

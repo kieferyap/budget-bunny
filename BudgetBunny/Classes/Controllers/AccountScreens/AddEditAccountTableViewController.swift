@@ -67,6 +67,7 @@ class AddEditAccountTableViewController: UITableViewController {
                     deleteButtonText = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT_DISABLED)
                 }
                 
+                // "Set as Default" button
                 self.appendCellAtSectionIndex(
                     self.screenConstants.idxAccountActionsSection,
                     idxRow: self.screenConstants.idxDefaultCell,
@@ -82,6 +83,7 @@ class AddEditAccountTableViewController: UITableViewController {
                     )
                 )
                 
+                // "Delete Account" button
                 self.appendCellAtSectionIndex(
                     self.screenConstants.idxAccountActionsSection,
                     idxRow: self.screenConstants.idxDeleteCell,
@@ -100,6 +102,7 @@ class AddEditAccountTableViewController: UITableViewController {
             // If we are trying to create a new account, however, all the textfields should remain blank
             case Constants.SourceInformation.accountNew:
                 
+                // "Default account" switch cell
                 self.appendCellAtSectionIndex(
                     self.screenConstants.idxAccountActionsSection,
                     idxRow: self.screenConstants.idxDefaultCell,
@@ -118,6 +121,7 @@ class AddEditAccountTableViewController: UITableViewController {
                 break
             }
             
+            // Account name cell
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxAccountInfoSection,
                 idxRow: self.screenConstants.idxNameCell,
@@ -133,6 +137,7 @@ class AddEditAccountTableViewController: UITableViewController {
                 )
             )
             
+            // Currency cell
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxAccountInfoSection,
                 idxRow: self.screenConstants.idxCurrencyCell,
@@ -144,6 +149,7 @@ class AddEditAccountTableViewController: UITableViewController {
                 )
             )
             
+            // Amount cell
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxAccountInfoSection,
                 idxRow: self.screenConstants.idxAmountCell,
@@ -317,18 +323,18 @@ class AddEditAccountTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
+        let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
         let cellIdentifier: String = cellItem.cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditAccountTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
-        cell.setModelObject(cellItem)
-        cell.delegate = self
+        cell.prepareTableViewCell(cellItem)
+        (cell as! BunnyTableViewCell).delegate = self
         
-        return cell
+        return cell as! UITableViewCell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cellItem: AddEditAccountCell = self.addAccountTable[indexPath.section][indexPath.row]
+        let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
         var cellHeight: CGFloat = CGFloat(screenConstants.defaultCellHeight)
         BunnyUtils.keyExistsForCellSettings(cellItem, key: screenConstants.keyHeight) { (object) in
             cellHeight = object as! CGFloat
@@ -352,7 +358,7 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
     }
 
     func setAsDefault() {
-        let idxAccountActionsGroup = screenConstants.idxAccountActionsGroup
+        let idxAccountActionsGroup = self.screenConstants.idxAccountActionsSection
         let idxDefaultCell = screenConstants.idxDefaultCell
         let idxDeleteCell = screenConstants.idxDeleteCell
         let indexPathDefault = NSIndexPath.init(forRow: idxDefaultCell, inSection: idxAccountActionsGroup)
@@ -377,12 +383,11 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
             self.selectedCountryIdentifier = identifier
         }
         let currencyString: String = self.getCurrencyStringWithIdentifier()
-        let idxAccountInfoGroup = screenConstants.idxAccountInfoGroup
+        let idxAccountInfoSection = self.screenConstants.idxAccountInfoSection
         let idxCurrencyCell = screenConstants.idxCurrencyCell
-        let indexPath = NSIndexPath.init(forRow: idxCurrencyCell, inSection: idxAccountInfoGroup)
+        let indexPath = NSIndexPath.init(forRow: idxCurrencyCell, inSection: idxAccountInfoSection)
         
-        (self.addAccountTable[idxAccountInfoGroup][idxCurrencyCell] as AddEditAccountCell)
-            .setCellPlaceholder(currencyString)
+        (self.modelData[idxAccountInfoSection][idxCurrencyCell] as! DoubleElementCell).betaElementTitle = currencyString
         
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }

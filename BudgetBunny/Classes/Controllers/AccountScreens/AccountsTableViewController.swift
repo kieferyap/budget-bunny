@@ -181,7 +181,7 @@ class AccountsTableViewController: UITableViewController {
         let cellIdentifier: String = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
         
-        cell.setModelObject(cellItem)
+        cell.prepareTableViewCell(cellItem)
         return cell
     }
     

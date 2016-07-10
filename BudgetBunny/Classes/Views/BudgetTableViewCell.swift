@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
-
+class BudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
+/*
     @IBOutlet weak var budgetName: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var remainingAmount: UILabel!
@@ -57,4 +57,5 @@ class BudgetTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         selectionColor.backgroundColor = Constants.Colors.lightGreen
         self.selectedBackgroundView = selectionColor
     }
+ */
 }

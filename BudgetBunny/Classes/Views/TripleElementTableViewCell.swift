@@ -31,6 +31,16 @@ class TripleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                         accountModel.gammaElementTitle == ScreenConstants.AddEditAccount.trueString ?
                         true : false
 
+                },
+                getValue: {
+                    let gammaSwitch = self.gammaUIElement as! UISwitch
+                    return gammaSwitch.on ?
+                        ScreenConstants.AddEditAccount.trueString :
+                        ScreenConstants.AddEditAccount.falseString
+                },
+                performAction:  {
+                    let gammaSwitch = self.gammaUIElement as! UISwitch
+                    gammaSwitch.setOn(!gammaSwitch.on, animated: true)
                 }
             )
             

@@ -32,6 +32,14 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     )
                     
                     betaTextField.placeholder = accountModel.betaElementTitle
+                },
+                getValue: {
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    return betaTextField.text!
+                },
+                performAction:  {
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    betaTextField.becomeFirstResponder()
                 }
             )
             
@@ -50,34 +58,17 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
+                },
+                getValue: {
+                    // Does not need a return value because the value lies
+                    // on the selected currency identifier.
+                    return ""
+                },
+                performAction:  {
+                    (self.delegate as! AddEditAccountDelegate).pushCurrencyViewController()
                 }
             )
             
         }
     }
-    
-    /*
- 
-     func getValue() -> String {
-     var returnValue: String = ""
-     
-     switch self.model!.cellIdentifier {
-     case Constants.CellIdentifiers.addAccountFieldValue:
-     returnValue = self.textfield.text!
-     break
-     
-     case Constants.CellIdentifiers.addAccountSwitch:
-     returnValue = self.accountSwitch.on ?
-     ScreenConstants.AddEditAccount.trueString :
-     ScreenConstants.AddEditAccount.falseString
-     break
-     
-     default:
-     break
-     }
-     
-     return returnValue
-     }
-
-    */
 }
