@@ -142,7 +142,7 @@ class BunnyUtils: NSObject {
         return currency
     }
     
-    class func getCurrencyObjectOfDefaultAccount(completion: (defaultCurrency: Currency) -> Void) {
+    class func getCurrencyObjectOfDefaultAccount() -> Currency {
         let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
         let currency = Currency()
         currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
@@ -153,18 +153,23 @@ class BunnyUtils: NSObject {
             value: true
         )
         
-        activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
-            if fetchedObjects.count > 0 {
-                let defaultAccount = fetchedObjects[0] as! Account
-                let currency = Currency()
-                print(defaultAccount)
-                currency.setAttributes(
-                    defaultAccount.valueForKey(ModelConstants.Account.currency) as! String
-                )
-                completion(defaultCurrency:currency)
+        let group = dispatch_group_create()
+        let queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_group_async(group, queue) {
+            activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
+                if fetchedObjects.count > 0 {
+                    let defaultAccount = fetchedObjects[0] as! Account
+                    currency.setAttributes(
+                        defaultAccount.valueForKey(ModelConstants.Account.currency) as! String
+                    )
+                }
             }
-            
         }
+
+        // Wait for the thread to finish before returning
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return currency
     }
     
     class func getFormattedAmount(input: Double, identifier: String) -> String {

@@ -13,19 +13,18 @@ protocol AddEditBudgetDelegate: class {
 }
 
 class AddEditBudgetTableViewController: UITableViewController {
-/*
-    private var categoryList: [AddEditBudgetCell] = []
+
+    private var categoryList: [SingleElementCell] = []
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addBudgetTable = Array.init(
-            count: screenConstants.sectionCount,
-            repeatedValue: []
-        )
-        
+        self.prepareModelData(screenConstants.sectionCount) { 
+            BunnyUtils.getCurrencyObjectOfDefaultAccount()
+        }
+        /*
         // Get the currency symbol of the default account
         BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
             let currencySymbol = defaultCurrency.currencySymbol
@@ -66,9 +65,9 @@ class AddEditBudgetTableViewController: UITableViewController {
             self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
             self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
         }
-        
+        */
     }
-    
+    /*
     func updateCategorySection() {
         // Will (probably) be used in editing
         /*
@@ -231,9 +230,9 @@ class AddEditBudgetTableViewController: UITableViewController {
         
         return cell
     }
-
+ */
 }
-
+/*
 extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     
     func addNewCategory(categoryName: String) {
@@ -286,5 +285,6 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             }
         }
     }
- */
+ 
 }
+ */

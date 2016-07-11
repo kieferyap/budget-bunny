@@ -13,12 +13,22 @@ protocol BudgetDelegate: class {
 }
 
 class BudgetViewController: UIViewController /*, UITableViewDelegate, UITableViewDataSource*/ {
-/*
+    
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
     private var budgetTable: [[BunnyCell]] = [[]]
-    private var incomeList: [IncomeCell] = []
+    private var incomeList: [SingleElementCell] = []
     private let screenConstants = ScreenConstants.Budget.self
+    
+    override func viewWillAppear(animated: Bool) {
+        self.prepareModelData(screenConstants.sectionCount) {
+            let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
+            print(defaultCurrency.identifier)
+        }
+    }
+    
+/*
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

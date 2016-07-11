@@ -404,11 +404,7 @@ name</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="budgetName" destination="OBR-yA-LVg" id="vcb-va-eUZ"/>
-                                            <outlet property="progressBar" destination="zcZ-G3-glk" id="5Zf-HS-N7O"/>
                                             <outlet property="progressHeight" destination="Abl-s4-D0u" id="V9S-Or-v0D"/>
-                                            <outlet property="remainingAmount" destination="arP-SP-cP0" id="Wsz-PU-a1o"/>
-                                            <outlet property="totalAmount" destination="gMr-s4-eUn" id="OIT-up-Hjy"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeCell" rowHeight="44" id="1Th-D7-5SK" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
@@ -442,10 +438,6 @@ name</string>
                                                 <constraint firstItem="GkJ-PW-j5i" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="vab-bg-d13"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="incomeAmountLabel" destination="GkJ-PW-j5i" id="mPZ-7h-tAX"/>
-                                            <outlet property="incomeCategoryLabel" destination="Cch-hE-On2" id="arY-O2-J0w"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addIncomeCell" rowHeight="44" id="BM7-bf-Jod" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="149" width="600" height="44"/>
@@ -466,9 +458,6 @@ name</string>
                                                 <constraint firstItem="FUy-R7-24c" firstAttribute="trailing" secondItem="gKQ-Ra-c08" secondAttribute="trailingMargin" id="n0A-7s-WXV"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addNewIncomeTextfield" destination="FUy-R7-24c" id="6uu-mj-zyt"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="193" width="600" height="44"/>
@@ -489,9 +478,6 @@ name</string>
                                                 <constraint firstItem="wPO-pv-Nba" firstAttribute="centerX" secondItem="dCn-Aq-Yxn" secondAttribute="centerX" id="cHY-u6-Oye"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="noBudgetLabel" destination="wPO-pv-Nba" id="k4a-s0-WoM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -515,10 +501,6 @@ name</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="budgetTableView" destination="3Wy-4b-keZ" id="wgP-dC-cPd"/>
-                        <outlet property="timeSegmentedControl" destination="2VZ-au-IUr" id="lNo-Np-vSN"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7j-N7-OcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
