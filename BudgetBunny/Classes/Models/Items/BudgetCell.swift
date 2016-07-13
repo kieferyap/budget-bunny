@@ -30,8 +30,8 @@ class BudgetCell: TripleElementCell {
         self.currencyIdentifier = currencyIdentifier
         super.init(
             alphaElementTitleKey: budgetName,
-            betaElementTitleKey: BunnyUtils.getFormattedAmount(budgetAmount, identifier: currencyIdentifier),
-            gammaElementTitleKey: BunnyUtils.getFormattedAmount(remainingAmount, identifier: currencyIdentifier),
+            betaElementTitleKey: BunnyUtils.getFormattedAmount(remainingAmount, identifier: currencyIdentifier),
+            gammaElementTitleKey: BunnyUtils.getFormattedAmount(budgetAmount, identifier: currencyIdentifier),
             cellIdentifier: Constants.CellIdentifiers.budget,
             cellSettings: [:]
         )

@@ -8,27 +8,25 @@
 
 import UIKit
 
-class IncomeUniquenessValidator: NSObject/*, ValidatorProtocol*/ {
-    /*
+class IncomeUniquenessValidator: NSObject, ValidatorProtocol {
+    
     var objectToValidate: NSObject
     var errorStringKey: String
-    var parentArray: [IncomeCell]
+    var parentArray: [DoubleElementCell]
     
-    init(objectToValidate: NSObject, errorStringKey: String, parentArray: [IncomeCell]) {
+    init(objectToValidate: NSObject, errorStringKey: String, parentArray: [DoubleElementCell]) {
         self.objectToValidate = objectToValidate
         self.errorStringKey = errorStringKey
         self.parentArray = parentArray
     }
     
     func validateObject() -> Bool {
-        let object = self.objectToValidate as! IncomeCell
+        let object = self.objectToValidate as! DoubleElementCell
         for item in parentArray {
-            if item.field == object.field {
+            if item.alphaElementTitle == object.alphaElementTitle {
                 return false
             }
         }
         return true
     }
- */
-    
 }

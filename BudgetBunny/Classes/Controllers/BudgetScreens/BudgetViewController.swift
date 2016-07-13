@@ -168,27 +168,17 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellItem: BunnyCell = self.budgetTable[indexPath.section][indexPath.row]
         let cellIdentifier = cellItem.cellIdentifier
-        if cellIdentifier != Constants.CellIdentifiers.budgetInexistence {
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
-            
-            cell.prepareTableViewCell(cellItem)
-            
-            /*
-            if indexPath.section == self.screenConstants.idxIncomeSection {
-                switch indexPath.row {
-                    case
-                }
-                (cell as! IncomeTableViewCell).delegate = self
-            }
-             */
-            
-            return cell as! UITableViewCell
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
+        
+        // Prepare the table view cell
+        cell.prepareTableViewCell(cellItem)
+        
+        if cellIdentifier == Constants.CellIdentifiers.addIncome {
+            (cell as! SingleElementTableViewCell).delegate = self
         }
-        else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! IncomeTableViewCell
-            cell.setModelObject(cellItem)
-            return cell
-        }
+        
+        return cell as! UITableViewCell
     }
 
 
@@ -244,13 +234,13 @@ extension BudgetViewController: BudgetDelegate {
         }
         
         // Check if category name already exists
-        let newIncomeCell = IncomeCell(
-            fieldKey: trimmedIncomeName,
-            valueKey: "0",
-            placeholderKey: "",
+        let newIncomeCell = DoubleElementCell(
+            alphaElementTitleKey: trimmedIncomeName,
+            betaElementTitleKey: "0",
             cellIdentifier: Constants.CellIdentifiers.budgetIncome,
             cellSettings: [:]
         )
+        
         
         // Uniqueness validator
         let incomeUniquenessValidator = IncomeUniquenessValidator(
@@ -293,5 +283,5 @@ extension BudgetViewController: BudgetDelegate {
             }
         }
     }
-*/
+
 }

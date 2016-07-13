@@ -16,9 +16,9 @@ class BunnyTableViewCell: UITableViewCell {
 
     var cellActions: [(
         cellIdentifier: String,
-        completion: () -> Void,
-        getValue: () -> String,
-        performAction: () -> Void
+        completion: () -> Void, // Preparing the UI Elements within the cell
+        getValue: () -> String, // Getting the value of the cell
+        performAction: () -> Void // What happens when the cell is tapped
     )] = []
     var model: BunnyCell!
     var delegate: AnyObject!

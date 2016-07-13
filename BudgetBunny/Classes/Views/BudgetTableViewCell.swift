@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
-/*
+class BudgetTableViewCell: UITableViewCell,  BunnyTableViewCellProtocol {
+
     @IBOutlet weak var budgetName: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var remainingAmount: UILabel!
@@ -17,14 +17,14 @@ class BudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
     @IBOutlet weak var progressHeight: NSLayoutConstraint!
     var model: BudgetCell?
     
-    func setModelObject(modelObject: BunnyCell) {
-        let budgetModel = modelObject as! BudgetCell
+    func prepareTableViewCell(model: BunnyCell) {
+        let budgetModel = model as! BudgetCell
         self.model = budgetModel
         
         // Set the labels
-        self.budgetName.text = budgetModel.budgetName
-        self.totalAmount.text = budgetModel.getFormattedBudgetAmount()
-        self.remainingAmount.text = budgetModel.getFormattedAmountRemaining()
+        self.budgetName.text = budgetModel.alphaElementTitle
+        self.totalAmount.text = budgetModel.betaElementTitle
+        self.remainingAmount.text = budgetModel.gammaElementTitle
         
         // Set label overflow
         self.budgetName.adjustsFontSizeToFitWidth = true
@@ -32,7 +32,7 @@ class BudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
         self.remainingAmount.adjustsFontSizeToFitWidth = true
         
         // Set the progress bar
-        let percentage = Float(budgetModel.amountRemaining/budgetModel.budgetAmount)
+        let percentage = Float(budgetModel.remainingAmount/budgetModel.budgetAmount)
         self.progressBar.progress = percentage
         self.progressBar.layer.cornerRadius = 5.0
         self.progressBar.layer.masksToBounds = true
@@ -57,5 +57,4 @@ class BudgetTableViewCell: UITableViewCell /*, BunnyTableViewCellProtocol*/ {
         selectionColor.backgroundColor = Constants.Colors.lightGreen
         self.selectedBackgroundView = selectionColor
     }
- */
 }

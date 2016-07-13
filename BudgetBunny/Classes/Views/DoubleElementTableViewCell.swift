@@ -16,6 +16,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
     func prepareTableViewCell(model: BunnyCell) {
         super.prepareTableViewCell(model) {
             
+            // "Account name: <textfield>" in the Add/Edit Account Screens
             self.addCellType(
                 Constants.CellIdentifiers.addAccountFieldValue,
                 completion: {
@@ -43,6 +44,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
+            // "Currency: United States" in the Add/Edit Account Screens
             self.addCellType(
                 Constants.CellIdentifiers.addAccountChevron,
                 completion: {
@@ -66,6 +68,26 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 },
                 performAction:  {
                     (self.delegate as! AddEditAccountDelegate).pushCurrencyViewController()
+                }
+            )
+            
+            // "Salary: $2000"/Income Category in the Budget Screen
+            self.addCellType(
+                Constants.CellIdentifiers.budgetIncome,
+                completion: {
+                    let incomeModel = model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaLabel = self.betaUIElement as! UILabel
+                    
+                    alphaLabel.text = incomeModel.alphaElementTitle
+                    betaLabel.text = incomeModel.betaElementTitle
+                    self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                    // On tap, an alert will show, allowing the user to edit the name of the income category
                 }
             )
             

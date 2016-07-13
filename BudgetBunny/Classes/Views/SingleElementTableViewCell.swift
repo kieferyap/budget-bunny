@@ -16,6 +16,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
     func prepareTableViewCell(model: BunnyCell) {
         super.prepareTableViewCell(model) {
             
+            // "Set as Default", "Delete Account" in the edit account screen
             self.addCellType(
                 Constants.CellIdentifiers.addAccountAction,
                 completion: {
@@ -44,6 +45,48 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
+            // "Add new income" cell in the Budget Screen
+            self.addCellType(
+                Constants.CellIdentifiers.addIncome,
+                completion: { 
+                    let incomeModel = model as! SingleElementCell
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    
+                    BunnyUtils.prepareTextField(
+                        alphaTextField,
+                        placeholderText: incomeModel.alphaElementTitle,
+                        textColor: Constants.Colors.darkGray,
+                        model: incomeModel
+                    )
+                    
+                    alphaTextField.returnCompletion = { (text) in
+                        (self.delegate as! BudgetDelegate).addNewIncome(text)
+                    }
+                },
+                getValue: {
+                    return ""
+                },
+                performAction: {
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    alphaTextField.becomeFirstResponder()
+                }
+            )
+            
+            // "No Income Categories"/"No Budgets" cells in the Budget Screen
+            self.addCellType(
+                Constants.CellIdentifiers.budgetInexistence,
+                completion: {
+                    let noBudgetModel = model as! SingleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    alphaLabel.text = noBudgetModel.alphaElementTitle
+                    self.userInteractionEnabled = false
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                }
+            )
         }
     }
     

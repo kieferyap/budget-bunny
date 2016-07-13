@@ -404,10 +404,14 @@ name</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="budgetName" destination="OBR-yA-LVg" id="VO0-yo-nop"/>
+                                            <outlet property="progressBar" destination="zcZ-G3-glk" id="3Be-ks-kD7"/>
                                             <outlet property="progressHeight" destination="Abl-s4-D0u" id="V9S-Or-v0D"/>
+                                            <outlet property="remainingAmount" destination="arP-SP-cP0" id="wiu-Og-COg"/>
+                                            <outlet property="totalAmount" destination="gMr-s4-eUn" id="x8v-wG-KMh"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeCell" rowHeight="44" id="1Th-D7-5SK" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeCell" rowHeight="44" id="1Th-D7-5SK" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="105" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Th-D7-5SK" id="4Ap-ut-K2R">
@@ -438,8 +442,12 @@ name</string>
                                                 <constraint firstItem="GkJ-PW-j5i" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="vab-bg-d13"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="Cch-hE-On2" id="ZVW-Dh-dtL"/>
+                                            <outlet property="betaUIElement" destination="GkJ-PW-j5i" id="pzb-S4-Tl2"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addIncomeCell" rowHeight="44" id="BM7-bf-Jod" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addIncomeCell" rowHeight="44" id="BM7-bf-Jod" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="149" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BM7-bf-Jod" id="gKQ-Ra-c08">
@@ -458,8 +466,11 @@ name</string>
                                                 <constraint firstItem="FUy-R7-24c" firstAttribute="trailing" secondItem="gKQ-Ra-c08" secondAttribute="trailingMargin" id="n0A-7s-WXV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="FUy-R7-24c" id="6rb-92-M0A"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="IncomeTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="193" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HtF-4z-Hpc" id="dCn-Aq-Yxn">
@@ -476,8 +487,13 @@ name</string>
                                             <constraints>
                                                 <constraint firstItem="wPO-pv-Nba" firstAttribute="centerY" secondItem="dCn-Aq-Yxn" secondAttribute="centerY" id="7Ho-b4-OWj"/>
                                                 <constraint firstItem="wPO-pv-Nba" firstAttribute="centerX" secondItem="dCn-Aq-Yxn" secondAttribute="centerX" id="cHY-u6-Oye"/>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dCn-Aq-Yxn" secondAttribute="leadingMargin" constant="8" id="pFV-w6-wmb"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wPO-pv-Nba" secondAttribute="trailing" constant="8" id="rpW-kx-6CR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="wPO-pv-Nba" id="UZ8-yE-fgL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -501,6 +517,10 @@ name</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="budgetTableView" destination="3Wy-4b-keZ" id="Gxm-jB-zCZ"/>
+                        <outlet property="timeSegmentedControl" destination="2VZ-au-IUr" id="aL4-3b-7ne"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7j-N7-OcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
