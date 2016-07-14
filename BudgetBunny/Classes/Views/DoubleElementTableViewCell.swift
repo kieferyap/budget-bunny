@@ -91,6 +91,34 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
+            // Budget name and budget amount in the add budget screen
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetFieldValue,
+                completion: {
+                    let budgetModel = model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    
+                    alphaLabel.text = budgetModel.alphaElementTitle
+                    BunnyUtils.prepareTextField(
+                        betaTextField,
+                        placeholderText: budgetModel.betaElementTitle,
+                        textColor: Constants.Colors.darkGray,
+                        model: budgetModel
+                    )
+                },
+                getValue: { () -> String in
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    return (betaTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                        )
+                    )!
+                },
+                performAction: {
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    betaTextField.becomeFirstResponder()
+                }
+            )
+            
         }
     }
 }

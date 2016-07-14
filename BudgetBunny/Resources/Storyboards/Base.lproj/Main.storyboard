@@ -535,7 +535,7 @@ name</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetFieldValueCell" id="eOz-l8-VI4" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetFieldValueCell" id="eOz-l8-VI4" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOz-l8-VI4" id="ZD9-q4-lsU">
@@ -564,11 +564,11 @@ name</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="2B2-jI-jbA" id="EOB-Fd-iwA"/>
-                                    <outlet property="textfield" destination="ux7-Jk-nFf" id="W8a-Tm-c9e"/>
+                                    <outlet property="alphaUIElement" destination="2B2-jI-jbA" id="hDV-yX-nrK"/>
+                                    <outlet property="betaUIElement" destination="ux7-Jk-nFf" id="NF7-ST-9ZV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pls-gg-jEO" id="but-xc-N4l">
@@ -589,10 +589,10 @@ name</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="3hD-sH-Jac" id="ndQ-Dy-GlN"/>
+                                    <outlet property="alphaUIElement" destination="3hD-sH-Jac" id="CCU-yT-odt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qEW-OW-SlX" id="dDa-Xz-zec">
@@ -612,7 +612,7 @@ name</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textfield" destination="jEd-d9-egf" id="MAt-AK-65N"/>
+                                    <outlet property="alphaUIElement" destination="jEd-d9-egf" id="3s8-f1-rpS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

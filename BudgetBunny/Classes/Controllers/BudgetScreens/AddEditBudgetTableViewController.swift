@@ -21,53 +21,56 @@ class AddEditBudgetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.prepareModelData(screenConstants.sectionCount) { 
-            BunnyUtils.getCurrencyObjectOfDefaultAccount()
-        }
-        /*
+        
         // Get the currency symbol of the default account
-        BunnyUtils.getCurrencyObjectOfDefaultAccount { (defaultCurrency) in
-            let currencySymbol = defaultCurrency.currencySymbol
+        let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
+        let currencySymbol = defaultCurrency.currencySymbol
+        
+        let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
+            .stringByAppendingString(" (")
+            .stringByAppendingString(currencySymbol)
+            .stringByAppendingString(")")
+        
+        self.prepareModelData(screenConstants.sectionCount) { 
             
-            let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
-                .stringByAppendingString(" (")
-                .stringByAppendingString(currencySymbol)
-                .stringByAppendingString(")")
-            
-            let nameCell = AddEditBudgetCell(
-                fieldKey: StringConstants.LABEL_BUDGET_NAME,
-                placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
-                cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-                cellSettings: [
-                    Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                    Constants.AppKeys.keyMaxLength: self.screenConstants.budgetNameMaxLength,
-                    Constants.AppKeys.keyTextFieldValue: ""
-                ]
+            // Budget name
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxInformationGroup,
+                idxRow: self.screenConstants.idxAmountCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: StringConstants.LABEL_BUDGET_NAME,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.budgetNameMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: ""
+                    ]
+                )
             )
             
-            let amountCell = AddEditBudgetCell(
-                fieldKey: amountText,
-                placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
-                cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-                cellSettings: [
-                    Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                    Constants.AppKeys.keyMaxLength: self.screenConstants.budgetAmountMaxLength,
-                    Constants.AppKeys.keyTextFieldValue: ""
-                ]
+            // Budget amount
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxInformationGroup,
+                idxRow: self.screenConstants.idxAmountCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: amountText,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                    cellSettings:[
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.budgetAmountMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: ""
+                    ]
+                )
             )
             
-            self.addBudgetTable[self.screenConstants.idxInformationGroup].append(nameCell)
-            self.addBudgetTable[self.screenConstants.idxInformationGroup].append(amountCell)
             self.updateCategorySection()
-            
-            // Keyboard must be dismissed when regions outside of it is tapped
-            BunnyUtils.addKeyboardDismisserListener(self)
             self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
             self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
         }
-        */
     }
-    /*
+    
     func updateCategorySection() {
         // Will (probably) be used in editing
         /*
@@ -79,11 +82,10 @@ class AddEditBudgetTableViewController: UITableViewController {
          )
          */
         
-        self.addBudgetTable[screenConstants.idxCategoryGroup] = []
+        self.modelData[screenConstants.idxCategoryGroup] = []
         
-        let addCategoryCell = AddEditBudgetCell(
-            fieldKey: "",
-            placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
+        let addCategoryCell = SingleElementCell(
+            alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetNewCategory,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
@@ -92,17 +94,16 @@ class AddEditBudgetTableViewController: UITableViewController {
             ]
         )
         
-        self.addBudgetTable[screenConstants.idxCategoryGroup] = self.categoryList
-        self.addBudgetTable[screenConstants.idxCategoryGroup].append(addCategoryCell)
+        self.modelData[screenConstants.idxCategoryGroup] = self.categoryList
+        self.modelData[screenConstants.idxCategoryGroup].append(addCategoryCell)
     }
+    
     
     // Grabs the value for each cell, used for saving the data
     private func getTableViewCellValue(section: Int, row: Int) -> String {
         let indexPath = NSIndexPath.init(forRow: row, inSection: section)
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditBudgetTableViewCell
-        return (cell.textfield.text?.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        ))!
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
+        return cell.getValue()
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
@@ -175,9 +176,7 @@ class AddEditBudgetTableViewController: UITableViewController {
                 
                 // Add the related categories
                 for item in self.categoryList {
-                    let categoryName = item.field.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                    )
+                    let categoryName = item.alphaElementTitle
                     
                     activeRecord.changeTableName(ModelConstants.Entities.category)
                     values = NSDictionary.init(
@@ -205,34 +204,38 @@ class AddEditBudgetTableViewController: UITableViewController {
         }
     }
 
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.screenConstants.sectionCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.addBudgetTable[section].count
+        return self.modelData[section].count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddEditBudgetTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
         cell.performAction()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellItem: AddEditBudgetCell = self.addBudgetTable[indexPath.section][indexPath.row]
+        let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
         let cellIdentifier: String = cellItem.cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditBudgetTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
 
-        cell.setModelObject(cellItem)
-        cell.delegate = self
+        cell.prepareTableViewCell(cellItem)
         
-        return cell
+        if cellIdentifier == Constants.CellIdentifiers.addBudgetCategory {
+            (cell as! SingleElementTableViewCell).delegate = self
+        }
+        
+        return cell as! UITableViewCell
     }
- */
+ 
 }
-/*
+
 extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     
     func addNewCategory(categoryName: String) {
@@ -257,9 +260,8 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
         }
         
         // Check if category name already exists
-        let newCategoryItem = AddEditBudgetCell(
-            fieldKey: categoryName,
-            placeholderKey: "",
+        let newCategoryItem = SingleElementCell(
+            alphaElementTitleKey: categoryName,
             cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
             cellSettings: [:]
         )
@@ -285,6 +287,5 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             }
         }
     }
- 
 }
- */
+

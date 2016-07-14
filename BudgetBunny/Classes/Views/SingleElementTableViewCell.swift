@@ -44,6 +44,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     )
                 }
             )
+
             
             // "Add new income" cell in the Budget Screen
             self.addCellType(
