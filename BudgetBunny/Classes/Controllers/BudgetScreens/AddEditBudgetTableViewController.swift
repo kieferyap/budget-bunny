@@ -36,7 +36,7 @@ class AddEditBudgetTableViewController: UITableViewController {
             // Budget name
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxInformationGroup,
-                idxRow: self.screenConstants.idxAmountCell,
+                idxRow: self.screenConstants.idxNameCell,
                 cellData: DoubleElementCell(
                     alphaElementTitleKey: StringConstants.LABEL_BUDGET_NAME,
                     betaElementTitleKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
@@ -193,7 +193,6 @@ class AddEditBudgetTableViewController: UITableViewController {
                             ModelConstants.Category.budgetId
                         ]
                     )
-
                 }
                 
                 activeRecord.insertObject(values)
@@ -227,7 +226,7 @@ class AddEditBudgetTableViewController: UITableViewController {
 
         cell.prepareTableViewCell(cellItem)
         
-        if cellIdentifier == Constants.CellIdentifiers.addBudgetCategory {
+        if cellIdentifier == Constants.CellIdentifiers.addBudgetNewCategory {
             (cell as! SingleElementTableViewCell).delegate = self
         }
         

@@ -974,6 +974,7 @@
 		FB97C3351CB4975000C35BC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = BudgetBunnyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kieferyap.BudgetBunnyUITests;

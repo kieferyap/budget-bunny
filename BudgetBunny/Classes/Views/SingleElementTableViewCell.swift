@@ -44,7 +44,6 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     )
                 }
             )
-
             
             // "Add new income" cell in the Budget Screen
             self.addCellType(
@@ -86,6 +85,51 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     return ""
                 },
                 performAction: {
+                }
+            )
+            
+            // Budget Category display
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetCategory,
+                completion: {
+                    let budgetModel = model as! SingleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    alphaLabel.text = budgetModel.alphaElementTitle
+                    self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
+                    self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                    // Once tapped, the category will be editable and deletable
+                }
+            )
+            
+            // Adding a new budget category
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetNewCategory,
+                completion: {
+                    let budgetModel = model as! SingleElementCell
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    alphaTextField.text = ""
+                    
+                    BunnyUtils.prepareTextField(
+                        alphaTextField,
+                        placeholderText: budgetModel.alphaElementTitle,
+                        textColor: Constants.Colors.darkGray,
+                        model: budgetModel
+                    )
+                    alphaTextField.returnCompletion = { (text) in
+                        (self.delegate as! AddEditBudgetDelegate).addNewCategory(text)
+                    }
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    alphaTextField.becomeFirstResponder()
                 }
             )
         }

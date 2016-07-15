@@ -82,6 +82,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     alphaLabel.text = incomeModel.alphaElementTitle
                     betaLabel.text = incomeModel.betaElementTitle
                     self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                    self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                 },
                 getValue: { () -> String in
                     return ""
