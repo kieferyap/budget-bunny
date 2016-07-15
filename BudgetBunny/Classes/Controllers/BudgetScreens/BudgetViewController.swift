@@ -43,14 +43,14 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.budgetTableView.delegate = self;
             self.budgetTableView.dataSource = self;
             self.budgetTableView.scrollEnabled = true;
+            self.setTitleLocalizationKey(StringConstants.MENULABEL_BUDGETS)
         }
-        
-        self.setTitleLocalizationKey(StringConstants.MENULABEL_BUDGETS)
     }
   
     // Load the table data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.loadData()
         self.updateIncomeSection()
     }
@@ -142,7 +142,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.budgetTable[section].append(inexistenceCell)
         }
         
-        return cellCount
+        return self.budgetTable[section].count
     }
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
