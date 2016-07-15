@@ -341,6 +341,26 @@ class AddEditAccountTableViewController: UITableViewController {
         }
         return cellHeight
     }
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var headerNameKey = ""
+        switch section {
+        case screenConstants.idxAccountInfoSection:
+            headerNameKey = StringConstants.LABEL_HEADER_ACCOUNT_INFORMATION
+        case screenConstants.idxAccountActionsSection:
+            switch self.sourceInformation {
+            case Constants.SourceInformation.accountEditing:
+                headerNameKey = StringConstants.LABEL_HEADER_ACCOUNT_ACTIONS
+            case Constants.SourceInformation.accountNew:
+                headerNameKey = StringConstants.LABEL_HEADER_ACCOUNT_SETTINGS
+            default:
+                break
+            }
+            break
+        default:
+            break
+        }
+        return BunnyUtils.uncommentedLocalizedString(headerNameKey)
+    }
 }
 
 extension AddEditAccountTableViewController: AddEditAccountDelegate {

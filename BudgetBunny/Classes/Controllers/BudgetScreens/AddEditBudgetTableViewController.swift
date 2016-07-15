@@ -232,6 +232,19 @@ class AddEditBudgetTableViewController: UITableViewController {
         
         return cell as! UITableViewCell
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var headerNameKey = ""
+        switch section {
+        case screenConstants.idxInformationGroup:
+            headerNameKey = StringConstants.LABEL_HEADER_BUDGET_INFORMATION
+        case screenConstants.idxCategoryGroup:
+            headerNameKey = StringConstants.LABEL_HEADER_BUDGET_CATEGORIES
+        default:
+            break
+        }
+        return BunnyUtils.uncommentedLocalizedString(headerNameKey)
+    }
  
 }
 

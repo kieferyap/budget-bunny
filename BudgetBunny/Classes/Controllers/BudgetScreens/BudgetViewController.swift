@@ -44,6 +44,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.budgetTableView.dataSource = self;
             self.budgetTableView.scrollEnabled = true;
         }
+        
+        self.setTitleLocalizationKey(StringConstants.MENULABEL_BUDGETS)
     }
   
     // Load the table data
@@ -76,7 +78,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         self.budgetTableView.reloadData()
-        
     }
     
     private func updateIncomeSection() {
@@ -111,7 +112,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         
         let addNewIncome = SingleElementCell(
-            alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
+            alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_INCOME,
             cellIdentifier: Constants.CellIdentifiers.addIncome,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
@@ -132,23 +133,12 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Hey, wait a minute. Don't we have two sections for this?
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellCount = self.budgetTable[section].count
-        if cellCount == 0 {
-            var noBudgetStringKey = ""
-            switch section {
-            case screenConstants.idxBudgetSection:
-                noBudgetStringKey = "No budgets found."
-            case screenConstants.idxIncomeSection:
-                noBudgetStringKey = "No accounts found."
-            default:
-                break
-            }
-            
+        if cellCount == 0 && section == screenConstants.idxBudgetSection {
             let inexistenceCell = SingleElementCell(
-                alphaElementTitleKey: noBudgetStringKey,
+                alphaElementTitleKey: StringConstants.LABEL_NO_BUDGETS,
                 cellIdentifier: Constants.CellIdentifiers.budgetInexistence,
                 cellSettings: [:]
             )
-        
             self.budgetTable[section].append(inexistenceCell)
         }
         
@@ -181,6 +171,18 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell as! UITableViewCell
     }
 
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var headerNameKey = ""
+        switch section {
+        case screenConstants.idxBudgetSection:
+            headerNameKey = StringConstants.LABEL_HEADER_BUDGETS
+        case screenConstants.idxIncomeSection:
+            headerNameKey = StringConstants.LABEL_HEADER_INCOME
+        default:
+            break
+        }
+        return BunnyUtils.uncommentedLocalizedString(headerNameKey)
+    }
 
     // MARK: - Navigation
     // Activated when + is tapped
@@ -219,7 +221,7 @@ extension BudgetViewController: BudgetDelegate {
             BunnyUtils.showAlertWithOKButton(
                 self,
                 titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES
             )
             return
         }
@@ -228,7 +230,7 @@ extension BudgetViewController: BudgetDelegate {
             BunnyUtils.showAlertWithOKButton(
                 self,
                 titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY
+                messageKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY
             )
             return
         }
