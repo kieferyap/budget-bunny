@@ -220,3 +220,11 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 -- 7/1/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NO_CATEGORIES', 'Please add at least one category.', '[Not localized yet]', '[Not localized yet]');
 
+-- 7/16/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_NEW_INCOME', 'Add Income Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_INCOME_CATEGORIES', 'The number of income categories created has been exceeded.\nKindly delete an income category before proceeding.', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET localization_en = 'The number of categories created has been exceeded.\nKindly delete a category before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_CATEGORIES';
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY', 'The income category name must not be left blank.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_INCOME_CATEGORY_NAME', 'The income category name already exists.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_NO_BUDGETS', 'There are no budgets yet.\n\nTo add a new budget, tap the + sign located at the upper right corner of the screen.', '[Not localized yet]', '[Not localized yet]');
+
