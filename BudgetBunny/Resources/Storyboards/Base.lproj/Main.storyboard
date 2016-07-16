@@ -152,11 +152,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="addEditAccount" id="mbX-o5-cBn">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="7tW-gU-OLf">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="tGE-fd-eFe" id="DUy-lP-1JH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7tW-gU-OLf"/>
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="7tW-gU-OLf" id="gpc-is-A4B"/>
@@ -309,7 +305,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="accounts" id="N1y-c1-c1B">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="A3T-75-6gq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A3T-75-6gq">
                             <connections>
                                 <segue destination="tGE-fd-eFe" kind="show" identifier="testSegue2" id="9IV-Ek-UfC"/>
                             </connections>
@@ -511,7 +507,7 @@ name</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="budgets" id="jRK-CR-iuI">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="FKp-Qx-Utr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FKp-Qx-Utr">
                             <connections>
                                 <segue destination="Hhs-Mw-bfx" kind="show" id="D52-Kc-zGB"/>
                             </connections>
@@ -622,7 +618,7 @@ name</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="addEditBudget" id="gXu-Ii-XQE">
-                        <barButtonItem key="rightBarButtonItem" title="done" id="jvd-Ts-I38">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="jvd-Ts-I38">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="Hhs-Mw-bfx" id="WEi-Xg-gTS"/>
                             </connections>
