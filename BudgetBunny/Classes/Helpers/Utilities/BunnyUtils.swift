@@ -172,6 +172,32 @@ class BunnyUtils: NSObject {
         return currency
     }
     
+    class func isDefaultAccountExisting() -> Bool {
+        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+        let accountModel = AttributeModel(
+            tableName: ModelConstants.Entities.account,
+            key: ModelConstants.Account.isDefault,
+            value: true
+        )
+        
+        var returnValue = false
+        let group = dispatch_group_create()
+        let queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_group_async(group, queue) {
+            activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
+                if fetchedObjects.count > 0 {
+                    returnValue = true
+                }
+            }
+        }
+        
+        // Wait for the thread to finish before returning
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return returnValue
+        
+    }
+    
     class func getFormattedAmount(input: Double, identifier: String) -> String {
         let inputString = String(format: "%.2f", input)
         let currency = BunnyUtils.getCurrencyObjectFromIdentifier(identifier)

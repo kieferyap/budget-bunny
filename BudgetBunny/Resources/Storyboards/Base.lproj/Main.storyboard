@@ -514,6 +514,7 @@ name</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBudgetButton" destination="FKp-Qx-Utr" id="5th-x7-vmz"/>
                         <outlet property="budgetTableView" destination="3Wy-4b-keZ" id="Gxm-jB-zCZ"/>
                         <outlet property="timeSegmentedControl" destination="2VZ-au-IUr" id="aL4-3b-7ne"/>
                     </connections>

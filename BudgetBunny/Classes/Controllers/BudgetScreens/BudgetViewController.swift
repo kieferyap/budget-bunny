@@ -16,6 +16,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
+    @IBOutlet weak var addBudgetButton: UIBarButtonItem!
     private var budgetTable: [[BunnyCell]] = [[]]
     private var incomeList: [DoubleElementCell] = []
     private let screenConstants = ScreenConstants.Budget.self
@@ -50,6 +51,10 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Load the table data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !BunnyUtils.isDefaultAccountExisting() {
+            self.addBudgetButton.enabled = false
+        }
         
         self.loadData()
         self.updateIncomeSection()
