@@ -30,7 +30,7 @@ class AddEditAccountTableViewController: UITableViewController {
             var accountNameValue = ""
             var initialAmountValue = ""
             var isAccountDefault = false
-            var buttonType = UIBarButtonSystemItem.Done
+            var buttonTitleKey = StringConstants.BUTTON_DONE
             var startingBalanceKey = StringConstants.LABEL_STARTING_BALANCE
             var titleKey = StringConstants.MENULABEL_ADD_ACCOUNT
             self.selectedCountryIdentifier = NSLocale.currentLocale().localeIdentifier
@@ -45,7 +45,7 @@ class AddEditAccountTableViewController: UITableViewController {
                 var deleteButtonText = StringConstants.BUTTON_DELETE_ACCOUNT
                 var accountObject: NSManagedObject!
                 
-                buttonType = UIBarButtonSystemItem.Save
+                buttonTitleKey = StringConstants.BUTTON_SAVE
                 titleKey = StringConstants.MENULABEL_EDIT_ACCOUNT
                 
                 if self.accountInformation != nil {
@@ -166,18 +166,9 @@ class AddEditAccountTableViewController: UITableViewController {
             )
             
             // Set navigation bar elements
-            self.doneButton = UIBarButtonItem(
-                barButtonSystemItem: buttonType,
-                target: self,
-                action: #selector(AddEditAccountTableViewController.test) // TO-DO: I really do not understand why this isn't working.
-            )
-            
+            self.doneButton.title = BunnyUtils.uncommentedLocalizedString(buttonTitleKey)
             self.setTitleLocalizationKey(titleKey)
         }
-    }
-    
-    func test() {
-        print("Test!")
     }
     
     // This method uses the currently selected currency identifier (en_US) to return its information (United States, USD, etc.)
@@ -202,7 +193,7 @@ class AddEditAccountTableViewController: UITableViewController {
         return cell.getValue()
     }
     
-    func doneButtonPressed() {
+    @IBAction private func doneButtonPressed() {
         
         // Gather the input values
         let accountName = self.getTableViewCellValue(screenConstants.idxAccountInfoSection, row: screenConstants.idxNameCell).stringByTrimmingCharactersInSet(

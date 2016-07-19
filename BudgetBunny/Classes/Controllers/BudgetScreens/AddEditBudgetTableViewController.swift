@@ -71,7 +71,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         }
     }
     
-    func updateCategorySection() {
+    private func updateCategorySection() {
         // Will (probably) be used in editing
         /*
          let categoryCell = AddEditBudgetCell(
