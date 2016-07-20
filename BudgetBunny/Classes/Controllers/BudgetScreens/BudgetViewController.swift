@@ -20,6 +20,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var budgetTable: [[BunnyCell]] = [[]]
     private var incomeList: [DoubleElementCell] = []
     private let screenConstants = ScreenConstants.Budget.self
+    private var amountDivider = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.loadData()
         self.updateIncomeSection()
+        self.budgetTableView.reloadData()
     }
     
     // Fetch from the core data, and append each element into the table
@@ -69,12 +71,18 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let model = BunnyModel(tableName: ModelConstants.Entities.budget)
         model.selectAllObjects { (fetchedObjects) in
             for budget in fetchedObjects {
+                let calculatedBudgetAmount =
+                    (budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double)/self.amountDivider
+                
+                //TO-DO: Change this once transactions has been implemented!
+                let calculatedRemainingAmount =
+                    (budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double)/self.amountDivider
                 
                 let budgetItem: BudgetCell = BudgetCell(
                     budgetObject: budget,
                     budgetName: budget.valueForKey(ModelConstants.Budget.name) as! String,
-                    budgetAmount: budget.valueForKey(ModelConstants.Budget.monthlyBudget) as! Double,
-                    remainingAmount: budget.valueForKey(ModelConstants.Budget.monthlyRemainingBudget) as! Double,
+                    budgetAmount: calculatedBudgetAmount,
+                    remainingAmount: calculatedRemainingAmount,
                     currencyIdentifier: defaultCurrencyIdentifier
                 )
                 
@@ -82,7 +90,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
-        self.budgetTableView.reloadData()
+        let indexSet = NSIndexSet(index: self.screenConstants.idxBudgetSection)
+        self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
     }
     
     private func updateIncomeSection() {
@@ -129,6 +138,25 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
         self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
     }
+    
+    @IBAction func timeControlChanged(sender: UISegmentedControl) {
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let days = calendar.rangeOfUnit(.Day, inUnit: .Month, forDate: today)
+        let weeks = calendar.rangeOfUnit(.WeekOfYear, inUnit: .Month, forDate: today)
+        
+        switch sender.selectedSegmentIndex {
+        case self.screenConstants.idxWeekly:
+            self.amountDivider = Double(weeks.length)
+        case self.screenConstants.idxDaily:
+            self.amountDivider = Double(days.length)
+        default:
+            self.amountDivider = 1.0
+        }
+        
+        self.loadData()
+    }
+    
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

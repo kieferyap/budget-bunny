@@ -63,6 +63,7 @@
 		FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB97C3101CB4975000C35BC0 /* Assets.xcassets */; };
 		FB97C31F1CB4975000C35BC0 /* BudgetBunnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C31E1CB4975000C35BC0 /* BudgetBunnyTests.swift */; };
 		FB97C32A1CB4975000C35BC0 /* LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C3291CB4975000C35BC0 /* LocationUITests.swift */; };
+		FB97CA341D40BDF0008C539E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB97CA331D40BDF0008C539E /* InfoPlist.strings */; };
 		FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */; };
 		FBAF76A51D31350300E15CC5 /* SingleElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF76A41D31350300E15CC5 /* SingleElementCell.swift */; };
 		FBAF76A71D31357000E15CC5 /* DoubleElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF76A61D31357000E15CC5 /* DoubleElementCell.swift */; };
@@ -173,6 +174,7 @@
 		FB97C3251CB4975000C35BC0 /* BudgetBunnyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetBunnyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB97C3291CB4975000C35BC0 /* LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUITests.swift; sourceTree = "<group>"; };
 		FB97C32B1CB4975000C35BC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB97CA331D40BDF0008C539E /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		FBAF76A41D31350300E15CC5 /* SingleElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleElementCell.swift; sourceTree = "<group>"; };
 		FBAF76A61D31357000E15CC5 /* DoubleElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleElementCell.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				FB97C3461CB49BF600C35BC0 /* PropertyLists */,
 				FB97C3471CB49BFD00C35BC0 /* Storyboards */,
 				FB97C3101CB4975000C35BC0 /* Assets.xcassets */,
+				FB97CA331D40BDF0008C539E /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -620,7 +623,6 @@
 				TargetAttributes = {
 					FB97C3021CB4974F00C35BC0 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 48X7DGHEMJ;
 					};
 					FB97C3191CB4975000C35BC0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -660,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */,
+				FB97CA341D40BDF0008C539E /* InfoPlist.strings in Resources */,
 				FBFE42F51CCF34A1000206FE /* Localizable.strings in Resources */,
 				FB97C3111CB4975000C35BC0 /* Assets.xcassets in Resources */,
 			);

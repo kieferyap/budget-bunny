@@ -137,17 +137,12 @@ class AddEditBudgetTableViewController: UITableViewController {
             errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_BUDGET_NAME,
             oldName: ""
         )
-        let categoryCountValidator = EmptyArrayValidator(
-            objectToValidate: self.categoryList,
-            errorStringKey: StringConstants.ERRORLABEL_NO_CATEGORIES
-        )
         
         // Add the error validators
         let validator = Validator(viewController: self)
         validator.addValidator(emptyNameValidator)
         validator.addValidator(emptyAmountValidator)
         validator.addValidator(nameUniquenessValidator)
-        validator.addValidator(categoryCountValidator)
         
         // Validate the fields
         validator.validate { (success) in
@@ -175,27 +170,31 @@ class AddEditBudgetTableViewController: UITableViewController {
                 let model = activeRecord.insertObject(values)
                 
                 // Add the related categories
-                for item in self.categoryList {
-                    let categoryName = item.alphaElementTitle
+                if self.categoryList.count > 0 {
                     
-                    activeRecord.changeTableName(ModelConstants.Entities.category)
-                    values = NSDictionary.init(
-                        objects: [
-                            categoryName,
-                            false,
-                            0.0,
-                            model
-                        ],
-                        forKeys: [
-                            ModelConstants.Category.name,
-                            ModelConstants.Category.isIncome,
-                            ModelConstants.Category.monthlyAmount,
-                            ModelConstants.Category.budgetId
-                        ]
-                    )
+                    for item in self.categoryList {
+                        let categoryName = item.alphaElementTitle
+                        
+                        activeRecord.changeTableName(ModelConstants.Entities.category)
+                        values = NSDictionary.init(
+                            objects: [
+                                categoryName,
+                                false,
+                                0.0,
+                                model
+                            ],
+                            forKeys: [
+                                ModelConstants.Category.name,
+                                ModelConstants.Category.isIncome,
+                                ModelConstants.Category.monthlyAmount,
+                                ModelConstants.Category.budgetId
+                            ]
+                        )
+                    }
+                    
+                    activeRecord.insertObject(values)
                 }
                 
-                activeRecord.insertObject(values)
                 activeRecord.save()
                 
                 self.navigationController?.popViewControllerAnimated(true)
