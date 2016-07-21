@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol BudgetDelegate: class {
     func addNewIncome(incomeName: String)
@@ -20,6 +21,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var budgetTable: [[BunnyCell]] = [[]]
     private var incomeList: [DoubleElementCell] = []
     private let screenConstants = ScreenConstants.Budget.self
+    private var currentlySelectedObject: BunnyCell!
     private var amountDivider = 1.0
     
     override func viewDidLoad() {
@@ -157,6 +159,29 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.loadData()
     }
     
+    private func displayCellActions() {
+        let alertController = UIAlertController.init(
+            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE),
+            message: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE),
+            preferredStyle: UIAlertControllerStyle.ActionSheet
+        )
+        
+        let deleteAction = UIAlertAction.init(
+            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
+            style: UIAlertActionStyle.Destructive,
+            handler: { (UIAlertAction) in
+            }
+        )
+        let cancelAction = UIAlertAction.init(
+            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
+            style: UIAlertActionStyle.Cancel,
+            handler: nil
+        )
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -180,10 +205,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == screenConstants.idxIncomeSection {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
-            cell.getValue()            
-        }
+        self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
