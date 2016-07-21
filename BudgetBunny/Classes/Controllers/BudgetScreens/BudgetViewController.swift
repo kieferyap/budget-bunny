@@ -159,11 +159,18 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.loadData()
     }
     
-    private func displayCellActions() {
+    private func displayIncomeCellActions() {
         let alertController = UIAlertController.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE),
-            message: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE),
+            title: "Category Actions",
+            message: "Note that these actions may also be accessed by swiping the category to the left.",
             preferredStyle: UIAlertControllerStyle.ActionSheet
+        )
+        
+        let renameAction = UIAlertAction.init(
+            title: "Rename",
+            style: UIAlertActionStyle.Default,
+            handler: { (UIAlertAction) in
+            }
         )
         
         let deleteAction = UIAlertAction.init(
@@ -178,6 +185,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             handler: nil
         )
         
+        alertController.addAction(renameAction)
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -206,6 +214,21 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // On selection, set the values of the destination view controller and push it into the view controller stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
+        
+        switch indexPath.section {
+        case self.screenConstants.idxIncomeSection:
+            if indexPath.row != self.budgetTable[indexPath.section].count {
+                self.displayIncomeCellActions()
+            }
+            else {
+                (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
+            }
+        case self.screenConstants.idxBudgetSection:
+            // Something about transitioning to the next screen
+            break
+        default:
+            break
+        }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
