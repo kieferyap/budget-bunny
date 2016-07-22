@@ -21,6 +21,7 @@
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
 		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
 		FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */; };
+		FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */; };
 		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* BunnyModel.swift */; };
@@ -127,6 +128,7 @@
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
 		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
 		FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerScreen.swift; sourceTree = "<group>"; };
+		FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				FBAF76A81D3135FC00E15CC5 /* TripleElementCell.swift */,
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FB6B60291D28F29D00C81ED2 /* BudgetCell.swift */,
+				FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */,
 				FB238F2D1CEE101900636CCC /* AttributeModel.swift */,
 			);
 			path = Items;
@@ -737,6 +740,7 @@
 				FB6AC1231D2137BB009EC80C /* Wishitem.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
 				FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */,
+				FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
 				FBAF76A91D3135FC00E15CC5 /* TripleElementCell.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,

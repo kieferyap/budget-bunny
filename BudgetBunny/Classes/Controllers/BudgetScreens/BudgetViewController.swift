@@ -19,7 +19,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var budgetTableView: UITableView!
     @IBOutlet weak var addBudgetButton: UIBarButtonItem!
     private var budgetTable: [[BunnyCell]] = [[]]
-    private var incomeList: [DoubleElementCell] = []
+    private var incomeList: [CategoryCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     private var currentlySelectedObject: BunnyCell!
     private var amountDivider = 1.0
@@ -96,7 +96,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
     }
     
-    private func updateIncomeSection() {
+    func updateIncomeSection() {
         let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
         
         // Fetch all the income categories
@@ -115,15 +115,17 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     .stringByAppendingString(" ")
                     .stringByAppendingString(String(format: "%.2f", amountDouble)
                 )
+                print(category.valueForKey(ModelConstants.Category.name) as! String)
                 
-                let newIncomeCell = DoubleElementCell(
-                    alphaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
-                    betaElementTitleKey: amountString,
-                    cellIdentifier: Constants.CellIdentifiers.budgetIncome,
-                    cellSettings: [:]
+                self.incomeList.append(
+                    CategoryCell(
+                        categoryObject: category,
+                        alphaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
+                        betaElementTitleKey: amountString,
+                        cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+                        cellSettings: [:]
+                    )
                 )
-                
-                self.incomeList.append(newIncomeCell)
             }
         })
         
@@ -139,6 +141,9 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
         self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
+        
+        let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
+        self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     @IBAction func timeControlChanged(sender: UISegmentedControl) {
@@ -170,7 +175,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title: "Rename",
             style: UIAlertActionStyle.Default,
             handler: { (UIAlertAction) in
-                BudgetUtils.showRenameDialog(self)
+                BudgetUtils.showRenameDialog(self, model: self.currentlySelectedObject)
             }
         )
         
@@ -359,9 +364,7 @@ extension BudgetViewController: BudgetDelegate {
                 activeRecord.insertObject(values)
                 activeRecord.save()
                 
-                let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
                 self.updateIncomeSection()
-                self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
             }
         }
     }

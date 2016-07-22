@@ -10,7 +10,7 @@ import UIKit
 
 class BudgetUtils: NSObject {
 
-    class func showRenameDialog(vc: UIViewController) {
+    class func showRenameDialog(vc: BudgetViewController, model: BunnyCell) {
         let alertController = UIAlertController(
             title: "Rename",
             message: "Enter the new name",
@@ -21,16 +21,39 @@ class BudgetUtils: NSObject {
         )
         alertController.addAction(
             UIAlertAction(title: "OK", style:UIAlertActionStyle.Default, handler: { (action) -> Void in
-                let textField = alertController.textFields![0] 
-                print(textField.text)
+                let textField = alertController.textFields![0]
+                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+                let budgetModel = model as! CategoryCell
+                
+                // Set the values of the account and insert it
+                print(textField.text!)
+                let values = NSDictionary.init(
+                    objects: [
+                        textField.text!,
+                        true,
+                        budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                    ],
+                    forKeys: [
+                        ModelConstants.Category.name,
+                        ModelConstants.Category.isIncome,
+                        ModelConstants.Category.monthlyAmount
+                    ]
+                )
+                
+                activeRecord.updateObjectWithObjectId(
+                    budgetModel.categoryObject.objectID,
+                    updateParameters: values
+                )
+                
+                activeRecord.save()
+                BunnyUtils.addKeyboardDismisserListener(vc)
+                vc.updateIncomeSection()
             })
         )
         alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
-            textField.placeholder = "Password"
+            textField.placeholder = "Enter new name"
         }
-        vc.presentViewController(alertController, animated: true) {}
-        // present Alert Controller
-        
+        vc.presentViewController(alertController, animated: true, completion: nil)
     }
     
     class func showDeleteDialog() {
