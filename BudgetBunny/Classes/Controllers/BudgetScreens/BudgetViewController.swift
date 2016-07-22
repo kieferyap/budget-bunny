@@ -170,6 +170,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title: "Rename",
             style: UIAlertActionStyle.Default,
             handler: { (UIAlertAction) in
+                BudgetUtils.showRenameDialog(self)
             }
         )
         

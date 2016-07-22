@@ -78,6 +78,7 @@
 		FBBEBF731CDD8411000AE2C9 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */; };
 		FBBEBF751CDD85F1000AE2C9 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */; };
 		FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD06A7A1CE4E47200C32672 /* AccountCell.swift */; };
+		FBD10B4F1D4207090054A331 /* BudgetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD10B4E1D4207090054A331 /* BudgetUtils.swift */; };
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
 		FBD414AD1D2B45C2004B29F0 /* IncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD414AC1D2B45C2004B29F0 /* IncomeTableViewCell.swift */; };
 		FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */; };
@@ -189,6 +190,7 @@
 		FBBEBF721CDD8411000AE2C9 /* AccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScreen.swift; sourceTree = "<group>"; };
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		FBD10B4E1D4207090054A331 /* BudgetUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetUtils.swift; sourceTree = "<group>"; };
 		FBD414AC1D2B45C2004B29F0 /* IncomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeTableViewCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
 		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTextField.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			children = (
 				FBE3F9801CFD404A00C56107 /* AccountUtils.swift */,
 				FB2445361CCF5B3400E55941 /* BunnyUtils.swift */,
+				FBD10B4E1D4207090054A331 /* BudgetUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
 				FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */,
+				FBD10B4F1D4207090054A331 /* BudgetUtils.swift in Sources */,
 				FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */,
 				FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */,
 				FB6AC1201D2137BB009EC80C /* Budget+CoreDataProperties.swift in Sources */,
