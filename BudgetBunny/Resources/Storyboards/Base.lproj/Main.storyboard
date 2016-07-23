@@ -461,6 +461,10 @@ name</string>
                                                     <rect key="frame" x="8" y="11" width="584" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textFieldEditingDidBegin:" destination="xCe-Tm-b1h" eventType="editingDidEnd" id="crQ-fS-PaW"/>
+                                                        <action selector="textFieldEditingDidEnd:" destination="xCe-Tm-b1h" eventType="editingDidEnd" id="ljI-rj-3Uy"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

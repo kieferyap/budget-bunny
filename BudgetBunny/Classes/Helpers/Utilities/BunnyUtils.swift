@@ -203,4 +203,15 @@ class BunnyUtils: NSObject {
         let currency = BunnyUtils.getCurrencyObjectFromIdentifier(identifier)
         return "\(currency.currencySymbol) \(inputString)"
     }
+    
+    class func delayTask(seconds: Double, completion: () -> Void) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(seconds*Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            completion
+        )
+    }
 }

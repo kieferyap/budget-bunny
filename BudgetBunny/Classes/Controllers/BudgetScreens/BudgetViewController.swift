@@ -13,7 +13,7 @@ protocol BudgetDelegate: class {
     func addNewIncome(incomeName: String)
 }
 
-class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BudgetViewController: UncoveredContentViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
@@ -219,25 +219,30 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
-        
-        switch indexPath.section {
-        case self.screenConstants.idxIncomeSection:
-            // If it is not the last row
-            if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
-                self.displayIncomeCellActions()
+        if !self.changedY {
+            self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
+            
+            switch indexPath.section {
+            case self.screenConstants.idxIncomeSection:
+                // If it is not the last row
+                if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
+                    self.displayIncomeCellActions()
+                }
+                else {
+                    (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
+                }
+            case self.screenConstants.idxBudgetSection:
+                // Something about transitioning to the next screen
+                break
+            default:
+                break
             }
-            else {
-                (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
-            }
-        case self.screenConstants.idxBudgetSection:
-            // Something about transitioning to the next screen
-            break
-        default:
-            break
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
     }
     
     // TO-DO: Header titles for ALL "Add"/"Edit" Screens

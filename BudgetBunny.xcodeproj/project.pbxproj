@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
+		FB096B4E1D435DFC002FF783 /* UncoveredContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB096B4D1D435DFC002FF783 /* UncoveredContentViewController.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
 		FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */; };
 		FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */; };
@@ -116,6 +117,7 @@
 /* Begin PBXFileReference section */
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
+		FB096B4D1D435DFC002FF783 /* UncoveredContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncoveredContentViewController.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
 		FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 			children = (
 				FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */,
 				FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */,
+				FB096B4D1D435DFC002FF783 /* UncoveredContentViewController.swift */,
 			);
 			path = Bunnies;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
 				FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */,
 				FB6AC1271D2137BB009EC80C /* Target.swift in Sources */,
+				FB096B4E1D435DFC002FF783 /* UncoveredContentViewController.swift in Sources */,
 				FB6AC1291D2137BB009EC80C /* Account.swift in Sources */,
 				FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
