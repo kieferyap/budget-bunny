@@ -106,6 +106,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             value: true
         )
         
+        self.budgetTable[self.screenConstants.idxIncomeSection] = []
         self.incomeList = []
         let model = BunnyModel(tableName: ModelConstants.Entities.category)
         model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
@@ -115,7 +116,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     .stringByAppendingString(" ")
                     .stringByAppendingString(String(format: "%.2f", amountDouble)
                 )
-                print(category.valueForKey(ModelConstants.Category.name) as! String)
                 
                 self.incomeList.append(
                     CategoryCell(

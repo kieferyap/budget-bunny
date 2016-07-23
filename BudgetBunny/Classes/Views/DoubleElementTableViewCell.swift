@@ -75,11 +75,11 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.budgetIncome,
                 completion: {
-                    let incomeModel = model as! DoubleElementCell
+                    let incomeModel = model as! CategoryCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
                     
-                    alphaLabel.text = incomeModel.alphaElementTitle
+                    alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
                     self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)

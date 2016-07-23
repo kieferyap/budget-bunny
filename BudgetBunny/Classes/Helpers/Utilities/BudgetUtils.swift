@@ -21,12 +21,13 @@ class BudgetUtils: NSObject {
         )
         alertController.addAction(
             UIAlertAction(title: "OK", style:UIAlertActionStyle.Default, handler: { (action) -> Void in
+                vc.dismissKeyboard()
+                
                 let textField = alertController.textFields![0]
                 let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
                 let budgetModel = model as! CategoryCell
                 
                 // Set the values of the account and insert it
-                print(textField.text!)
                 let values = NSDictionary.init(
                     objects: [
                         textField.text!,
@@ -46,7 +47,6 @@ class BudgetUtils: NSObject {
                 )
                 
                 activeRecord.save()
-                BunnyUtils.addKeyboardDismisserListener(vc)
                 vc.updateIncomeSection()
             })
         )
