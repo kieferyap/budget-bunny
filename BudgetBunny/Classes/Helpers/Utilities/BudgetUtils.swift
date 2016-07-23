@@ -27,27 +27,29 @@ class BudgetUtils: NSObject {
                 let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
                 let budgetModel = model as! CategoryCell
                 
-                // Set the values of the account and insert it
-                let values = NSDictionary.init(
-                    objects: [
-                        textField.text!,
-                        true,
-                        budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
-                    ],
-                    forKeys: [
-                        ModelConstants.Category.name,
-                        ModelConstants.Category.isIncome,
-                        ModelConstants.Category.monthlyAmount
-                    ]
-                )
-                
-                activeRecord.updateObjectWithObjectId(
-                    budgetModel.categoryObject.objectID,
-                    updateParameters: values
-                )
-                
-                activeRecord.save()
-                vc.updateIncomeSection()
+                if textField.text != (budgetModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+                    // Set the values of the account and insert it
+                    let values = NSDictionary.init(
+                        objects: [
+                            textField.text!,
+                            true,
+                            budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                        ],
+                        forKeys: [
+                            ModelConstants.Category.name,
+                            ModelConstants.Category.isIncome,
+                            ModelConstants.Category.monthlyAmount
+                        ]
+                    )
+                    
+                    activeRecord.updateObjectWithObjectId(
+                        budgetModel.categoryObject.objectID,
+                        updateParameters: values
+                    )
+                    
+                    activeRecord.save()
+                    vc.updateIncomeSection()
+                }
             })
         )
         alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in

@@ -223,7 +223,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch indexPath.section {
         case self.screenConstants.idxIncomeSection:
-            if indexPath.row != self.budgetTable[indexPath.section].count {
+            // If it is not the last row
+            if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
                 self.displayIncomeCellActions()
             }
             else {
