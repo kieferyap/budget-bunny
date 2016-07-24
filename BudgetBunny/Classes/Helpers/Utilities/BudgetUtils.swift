@@ -18,15 +18,15 @@ class BudgetUtils: NSObject {
             viewController: vc)
         { (textField) in
             let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
-            let budgetModel = model as! CategoryCell
+            let categoryModel = model as! CategoryCell
             
-            if textField.text != (budgetModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+            if textField.text != (categoryModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
                 // Set the values of the account and insert it
                 let values = NSDictionary.init(
                     objects: [
                         textField.text!,
                         true,
-                        budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                        categoryModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
                     ],
                     forKeys: [
                         ModelConstants.Category.name,
@@ -36,7 +36,7 @@ class BudgetUtils: NSObject {
                 )
                 
                 activeRecord.updateObjectWithObjectId(
-                    budgetModel.categoryObject.objectID,
+                    categoryModel.categoryObject.objectID,
                     updateParameters: values
                 )
                 
@@ -46,27 +46,41 @@ class BudgetUtils: NSObject {
         }
     }
     
-    class func showDeleteDialog() {
+    class func showDeleteDialog(vc: BudgetViewController, model: BunnyCell) {
+        let categoryModel = model as! CategoryCell
         let alertController = UIAlertController.init(
             title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE),
             message: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE),
             preferredStyle: UIAlertControllerStyle.ActionSheet
         )
-        let deleteAction = UIAlertAction.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
-            style: UIAlertActionStyle.Destructive,
-            handler: { (UIAlertAction) in
-                // completion()
-            }
-        )
-        let cancelAction = UIAlertAction.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
-            style: UIAlertActionStyle.Cancel,
-            handler: nil
-        )
         
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-        // return alertController
+        // TO-DO: Change localization of "DELETE_ACCOUNT"
+        alertController.addAction(
+            UIAlertAction.init(
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
+                style: UIAlertActionStyle.Destructive,
+                handler: { (UIAlertAction) in
+                    let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                    activeRecord.deleteObject(
+                        categoryModel.categoryObject,
+                        completion: {
+                            vc.updateIncomeSection()
+                        }
+                    )
+                }
+            )
+        )
+        alertController.addAction(
+            UIAlertAction.init(
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
+                style: UIAlertActionStyle.Cancel,
+                handler: nil
+            )
+        )
+        vc.presentViewController(
+            alertController,
+            animated: true,
+            completion: nil
+        )
     }
 }

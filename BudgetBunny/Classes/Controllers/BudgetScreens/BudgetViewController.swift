@@ -256,8 +256,10 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
             style: UIAlertActionStyle.Destructive,
             handler: { (UIAlertAction) in
+                BudgetUtils.showDeleteDialog(self, model: self.currentlySelectedObject)
             }
         )
+        
         let cancelAction = UIAlertAction.init(
             title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
             style: UIAlertActionStyle.Cancel,
