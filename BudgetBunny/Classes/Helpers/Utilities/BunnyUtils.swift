@@ -214,4 +214,43 @@ class BunnyUtils: NSObject {
             completion
         )
     }
+    
+    class func showTextFieldAlertWithCancelOK(
+        titleKey: String,
+        messageKey: String,
+        placeholderKey: String,
+        viewController: UIViewController,
+        completion: (textField: UITextField) -> Void
+    ) {
+        let alertController = UIAlertController(
+            title: BunnyUtils.uncommentedLocalizedString(titleKey),
+            message: BunnyUtils.uncommentedLocalizedString(messageKey),
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        alertController.addAction(
+            UIAlertAction(
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
+                style:UIAlertActionStyle.Default,
+                handler:nil
+            )
+        )
+        alertController.addAction(
+            UIAlertAction(
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_OK),
+                style:UIAlertActionStyle.Default,
+                handler: { (action) -> Void in
+                    viewController.dismissKeyboard()
+                    completion(textField: alertController.textFields![0])
+                }
+            )
+        )
+        alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
+            textField.placeholder = BunnyUtils.uncommentedLocalizedString(placeholderKey)
+        }
+        viewController.presentViewController(
+            alertController,
+            animated: true,
+            completion: nil
+        )
+    }
 }

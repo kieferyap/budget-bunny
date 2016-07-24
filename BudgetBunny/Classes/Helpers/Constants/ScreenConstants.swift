@@ -53,6 +53,8 @@ struct ScreenConstants {
         
         static let incomeMaxCount = 20
         static let incomeNameMaxLength = 25
+        
+        static let selectorAddNewIncome = "addNewIncome"
     }
     struct AddEditBudget {
         static let sectionCount = 2

@@ -48,27 +48,27 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             // "Add new income" cell in the Budget Screen
             self.addCellType(
                 Constants.CellIdentifiers.addIncome,
-                completion: { 
-                    let incomeModel = model as! SingleElementCell
-                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                completion: {
+                    let budgetModel = model as! SingleElementCell
+                    let alphaButton = self.alphaUIElement as! UIButton
                     
-                    BunnyUtils.prepareTextField(
-                        alphaTextField,
-                        placeholderText: incomeModel.alphaElementTitle,
-                        textColor: Constants.Colors.darkGray,
-                        model: incomeModel
+                    BunnyUtils.prepareButton(alphaButton,
+                        text: budgetModel.alphaElementTitle,
+                        model: budgetModel,
+                        target: self
                     )
-                    
-                    alphaTextField.returnCompletion = { (text) in
-                        (self.delegate as! BudgetDelegate).addNewIncome(text)
-                    }
                 },
-                getValue: {
+                getValue: { () -> String in
                     return ""
                 },
                 performAction: {
-                    let alphaTextField = self.alphaUIElement as! BunnyTextField
-                    alphaTextField.becomeFirstResponder()
+                    let buttonModel = model as! SingleElementCell
+                    let alphaButton = self.alphaUIElement as! UIButton
+                    alphaButton.performSelector(
+                        Selector(
+                            buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
+                        )
+                    )
                 }
             )
             
@@ -181,6 +181,10 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 (self.delegate as! AddEditAccountDelegate).presentViewController(alertController)
             }
         })
+    }
+    
+    func addNewIncome() {
+        (self.delegate as! BudgetDelegate).presentNewIncomeAlert()
     }
     
 }

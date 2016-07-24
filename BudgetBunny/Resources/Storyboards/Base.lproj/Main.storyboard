@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -457,24 +457,20 @@ name</string>
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add new income category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-R7-24c" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="textFieldEditingDidBegin:" destination="xCe-Tm-b1h" eventType="editingDidEnd" id="crQ-fS-PaW"/>
-                                                        <action selector="textFieldEditingDidEnd:" destination="xCe-Tm-b1h" eventType="editingDidEnd" id="ljI-rj-3Uy"/>
-                                                    </connections>
-                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrt-CR-1qS">
+                                                    <rect key="frame" x="239" y="7" width="123" height="30"/>
+                                                    <state key="normal" title="add new category"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="FUy-R7-24c" firstAttribute="leading" secondItem="gKQ-Ra-c08" secondAttribute="leadingMargin" id="AQy-6q-iFr"/>
-                                                <constraint firstItem="FUy-R7-24c" firstAttribute="centerY" secondItem="gKQ-Ra-c08" secondAttribute="centerY" id="jVL-de-hb7"/>
-                                                <constraint firstItem="FUy-R7-24c" firstAttribute="trailing" secondItem="gKQ-Ra-c08" secondAttribute="trailingMargin" id="n0A-7s-WXV"/>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gKQ-Ra-c08" secondAttribute="leadingMargin" constant="8" id="7y1-XB-ty7"/>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="centerX" secondItem="gKQ-Ra-c08" secondAttribute="centerX" id="ZnB-2c-DJh"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lrt-CR-1qS" secondAttribute="trailing" constant="8" id="bPH-H3-RMl"/>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="centerY" secondItem="gKQ-Ra-c08" secondAttribute="centerY" id="zDL-Ju-caZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="alphaUIElement" destination="FUy-R7-24c" id="6rb-92-M0A"/>
+                                            <outlet property="alphaUIElement" destination="Lrt-CR-1qS" id="TNI-Us-EOe"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">

@@ -11,51 +11,39 @@ import UIKit
 class BudgetUtils: NSObject {
 
     class func showRenameDialog(vc: BudgetViewController, model: BunnyCell) {
-        let alertController = UIAlertController(
-            title: "Rename",
-            message: "Enter the new name",
-            preferredStyle: UIAlertControllerStyle.Alert
-        )
-        alertController.addAction(
-            UIAlertAction(title: "Cancel", style:UIAlertActionStyle.Default, handler:nil)
-        )
-        alertController.addAction(
-            UIAlertAction(title: "OK", style:UIAlertActionStyle.Default, handler: { (action) -> Void in
-                vc.dismissKeyboard()
+        BunnyUtils.showTextFieldAlertWithCancelOK(
+            "Rename",
+            messageKey: "Enter the new name",
+            placeholderKey: "Enter new name",
+            viewController: vc)
+        { (textField) in
+            let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+            let budgetModel = model as! CategoryCell
+            
+            if textField.text != (budgetModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+                // Set the values of the account and insert it
+                let values = NSDictionary.init(
+                    objects: [
+                        textField.text!,
+                        true,
+                        budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                    ],
+                    forKeys: [
+                        ModelConstants.Category.name,
+                        ModelConstants.Category.isIncome,
+                        ModelConstants.Category.monthlyAmount
+                    ]
+                )
                 
-                let textField = alertController.textFields![0]
-                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
-                let budgetModel = model as! CategoryCell
+                activeRecord.updateObjectWithObjectId(
+                    budgetModel.categoryObject.objectID,
+                    updateParameters: values
+                )
                 
-                if textField.text != (budgetModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
-                    // Set the values of the account and insert it
-                    let values = NSDictionary.init(
-                        objects: [
-                            textField.text!,
-                            true,
-                            budgetModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
-                        ],
-                        forKeys: [
-                            ModelConstants.Category.name,
-                            ModelConstants.Category.isIncome,
-                            ModelConstants.Category.monthlyAmount
-                        ]
-                    )
-                    
-                    activeRecord.updateObjectWithObjectId(
-                        budgetModel.categoryObject.objectID,
-                        updateParameters: values
-                    )
-                    
-                    activeRecord.save()
-                    vc.updateIncomeSection()
-                }
-            })
-        )
-        alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
-            textField.placeholder = "Enter new name"
+                activeRecord.save()
+                vc.updateIncomeSection()
+            }
         }
-        vc.presentViewController(alertController, animated: true, completion: nil)
     }
     
     class func showDeleteDialog() {

@@ -10,10 +10,10 @@ import UIKit
 import CoreData
 
 protocol BudgetDelegate: class {
-    func addNewIncome(incomeName: String)
+    func presentNewIncomeAlert()
 }
 
-class BudgetViewController: UncoveredContentViewController, UITableViewDelegate, UITableViewDataSource {
+class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var budgetTableView: UITableView!
@@ -133,9 +133,9 @@ class BudgetViewController: UncoveredContentViewController, UITableViewDelegate,
             alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_INCOME,
             cellIdentifier: Constants.CellIdentifiers.addIncome,
             cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: self.screenConstants.incomeNameMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
+                Constants.AppKeys.keySelector: self.screenConstants.selectorAddNewIncome,
+                Constants.AppKeys.keyEnabled: true,
+                Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
             ]
         )
         
@@ -145,6 +145,79 @@ class BudgetViewController: UncoveredContentViewController, UITableViewDelegate,
         let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
         self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
     }
+    
+    func addNewIncome(incomeName: String) {
+        let trimmedIncomeName = incomeName.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        )
+        
+        guard self.incomeList.count < screenConstants.incomeMaxCount else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES
+            )
+            return
+        }
+        
+        guard trimmedIncomeName != "" else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY
+            )
+            return
+        }
+        
+        // Check if category name already exists
+        let newIncomeCell = DoubleElementCell(
+            alphaElementTitleKey: trimmedIncomeName,
+            betaElementTitleKey: "0",
+            cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+            cellSettings: [:]
+        )
+        
+        
+        // Uniqueness validator
+        let incomeUniquenessValidator = IncomeUniquenessValidator(
+            objectToValidate: newIncomeCell,
+            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            parentArray: self.incomeList
+        )
+        
+        // TO-DO: Sort the income alphabetically
+        // TO-DO: Income name editing and category name deletion
+        let validator = Validator(viewController: self)
+        validator.addValidator(incomeUniquenessValidator)
+        validator.validate { (success) in
+            if success {
+                self.dismissKeyboard()
+                
+                // Save the new income
+                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+                
+                // Set the values of the account and insert it
+                let values = NSDictionary.init(
+                    objects: [
+                        trimmedIncomeName,
+                        true,
+                        0.0
+                    ],
+                    forKeys: [
+                        ModelConstants.Category.name,
+                        ModelConstants.Category.isIncome,
+                        ModelConstants.Category.monthlyAmount
+                    ]
+                )
+                
+                activeRecord.insertObject(values)
+                activeRecord.save()
+                
+                self.updateIncomeSection()
+            }
+        }
+    }
+
     
     @IBAction func timeControlChanged(sender: UISegmentedControl) {
         let today = NSDate()
@@ -219,30 +292,25 @@ class BudgetViewController: UncoveredContentViewController, UITableViewDelegate,
     
     // On selection, set the values of the destination view controller and push it into the view controller stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if !self.changedY {
-            self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
-            
-            switch indexPath.section {
-            case self.screenConstants.idxIncomeSection:
-                // If it is not the last row
-                if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
-                    self.displayIncomeCellActions()
-                }
-                else {
-                    (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
-                }
-            case self.screenConstants.idxBudgetSection:
-                // Something about transitioning to the next screen
-                break
-            default:
-                break
+        self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
+        
+        switch indexPath.section {
+        case self.screenConstants.idxIncomeSection:
+            // If it is not the last row
+            if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
+                self.displayIncomeCellActions()
             }
-            
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            else {
+                (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
+            }
+        case self.screenConstants.idxBudgetSection:
+            // Something about transitioning to the next screen
+            break
+        default:
+            break
         }
-        else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     // TO-DO: Header titles for ALL "Add"/"Edit" Screens
@@ -305,73 +373,14 @@ class BudgetViewController: UncoveredContentViewController, UITableViewDelegate,
 
 extension BudgetViewController: BudgetDelegate {
 
-    func addNewIncome(incomeName: String) {
-        let trimmedIncomeName = incomeName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
-        guard self.incomeList.count < screenConstants.incomeMaxCount else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES
-            )
-            return
-        }
-        
-        guard trimmedIncomeName != "" else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY
-            )
-            return
-        }
-        
-        // Check if category name already exists
-        let newIncomeCell = DoubleElementCell(
-            alphaElementTitleKey: trimmedIncomeName,
-            betaElementTitleKey: "0",
-            cellIdentifier: Constants.CellIdentifiers.budgetIncome,
-            cellSettings: [:]
-        )
-        
-        
-        // Uniqueness validator
-        let incomeUniquenessValidator = IncomeUniquenessValidator(
-            objectToValidate: newIncomeCell,
-            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
-            parentArray: self.incomeList
-        )
- 
-        // TO-DO: Sort the income alphabetically
-        // TO-DO: Income name editing and category name deletion
-        let validator = Validator(viewController: self)
-        validator.addValidator(incomeUniquenessValidator)
-        validator.validate { (success) in
-            if success {
-                self.dismissKeyboard()
-                
-                // Save the new income
-                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
-                
-                // Set the values of the account and insert it
-                let values = NSDictionary.init(
-                    objects: [
-                        trimmedIncomeName,
-                        true,
-                        0.0
-                    ],
-                    forKeys: [
-                        ModelConstants.Category.name,
-                        ModelConstants.Category.isIncome,
-                        ModelConstants.Category.monthlyAmount
-                    ]
-                )
-                
-                activeRecord.insertObject(values)
-                activeRecord.save()
-                
-                self.updateIncomeSection()
-            }
+    func presentNewIncomeAlert() {
+        BunnyUtils.showTextFieldAlertWithCancelOK(
+            "Add New Income Category",
+            messageKey: "Add New Income Category Message",
+            placeholderKey: "New Category Name",
+            viewController: self
+        ) { (textField) in
+            self.addNewIncome(textField.text!)
         }
     }
 
