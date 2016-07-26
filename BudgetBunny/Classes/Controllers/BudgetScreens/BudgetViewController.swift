@@ -141,9 +141,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.budgetTable[self.screenConstants.idxIncomeSection] = self.incomeList
         self.budgetTable[self.screenConstants.idxIncomeSection].append(addNewIncome)
-        
-        let indexSet = NSIndexSet.init(index: self.screenConstants.idxIncomeSection)
-        self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+        self.budgetTableView.reloadData()
     }
     
     func addNewIncome(incomeName: String) {
@@ -176,7 +174,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cellIdentifier: Constants.CellIdentifiers.budgetIncome,
             cellSettings: [:]
         )
-        
         
         // Uniqueness validator
         let incomeUniquenessValidator = IncomeUniquenessValidator(
@@ -296,6 +293,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
         
+        print(indexPath.section, indexPath.row)
+        print((self.currentlySelectedObject as! CategoryCell).alphaElementTitle)
+        print((self.currentlySelectedObject as! CategoryCell).categoryObject.valueForKey(ModelConstants.Category.name))
+        print("=====")
+        
         switch indexPath.section {
         case self.screenConstants.idxIncomeSection:
             // If it is not the last row
@@ -323,6 +325,14 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
         // Prepare the table view cell
+        if cellIdentifier == Constants.CellIdentifiers.budgetIncome {
+            print("---CellForRowAtIndexPath---")
+            print(indexPath.section, indexPath.row)
+            print((cellItem as! CategoryCell).alphaElementTitle)
+            print((cellItem as! CategoryCell).categoryObject.valueForKey(ModelConstants.Category.name))
+            print("---CellForRowAtIndexPath---")
+        }
+        
         cell.prepareTableViewCell(cellItem)
         
         if cellIdentifier == Constants.CellIdentifiers.addIncome {

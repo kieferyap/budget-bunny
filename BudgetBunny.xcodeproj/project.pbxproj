@@ -29,7 +29,6 @@
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8231CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
-		FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */; };
 		FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */; };
 		FB6166321D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */; };
 		FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AC1101D2137BB009EC80C /* Category+CoreDataProperties.swift */; };
@@ -81,7 +80,6 @@
 		FBD06A7B1CE4E47200C32672 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD06A7A1CE4E47200C32672 /* AccountCell.swift */; };
 		FBD10B4F1D4207090054A331 /* BudgetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD10B4E1D4207090054A331 /* BudgetUtils.swift */; };
 		FBD2D2471CD1B8D900149289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB97C30A1CB4974F00C35BC0 /* Main.storyboard */; };
-		FBD414AD1D2B45C2004B29F0 /* IncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD414AC1D2B45C2004B29F0 /* IncomeTableViewCell.swift */; };
 		FBD6E2AC1CE4B06600D2F14A /* AccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */; };
 		FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */; };
 		FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */; };
@@ -134,7 +132,6 @@
 		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditBudgetTableViewCell.swift; sourceTree = "<group>"; };
 		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		FB6166311D1FA9E7007DE4C2 /* CategoryUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryUniquenessValidator.swift; sourceTree = "<group>"; };
 		FB6AC1101D2137BB009EC80C /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -193,7 +190,6 @@
 		FBBEBF741CDD85F1000AE2C9 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		FBD06A7A1CE4E47200C32672 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		FBD10B4E1D4207090054A331 /* BudgetUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetUtils.swift; sourceTree = "<group>"; };
-		FBD414AC1D2B45C2004B29F0 /* IncomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeTableViewCell.swift; sourceTree = "<group>"; };
 		FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsTableViewCell.swift; sourceTree = "<group>"; };
 		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTextField.swift; sourceTree = "<group>"; };
 		FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTabBarController.swift; sourceTree = "<group>"; };
@@ -423,9 +419,7 @@
 				FBAF76B01D3150CA00E15CC5 /* TripleElementTableViewCell.swift */,
 				FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */,
 				FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */,
-				FB61662D1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift */,
 				FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */,
-				FBD414AC1D2B45C2004B29F0 /* IncomeTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -705,7 +699,6 @@
 				FBAF76A51D31350300E15CC5 /* SingleElementCell.swift in Sources */,
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
-				FB61662E1D1E727B007DE4C2 /* AddEditBudgetTableViewCell.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
 				FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */,
 				FB6AC1271D2137BB009EC80C /* Target.swift in Sources */,
@@ -714,7 +707,6 @@
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
 				FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */,
 				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
-				FBD414AD1D2B45C2004B29F0 /* IncomeTableViewCell.swift in Sources */,
 				FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */,
 				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
 				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,

@@ -20,7 +20,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addAccountAction,
                 completion: {
-                    let buttonModel = model as! SingleElementCell
+                    let buttonModel = self.model as! SingleElementCell
                     let alphaButton = self.alphaUIElement as! UIButton
                     
                     BunnyUtils.prepareButton(
@@ -49,7 +49,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addIncome,
                 completion: {
-                    let budgetModel = model as! SingleElementCell
+                    let budgetModel = self.model as! SingleElementCell
                     let alphaButton = self.alphaUIElement as! UIButton
                     
                     BunnyUtils.prepareButton(alphaButton,
@@ -76,7 +76,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.budgetInexistence,
                 completion: {
-                    let noBudgetModel = model as! SingleElementCell
+                    let noBudgetModel = self.model as! SingleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     alphaLabel.text = noBudgetModel.alphaElementTitle
                     self.userInteractionEnabled = false
@@ -92,7 +92,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addBudgetCategory,
                 completion: {
-                    let budgetModel = model as! SingleElementCell
+                    let budgetModel = self.model as! SingleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     alphaLabel.text = budgetModel.alphaElementTitle
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
@@ -110,7 +110,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addBudgetNewCategory,
                 completion: {
-                    let budgetModel = model as! SingleElementCell
+                    let budgetModel = self.model as! SingleElementCell
                     let alphaTextField = self.alphaUIElement as! BunnyTextField
                     alphaTextField.text = ""
                     

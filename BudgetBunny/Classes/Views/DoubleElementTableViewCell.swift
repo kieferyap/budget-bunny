@@ -20,7 +20,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addAccountFieldValue,
                 completion: {
-                    let accountModel = model as! DoubleElementCell
+                    let accountModel = self.model as! DoubleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaTextField = self.betaUIElement as! BunnyTextField
                     
@@ -48,7 +48,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addAccountChevron,
                 completion: {
-                    let accountModel = model as! DoubleElementCell
+                    let accountModel = self.model as! DoubleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
                     
@@ -75,9 +75,14 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.budgetIncome,
                 completion: {
-                    let incomeModel = model as! CategoryCell
+                    let incomeModel = self.model as! CategoryCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
+                    
+                    print("---DoubleElementTableViewCell---")
+                    print(incomeModel.alphaElementTitle)
+                    print(incomeModel.categoryObject.valueForKey(ModelConstants.Category.name))
+                    print("---DoubleElementTableViewCell---")
                     
                     alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
@@ -96,7 +101,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addBudgetFieldValue,
                 completion: {
-                    let budgetModel = model as! DoubleElementCell
+                    let budgetModel = self.model as! DoubleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaTextField = self.betaUIElement as! BunnyTextField
                     
