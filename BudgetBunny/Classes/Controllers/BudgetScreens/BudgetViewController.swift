@@ -270,6 +270,51 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: - Table view data source
+    
+    
+    // Needed for the swipe functionality
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    // Set the swipe buttons
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        var returnArray: [UITableViewRowAction] = []
+        
+        if indexPath.section == self.screenConstants.idxIncomeSection
+            && indexPath.row != self.budgetTable[indexPath.section].count - 1
+        {
+            // Set the delete button
+            let delete = UITableViewRowAction(
+                style: UITableViewRowActionStyle.Destructive,
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
+            ) { (action, indexPath) in
+                BudgetUtils.showDeleteDialog(
+                    self,
+                    model: self.incomeList[indexPath.row]
+                )
+            }
+            
+            let rename = UITableViewRowAction(
+                style: UITableViewRowActionStyle.Default,
+                title: "Rename"
+            ) { (action, indexPath) in
+                BudgetUtils.showRenameDialog(
+                    self,
+                    model: self.incomeList[indexPath.row]
+                )
+            }
+            
+            delete.backgroundColor = Constants.Colors.dangerColor
+            rename.backgroundColor = Constants.Colors.normalGreen
+            
+            returnArray = [delete, rename]
+        }
+        
+        return returnArray
+    }
+
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return screenConstants.sectionCount
     }
@@ -292,11 +337,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // On selection, set the values of the destination view controller and push it into the view controller stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
-        
-        print(indexPath.section, indexPath.row)
-        print((self.currentlySelectedObject as! CategoryCell).alphaElementTitle)
-        print((self.currentlySelectedObject as! CategoryCell).categoryObject.valueForKey(ModelConstants.Category.name))
-        print("=====")
         
         switch indexPath.section {
         case self.screenConstants.idxIncomeSection:
@@ -325,14 +365,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
         // Prepare the table view cell
-        if cellIdentifier == Constants.CellIdentifiers.budgetIncome {
-            print("---CellForRowAtIndexPath---")
-            print(indexPath.section, indexPath.row)
-            print((cellItem as! CategoryCell).alphaElementTitle)
-            print((cellItem as! CategoryCell).categoryObject.valueForKey(ModelConstants.Category.name))
-            print("---CellForRowAtIndexPath---")
-        }
-        
         cell.prepareTableViewCell(cellItem)
         
         if cellIdentifier == Constants.CellIdentifiers.addIncome {

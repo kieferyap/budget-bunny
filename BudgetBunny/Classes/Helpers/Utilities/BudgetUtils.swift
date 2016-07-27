@@ -44,6 +44,7 @@ class BudgetUtils: NSObject {
                 vc.updateIncomeSection()
             }
         }
+        vc.budgetTableView.setEditing(false, animated: true)
     }
     
     class func showDeleteDialog(vc: BudgetViewController, model: BunnyCell) {
@@ -82,5 +83,6 @@ class BudgetUtils: NSObject {
             animated: true,
             completion: nil
         )
+        vc.budgetTableView.setEditing(false, animated: true)
     }
 }
