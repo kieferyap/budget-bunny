@@ -10,38 +10,55 @@ import UIKit
 
 class BudgetUtils: NSObject {
 
-    class func showRenameDialog(vc: BudgetViewController, model: BunnyCell) {
+    class func showRenameDialog(
+        vc: BudgetViewController,
+        model: BunnyCell,
+        incomeList: [SingleElementCell]) {
         BunnyUtils.showTextFieldAlertWithCancelOK(
             "Rename",
             messageKey: "Enter the new name",
             placeholderKey: "Enter new name",
             viewController: vc)
         { (textField) in
-            let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
-            let categoryModel = model as! CategoryCell
-            
-            if textField.text != (categoryModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
-                // Set the values of the account and insert it
-                let values = NSDictionary.init(
-                    objects: [
-                        textField.text!,
-                        true,
-                        categoryModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
-                    ],
-                    forKeys: [
-                        ModelConstants.Category.name,
-                        ModelConstants.Category.isIncome,
-                        ModelConstants.Category.monthlyAmount
-                    ]
-                )
-                
-                activeRecord.updateObjectWithObjectId(
-                    categoryModel.categoryObject.objectID,
-                    updateParameters: values
-                )
-                
-                activeRecord.save()
-                vc.updateIncomeSection()
+            BunnyUtils.saveSingleField(
+                textField.text!,
+                parentArray: incomeList,
+                maxCount: ScreenConstants.Budget.categoryMaxCount,
+                errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
+                errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
+                errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+                viewController: vc,
+                isRename: true
+            ) {
+                (success, newItem) in
+                if success {
+                    let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+                    let categoryModel = model as! CategoryCell
+                    
+                    if newItem != (categoryModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+                        // Set the values of the account and insert it
+                        let values = NSDictionary.init(
+                            objects: [
+                                newItem,
+                                true,
+                                categoryModel.categoryObject.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
+                            ],
+                            forKeys: [
+                                ModelConstants.Category.name,
+                                ModelConstants.Category.isIncome,
+                                ModelConstants.Category.monthlyAmount
+                            ]
+                        )
+                        
+                        activeRecord.updateObjectWithObjectId(
+                            categoryModel.categoryObject.objectID,
+                            updateParameters: values
+                        )
+                        
+                        activeRecord.save()
+                        vc.updateIncomeSection()
+                    }
+                }
             }
         }
         vc.budgetTableView.setEditing(false, animated: true)

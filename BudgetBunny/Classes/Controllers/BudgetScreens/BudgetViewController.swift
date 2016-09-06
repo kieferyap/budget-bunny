@@ -145,48 +145,16 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addNewIncome(incomeName: String) {
-        let trimmedIncomeName = incomeName.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        )
-        
-        guard self.incomeList.count < screenConstants.incomeMaxCount else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES
-            )
-            return
-        }
-        
-        guard trimmedIncomeName != "" else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY
-            )
-            return
-        }
-        
-        // Check if category name already exists
-        let newIncomeCell = DoubleElementCell(
-            alphaElementTitleKey: trimmedIncomeName,
-            betaElementTitleKey: "0",
-            cellIdentifier: Constants.CellIdentifiers.budgetIncome,
-            cellSettings: [:]
-        )
-        
-        // Uniqueness validator
-        let incomeUniquenessValidator = IncomeUniquenessValidator(
-            objectToValidate: newIncomeCell,
-            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
-            parentArray: self.incomeList
-        )
-        
-        // TO-DO: Sort the income alphabetically
-        // TO-DO: Income name editing and category name deletion
-        let validator = Validator(viewController: self)
-        validator.addValidator(incomeUniquenessValidator)
-        validator.validate { (success) in
+        BunnyUtils.saveSingleField(
+            incomeName,
+            parentArray: self.incomeList,
+            maxCount: screenConstants.incomeMaxCount,
+            errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES,
+            errorEmptyNameKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY,
+            errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            viewController: self,
+            isRename: false)
+        { (success, newItem) in
             if success {
                 self.dismissKeyboard()
                 
@@ -196,7 +164,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 // Set the values of the account and insert it
                 let values = NSDictionary.init(
                     objects: [
-                        trimmedIncomeName,
+                        newItem,
                         true,
                         0.0
                     ],
@@ -245,7 +213,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title: "Rename",
             style: UIAlertActionStyle.Default,
             handler: { (UIAlertAction) in
-                BudgetUtils.showRenameDialog(self, model: self.currentlySelectedObject)
+                BudgetUtils.showRenameDialog(
+                    self,
+                    model: self.currentlySelectedObject,
+                    incomeList: self.incomeList
+                )
             }
         )
         
@@ -301,7 +273,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ) { (action, indexPath) in
                 BudgetUtils.showRenameDialog(
                     self,
-                    model: self.incomeList[indexPath.row]
+                    model: self.incomeList[indexPath.row],
+                    incomeList: self.incomeList
                 )
             }
             

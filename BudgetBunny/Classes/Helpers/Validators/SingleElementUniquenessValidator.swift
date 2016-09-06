@@ -1,5 +1,5 @@
 //
-//  CategoryUniquenessValidator.swift
+//  SingleElementUniquenessValidator.swift
 //  BudgetBunny
 //
 //  Created by Kiefer Yap on 6/26/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryUniquenessValidator: NSObject, ValidatorProtocol {
+class SingleElementUniquenessValidator: NSObject, ValidatorProtocol {
 
     var objectToValidate: NSObject
     var errorStringKey: String

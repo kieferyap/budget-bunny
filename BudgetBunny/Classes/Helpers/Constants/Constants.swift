@@ -10,6 +10,7 @@ struct Constants {
         static let weakenedColor = UIColor(red: 245.0/255.0, green: 171.0/255.0, blue: 53.0/255.0, alpha: 1.0)
     }
     struct CellIdentifiers {
+        static let anyCellIdentifier = ""
         static let addAccountFieldValue = "addAccountFieldValueCell"
         static let addAccountChevron = "addAccountChevronCell"
         static let addAccountAction = "addAccountActionCell"

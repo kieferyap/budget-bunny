@@ -253,4 +253,67 @@ class BunnyUtils: NSObject {
             completion: nil
         )
     }
+    
+    class func trimLeadingTrailingSpaces(inputString: String) -> String {
+        return inputString.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        )
+    }
+    
+    class func saveSingleField(
+        inputName: String,
+        parentArray: [SingleElementCell],
+        maxCount: Int,
+        errorMaxCountKey: String,
+        errorEmptyNameKey: String,
+        errorDuplicateNameKey: String,
+        viewController: UIViewController,
+        isRename: Bool,
+        completion: (success: Bool, newItem: String) -> Void
+    ) {
+        let trimmedName = BunnyUtils.trimLeadingTrailingSpaces(inputName)
+        let parentCountCheck = isRename ? true : parentArray.count < maxCount
+        
+        guard parentCountCheck else {
+            BunnyUtils.showAlertWithOKButton(
+                viewController,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: errorMaxCountKey
+            )
+            completion(success: false, newItem: "")
+            return
+        }
+        
+        guard trimmedName != "" else {
+            BunnyUtils.showAlertWithOKButton(
+                viewController,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: errorEmptyNameKey
+            )
+            completion(success: false, newItem: "")
+            return
+        }
+        
+        // Check if name already exists
+        let newCell = SingleElementCell(
+            alphaElementTitleKey: trimmedName,
+            cellIdentifier: Constants.CellIdentifiers.anyCellIdentifier,
+            cellSettings: [:]
+        )
+        
+        // Uniqueness validator
+        let uniquenessValidator = SingleElementUniquenessValidator(
+            objectToValidate: newCell,
+            errorStringKey: errorDuplicateNameKey,
+            parentArray: parentArray
+        )
+        
+        // TO-DO: Sort the income alphabetically
+        // TO-DO: Income name editing and category name deletion
+        let validator = Validator(viewController: viewController)
+        validator.addValidator(uniquenessValidator)
+        validator.validate { (success) in
+            completion(success: success, newItem: trimmedName)
+        }
+    }
 }
