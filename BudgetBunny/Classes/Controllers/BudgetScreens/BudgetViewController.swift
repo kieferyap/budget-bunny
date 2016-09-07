@@ -55,10 +55,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !BunnyUtils.isDefaultAccountExisting() {
-            self.addBudgetButton.enabled = false
-        }
-        
+        self.addBudgetButton.enabled = BunnyUtils.isDefaultAccountExisting()
         self.loadData()
         self.updateIncomeSection()
         self.budgetTableView.reloadData()
@@ -391,13 +388,22 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension BudgetViewController: BudgetDelegate {
 
     func presentNewIncomeAlert() {
-        BunnyUtils.showTextFieldAlertWithCancelOK(
-            "Add New Income Category",
-            messageKey: "Add New Income Category Message",
-            placeholderKey: "New Category Name",
-            viewController: self
-        ) { (textField) in
-            self.addNewIncome(textField.text!)
+        if (self.incomeList.count == screenConstants.incomeMaxCount) {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: "Too many income categories. Please delete one to proceed."
+            )
+        }
+        else {
+            BunnyUtils.showTextFieldAlertWithCancelOK(
+                "Add New Income Category",
+                messageKey: "Add New Income Category Message",
+                placeholderKey: "New Category Name",
+                viewController: self
+            ) { (textField) in
+                self.addNewIncome(textField.text!)
+            }
         }
     }
 

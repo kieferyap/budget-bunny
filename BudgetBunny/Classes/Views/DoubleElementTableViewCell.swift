@@ -79,11 +79,6 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
                     
-                    print("---DoubleElementTableViewCell---")
-                    print(incomeModel.alphaElementTitle)
-                    print(incomeModel.categoryObject.valueForKey(ModelConstants.Category.name))
-                    print("---DoubleElementTableViewCell---")
-                    
                     alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
                     self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator

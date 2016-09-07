@@ -36,8 +36,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 },
                 performAction:  {
                     let buttonModel = model as! SingleElementCell
-                    let alphaButton = self.alphaUIElement as! UIButton
-                    alphaButton.performSelector(
+                    self.performSelector(
                         Selector(
                             buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
                         )
@@ -63,8 +62,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 },
                 performAction: {
                     let buttonModel = model as! SingleElementCell
-                    let alphaButton = self.alphaUIElement as! UIButton
-                    alphaButton.performSelector(
+                    self.performSelector(
                         Selector(
                             buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
                         )
@@ -183,7 +181,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
         })
     }
     
-    func addNewIncome() {
+    func presentNewIncomeAlert() {
         (self.delegate as! BudgetDelegate).presentNewIncomeAlert()
     }
     
