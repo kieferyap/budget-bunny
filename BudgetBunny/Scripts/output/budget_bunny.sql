@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.2
--- Dumped by pg_dump version 9.5.2
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: features_seq; Type: SEQUENCE; Schema: public; Owner: kiefer
+-- Name: features_seq; Type: SEQUENCE; Schema: public; Owner: orca
 --
 
 CREATE SEQUENCE features_seq
@@ -41,14 +41,14 @@ CREATE SEQUENCE features_seq
     CACHE 1;
 
 
-ALTER TABLE features_seq OWNER TO kiefer;
+ALTER TABLE features_seq OWNER TO orca;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: features; Type: TABLE; Schema: public; Owner: kiefer
+-- Name: features; Type: TABLE; Schema: public; Owner: orca
 --
 
 CREATE TABLE features (
@@ -60,10 +60,10 @@ CREATE TABLE features (
 );
 
 
-ALTER TABLE features OWNER TO kiefer;
+ALTER TABLE features OWNER TO orca;
 
 --
--- Name: localizable_words_seq; Type: SEQUENCE; Schema: public; Owner: kiefer
+-- Name: localizable_words_seq; Type: SEQUENCE; Schema: public; Owner: orca
 --
 
 CREATE SEQUENCE localizable_words_seq
@@ -74,10 +74,10 @@ CREATE SEQUENCE localizable_words_seq
     CACHE 1;
 
 
-ALTER TABLE localizable_words_seq OWNER TO kiefer;
+ALTER TABLE localizable_words_seq OWNER TO orca;
 
 --
--- Name: localizable_words; Type: TABLE; Schema: public; Owner: kiefer
+-- Name: localizable_words; Type: TABLE; Schema: public; Owner: orca
 --
 
 CREATE TABLE localizable_words (
@@ -90,10 +90,10 @@ CREATE TABLE localizable_words (
 );
 
 
-ALTER TABLE localizable_words OWNER TO kiefer;
+ALTER TABLE localizable_words OWNER TO orca;
 
 --
--- Data for Name: features; Type: TABLE DATA; Schema: public; Owner: kiefer
+-- Data for Name: features; Type: TABLE DATA; Schema: public; Owner: orca
 --
 
 COPY features (feature_id, requirement_key, description, is_bug, inserted_on) FROM stdin;
@@ -129,14 +129,14 @@ COPY features (feature_id, requirement_key, description, is_bug, inserted_on) FR
 
 
 --
--- Name: features_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
+-- Name: features_seq; Type: SEQUENCE SET; Schema: public; Owner: orca
 --
 
 SELECT pg_catalog.setval('features_seq', 28, true);
 
 
 --
--- Data for Name: localizable_words; Type: TABLE DATA; Schema: public; Owner: kiefer
+-- Data for Name: localizable_words; Type: TABLE DATA; Schema: public; Owner: orca
 --
 
 COPY localizable_words (localizable_word_id, wording_key, localization_en, localization_jp, localization_zh, inserted_on) FROM stdin;
@@ -182,7 +182,6 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 48	TEXTFIELD_NEW_CATEGORY_PLACEHOLDER	Add New Category	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.321636
 28	BUTTON_EDIT	Edit	編集	[Not localized yet]	2016-05-28 16:58:29.215243
 26	LABEL_CURRENT_BALANCE	Current Balance	経常収支	[Not localized yet]	2016-05-21 20:52:43.054826
-39	ERRORLABEL_TOO_MANY_ACCOUNTS	The number of accounts created has been exceeded.\\nKindly delete an account before proceeding.	アカウント数の上限を超えています。	[Not localized yet]	2016-06-23 01:02:37.812749
 57	TEXTFIELD_NEW_INCOME	Add Income Category	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.418424
 49	ERRORLABEL_DUPLICATE_CATEGORY_NAME	The category name already exists in this budget.	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:05.327302
 30	BUTTON_SET_AS_DEFAULT_DISABLED	This is the default account.	このアカウントはデフォルトです	[Not localized yet]	2016-06-01 01:45:23.069191
@@ -193,30 +192,40 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 14	ERRORLABEL_NAME_AMOUNT_NOT_EMPTY	The name and amount must not be left blank.	アカウントの名前とアカウントの残高を入力してください。	[Not localizaed yet]	2016-05-01 19:58:57.219882
 1	MENULABEL_ACCOUNT	Accounts	アカウント	帐户	2016-05-01 19:45:58.215002
 40	MENULABEL_ADD_BUDGET	Add New Budget	[Not localized yet]	[Not localized yet]	2016-06-26 18:50:04.955272
-58	ERRORLABEL_TOO_MANY_INCOME_CATEGORIES	The number of income categories created has been exceeded.\\nKindly delete an income category before proceeding.	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.59928
-53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\nKindly delete a category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-30 01:40:44.607786
 59	ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY	The income category name must not be left blank.	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.727426
 60	ERRORLABEL_DUPLICATE_INCOME_CATEGORY_NAME	The income category name already exists.	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.734413
 61	LABEL_NO_BUDGETS	There are no budgets yet.\\n\\nTo add a new budget, tap the + sign located at the upper right corner of the screen.	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.741666
 62	LABEL_HEADER_ACCOUNT_INFORMATION	Account Information	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.866208
 63	LABEL_HEADER_ACCOUNT_SETTINGS	Account Settings	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.903378
+58	ERRORLABEL_TOO_MANY_INCOME_CATEGORIES	The number of income categories created has been exceeded.\\n\\nKindly delete an income category before proceeding.	[Not localized yet]	[Not localized yet]	2016-07-15 14:10:18.59928
+39	ERRORLABEL_TOO_MANY_ACCOUNTS	The number of accounts created has been exceeded.\\n\\nKindly delete an account before proceeding.	アカウント数の上限を超えています。	[Not localized yet]	2016-06-23 01:02:37.812749
 64	LABEL_HEADER_ACCOUNT_ACTIONS	Account Actions	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.90672
 65	LABEL_HEADER_BUDGETS	Budgets	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.909542
 66	LABEL_HEADER_INCOME	Income Categories	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.914513
 67	LABEL_HEADER_BUDGET_INFORMATION	Budget Information	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.96251
 68	LABEL_HEADER_BUDGET_CATEGORIES	Budget Categories	[Not localized yet]	[Not localized yet]	2016-07-17 10:47:26.967243
+69	LABEL_INCOME_ACTIONS	Income Category Actions	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.596695
+70	LABEL_RENAME	Rename	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.61466
+73	LABEL_ADD_NEW_INCOME_CATEGORY	Add New Income Category	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.653229
+74	LABEL_ADD_NEW_INCOME_CATEGORY_MESSAGE	Please enter the name of the new income category.	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.665123
+75	TEXTFIELD_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER	New Category Name	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.673169
+76	LABEL_RENAME_MESSAGE	Please enter the new name.	[Not localized yet]	[Not localized yet]	2016-09-08 11:44:23.80878
+77	TEXTFIELD_RENAME_PLACEHOLDER	New Name	[Not localized yet]	[Not localized yet]	2016-09-08 11:44:24.608868
+53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\n\\nKindly delete a category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-30 01:40:44.607786
+71	ERRORLABEL_TOO_MANY_BUDGETS	The number of budgets created has been exceeded.\\n\\nKindly delete a budget before proceeding.	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.622333
+72	ERRORLABEL_NO_DEFAULT_ACCOUNT	There are no default accounts available.\\n\\nKindly create a default account before proceeding.	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.62986
 \.
 
 
 --
--- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: kiefer
+-- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: orca
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 68, true);
+SELECT pg_catalog.setval('localizable_words_seq', 77, true);
 
 
 --
--- Name: features_pkey; Type: CONSTRAINT; Schema: public; Owner: kiefer
+-- Name: features_pkey; Type: CONSTRAINT; Schema: public; Owner: orca
 --
 
 ALTER TABLE ONLY features
@@ -224,7 +233,7 @@ ALTER TABLE ONLY features
 
 
 --
--- Name: localizable_words_pkey; Type: CONSTRAINT; Schema: public; Owner: kiefer
+-- Name: localizable_words_pkey; Type: CONSTRAINT; Schema: public; Owner: orca
 --
 
 ALTER TABLE ONLY localizable_words
@@ -232,12 +241,12 @@ ALTER TABLE ONLY localizable_words
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: kiefer
+-- Name: public; Type: ACL; Schema: -; Owner: orca
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM kiefer;
-GRANT ALL ON SCHEMA public TO kiefer;
+REVOKE ALL ON SCHEMA public FROM orca;
+GRANT ALL ON SCHEMA public TO orca;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 

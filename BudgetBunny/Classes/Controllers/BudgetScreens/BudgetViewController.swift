@@ -55,7 +55,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.addBudgetButton.enabled = BunnyUtils.isDefaultAccountExisting()
         self.loadData()
         self.updateIncomeSection()
         self.budgetTableView.reloadData()
@@ -201,13 +200,13 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private func displayIncomeCellActions() {
         let alertController = UIAlertController.init(
-            title: "Category Actions",
-            message: "Note that these actions may also be accessed by swiping the category to the left.",
+            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_INCOME_ACTIONS),
+            message: "",
             preferredStyle: UIAlertControllerStyle.ActionSheet
         )
         
         let renameAction = UIAlertAction.init(
-            title: "Rename",
+            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME),
             style: UIAlertActionStyle.Default,
             handler: { (UIAlertAction) in
                 BudgetUtils.showRenameDialog(
@@ -266,7 +265,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let rename = UITableViewRowAction(
                 style: UITableViewRowActionStyle.Default,
-                title: "Rename"
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME)
             ) { (action, indexPath) in
                 BudgetUtils.showRenameDialog(
                     self,
@@ -360,6 +359,27 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Navigation
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        guard
+            self.budgetTable[self.screenConstants.idxBudgetSection].count < self.screenConstants.budgetMaxCount
+        else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_TOO_MANY_BUDGETS
+            )
+            return
+        }
+        
+        guard BunnyUtils.isDefaultAccountExisting() else {
+            BunnyUtils.showAlertWithOKButton(
+                self,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: StringConstants.ERRORLABEL_NO_DEFAULT_ACCOUNT
+            )
+            return
+        }
+        
         var frequencyKey = ""
         switch self.timeSegmentedControl.selectedSegmentIndex {
         case self.screenConstants.idxMonthly:
@@ -388,22 +408,13 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension BudgetViewController: BudgetDelegate {
 
     func presentNewIncomeAlert() {
-        if (self.incomeList.count == screenConstants.incomeMaxCount) {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: "Too many income categories. Please delete one to proceed."
-            )
-        }
-        else {
-            BunnyUtils.showTextFieldAlertWithCancelOK(
-                "Add New Income Category",
-                messageKey: "Add New Income Category Message",
-                placeholderKey: "New Category Name",
-                viewController: self
-            ) { (textField) in
-                self.addNewIncome(textField.text!)
-            }
+        BunnyUtils.showTextFieldAlertWithCancelOK(
+            StringConstants.LABEL_ADD_NEW_INCOME_CATEGORY,
+            messageKey: StringConstants.LABEL_ADD_NEW_INCOME_CATEGORY_MESSAGE,
+            placeholderKey: StringConstants.TEXTFIELD_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER,
+            viewController: self
+        ) { (textField) in
+            self.addNewIncome(textField.text!)
         }
     }
 

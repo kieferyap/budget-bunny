@@ -15,27 +15,27 @@ class BudgetUtils: NSObject {
         model: BunnyCell,
         incomeList: [SingleElementCell]) {
         BunnyUtils.showTextFieldAlertWithCancelOK(
-            "Rename",
-            messageKey: "Enter the new name",
-            placeholderKey: "Enter new name",
+            StringConstants.LABEL_RENAME,
+            messageKey: StringConstants.LABEL_RENAME_MESSAGE,
+            placeholderKey: StringConstants.TEXTFIELD_RENAME_PLACEHOLDER,
             viewController: vc)
         { (textField) in
-            BunnyUtils.saveSingleField(
-                textField.text!,
-                parentArray: incomeList,
-                maxCount: ScreenConstants.Budget.categoryMaxCount,
-                errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
-                errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
-                errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
-                viewController: vc,
-                isRename: true
-            ) {
-                (success, newItem) in
-                if success {
-                    let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
-                    let categoryModel = model as! CategoryCell
-                    
-                    if newItem != (categoryModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+            let categoryModel = model as! CategoryCell
+            let trimmedText = BunnyUtils.trimLeadingTrailingSpaces(textField.text!)
+            if trimmedText != (categoryModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String) {
+                BunnyUtils.saveSingleField(
+                    trimmedText,
+                    parentArray: incomeList,
+                    maxCount: ScreenConstants.Budget.incomeMaxCount,
+                    errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
+                    errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
+                    errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+                    viewController: vc,
+                    isRename: true
+                ) { (success, newItem) in
+                    if success {
+                        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+                        
                         // Set the values of the account and insert it
                         let values = NSDictionary.init(
                             objects: [

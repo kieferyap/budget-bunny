@@ -51,10 +51,10 @@ struct ScreenConstants {
         static let weakenedPercentage: Float = 0.5
         static let dangerPercentage: Float = 0.25
         
-        static let incomeMaxCount = 20
+        static var incomeMaxCount = 20
         static let incomeNameMaxLength = 25
         
-        static var categoryMaxCount = 20
+        static var budgetMaxCount = 20
         static let selectorAddNewIncome = "presentNewIncomeAlert"
     }
     struct AddEditBudget {
