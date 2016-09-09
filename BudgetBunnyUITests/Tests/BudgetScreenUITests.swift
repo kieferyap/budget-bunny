@@ -181,6 +181,56 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapErrorAlertOkButton()
     }
     
-    // Test the monthly/weekly/daily selection tabs
+    // Test the monthly/weekly/daily selection tabs, and confirm that the amount screen is correct
+    func testTabSelection() {
+        self.proceedToBudgetTab()
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        
+        budgetScreen.tapSegmentedControlMonthly()
+        budgetScreen.tapAddBudgetButton()
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.assertAmountStaticTextEquality(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_MONTHLY_BUDGET)
+        )
+        addBudgetScreen.tapBackButton()
+        
+        budgetScreen.tapSegmentedControlWeekly()
+        budgetScreen.tapAddBudgetButton()
+        addBudgetScreen.assertAmountStaticTextEquality(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_WEEKLY_BUDGET)
+        )
+        addBudgetScreen.tapBackButton()
+        
+        budgetScreen.tapSegmentedControlDaily()
+        budgetScreen.tapAddBudgetButton()
+        addBudgetScreen.assertAmountStaticTextEquality(
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DAILY_BUDGET)
+        )
+        addBudgetScreen.tapBackButton()
+    }
     
+    // Test the currency displayed
+    func testDisplayedCurrency() {
+        let accountScreenUITests = AccountScreenUITests()
+        accountScreenUITests.addAccountSuccess(
+            "test1",
+            amount: "100",
+            currencyName: "Japan",
+            isDefault: true
+        )
+        accountScreenUITests.addAccountSuccess(
+            "test2",
+            amount: "100",
+            currencyName: "United Kingdom",
+            isDefault: false
+        )
+        self.proceedToBudgetTab()
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapAddBudgetButton()
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.assertAmountStaticTextEquality(
+            BunnyUIUtils.uncommentedLocalizedString("¥")
+        )
+    }
 }

@@ -10,7 +10,7 @@ import XCTest
 import CoreData
 
 @available(iOS 9.0, *)
-class AddAccountUITests: XCTestCase {
+class AccountScreenUITests: XCTestCase {
     
     /*
       *  Important note! Hardware > Keyboard > Connect Hardware Keyboard must be unchecked.

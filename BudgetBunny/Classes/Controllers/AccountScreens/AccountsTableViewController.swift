@@ -91,6 +91,8 @@ class AccountsTableViewController: UITableViewController {
                 var refreshingIndexPath: NSIndexPath!
                 let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
                 
+                // TO-DO: Reset all budgets when the default account has been reset IF the currency is different than the original.
+                
                 model.selectAllObjects({ (fetchedObjects) -> Void in
                     // For each element
                     for (index, element) in fetchedObjects.enumerate() {
@@ -111,10 +113,10 @@ class AccountsTableViewController: UITableViewController {
                     // Save the model, reload the data, etc.
                     model.save()
                     self.loadData()
-                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                     
                     if refreshingIndexPath != nil {
-                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.None) // For some reason, the animation is still not what I'd expect of a "None."
+                        self.tableView.reloadRowsAtIndexPaths([refreshingIndexPath], withRowAnimation: UITableViewRowAnimation.Fade) // For some reason, the animation is still not what I'd expect of a "None."
                     }
                 })
             }
@@ -179,7 +181,7 @@ class AccountsTableViewController: UITableViewController {
         let cellIdentifier: String = cellItem.cellIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AccountsTableViewCell
         
-        cell.setAccountModel(cellItem)
+        cell.prepareTableViewCell(cellItem)
         return cell
     }
     

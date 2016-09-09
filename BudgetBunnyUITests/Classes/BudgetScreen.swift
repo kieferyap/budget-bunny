@@ -16,4 +16,20 @@ class BudgetScreen: BaseScreen {
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_BUDGETS)
         ].buttons["+"].tap()
     }
+    
+    func tapSegmentedControlMonthly() {
+        self.tapSegmentedControlIndex(TestConstants.Budgets.idxSegmentedControlMonthly)
+    }
+    
+    func tapSegmentedControlWeekly() {
+        self.tapSegmentedControlIndex(TestConstants.Budgets.idxSegmentedControlWeekly)
+    }
+    
+    func tapSegmentedControlDaily() {
+        self.tapSegmentedControlIndex(TestConstants.Budgets.idxSegmentedControlDaily)
+    }
+    
+    private func tapSegmentedControlIndex(index: UInt) {
+        self.app.segmentedControls.buttons.elementAtIndex(index).tap()
+    }
 }

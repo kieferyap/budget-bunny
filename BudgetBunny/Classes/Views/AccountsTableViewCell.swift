@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountsTableViewCell: UITableViewCell {
+class AccountsTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
 
     @IBOutlet weak var isDefaultLabel: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!
@@ -17,28 +17,24 @@ class AccountsTableViewCell: UITableViewCell {
     
     var model: AccountCell?
     
-    func setAccountModel(model: AccountCell) {
+    func prepareTableViewCell(modelObject: BunnyCell) {
+        let model = modelObject as! AccountCell
         
         // Prepare UI elements
         let defaultString = BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DEFAULT)
         self.model = model
         let isDefaultText = model.isDefault == true ? defaultString : ""
-        let accountName = model.accountName
-        let amount = model.amount
-        let currencySymbol = model.currencySymbol
-        
-        let amountString: String = currencySymbol.stringByAppendingString(String(format: "%.2f", amount))
         
         // Set UI elements
         self.isDefaultLabel.text = isDefaultText
-        self.accountNameLabel.text = accountName
-        self.amountLabel.text = amountString
+        self.accountNameLabel.text = model.alphaElementTitle
+        self.amountLabel.text = model.betaElementTitle
         self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         // Colors
         self.isDefaultLabelWidth.constant = 0.0
         self.amountLabel.textColor = Constants.Colors.darkGray
-        if isDefaultText != "" {
+        if model.isDefault == true {
             self.isDefaultLabel.layer.cornerRadius = 6.0
             self.isDefaultLabel.layer.masksToBounds = true
             self.isDefaultLabel.layer.borderWidth = 2.0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountFieldValueCell" id="LMZ-I6-RnC" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LMZ-I6-RnC" id="oE2-H7-L0U">
@@ -28,7 +28,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Ps-euU" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholderText" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Ps-euU" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
                                             <rect key="frame" x="49" y="11" width="543" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -43,18 +43,18 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="eAs-iV-ZJW" id="4f3-wc-Wi8"/>
-                                    <outlet property="textfield" destination="zNz-Ps-euU" id="rkc-Uq-0M5"/>
+                                    <outlet property="alphaUIElement" destination="eAs-iV-ZJW" id="gVe-R5-aNS"/>
+                                    <outlet property="betaUIElement" destination="zNz-Ps-euU" id="voQ-IW-2Qx"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountChevronCell" id="Wn4-Op-jsU" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wn4-Op-jsU" id="D9N-b0-Y9v">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjL-Dx-Dcm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjL-Dx-Dcm">
                                             <rect key="frame" x="8" y="11" width="33" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,11 +76,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="IjL-Dx-Dcm" id="ous-hF-NYe"/>
-                                    <outlet property="value" destination="mm6-va-18q" id="hJ8-VO-pFC"/>
+                                    <outlet property="alphaUIElement" destination="IjL-Dx-Dcm" id="pRs-T3-NNR"/>
+                                    <outlet property="betaUIElement" destination="mm6-va-18q" id="uGV-QC-bWn"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountActionCell" rowHeight="44" id="Mdm-d9-KPl" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountActionCell" rowHeight="44" id="Mdm-d9-KPl" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPl" id="2jn-4e-eT9">
@@ -100,10 +100,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="actionButton" destination="XJF-QW-d5t" id="vJF-29-J3Y"/>
+                                    <outlet property="alphaUIElement" destination="XJF-QW-d5t" id="CGo-0o-2XQ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="AddEditAccountTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAccountSwitchCell" rowHeight="60" id="Mdm-d9-KPm" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="246" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdm-d9-KPm" id="2jn-4e-eT8">
@@ -140,9 +140,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accountSwitch" destination="MYf-pt-WJT" id="km0-74-Spz"/>
-                                    <outlet property="field" destination="CrT-Rn-Pg3" id="16d-h9-ebw"/>
-                                    <outlet property="value" destination="jlN-Ed-rCN" id="Jxu-p3-FmN"/>
+                                    <outlet property="alphaUIElement" destination="CrT-Rn-Pg3" id="yIT-r1-JgR"/>
+                                    <outlet property="betaUIElement" destination="jlN-Ed-rCN" id="dLj-qH-zBs"/>
+                                    <outlet property="gammaUIElement" destination="MYf-pt-WJT" id="OKa-0j-kbt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -154,7 +154,7 @@
                     <navigationItem key="navigationItem" title="addEditAccount" id="mbX-o5-cBn">
                         <barButtonItem key="rightBarButtonItem" title="done" id="7tW-gU-OLf">
                             <connections>
-                                <action selector="doneButtonPressed:" destination="tGE-fd-eFe" id="DUy-lP-1JH"/>
+                                <action selector="doneButtonPressed" destination="tGE-fd-eFe" id="H2K-Ol-YNi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -255,7 +255,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="AccountsTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="60" id="uMq-Q2-rQJ" customClass="AccountsTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMq-Q2-rQJ" id="h0C-K8-QWc">
@@ -296,8 +296,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accountNameLabel" destination="vaF-sw-zUb" id="vsJ-V8-dsp"/>
-                                    <outlet property="amountLabel" destination="0rZ-it-zmz" id="GrR-qI-7iJ"/>
+                                    <outlet property="accountNameLabel" destination="vaF-sw-zUb" id="BWr-F2-e5N"/>
+                                    <outlet property="amountLabel" destination="0rZ-it-zmz" id="SdN-t5-A1h"/>
                                     <outlet property="isDefaultLabel" destination="FtN-eT-4oI" id="5ho-Jj-an5"/>
                                     <outlet property="isDefaultLabelWidth" destination="SQr-Xg-aOE" id="lfg-JY-i1U"/>
                                 </connections>
@@ -309,7 +309,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="accounts" id="N1y-c1-c1B">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="A3T-75-6gq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A3T-75-6gq">
                             <connections>
                                 <segue destination="tGE-fd-eFe" kind="show" identifier="testSegue2" id="9IV-Ek-UfC"/>
                             </connections>
@@ -339,18 +339,164 @@
                                     <segment title="weekly"/>
                                     <segment title="daily"/>
                                 </segments>
+                                <connections>
+                                    <action selector="timeControlChanged:" destination="xCe-Tm-b1h" eventType="valueChanged" id="dzk-lT-Opk"/>
+                                </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Wy-4b-keZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="55" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3Wy-4b-keZ">
                                 <rect key="frame" x="0.0" y="108" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetCell" id="vwU-2v-r33">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetCell" rowHeight="55" id="vwU-2v-r33" customClass="BudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vwU-2v-r33" id="YIU-cr-E1A">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMr-s4-eUn">
+                                                    <rect key="frame" x="387" y="28" width="197" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHB-AL-o2t">
+                                                    <rect key="frame" x="373" y="25" width="6" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zcZ-G3-glk">
+                                                    <rect key="frame" x="168" y="8" width="416" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="Abl-s4-D0u"/>
+                                                    </constraints>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arP-SP-cP0">
+                                                    <rect key="frame" x="168" y="29" width="197" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBR-yA-LVg">
+                                                    <rect key="frame" x="8" y="9" width="150" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="FOc-xN-Ddn"/>
+                                                    </constraints>
+                                                    <string key="text">budget
+name</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zcZ-G3-glk" firstAttribute="top" secondItem="YIU-cr-E1A" secondAttribute="topMargin" id="5sc-CB-E2S"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gMr-s4-eUn" secondAttribute="trailing" constant="8" id="7XP-IP-0Hb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gMr-s4-eUn" secondAttribute="bottom" id="BfJ-VR-756"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="OBR-yA-LVg" secondAttribute="leading" id="FCo-fv-hJm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zcZ-G3-glk" secondAttribute="trailing" constant="8" id="KhG-P2-NcZ"/>
+                                                <constraint firstItem="gMr-s4-eUn" firstAttribute="leading" secondItem="IHB-AL-o2t" secondAttribute="trailing" constant="8" id="Nvk-SU-E67"/>
+                                                <constraint firstItem="IHB-AL-o2t" firstAttribute="leading" secondItem="arP-SP-cP0" secondAttribute="trailing" constant="8" id="O9s-Il-bIm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="arP-SP-cP0" secondAttribute="bottom" constant="-1" id="OHS-39-Iju"/>
+                                                <constraint firstItem="IHB-AL-o2t" firstAttribute="centerX" secondItem="zcZ-G3-glk" secondAttribute="centerX" id="bF5-3Q-jh2"/>
+                                                <constraint firstItem="arP-SP-cP0" firstAttribute="leading" secondItem="OBR-yA-LVg" secondAttribute="trailing" constant="10" id="bGa-OY-SLs"/>
+                                                <constraint firstItem="IHB-AL-o2t" firstAttribute="bottom" secondItem="YIU-cr-E1A" secondAttribute="bottomMargin" id="chM-RK-znf"/>
+                                                <constraint firstItem="zcZ-G3-glk" firstAttribute="leading" secondItem="OBR-yA-LVg" secondAttribute="trailing" constant="10" id="q0R-o5-EP7"/>
+                                                <constraint firstItem="OBR-yA-LVg" firstAttribute="centerY" secondItem="YIU-cr-E1A" secondAttribute="centerY" id="txZ-Qd-OYn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="budgetName" destination="OBR-yA-LVg" id="VO0-yo-nop"/>
+                                            <outlet property="progressBar" destination="zcZ-G3-glk" id="3Be-ks-kD7"/>
+                                            <outlet property="progressHeight" destination="Abl-s4-D0u" id="V9S-Or-v0D"/>
+                                            <outlet property="remainingAmount" destination="arP-SP-cP0" id="wiu-Og-COg"/>
+                                            <outlet property="totalAmount" destination="gMr-s4-eUn" id="x8v-wG-KMh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeCell" rowHeight="44" id="1Th-D7-5SK" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="105" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Th-D7-5SK" id="4Ap-ut-K2R">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incomeName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-hE-On2">
+                                                    <rect key="frame" x="16" y="11" width="368" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incomeAmount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-PW-j5i">
+                                                    <rect key="frame" x="392" y="11" width="200" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="4dm-b1-deh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="leading" secondItem="Cch-hE-On2" secondAttribute="trailing" constant="8" id="ABm-hp-tBw"/>
+                                                <constraint firstItem="Cch-hE-On2" firstAttribute="leading" secondItem="4Ap-ut-K2R" secondAttribute="leadingMargin" constant="8" id="Hg5-3f-0eu"/>
+                                                <constraint firstItem="Cch-hE-On2" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="QVe-Ao-V2M"/>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="trailing" secondItem="4Ap-ut-K2R" secondAttribute="trailingMargin" id="nlO-8W-F1n"/>
+                                                <constraint firstItem="GkJ-PW-j5i" firstAttribute="centerY" secondItem="4Ap-ut-K2R" secondAttribute="centerY" id="vab-bg-d13"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="Cch-hE-On2" id="ZVW-Dh-dtL"/>
+                                            <outlet property="betaUIElement" destination="GkJ-PW-j5i" id="pzb-S4-Tl2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addIncomeCell" rowHeight="44" id="BM7-bf-Jod" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="149" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BM7-bf-Jod" id="gKQ-Ra-c08">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrt-CR-1qS">
+                                                    <rect key="frame" x="239" y="7" width="123" height="30"/>
+                                                    <state key="normal" title="add new category"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gKQ-Ra-c08" secondAttribute="leadingMargin" constant="8" id="7y1-XB-ty7"/>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="centerX" secondItem="gKQ-Ra-c08" secondAttribute="centerX" id="ZnB-2c-DJh"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lrt-CR-1qS" secondAttribute="trailing" constant="8" id="bPH-H3-RMl"/>
+                                                <constraint firstItem="Lrt-CR-1qS" firstAttribute="centerY" secondItem="gKQ-Ra-c08" secondAttribute="centerY" id="zDL-Ju-caZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="Lrt-CR-1qS" id="TNI-Us-EOe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgetInexistenceCell" rowHeight="44" id="HtF-4z-Hpc" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="193" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HtF-4z-Hpc" id="dCn-Aq-Yxn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="does not exist label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-pv-Nba">
+                                                    <rect key="frame" x="226" y="11" width="148" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="centerY" secondItem="dCn-Aq-Yxn" secondAttribute="centerY" id="7Ho-b4-OWj"/>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="centerX" secondItem="dCn-Aq-Yxn" secondAttribute="centerX" id="cHY-u6-Oye"/>
+                                                <constraint firstItem="wPO-pv-Nba" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dCn-Aq-Yxn" secondAttribute="leadingMargin" constant="8" id="pFV-w6-wmb"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wPO-pv-Nba" secondAttribute="trailing" constant="8" id="rpW-kx-6CR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="wPO-pv-Nba" id="UZ8-yE-fgL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -368,14 +514,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="budgets" id="jRK-CR-iuI">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="FKp-Qx-Utr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FKp-Qx-Utr">
                             <connections>
                                 <segue destination="Hhs-Mw-bfx" kind="show" id="D52-Kc-zGB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="timeSegmentedControl" destination="2VZ-au-IUr" id="lNo-Np-vSN"/>
+                        <outlet property="addBudgetButton" destination="FKp-Qx-Utr" id="5th-x7-vmz"/>
+                        <outlet property="budgetTableView" destination="3Wy-4b-keZ" id="Gxm-jB-zCZ"/>
+                        <outlet property="timeSegmentedControl" destination="2VZ-au-IUr" id="aL4-3b-7ne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7j-N7-OcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -389,9 +537,9 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="MPo-Oj-HCL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetFieldValueCell" id="eOz-l8-VI4" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetFieldValueCell" id="eOz-l8-VI4" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOz-l8-VI4" id="ZD9-q4-lsU">
@@ -420,11 +568,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="2B2-jI-jbA" id="EOB-Fd-iwA"/>
-                                    <outlet property="textfield" destination="ux7-Jk-nFf" id="W8a-Tm-c9e"/>
+                                    <outlet property="alphaUIElement" destination="2B2-jI-jbA" id="hDV-yX-nrK"/>
+                                    <outlet property="betaUIElement" destination="ux7-Jk-nFf" id="NF7-ST-9ZV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pls-gg-jEO" id="but-xc-N4l">
@@ -445,10 +593,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="field" destination="3hD-sH-Jac" id="ndQ-Dy-GlN"/>
+                                    <outlet property="alphaUIElement" destination="3hD-sH-Jac" id="CCU-yT-odt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="AddEditBudgetTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qEW-OW-SlX" id="dDa-Xz-zec">
@@ -468,7 +616,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textfield" destination="jEd-d9-egf" id="MAt-AK-65N"/>
+                                    <outlet property="alphaUIElement" destination="jEd-d9-egf" id="3s8-f1-rpS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

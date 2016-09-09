@@ -14,77 +14,64 @@ protocol AddEditBudgetDelegate: class {
 
 class AddEditBudgetTableViewController: UITableViewController {
 
-    private var addBudgetTable: [[AddEditBudgetCell]] = [[]]
-    private var categoryList: [AddEditBudgetCell] = []
+    private var categoryList: [SingleElementCell] = []
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addBudgetTable = Array.init(
-            count: screenConstants.sectionCount,
-            repeatedValue: []
-        )
         
         // Get the currency symbol of the default account
-        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
-        let currency = Currency()
-        currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
-        var currencySymbol = currency.currencySymbol
+        let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
+        let currencySymbol = defaultCurrency.currencySymbol
         
-        let accountModel = AttributeModel(
-            tableName: ModelConstants.Entities.account,
-            key: ModelConstants.Account.isDefault,
-            value: true
-        )
-
-        activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
-            if fetchedObjects.count > 0 {
-                let defaultAccount = fetchedObjects[0] as! Account
-                let currency = Currency()
-                currency.setAttributes(defaultAccount.currency!)
-                currencySymbol = currency.currencySymbol
-            }
-        }
         let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
             .stringByAppendingString(" (")
             .stringByAppendingString(currencySymbol)
             .stringByAppendingString(")")
         
-        let nameCell = AddEditBudgetCell(
-            fieldKey: StringConstants.LABEL_BUDGET_NAME,
-            placeholderKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
-            cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
-                Constants.AppKeys.keyMaxLength: screenConstants.budgetNameMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
-            ]
-        )
-        
-        let amountCell = AddEditBudgetCell(
-            fieldKey: amountText,
-            placeholderKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
-            cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
-            cellSettings: [
-                Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                Constants.AppKeys.keyMaxLength: screenConstants.budgetAmountMaxLength,
-                Constants.AppKeys.keyTextFieldValue: ""
-            ]
-        )
-        
-        self.addBudgetTable[screenConstants.idxInformationGroup].append(nameCell)
-        self.addBudgetTable[screenConstants.idxInformationGroup].append(amountCell)
-        self.updateCategorySection()
-        
-        // Keyboard must be dismissed when regions outside of it is tapped
-        BunnyUtils.addKeyboardDismisserListener(self)
-        self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
-        self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
+        self.prepareModelData(screenConstants.sectionCount) { 
+            
+            // Budget name
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxInformationGroup,
+                idxRow: self.screenConstants.idxNameCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: StringConstants.LABEL_BUDGET_NAME,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_BUDGET_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.budgetNameMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: ""
+                    ]
+                )
+            )
+            
+            // Budget amount
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxInformationGroup,
+                idxRow: self.screenConstants.idxAmountCell,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: amountText,
+                    betaElementTitleKey: StringConstants.TEXTFIELD_XLY_BUDGET_PLACEHOLDER,
+                    cellIdentifier: Constants.CellIdentifiers.addBudgetFieldValue,
+                    cellSettings:[
+                        Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                        Constants.AppKeys.keyMaxLength: self.screenConstants.budgetAmountMaxLength,
+                        Constants.AppKeys.keyTextFieldValue: ""
+                    ]
+                )
+            )
+            
+            self.updateCategorySection()
+            self.doneButton.title = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+            self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
+        }
     }
     
-    func updateCategorySection() {
+    private func updateCategorySection() {
         // Will (probably) be used in editing
         /*
          let categoryCell = AddEditBudgetCell(
@@ -95,11 +82,10 @@ class AddEditBudgetTableViewController: UITableViewController {
          )
          */
         
-        self.addBudgetTable[screenConstants.idxCategoryGroup] = []
+        self.modelData[screenConstants.idxCategoryGroup] = []
         
-        let addCategoryCell = AddEditBudgetCell(
-            fieldKey: "",
-            placeholderKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
+        let addCategoryCell = SingleElementCell(
+            alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
             cellIdentifier: Constants.CellIdentifiers.addBudgetNewCategory,
             cellSettings: [
                 Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
@@ -108,17 +94,16 @@ class AddEditBudgetTableViewController: UITableViewController {
             ]
         )
         
-        self.addBudgetTable[screenConstants.idxCategoryGroup] = self.categoryList
-        self.addBudgetTable[screenConstants.idxCategoryGroup].append(addCategoryCell)
+        self.modelData[screenConstants.idxCategoryGroup] = self.categoryList
+        self.modelData[screenConstants.idxCategoryGroup].append(addCategoryCell)
     }
+    
     
     // Grabs the value for each cell, used for saving the data
     private func getTableViewCellValue(section: Int, row: Int) -> String {
         let indexPath = NSIndexPath.init(forRow: row, inSection: section)
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! AddEditBudgetTableViewCell
-        return (cell.textfield.text?.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        ))!
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
+        return cell.getValue()
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
@@ -152,17 +137,12 @@ class AddEditBudgetTableViewController: UITableViewController {
             errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_BUDGET_NAME,
             oldName: ""
         )
-        let categoryCountValidator = EmptyArrayValidator(
-            objectToValidate: self.categoryList,
-            errorStringKey: StringConstants.ERRORLABEL_NO_CATEGORIES
-        )
         
         // Add the error validators
         let validator = Validator(viewController: self)
         validator.addValidator(emptyNameValidator)
         validator.addValidator(emptyAmountValidator)
         validator.addValidator(nameUniquenessValidator)
-        validator.addValidator(categoryCountValidator)
         
         // Validate the fields
         validator.validate { (success) in
@@ -190,30 +170,31 @@ class AddEditBudgetTableViewController: UITableViewController {
                 let model = activeRecord.insertObject(values)
                 
                 // Add the related categories
-                for item in self.categoryList {
-                    let categoryName = item.field.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                    )
+                if self.categoryList.count > 0 {
                     
-                    activeRecord.changeTableName(ModelConstants.Entities.category)
-                    values = NSDictionary.init(
-                        objects: [
-                            categoryName,
-                            false,
-                            0.0,
-                            model
-                        ],
-                        forKeys: [
-                            ModelConstants.Category.name,
-                            ModelConstants.Category.isIncome,
-                            ModelConstants.Category.monthlyAmount,
-                            ModelConstants.Category.budgetId
-                        ]
-                    )
-
+                    for item in self.categoryList {
+                        let categoryName = item.alphaElementTitle
+                        
+                        activeRecord.changeTableName(ModelConstants.Entities.category)
+                        values = NSDictionary.init(
+                            objects: [
+                                categoryName,
+                                false,
+                                0.0,
+                                model
+                            ],
+                            forKeys: [
+                                ModelConstants.Category.name,
+                                ModelConstants.Category.isIncome,
+                                ModelConstants.Category.monthlyAmount,
+                                ModelConstants.Category.budgetId
+                            ]
+                        )
+                    }
+                    
+                    activeRecord.insertObject(values)
                 }
                 
-                activeRecord.insertObject(values)
                 activeRecord.save()
                 
                 self.navigationController?.popViewControllerAnimated(true)
@@ -221,77 +202,71 @@ class AddEditBudgetTableViewController: UITableViewController {
         }
     }
 
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.screenConstants.sectionCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.addBudgetTable[section].count
+        return self.modelData[section].count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddEditBudgetTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell
         cell.performAction()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellItem: AddEditBudgetCell = self.addBudgetTable[indexPath.section][indexPath.row]
+        let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
         let cellIdentifier: String = cellItem.cellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddEditBudgetTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
 
-        cell.setBudgetCellModel(cellItem)
-        cell.delegate = self
+        cell.prepareTableViewCell(cellItem)
         
-        return cell
+        if cellIdentifier == Constants.CellIdentifiers.addBudgetNewCategory {
+            (cell as! SingleElementTableViewCell).delegate = self
+        }
+        
+        return cell as! UITableViewCell
     }
-
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var headerNameKey = ""
+        switch section {
+        case screenConstants.idxInformationGroup:
+            headerNameKey = StringConstants.LABEL_HEADER_BUDGET_INFORMATION
+        case screenConstants.idxCategoryGroup:
+            headerNameKey = StringConstants.LABEL_HEADER_BUDGET_CATEGORIES
+        default:
+            break
+        }
+        return BunnyUtils.uncommentedLocalizedString(headerNameKey)
+    }
+ 
 }
 
 extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
     
     func addNewCategory(categoryName: String) {
-        let trimmedCategoryName = categoryName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
-        guard self.categoryList.count < screenConstants.categoryMaxCount else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES
-            )
-            return
-        }
-        
-        guard trimmedCategoryName != "" else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY
-            )
-            return
-        }
-        
-        // Check if category name already exists
-        let newCategoryItem = AddEditBudgetCell(
-            fieldKey: categoryName,
-            placeholderKey: "",
-            cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
-            cellSettings: [:]
-        )
-        
-        let categoryUniquenessValidator = CategoryUniquenessValidator(
-            objectToValidate: newCategoryItem,
-            errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
-            parentArray: self.categoryList
-        )
-        
-        // TO-DO: Sort the categories alphabetically
-        // TO-DO: Category name editing and category name deletion
-        let validator = Validator(viewController: self)
-        validator.addValidator(categoryUniquenessValidator)
-        validator.validate { (success) in
+        BunnyUtils.saveSingleField(
+            categoryName,
+            parentArray: self.categoryList,
+            maxCount: screenConstants.categoryMaxCount,
+            errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
+            errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
+            errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            viewController: self,
+            isRename: false)
+        { (success, newItem) in
             if success {
+                let newCategoryItem = SingleElementCell(
+                    alphaElementTitleKey: newItem,
+                    cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
+                    cellSettings: [:]
+                )
+                
                 self.categoryList.append(newCategoryItem)
                 self.dismissKeyboard()
                 
@@ -302,3 +277,4 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
         }
     }
 }
+

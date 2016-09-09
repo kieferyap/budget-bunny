@@ -220,3 +220,29 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 -- 7/1/2016
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NO_CATEGORIES', 'Please add at least one category.', '[Not localized yet]', '[Not localized yet]');
 
+-- 7/16/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_NEW_INCOME', 'Add Income Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_INCOME_CATEGORIES', 'The number of income categories created has been exceeded.\nKindly delete an income category before proceeding.', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET localization_en = 'The number of categories created has been exceeded.\nKindly delete a category before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_CATEGORIES';
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY', 'The income category name must not be left blank.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_INCOME_CATEGORY_NAME', 'The income category name already exists.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_NO_BUDGETS', 'There are no budgets yet.\n\nTo add a new budget, tap the + sign located at the upper right corner of the screen.', '[Not localized yet]', '[Not localized yet]');
+
+-- 9/8/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_INCOME_ACTIONS', 'Income Category Actions', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_RENAME', 'Rename', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_BUDGETS', 'The number of budgets created has been exceeded.\nKindly delete a budget before proceeding.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NO_DEFAULT_ACCOUNT', 'There are no default accounts available.\nKindly create a default account before proceeding.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY', 'Add New Income Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY_MESSAGE', 'Please enter the name of the new income category.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER', 'New Category Name', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_RENAME_MESSAGE', 'Please enter the new name.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('TEXTFIELD_RENAME_MESSAGE_PLACEHOLDER', 'New Name', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET wording_key = 'TEXTFIELD_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER' WHERE wording_key = 'LABEL_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER';
+UPDATE localizable_words SET wording_key = 'TEXTFIELD_RENAME_PLACEHOLDER' WHERE wording_key = 'TEXTFIELD_RENAME_MESSAGE_PLACEHOLDER';
+UPDATE localizable_words SET localization_en = 'The number of categories created has been exceeded.\n\nKindly delete a category before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_CATEGORIES';
+UPDATE localizable_words SET localization_en = 'The number of budgets created has been exceeded.\n\nKindly delete a budget before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_BUDGETS';
+UPDATE localizable_words SET localization_en = 'There are no default accounts available.\n\nKindly create a default account before proceeding.' WHERE wording_key = 'ERRORLABEL_NO_DEFAULT_ACCOUNT';
+
+UPDATE localizable_words SET localization_en = 'The number of categories created has been exceeded.\n\nKindly delete a category before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_INCOME_CATEGORIES';
+UPDATE localizable_words SET localization_en = 'The number of accounts created has been exceeded.\n\nKindly delete an account before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_ACCOUNTS';

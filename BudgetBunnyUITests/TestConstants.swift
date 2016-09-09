@@ -33,4 +33,10 @@ struct TestConstants {
         static let idxAmountCell: UInt = 1
         static let categoryIndexOffset: UInt = 2
     }
+    
+    struct Budgets {
+        static let idxSegmentedControlMonthly: UInt = 0
+        static let idxSegmentedControlWeekly: UInt = 1
+        static let idxSegmentedControlDaily: UInt = 2
+    }
 }
