@@ -221,7 +221,18 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
             style: UIAlertActionStyle.Destructive,
             handler: { (UIAlertAction) in
-                BudgetUtils.showDeleteDialog(self, model: self.currentlySelectedObject)
+                BunnyUtils.showDeleteDialog(
+                    self,
+                    managedObject: (self.currentlySelectedObject as! CategoryCell).categoryObject,
+                    deleteTitleKey: "Delete category",
+                    deleteMessegeKey: "This action cannot be undone. Are you sure?",
+                    deleteActionKey: "Delete Income Category",
+                    tableName: ModelConstants.Entities.category,
+                    tableView: self.budgetTableView,
+                    completion: {
+                        self.updateIncomeSection()
+                    }
+                )
             }
         )
         
@@ -239,45 +250,94 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Table view data source
     
-    
     // Needed for the swipe functionality
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    // Set if the row is swipable
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        switch (indexPath.section) {
+            case self.screenConstants.idxBudgetSection:
+                return true
+            case self.screenConstants.idxIncomeSection:
+                // Return true if it's not the last row. False if otherwise.
+                return indexPath.row != self.budgetTable[indexPath.section].count - 1 ? true: false
+            default:
+                return false
+        }
     }
     
     // Set the swipe buttons
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
+        print(indexPath.section, indexPath.row)
         var returnArray: [UITableViewRowAction] = []
         
-        if indexPath.section == self.screenConstants.idxIncomeSection
-            && indexPath.row != self.budgetTable[indexPath.section].count - 1
-        {
+        switch (indexPath.section) {
+        case self.screenConstants.idxBudgetSection:
             // Set the delete button
             let delete = UITableViewRowAction(
                 style: UITableViewRowActionStyle.Destructive,
                 title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
             ) { (action, indexPath) in
-                BudgetUtils.showDeleteDialog(
+                BunnyUtils.showDeleteDialog(
                     self,
-                    model: self.incomeList[indexPath.row]
+                    managedObject: (self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell).budgetObject,
+                    deleteTitleKey: "Delete budget",
+                    deleteMessegeKey: "This action cannot be undone. Are you sure?",
+                    deleteActionKey: "Delete budget",
+                    tableName: ModelConstants.Entities.budget,
+                    tableView: self.budgetTableView,
+                    completion: {
+                        // TO-DO: Delete all associated categories as well!                        
+                        self.loadData()
+                    }
                 )
             }
-            
-            let rename = UITableViewRowAction(
-                style: UITableViewRowActionStyle.Default,
-                title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME)
-            ) { (action, indexPath) in
-                BudgetUtils.showRenameDialog(
-                    self,
-                    model: self.incomeList[indexPath.row],
-                    incomeList: self.incomeList
-                )
-            }
-            
             delete.backgroundColor = Constants.Colors.dangerColor
-            rename.backgroundColor = Constants.Colors.normalGreen
-            
-            returnArray = [delete, rename]
+            returnArray = [delete]
+        case self.screenConstants.idxIncomeSection:
+            // If it's not the last row, show the delete and rename buttons
+            if indexPath.row != self.budgetTable[indexPath.section].count - 1
+            {
+                // Set the delete button
+                let delete = UITableViewRowAction(
+                    style: UITableViewRowActionStyle.Destructive,
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
+                ) { (action, indexPath) in
+                    BunnyUtils.showDeleteDialog (
+                        self,
+                        managedObject: self.incomeList[indexPath.row].categoryObject,
+                        deleteTitleKey: "Delete category",
+                        deleteMessegeKey: "This action cannot be undone. Are you sure?",
+                        deleteActionKey: "Delete Income Category",
+                        tableName: ModelConstants.Entities.category,
+                        tableView: self.budgetTableView,
+                        completion: {
+                            self.updateIncomeSection()
+                        }
+                    )
+                }
+                
+                // Set the rename button
+                let rename = UITableViewRowAction(
+                    style: UITableViewRowActionStyle.Default,
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME)
+                ) { (action, indexPath) in
+                    BudgetUtils.showRenameDialog(
+                        self,
+                        model: self.incomeList[indexPath.row],
+                        incomeList: self.incomeList
+                    )
+                }
+                
+                delete.backgroundColor = Constants.Colors.dangerColor
+                rename.backgroundColor = Constants.Colors.normalGreen
+                
+                returnArray = [delete, rename]
+            }
+        default:
+            break
         }
         
         return returnArray
@@ -317,7 +377,19 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
             }
         case self.screenConstants.idxBudgetSection:
-            // Something about transitioning to the next screen
+            let cell = self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell
+            let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
+            var vc: AddEditBudgetTableViewController!
+            
+            self.prepareNextViewController(
+                storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditBudget),
+                sourceInformation: Constants.SourceInformation.budgetEditing
+            ) { (destinationViewController) in
+                vc = destinationViewController as! AddEditBudgetTableViewController
+                vc.budgetInformation = cell
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
             break

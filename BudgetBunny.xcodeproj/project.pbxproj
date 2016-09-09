@@ -87,7 +87,6 @@
 		FBDF483D1D056A3D00C9E2D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 		FBDF483F1D056A5800C9E2D8 /* BunnyUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */; };
 		FBDF48401D056D3300C9E2D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
-		FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE3F9801CFD404A00C56107 /* AccountUtils.swift */; };
 		FBF32F981D23D74D0023E116 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F971D23D74D0023E116 /* BudgetScreen.swift */; };
 		FBF32F9A1D23D7A20023E116 /* BudgetScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F991D23D7A20023E116 /* BudgetScreenUITests.swift */; };
 		FBF32F9C1D23D86A0023E116 /* AddBudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */; };
@@ -194,7 +193,6 @@
 		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTextField.swift; sourceTree = "<group>"; };
 		FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTabBarController.swift; sourceTree = "<group>"; };
 		FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUIUtils.swift; sourceTree = "<group>"; };
-		FBE3F9801CFD404A00C56107 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUtils.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FBF32F971D23D74D0023E116 /* BudgetScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
@@ -514,7 +512,6 @@
 		FBE3F9821CFD80CD00C56107 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				FBE3F9801CFD404A00C56107 /* AccountUtils.swift */,
 				FB2445361CCF5B3400E55941 /* BunnyUtils.swift */,
 				FBD10B4E1D4207090054A331 /* BudgetUtils.swift */,
 			);
@@ -708,7 +705,6 @@
 				FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */,
 				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
 				FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */,
-				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
 				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
 				FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */,

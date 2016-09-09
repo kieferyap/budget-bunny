@@ -168,15 +168,9 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
         BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
-                let alertController = AccountUtils.accountDeletionPopup({
-                    BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
-                        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
-                        activeRecord.deleteObject(object as! NSManagedObject, completion: {
-                            (self.delegate as! AddEditAccountDelegate).popViewController()
-                        })
-                    }
-                })
-                (self.delegate as! AddEditAccountDelegate).presentViewController(alertController)
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
+                    (self.delegate as! AddEditAccountDelegate).deleteAccount(object as! NSManagedObject)
+                }
             }
         })
     }

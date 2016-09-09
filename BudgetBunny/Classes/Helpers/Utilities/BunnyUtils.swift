@@ -316,4 +316,50 @@ class BunnyUtils: NSObject {
             completion(success: success, newItem: trimmedName)
         }
     }
+    
+    class func showDeleteDialog(
+        vc: UIViewController,
+        managedObject: NSManagedObject,
+        deleteTitleKey: String,
+        deleteMessegeKey: String,
+        deleteActionKey: String,
+        tableName: String,
+        tableView: UITableView?,
+        completion: () -> Void
+    ) {
+        let alertController = UIAlertController.init(
+            title: BunnyUtils.uncommentedLocalizedString(deleteTitleKey),
+            message: BunnyUtils.uncommentedLocalizedString(deleteMessegeKey),
+            preferredStyle: UIAlertControllerStyle.ActionSheet
+        )
+        alertController.addAction(
+            UIAlertAction.init(
+                title: BunnyUtils.uncommentedLocalizedString(deleteActionKey),
+                style: UIAlertActionStyle.Destructive,
+                handler: { (UIAlertAction) in
+                    let activeRecord = BunnyModel.init(tableName: tableName)
+                    activeRecord.deleteObject(
+                        managedObject,
+                        completion: completion
+                    )
+                }
+            )
+        )
+        alertController.addAction(
+            UIAlertAction.init(
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
+                style: UIAlertActionStyle.Cancel,
+                handler: nil
+            )
+        )
+        vc.presentViewController(
+            alertController,
+            animated: true,
+            completion: nil
+        )
+        
+        if (tableView != nil) {
+            tableView?.setEditing(false, animated: true)
+        }
+    }
 }

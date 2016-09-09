@@ -11,8 +11,8 @@ import CoreData
 
 protocol AddEditAccountDelegate: class {
     func pushCurrencyViewController()
-    func popViewController()
     func setAsDefault()
+    func deleteAccount(accountObject: NSManagedObject)
     func presentViewController(vc: UIViewController)
     func setSelectedCurrencyIdentifier(identifier: String)
 }
@@ -372,10 +372,6 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         destinationViewController.delegate = self
         self.navigationController?.pushViewController(destinationViewController, animated: true)
     }
-    
-    func popViewController() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
 
     func setAsDefault() {
         let idxAccountActionsGroup = self.screenConstants.idxAccountActionsSection
@@ -391,6 +387,22 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         self.tableView.reloadRowsAtIndexPaths(
             [indexPathDefault, indexPathDelete],
             withRowAnimation: UITableViewRowAnimation.Fade
+        )
+    }
+    
+    func deleteAccount(accountObject: NSManagedObject) {
+        BunnyUtils.showDeleteDialog(
+            self,
+            managedObject: accountObject,
+            deleteTitleKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE,
+            deleteMessegeKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE,
+            deleteActionKey: StringConstants.BUTTON_DELETE_ACCOUNT,
+            tableName: ModelConstants.Entities.account,
+            tableView: self.tableView,
+            completion: {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            // TO-DO: Remove all transactions that are involved with the account
         )
     }
     

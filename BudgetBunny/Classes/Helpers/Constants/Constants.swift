@@ -29,9 +29,13 @@ struct Constants {
     struct SourceInformation {
         static let accountNew = 0
         static let accountEditing = 1
+        
+        static let budgetNew = 0
+        static let budgetEditing = 1
     }
     struct ViewControllers {
-        static let addEditTable = "AddEditAccountTableViewController"
+        static let addEditAccount = "AddEditAccountTableViewController"
+        static let addEditBudget = "AddEditBudgetTableViewController"
         static let currencyPickerTable = "CurrencyPickerTableViewController"
     }
     struct KeyboardTypes {

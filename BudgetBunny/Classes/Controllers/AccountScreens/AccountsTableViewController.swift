@@ -64,6 +64,12 @@ class AccountsTableViewController: UITableViewController {
         let viewTitle = BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_EDIT)
         
         let row = indexPath.row
+        
+        guard row >= 0 && row < self.accountTable.count else {
+            print("This guard exists because an index out of range error literally happened to me ONCE. The row was -1 for some reason. I can't replicate it anymore. TTwTT")
+            return []
+        }
+        
         let account: AccountCell = self.accountTable[row]
         var returnArray: [UITableViewRowAction]
         
@@ -72,17 +78,21 @@ class AccountsTableViewController: UITableViewController {
             
             // Set the delete button
             let delete = UITableViewRowAction(style: .Destructive, title: deleteButtonTitle) { (action, indexPath) in
-                
-                let alertController = AccountUtils.accountDeletionPopup({
-                    let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
-                    model.deleteObject(account.accountObject, completion: {
+                BunnyUtils.showDeleteDialog(
+                    self,
+                    managedObject: account.accountObject,
+                    deleteTitleKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE,
+                    deleteMessegeKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE,
+                    deleteActionKey: StringConstants.BUTTON_DELETE_ACCOUNT,
+                    tableName: ModelConstants.Entities.account,
+                    tableView: self.tableView,
+                    completion: {
                         self.accountTable.removeAtIndex(row)
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                    })
-                })
-                self.presentViewController(alertController, animated: true, completion: nil)
-                                
-                // TO-DO: Remove all transactions that are involved with the account
+                    }
+                    // TO-DO: Remove all transactions that are involved with the account
+                )
+                
             }
             
             // Set the "Set Default" button
@@ -166,7 +176,7 @@ class AccountsTableViewController: UITableViewController {
         var vc: AddEditAccountTableViewController!
         
         self.prepareNextViewController(
-            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditTable),
+            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditAccount),
             sourceInformation: Constants.SourceInformation.accountEditing
         ) { (destinationViewController) in
             vc = destinationViewController as! AddEditAccountTableViewController

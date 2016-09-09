@@ -18,6 +18,7 @@ class AddEditBudgetTableViewController: UITableViewController {
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
+    var budgetInformation: BudgetCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
