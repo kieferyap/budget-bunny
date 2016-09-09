@@ -120,6 +120,24 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
+            // Budget Category
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetCategory,
+                completion: {
+                    let categoryModel = self.model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaLabel = self.betaUIElement as! UILabel
+                    
+                    alphaLabel.text = categoryModel.alphaElementTitle
+                    betaLabel.text = categoryModel.betaElementTitle
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                    // Once tapped, the category will be editable and deletable
+                }
+            )
         }
     }
 }

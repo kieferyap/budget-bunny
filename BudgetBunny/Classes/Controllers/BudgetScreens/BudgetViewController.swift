@@ -248,6 +248,19 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    private func getFrequencyKey() -> String {
+        switch self.timeSegmentedControl.selectedSegmentIndex {
+        case self.screenConstants.idxMonthly:
+            return StringConstants.LABEL_MONTHLY_BUDGET
+        case self.screenConstants.idxWeekly:
+            return StringConstants.LABEL_WEEKLY_BUDGET
+        case self.screenConstants.idxDaily:
+            return StringConstants.LABEL_DAILY_BUDGET
+        default:
+            return ""
+        }
+    }
+    
     // MARK: - Table view data source
     
     // Needed for the swipe functionality
@@ -284,7 +297,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     self,
                     managedObject: (self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell).budgetObject,
                     deleteTitleKey: "Delete budget",
-                    deleteMessegeKey: "This action cannot be undone. Are you sure?",
+                    deleteMessegeKey: "The budget and its associated categories will be deleted. This action cannot be undone. Are you sure?",
                     deleteActionKey: "Delete budget",
                     tableName: ModelConstants.Entities.budget,
                     tableView: self.budgetTableView,
@@ -379,6 +392,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case self.screenConstants.idxBudgetSection:
             let cell = self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell
             let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
+            let frequencyKey = self.getFrequencyKey()
             var vc: AddEditBudgetTableViewController!
             
             self.prepareNextViewController(
@@ -387,8 +401,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ) { (destinationViewController) in
                 vc = destinationViewController as! AddEditBudgetTableViewController
                 vc.budgetInformation = cell
+                vc.frequencyKey = frequencyKey
             }
-            
             self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
@@ -452,24 +466,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        var frequencyKey = ""
-        switch self.timeSegmentedControl.selectedSegmentIndex {
-        case self.screenConstants.idxMonthly:
-            frequencyKey = StringConstants.LABEL_MONTHLY_BUDGET
-            break
-        case self.screenConstants.idxWeekly:
-            frequencyKey = StringConstants.LABEL_WEEKLY_BUDGET
-            break
-        case self.screenConstants.idxDaily:
-            frequencyKey = StringConstants.LABEL_DAILY_BUDGET
-            break
-        default:
-            break
-        }
+        let frequencyKey = self.getFrequencyKey()
 
         self.prepareNextViewController(
             segue.destinationViewController,
-            sourceInformation: -1 // Will be implemented in BUD-0003, I think.
+            sourceInformation: Constants.SourceInformation.budgetNew
         ) { (destinationViewController) in
             let vc = destinationViewController as! AddEditBudgetTableViewController
             vc.frequencyKey = frequencyKey

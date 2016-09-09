@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05B-qG-Fz3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -533,7 +533,7 @@ name</string>
         <!--addEditBudget-->
         <scene sceneID="etL-tf-UCU">
             <objects>
-                <tableViewController id="Hhs-Mw-bfx" customClass="AddEditBudgetTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddEditBudgetTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hhs-Mw-bfx" customClass="AddEditBudgetTableViewController" customModule="BudgetBunny" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="MPo-Oj-HCL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -572,28 +572,40 @@ name</string>
                                     <outlet property="betaUIElement" destination="ux7-Jk-nFf" id="NF7-ST-9ZV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetCategoryCell" id="Pls-gg-jEO" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pls-gg-jEO" id="but-xc-N4l">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amountSpent" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEJ-35-RHs">
+                                            <rect key="frame" x="392" y="11" width="200" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="200" id="gQ4-9S-g4c"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-sH-Jac">
-                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="376" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="leading" secondItem="but-xc-N4l" secondAttribute="leadingMargin" id="6oU-67-e3H"/>
-                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="trailing" secondItem="but-xc-N4l" secondAttribute="trailingMargin" id="Qez-Gd-7h8"/>
-                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="centerY" secondItem="but-xc-N4l" secondAttribute="centerY" id="gp2-ra-oZl"/>
+                                        <constraint firstItem="DEJ-35-RHs" firstAttribute="centerY" secondItem="but-xc-N4l" secondAttribute="centerY" id="7Rp-7z-cqA"/>
+                                        <constraint firstItem="3hD-sH-Jac" firstAttribute="centerY" secondItem="but-xc-N4l" secondAttribute="centerY" id="Ikm-gq-kEl"/>
+                                        <constraint firstItem="DEJ-35-RHs" firstAttribute="leading" secondItem="3hD-sH-Jac" secondAttribute="trailing" constant="8" id="q1u-xY-epx"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="DEJ-35-RHs" secondAttribute="trailing" id="s93-Sm-YCL"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="3hD-sH-Jac" secondAttribute="leading" id="z7e-t1-zvW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="alphaUIElement" destination="3hD-sH-Jac" id="CCU-yT-odt"/>
+                                    <outlet property="alphaUIElement" destination="3hD-sH-Jac" id="ZG8-bR-wqd"/>
+                                    <outlet property="betaUIElement" destination="DEJ-35-RHs" id="cEU-IN-vRw"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBudgetNewCategoryCell" id="qEW-OW-SlX" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">

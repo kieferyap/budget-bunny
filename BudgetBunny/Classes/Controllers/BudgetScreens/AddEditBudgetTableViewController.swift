@@ -14,7 +14,7 @@ protocol AddEditBudgetDelegate: class {
 
 class AddEditBudgetTableViewController: UITableViewController {
 
-    private var categoryList: [SingleElementCell] = []
+    private var categoryList: [DoubleElementCell] = []
     private let screenConstants = ScreenConstants.AddEditBudget.self
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
@@ -26,14 +26,24 @@ class AddEditBudgetTableViewController: UITableViewController {
         // Get the currency symbol of the default account
         let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
         let currencySymbol = defaultCurrency.currencySymbol
+        var budgetName = ""
+        var budgetAmount = ""
+        
+        if (
+            self.sourceInformation == Constants.SourceInformation.budgetEditing
+            && self.budgetInformation != nil
+        ) {
+            let floatFormat: String = self.budgetInformation!.budgetAmount.isInteger ? "%.0f" : "%.2f"
+            budgetAmount = String(format: floatFormat, self.budgetInformation!.budgetAmount)
+            budgetName = (self.budgetInformation?.alphaElementTitle)!
+        }
         
         let amountText = BunnyUtils.uncommentedLocalizedString(self.frequencyKey)
             .stringByAppendingString(" (")
             .stringByAppendingString(currencySymbol)
             .stringByAppendingString(")")
         
-        self.prepareModelData(screenConstants.sectionCount) { 
-            
+        self.prepareModelData(screenConstants.sectionCount) {
             // Budget name
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxInformationGroup,
@@ -45,7 +55,7 @@ class AddEditBudgetTableViewController: UITableViewController {
                     cellSettings: [
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.budgetNameMaxLength,
-                        Constants.AppKeys.keyTextFieldValue: ""
+                        Constants.AppKeys.keyTextFieldValue: budgetName
                     ]
                 )
             )
@@ -61,7 +71,7 @@ class AddEditBudgetTableViewController: UITableViewController {
                     cellSettings:[
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.budgetAmountMaxLength,
-                        Constants.AppKeys.keyTextFieldValue: ""
+                        Constants.AppKeys.keyTextFieldValue: budgetAmount
                     ]
                 )
             )
@@ -73,17 +83,36 @@ class AddEditBudgetTableViewController: UITableViewController {
     }
     
     private func updateCategorySection() {
-        // Will (probably) be used in editing
-        /*
-         let categoryCell = AddEditBudgetCell(
-         fieldKey: "Breakfast",
-         placeholder: "",
-         cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
-         cellSettings: [:]
-         )
-         */
-        
         self.modelData[screenConstants.idxCategoryGroup] = []
+        
+        if (
+            self.sourceInformation == Constants.SourceInformation.budgetEditing
+            && self.budgetInformation != nil
+        ) {
+            let categoryModel = AttributeModel(
+                tableName: ModelConstants.Entities.category,
+                key: ModelConstants.Category.isIncome,
+                value: false
+            )
+            
+            let model = BunnyModel(tableName: ModelConstants.Entities.category)
+            let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
+            
+            model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
+                for category in fetchedObjects {
+                    print(category.valueForKey(ModelConstants.Category.name))
+                    self.categoryList.append(
+                        DoubleElementCell(
+                            alphaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
+                            betaElementTitleKey: BunnyUtils.getFormattedAmount(category.valueForKey(ModelConstants.Category.monthlyAmount) as! Double, identifier: defaultCurrency.identifier),
+                            cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
+                            cellSettings: [:]
+                        )
+                    )
+                }
+            })
+        }
+        
         
         let addCategoryCell = SingleElementCell(
             alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_CATEGORY_PLACEHOLDER,
@@ -172,10 +201,8 @@ class AddEditBudgetTableViewController: UITableViewController {
                 
                 // Add the related categories
                 if self.categoryList.count > 0 {
-                    
                     for item in self.categoryList {
                         let categoryName = item.alphaElementTitle
-                        
                         activeRecord.changeTableName(ModelConstants.Entities.category)
                         values = NSDictionary.init(
                             objects: [
@@ -191,12 +218,11 @@ class AddEditBudgetTableViewController: UITableViewController {
                                 ModelConstants.Category.budgetId
                             ]
                         )
+                        activeRecord.insertObject(values)
+                        activeRecord.save()
                     }
-                    
-                    activeRecord.insertObject(values)
                 }
                 
-                activeRecord.save()
                 
                 self.navigationController?.popViewControllerAnimated(true)
             }
@@ -262,8 +288,14 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             isRename: false)
         { (success, newItem) in
             if success {
-                let newCategoryItem = SingleElementCell(
+                let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
+                
+                let newCategoryItem = DoubleElementCell(
                     alphaElementTitleKey: newItem,
+                    betaElementTitleKey: BunnyUtils.getFormattedAmount(
+                        0.0,
+                        identifier: defaultCurrency.identifier
+                    ),
                     cellIdentifier: Constants.CellIdentifiers.addBudgetCategory,
                     cellSettings: [:]
                 )

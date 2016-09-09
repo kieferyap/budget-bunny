@@ -86,24 +86,6 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
-            // Budget Category display
-            self.addCellType(
-                Constants.CellIdentifiers.addBudgetCategory,
-                completion: {
-                    let budgetModel = self.model as! SingleElementCell
-                    let alphaLabel = self.alphaUIElement as! UILabel
-                    alphaLabel.text = budgetModel.alphaElementTitle
-                    self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
-                    self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                },
-                getValue: { () -> String in
-                    return ""
-                },
-                performAction: {
-                    // Once tapped, the category will be editable and deletable
-                }
-            )
-            
             // Adding a new budget category
             self.addCellType(
                 Constants.CellIdentifiers.addBudgetNewCategory,
