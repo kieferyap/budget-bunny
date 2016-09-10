@@ -302,7 +302,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     tableName: ModelConstants.Entities.budget,
                     tableView: self.budgetTableView,
                     completion: {
-                        // TO-DO: Delete all associated categories as well!                        
+                        
                         self.loadData()
                     }
                 )

@@ -91,8 +91,8 @@ class AddEditBudgetTableViewController: UITableViewController {
         ) {
             let categoryModel = AttributeModel(
                 tableName: ModelConstants.Entities.category,
-                key: ModelConstants.Category.isIncome,
-                value: false
+                key: ModelConstants.Category.budgetId,
+                value: (self.budgetInformation?.budgetObject)!
             )
             
             let model = BunnyModel(tableName: ModelConstants.Entities.category)
@@ -100,7 +100,6 @@ class AddEditBudgetTableViewController: UITableViewController {
             
             model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
                 for category in fetchedObjects {
-                    print(category.valueForKey(ModelConstants.Category.name))
                     self.categoryList.append(
                         DoubleElementCell(
                             alphaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
