@@ -27,6 +27,8 @@ class BudgetUtils: NSObject {
                     trimmedText,
                     parentArray: incomeList,
                     maxCount: ScreenConstants.Budget.incomeMaxCount,
+                    maxLength: ScreenConstants.Budget.incomeNameMaxLength,
+                    errorMaxLengthKey: "The name is too long",
                     errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
                     errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
                     errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,

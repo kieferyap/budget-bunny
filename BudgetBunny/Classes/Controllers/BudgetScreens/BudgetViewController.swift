@@ -145,6 +145,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             incomeName,
             parentArray: self.incomeList,
             maxCount: screenConstants.incomeMaxCount,
+            maxLength: ScreenConstants.Budget.incomeNameMaxLength,
+            errorMaxLengthKey: "The name is too long",
             errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES,
             errorEmptyNameKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY,
             errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,

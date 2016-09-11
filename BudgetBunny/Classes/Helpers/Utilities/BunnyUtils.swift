@@ -264,6 +264,8 @@ class BunnyUtils: NSObject {
         inputName: String,
         parentArray: [SingleElementCell],
         maxCount: Int,
+        maxLength: Int,
+        errorMaxLengthKey: String,
         errorMaxCountKey: String,
         errorEmptyNameKey: String,
         errorDuplicateNameKey: String,
@@ -279,6 +281,16 @@ class BunnyUtils: NSObject {
                 viewController,
                 titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
                 messageKey: errorMaxCountKey
+            )
+            completion(success: false, newItem: "")
+            return
+        }
+        
+        guard trimmedName.characters.count <= maxLength else {
+            BunnyUtils.showAlertWithOKButton(
+                viewController,
+                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                messageKey: errorMaxLengthKey
             )
             completion(success: false, newItem: "")
             return

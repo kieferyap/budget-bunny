@@ -81,6 +81,9 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
+                    
+                    alphaLabel.adjustsFontSizeToFitWidth = true
+                    betaLabel.adjustsFontSizeToFitWidth = true
                     self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                 },

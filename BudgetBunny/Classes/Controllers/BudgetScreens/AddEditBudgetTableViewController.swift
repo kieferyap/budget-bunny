@@ -280,6 +280,8 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             categoryName,
             parentArray: self.categoryList,
             maxCount: screenConstants.categoryMaxCount,
+            maxLength: ScreenConstants.AddEditBudget.categoryNameMaxLength,
+            errorMaxLengthKey: "The name is too long",
             errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
             errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
             errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
