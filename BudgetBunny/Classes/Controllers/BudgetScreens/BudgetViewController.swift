@@ -282,8 +282,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Set the swipe buttons
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
-        print(indexPath.section, indexPath.row)
         var returnArray: [UITableViewRowAction] = []
         
         switch (indexPath.section) {

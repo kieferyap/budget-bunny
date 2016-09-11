@@ -25,10 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UI Testing is underway: delete core data, set max account to 5
         let environment = NSProcessInfo.processInfo().environment;
         if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
-            ScreenConstants.Account.accountMaxCount = 5
-            ScreenConstants.AddEditBudget.categoryMaxCount = 5
             let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
-            model.deleteAllObjects()
+            model.deleteAllObjects({
+                ScreenConstants.Account.accountMaxCount = 5
+                ScreenConstants.AddEditBudget.categoryMaxCount = 5
+            })
         }
         
         return true

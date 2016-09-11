@@ -14,7 +14,7 @@
         <attribute name="monthlyBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="monthlyRemainingBudget" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="budgetCategoryId" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="budgetId" inverseEntity="Category" syncable="YES"/>
+        <relationship name="budgetCategoryId" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Category" inverseName="budgetId" inverseEntity="Category" syncable="YES"/>
         <relationship name="budgetTransactionId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="budgetId" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
