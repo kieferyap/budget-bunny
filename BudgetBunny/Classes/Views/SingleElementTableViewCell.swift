@@ -20,33 +20,20 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             self.addCellType(
                 Constants.CellIdentifiers.addAccountAction,
                 completion: {
-                    let buttonModel = self.model as! SingleElementCell
-                    let alphaButton = self.alphaUIElement as! UIButton
-                    
-                    BunnyUtils.prepareButton(
-                        alphaButton,
-                        text: buttonModel.alphaElementTitle,
-                        model: buttonModel,
-                        target: self
-                    )
+                    self.buttonCellTypeCompletion()
                 },
                 getValue: {
                     // A button does not have a return value
                     return ""
                 },
                 performAction:  {
-                    let buttonModel = model as! SingleElementCell
-                    self.performSelector(
-                        Selector(
-                            buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
-                        )
-                    )
+                    self.buttonCellTypeAction()
                 }
             )
             
             // "Add new income" cell in the Budget Screen
             self.addCellType(
-                Constants.CellIdentifiers.addIncome,
+                Constants.CellIdentifiers.addIncomeCategory,
                 completion: {
                     let budgetModel = self.model as! SingleElementCell
                     let alphaButton = self.alphaUIElement as! UIButton
@@ -112,7 +99,44 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     alphaTextField.becomeFirstResponder()
                 }
             )
+            
+            // "Delete Budget" in the edit budget screen
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetAction,
+                completion: {
+                    self.buttonCellTypeCompletion()
+                },
+                getValue: {
+                    // A button does not have a return value
+                    return ""
+                },
+                performAction:  {
+                    self.buttonCellTypeAction()
+                }
+            )
         }
+    }
+    
+    // Button-specific methods
+    private func buttonCellTypeCompletion() {
+        let buttonModel = self.model as! SingleElementCell
+        let alphaButton = self.alphaUIElement as! UIButton
+        
+        BunnyUtils.prepareButton(
+            alphaButton,
+            text: buttonModel.alphaElementTitle,
+            model: buttonModel,
+            target: self
+        )
+    }
+    
+    private func buttonCellTypeAction() {
+        let buttonModel = model as! SingleElementCell
+        self.performSelector(
+            Selector(
+                buttonModel.cellSettings[Constants.AppKeys.keySelector] as! String
+            )
+        )
     }
     
     // Button selectors
@@ -120,9 +144,9 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
         BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
-                BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyManagedObject) { (object) in
                     let managedObject = object as! NSManagedObject
-                    let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                    let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
                     activeRecord.selectAllObjects({ (fetchedObjects) -> Void in
                         // For each element
                         for object in fetchedObjects {
@@ -150,8 +174,19 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
         BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
             let isEnabled = object as! Bool
             if isEnabled {
-                BunnyUtils.keyExistsForCellSettings(self.model!, key: ScreenConstants.AddEditAccount.keyManagedObject) { (object) in
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyManagedObject) { (object) in
                     (self.delegate as! AddEditAccountDelegate).deleteAccount(object as! NSManagedObject)
+                }
+            }
+        })
+    }
+    
+    func deleteBudget() {
+        BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyEnabled, completion: { (object) in
+            let isEnabled = object as! Bool
+            if isEnabled {
+                BunnyUtils.keyExistsForCellSettings(self.model!, key: Constants.AppKeys.keyManagedObject) { (object) in
+                    (self.delegate as! AddEditBudgetDelegate).deleteBudget(object as! NSManagedObject)
                 }
             }
         })

@@ -73,3 +73,15 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
 "ERRORLABEL_TOO_MANY_BUDGETS" = "[Not localized yet]";
 "ERRORLABEL_NO_DEFAULT_ACCOUNT" = "[Not localized yet]";
+"ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG" = "[Not localized yet]";
+"ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG" = "[Not localized yet]";
+"LABEL_DELETE_CATEGORY_TITLE" = "[Not localized yet]";
+"LABEL_DELETE_INCOME_CATEGORY_MESSAGE" = "[Not localized yet]";
+"LABEL_DELETE_INCOME_CATEGORY_BUTTON" = "[Not localized yet]";
+"LABEL_DELETE_BUDGET_CATEGORY_MESSAGE" = "[Not localized yet]";
+"LABEL_DELETE_BUDGET_CATEGORY_BUTTON" = "[Not localized yet]";
+"LABEL_DELETE_BUDGET_TITLE" = "[Not localized yet]";
+"LABEL_DELETE_BUDGET_BUTTON" = "[Not localized yet]";
+"LABEL_DELETE_BUDGET_MESSAGE" = "[Not localized yet]";
+"ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
+"LABEL_BUDGET_CATEGORY_ACTIONS" = "[Not localized yet]";

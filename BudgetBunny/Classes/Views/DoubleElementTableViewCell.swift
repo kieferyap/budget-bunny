@@ -73,9 +73,9 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             
             // "Salary: $2000"/Income Category in the Budget Screen
             self.addCellType(
-                Constants.CellIdentifiers.budgetIncome,
+                Constants.CellIdentifiers.incomeCategory,
                 completion: {
-                    let incomeModel = self.model as! CategoryCell
+                    let incomeModel = self.model as! IncomeCategoryCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
                     
@@ -84,7 +84,6 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     alphaLabel.adjustsFontSizeToFitWidth = true
                     betaLabel.adjustsFontSizeToFitWidth = true
-                    self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                 },
                 getValue: { () -> String in
@@ -133,12 +132,15 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     alphaLabel.text = categoryModel.alphaElementTitle
                     betaLabel.text = categoryModel.betaElementTitle
+                    
+                    alphaLabel.adjustsFontSizeToFitWidth = true
+                    betaLabel.adjustsFontSizeToFitWidth = true
                 },
                 getValue: { () -> String in
                     return ""
                 },
                 performAction: {
-                    // Once tapped, the category will be editable and deletable
+                    (self.delegate as! AddEditBudgetDelegate).displayCategoryCellActions()
                 }
             )
         }

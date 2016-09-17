@@ -109,23 +109,41 @@ class BunnyUtils: NSObject {
         return true
     }
     
-    class func prepareButton(button: UIButton, text: String, model: BunnyCell, target: NSObject) -> Bool {
+    // Prepares the button, returns true if the preparation is successful. False if otherwise.
+    class func prepareButton(
+        button: UIButton,
+        text: String,
+        model: BunnyCell,
+        target: NSObject
+    ) -> Bool {
+        // Set the button's text.
         button.setTitle(text, forState: UIControlState.Normal)
+        
+        // Make it so that once a button is held, the user can't tap any other button.
+        // If not, two buttons may be pressed AT THE SAME TIME.
         button.exclusiveTouch = true
         
+        // The following three guards are mostly for me, the programmer.
+        // Make sure that the button has a button color property.
         guard let buttonColor = model.cellSettings[Constants.AppKeys.keyButtonColor] else {
             return false
         }
+        
+        // Make sure that the button has an isEnabled property.
         guard let isButtonEnabled = model.cellSettings[Constants.AppKeys.keyEnabled] else {
             return false
         }
+        
+        // Make sure that the button has a selector once clicked.
         guard let selectorName = model.cellSettings[Constants.AppKeys.keySelector] else {
             return false
         }
         
+        // Set the button color and the isEnabled
         button.tintColor = buttonColor as! UIColor
         button.enabled = isButtonEnabled as! Bool
         
+        // Set the selelector action if the button is enabled.
         if button.enabled {
             button.addTarget(
                 target,
@@ -136,6 +154,7 @@ class BunnyUtils: NSObject {
         return true
     }
     
+    // Given an identifier (e.g. "en_us"), retrieve its currency object
     class func getCurrencyObjectFromIdentifier(identifier: String) -> Currency {
         let currency = Currency()
         currency.setAttributes(identifier)
@@ -143,7 +162,7 @@ class BunnyUtils: NSObject {
     }
     
     class func getCurrencyObjectOfDefaultAccount() -> Currency {
-        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+        let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
         let currency = Currency()
         currency.setAttributes(NSLocale.currentLocale().localeIdentifier)
         
@@ -157,6 +176,7 @@ class BunnyUtils: NSObject {
         let queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_group_async(group, queue) {
+            // This runs in a separate thread.
             activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
                 if fetchedObjects.count > 0 {
                     let defaultAccount = fetchedObjects[0] as! Account
@@ -173,7 +193,7 @@ class BunnyUtils: NSObject {
     }
     
     class func isDefaultAccountExisting() -> Bool {
-        let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+        let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
         let accountModel = AttributeModel(
             tableName: ModelConstants.Entities.account,
             key: ModelConstants.Account.isDefault,
@@ -185,6 +205,7 @@ class BunnyUtils: NSObject {
         let queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_group_async(group, queue) {
+            // This runs in a separate thread.
             activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
                 if fetchedObjects.count > 0 {
                     returnValue = true
@@ -198,23 +219,14 @@ class BunnyUtils: NSObject {
         
     }
     
+    // 200.0 + "en_us" = $200.00
     class func getFormattedAmount(input: Double, identifier: String) -> String {
         let inputString = String(format: "%.2f", input)
         let currency = BunnyUtils.getCurrencyObjectFromIdentifier(identifier)
         return "\(currency.currencySymbol) \(inputString)"
     }
     
-    class func delayTask(seconds: Double, completion: () -> Void) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(seconds*Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            completion
-        )
-    }
-    
+    // Presents an alert with a text field, and the options OK and Cancel
     class func showTextFieldAlertWithCancelOK(
         titleKey: String,
         messageKey: String,
@@ -222,11 +234,14 @@ class BunnyUtils: NSObject {
         viewController: UIViewController,
         completion: (textField: UITextField) -> Void
     ) {
+        // Set alert's title and message
         let alertController = UIAlertController(
             title: BunnyUtils.uncommentedLocalizedString(titleKey),
             message: BunnyUtils.uncommentedLocalizedString(messageKey),
             preferredStyle: UIAlertControllerStyle.Alert
         )
+        
+        // Cancel button
         alertController.addAction(
             UIAlertAction(
                 title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
@@ -234,6 +249,8 @@ class BunnyUtils: NSObject {
                 handler:nil
             )
         )
+        
+        // OK button
         alertController.addAction(
             UIAlertAction(
                 title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_OK),
@@ -244,9 +261,13 @@ class BunnyUtils: NSObject {
                 }
             )
         )
+        
+        // Set text field's placeholder text
         alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) in
             textField.placeholder = BunnyUtils.uncommentedLocalizedString(placeholderKey)
         }
+        
+        // Present the alert controller
         viewController.presentViewController(
             alertController,
             animated: true,
@@ -254,12 +275,14 @@ class BunnyUtils: NSObject {
         )
     }
     
+    // Trims leading and trailing spaces of a string
     class func trimLeadingTrailingSpaces(inputString: String) -> String {
         return inputString.stringByTrimmingCharactersInSet(
             NSCharacterSet.whitespaceAndNewlineCharacterSet()
         )
     }
     
+    // Checks a string and saves it in the core data.
     class func saveSingleField(
         inputName: String,
         parentArray: [SingleElementCell],
@@ -273,9 +296,14 @@ class BunnyUtils: NSObject {
         isRename: Bool,
         completion: (success: Bool, newItem: String) -> Void
     ) {
+        // Trim the string
         let trimmedName = BunnyUtils.trimLeadingTrailingSpaces(inputName)
+        
+        // If we're renaming instead of inserting, 
+        // we don't have to check for the number of elements in the parent array
         let parentCountCheck = isRename ? true : parentArray.count < maxCount
         
+        // Make sure that the number of elements in the parent array is still alright.
         guard parentCountCheck else {
             BunnyUtils.showAlertWithOKButton(
                 viewController,
@@ -286,6 +314,7 @@ class BunnyUtils: NSObject {
             return
         }
         
+        // Make sure that the length of the string doesn't exceed a certain length
         guard trimmedName.characters.count <= maxLength else {
             BunnyUtils.showAlertWithOKButton(
                 viewController,
@@ -296,6 +325,7 @@ class BunnyUtils: NSObject {
             return
         }
         
+        // Make sure that we're not inserting an empty string
         guard trimmedName != "" else {
             BunnyUtils.showAlertWithOKButton(
                 viewController,
@@ -320,8 +350,6 @@ class BunnyUtils: NSObject {
             parentArray: parentArray
         )
         
-        // TO-DO: Sort the income alphabetically
-        // TO-DO: Income name editing and category name deletion
         let validator = Validator(viewController: viewController)
         validator.addValidator(uniquenessValidator)
         validator.validate { (success) in
@@ -329,6 +357,7 @@ class BunnyUtils: NSObject {
         }
     }
     
+    // Presents a confirmation dialog to the user when they choose to delete something
     class func showDeleteDialog(
         vc: UIViewController,
         managedObject: NSManagedObject,
@@ -344,12 +373,15 @@ class BunnyUtils: NSObject {
             message: BunnyUtils.uncommentedLocalizedString(deleteMessegeKey),
             preferredStyle: UIAlertControllerStyle.ActionSheet
         )
+        
+        // "Delete X"
         alertController.addAction(
             UIAlertAction.init(
                 title: BunnyUtils.uncommentedLocalizedString(deleteActionKey),
                 style: UIAlertActionStyle.Destructive,
                 handler: { (UIAlertAction) in
-                    let activeRecord = BunnyModel.init(tableName: tableName)
+                    // Delete from the core data
+                    let activeRecord = ActiveRecord.init(tableName: tableName)
                     activeRecord.deleteObject(
                         managedObject,
                         completion: completion
@@ -357,6 +389,8 @@ class BunnyUtils: NSObject {
                 }
             )
         )
+        
+        // Cancel button
         alertController.addAction(
             UIAlertAction.init(
                 title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
@@ -364,6 +398,7 @@ class BunnyUtils: NSObject {
                 handler: nil
             )
         )
+        
         vc.presentViewController(
             alertController,
             animated: true,
@@ -371,6 +406,7 @@ class BunnyUtils: NSObject {
         )
         
         if (tableView != nil) {
+            // If any cell in the table is swiped left, then it will return to its normal position
             tableView?.setEditing(false, animated: true)
         }
     }

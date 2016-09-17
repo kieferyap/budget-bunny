@@ -21,9 +21,10 @@ struct Constants {
         static let addBudgetFieldValue = "addBudgetFieldValueCell"
         static let addBudgetCategory = "addBudgetCategoryCell"
         static let addBudgetNewCategory = "addBudgetNewCategoryCell"
+        static let addBudgetAction = "addBudgetActionCell"
         static let budget = "budgetCell"
-        static let budgetIncome = "incomeCell"
-        static let addIncome = "addIncomeCell"
+        static let incomeCategory = "incomeCategoryCell"
+        static let addIncomeCategory = "addIncomeCategoryCell"
         static let budgetInexistence = "budgetInexistenceCell"
     }
     struct SourceInformation {
@@ -51,6 +52,7 @@ struct Constants {
         static let keySelector = "selector"
         static let keyEnabled = "enabled"
         static let keyButtonColor = "color"
+        static let keyManagedObject = "managedObject"
         // Navigation bar localization keys
         static let tabBarKeys = [
             "MENULABEL_ACCOUNT",

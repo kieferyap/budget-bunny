@@ -32,7 +32,7 @@ class AccountsTableViewController: UITableViewController {
     private func loadData() {
         self.accountTable = []
         
-        let model = BunnyModel(tableName: ModelConstants.Entities.account)
+        let model = ActiveRecord(tableName: ModelConstants.Entities.account)
         model.selectAllObjects { (fetchedObjects) in
             for account in fetchedObjects {
                 
@@ -99,7 +99,7 @@ class AccountsTableViewController: UITableViewController {
             let setDefault = UITableViewRowAction(style: .Default, title: setDefaultButtonTitle) { (action, indexPath) in
             
                 var refreshingIndexPath: NSIndexPath!
-                let model = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                let model = ActiveRecord.init(tableName: ModelConstants.Entities.account)
                 
                 // TO-DO: Reset all budgets when the default account has been reset IF the currency is different than the original.
                 
@@ -115,7 +115,7 @@ class AccountsTableViewController: UITableViewController {
                             
                         // Else, if the element is the previously default account, set isDefault to false.
                         else if object.valueForKey(ModelConstants.Account.isDefault) as! Bool == true {
-                            refreshingIndexPath = NSIndexPath.init(forRow: index, inSection: 0)
+                            refreshingIndexPath = NSIndexPath.init(forRow: index, inSection: ScreenConstants.Account.idxAccountSection)
                             object.setValue(false, forKey: ModelConstants.Account.isDefault)
                         }
                     }

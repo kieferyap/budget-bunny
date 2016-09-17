@@ -26,7 +26,7 @@ class AttributeUniquenessValidator: NSObject, ValidatorProtocol {
         var isDuplicateNotFound = false
         let oldName = self.oldName
         
-        let model = BunnyModel(tableName: field.tableName)
+        let model = ActiveRecord(tableName: field.tableName)
         model.selectAllObjectsWithParameters([field.format: field.value]) { (objects) in
             var conditions = false
             

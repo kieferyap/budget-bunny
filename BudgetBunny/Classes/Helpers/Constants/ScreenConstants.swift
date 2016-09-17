@@ -22,7 +22,6 @@ struct ScreenConstants {
         static let accountCellHeight = 60.0
         
         static let keyHeight = "height"
-        static let keyManagedObject = "managedObject"
         
         static let selectorDelete = "deleteAccount"
         static let selectorSetDefault = "setDefault"
@@ -59,15 +58,22 @@ struct ScreenConstants {
     }
     struct AddEditBudget {
         static let sectionCount = 2
+        static let sectionCountWithDelete = 3
+        
         static let idxInformationGroup = 0
         static let idxCategoryGroup = 1
+        static let idxActionsGroup = 2
+        
         static let idxNameCell = 0
         static let idxAmountCell = 1
+        static let idxDeleteCell = 0
         
         static let budgetNameMaxLength = 25
         static let budgetAmountMaxLength = 15
         static let categoryNameMaxLength = 25
         
         static var categoryMaxCount = 20
+        
+        static let selectorDelete = "deleteBudget"
     }
 }

@@ -73,3 +73,15 @@
 "ERRORLABEL_TOO_MANY_CATEGORIES" = "The number of categories created has been exceeded.\n\nKindly delete a category before proceeding.";
 "ERRORLABEL_TOO_MANY_BUDGETS" = "The number of budgets created has been exceeded.\n\nKindly delete a budget before proceeding.";
 "ERRORLABEL_NO_DEFAULT_ACCOUNT" = "There are no default accounts available.\n\nKindly create a default account before proceeding.";
+"ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG" = "The name of the Income Category is too long. Please specify a shorter name.";
+"ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG" = "The name of the Budget Category is too long. Please specify a shorter name.";
+"LABEL_DELETE_CATEGORY_TITLE" = "Delete Category";
+"LABEL_DELETE_INCOME_CATEGORY_MESSAGE" = "The selected income category and its associated transactions will be deleted. This action cannot be undone. Are you sure?";
+"LABEL_DELETE_INCOME_CATEGORY_BUTTON" = "Delete Income Category";
+"LABEL_DELETE_BUDGET_CATEGORY_MESSAGE" = "The selected budget category and its associated transactions will be deleted. This action cannot be undone. Are you sure?";
+"LABEL_DELETE_BUDGET_CATEGORY_BUTTON" = "Delete Budget Category";
+"LABEL_DELETE_BUDGET_TITLE" = "Delete Budget";
+"LABEL_DELETE_BUDGET_BUTTON" = "Delete Budget";
+"LABEL_DELETE_BUDGET_MESSAGE" = "The selected budget, its associated categories, and the transactions associated with them will all be deleted. This action cannot be undone. Are you sure?";
+"ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY" = "The budget category name must not be left blank.";
+"LABEL_BUDGET_CATEGORY_ACTIONS" = "Budget Category Actions";

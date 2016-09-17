@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
@@ -21,10 +22,10 @@
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
 		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
 		FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */; };
-		FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */; };
+		FB3C67EA1D427AC3001D0E6B /* IncomeCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */; };
 		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
-		FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* BunnyModel.swift */; };
+		FB52461C1CF5F212005B3679 /* ActiveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* ActiveRecord.swift */; };
 		FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCategoryCell.swift; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
@@ -125,10 +127,10 @@
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
 		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
 		FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerScreen.swift; sourceTree = "<group>"; };
-		FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeCategoryCell.swift; sourceTree = "<group>"; };
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
-		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
+		FB52461B1CF5F212005B3679 /* ActiveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRecord.swift; sourceTree = "<group>"; };
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +297,7 @@
 				FB97C3391CB499D800C35BC0 /* Items */,
 				FB97C33A1CB499DE00C35BC0 /* ManagedObjects */,
 				FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */,
-				FB52461B1CF5F212005B3679 /* BunnyModel.swift */,
+				FB52461B1CF5F212005B3679 /* ActiveRecord.swift */,
 				FB8A9B971CC65AB10017D0D3 /* Currency.swift */,
 				FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */,
 			);
@@ -311,7 +313,8 @@
 				FBAF76A81D3135FC00E15CC5 /* TripleElementCell.swift */,
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FB6B60291D28F29D00C81ED2 /* BudgetCell.swift */,
-				FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */,
+				FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */,
+				243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */,
 				FB238F2D1CEE101900636CCC /* AttributeModel.swift */,
 			);
 			path = Items;
@@ -702,6 +705,7 @@
 				FB6AC1291D2137BB009EC80C /* Account.swift in Sources */,
 				FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
+				243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */,
 				FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */,
 				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
 				FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */,
@@ -728,7 +732,7 @@
 				FB6AC1231D2137BB009EC80C /* Wishitem.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
 				FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */,
-				FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */,
+				FB3C67EA1D427AC3001D0E6B /* IncomeCategoryCell.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
 				FBAF76A91D3135FC00E15CC5 /* TripleElementCell.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,
@@ -747,7 +751,7 @@
 				FB6AC1211D2137BB009EC80C /* Budget.swift in Sources */,
 				FBAF76B11D3150CA00E15CC5 /* TripleElementTableViewCell.swift in Sources */,
 				FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */,
-				FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */,
+				FB52461C1CF5F212005B3679 /* ActiveRecord.swift in Sources */,
 				FBAF76AB1D313C5F00E15CC5 /* BunnyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

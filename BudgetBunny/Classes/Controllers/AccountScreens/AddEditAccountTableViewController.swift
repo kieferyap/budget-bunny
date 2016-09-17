@@ -78,7 +78,7 @@ class AddEditAccountTableViewController: UITableViewController {
                             Constants.AppKeys.keySelector: self.screenConstants.selectorSetDefault,
                             Constants.AppKeys.keyEnabled: isKeyEnabled,
                             Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen,
-                            self.screenConstants.keyManagedObject: accountObject
+                            Constants.AppKeys.keyManagedObject: accountObject
                         ]
                     )
                 )
@@ -94,7 +94,7 @@ class AddEditAccountTableViewController: UITableViewController {
                             Constants.AppKeys.keySelector: self.screenConstants.selectorDelete,
                             Constants.AppKeys.keyEnabled: isKeyEnabled,
                             Constants.AppKeys.keyButtonColor: Constants.Colors.dangerColor,
-                            self.screenConstants.keyManagedObject: accountObject
+                            Constants.AppKeys.keyManagedObject: accountObject
                         ]
                     )
                 )
@@ -250,7 +250,7 @@ class AddEditAccountTableViewController: UITableViewController {
             // If there are no errors, save the fields
             if success {
                 // Adding a new account
-                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
                 
                 // Set all isDefaults to false
                 if isDefaultAccountBool {

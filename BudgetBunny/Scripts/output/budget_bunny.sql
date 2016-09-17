@@ -214,6 +214,18 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 53	ERRORLABEL_TOO_MANY_CATEGORIES	The number of categories created has been exceeded.\\n\\nKindly delete a category before proceeding.	[Not localized yet]	[Not localized yet]	2016-06-30 01:40:44.607786
 71	ERRORLABEL_TOO_MANY_BUDGETS	The number of budgets created has been exceeded.\\n\\nKindly delete a budget before proceeding.	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.622333
 72	ERRORLABEL_NO_DEFAULT_ACCOUNT	There are no default accounts available.\\n\\nKindly create a default account before proceeding.	[Not localized yet]	[Not localized yet]	2016-09-08 10:56:03.62986
+78	ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG	The name of the Income Category is too long. Please specify a shorter name.	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.125665
+79	ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG	The name of the Budget Category is too long. Please specify a shorter name.	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.25379
+80	LABEL_DELETE_CATEGORY_TITLE	Delete Category	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.259414
+81	LABEL_DELETE_INCOME_CATEGORY_MESSAGE	The selected income category and its associated transactions will be deleted. This action cannot be undone. Are you sure?	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.267344
+82	LABEL_DELETE_INCOME_CATEGORY_BUTTON	Delete Income Category	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.273184
+83	LABEL_DELETE_BUDGET_CATEGORY_MESSAGE	The selected budget category and its associated transactions will be deleted. This action cannot be undone. Are you sure?	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.314875
+84	LABEL_DELETE_BUDGET_CATEGORY_BUTTON	Delete Budget Category	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.320706
+85	LABEL_DELETE_BUDGET_TITLE	Delete Budget	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.325751
+86	LABEL_DELETE_BUDGET_BUTTON	Delete Budget	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.330402
+87	LABEL_DELETE_BUDGET_MESSAGE	The selected budget, its associated categories, and the transactions associated with them will all be deleted. This action cannot be undone. Are you sure?	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.413212
+88	ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY	The budget category name must not be left blank.	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:22.420099
+89	LABEL_BUDGET_CATEGORY_ACTIONS	Budget Category Actions	[Not localized yet]	[Not localized yet]	2016-09-15 11:00:23.658159
 \.
 
 
@@ -221,7 +233,7 @@ COPY localizable_words (localizable_word_id, wording_key, localization_en, local
 -- Name: localizable_words_seq; Type: SEQUENCE SET; Schema: public; Owner: orca
 --
 
-SELECT pg_catalog.setval('localizable_words_seq', 77, true);
+SELECT pg_catalog.setval('localizable_words_seq', 89, true);
 
 
 --
