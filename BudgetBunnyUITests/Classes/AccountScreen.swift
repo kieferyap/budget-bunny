@@ -14,7 +14,7 @@ class AccountScreen: BaseScreen {
     func tapAddAccountButton() {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
-        ].buttons["+"].tap()
+        ].buttons["Add"].tap()
     }
     
     func swipeCellLeftWithIndex(index: UInt) {

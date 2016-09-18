@@ -22,14 +22,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = universalTintColor
         UITabBar.appearance().tintColor = universalTintColor
         
-        // UI Testing is underway: delete core data, set max account to 5
         let environment = NSProcessInfo.processInfo().environment;
-        if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
+        
+        // UI Testing is underway: delete core data, set max account to 5
+        if environment["isTesting"] == Constants.App.trueString {
+            // Delete account table
             let model = ActiveRecord.init(tableName: ModelConstants.Entities.account)
-            model.deleteAllObjects({
-                ScreenConstants.Account.accountMaxCount = 5
-                ScreenConstants.AddEditBudget.categoryMaxCount = 5
-            })
+            model.deleteAllObjects({}) // We won't really do anything after deleting so...
+            
+            // Delete budget table
+            model.changeTableName(ModelConstants.Entities.budget)
+            model.deleteAllObjects({})
+            
+            // Delete category table
+            model.changeTableName(ModelConstants.Entities.category)
+            model.deleteAllObjects({})
+            
+            // Change maximum counts for faster testing
+            let testingMaxCount = 5
+            ScreenConstants.Account.accountMaxCount = testingMaxCount
+            ScreenConstants.AddEditBudget.categoryMaxCount = testingMaxCount
+            ScreenConstants.Budget.budgetMaxCount = testingMaxCount
+            ScreenConstants.Budget.incomeMaxCount = testingMaxCount
+            ScreenConstants.AddEditBudget.categoryMaxCount = testingMaxCount
+        }
+        
+        // Also only in Unit Testing: this flag adds automatically adds a default account
+        if environment["needsDefaultAccount"] == Constants.App.trueString {
+            let model = ActiveRecord.init(tableName: ModelConstants.Entities.account)
+            
+            let values = NSDictionary.init(
+                objects: [
+                    "My Wallet",
+                    "en_us",
+                    true,
+                    1000
+                ],
+                forKeys: [
+                    ModelConstants.Account.name,
+                    ModelConstants.Account.currency,
+                    ModelConstants.Account.isDefault,
+                    ModelConstants.Account.amount
+                ]
+            )
+            
+            model.insertObject(values)
         }
         
         return true

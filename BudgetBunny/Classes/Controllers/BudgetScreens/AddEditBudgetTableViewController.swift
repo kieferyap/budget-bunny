@@ -22,6 +22,7 @@ class AddEditBudgetTableViewController: UITableViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var frequencyKey: String = ""
     var budgetInformation: BudgetCell?
+    var amountDivider: Double = 1.0
     private var sectionCount: Int = 0
     private var selectedCategoryRowIdx: Int = -1
     
@@ -187,10 +188,16 @@ class AddEditBudgetTableViewController: UITableViewController {
         )
         let budgetAmountFloat = (budgetAmount as NSString).doubleValue
         var oldName = ""
+        let remainingBudget = budgetAmountFloat // See TO-DO at line 197.
         
-        // If we're editing, we should keep track of the old name
+        // If we're editing, we should keep track of the old name and the remaining budget
         if self.sourceInformation == Constants.SourceInformation.budgetEditing {
             oldName = (self.budgetInformation?.alphaElementTitle)!
+            
+            // TO-DO: Remaining budget should depend on the amount spent in a given timeframe.
+            // For example: I spent 300 this week, and 400 last week.
+            // Remaining budget for this week = X-300. For this month: X-700.
+            // remainingBudget = (budgetAmountFloat - ((self.budgetInformation?.budgetAmount)! - (self.budgetInformation?.remainingAmount)!))/self.amountDivider
         }
         
         // Set up the error validators
@@ -230,8 +237,8 @@ class AddEditBudgetTableViewController: UITableViewController {
                 var values = NSDictionary.init(
                     objects: [
                         budgetName,
-                        budgetAmountFloat,
-                        budgetAmountFloat
+                        budgetAmountFloat*self.amountDivider,
+                        remainingBudget
                     ],
                     forKeys: [
                         ModelConstants.Budget.name,

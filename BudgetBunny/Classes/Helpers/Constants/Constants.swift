@@ -61,6 +61,10 @@ struct Constants {
             "MENULABEL_RECORDS"
         ]
     }
+    struct App {
+        static let trueString = "1"
+        static let falseString = "0"
+    }
     struct Storyboards {
         static let mainStoryboard = "Main"
     }

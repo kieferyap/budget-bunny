@@ -109,7 +109,7 @@ class AddEditAccountTableViewController: UITableViewController {
                     cellData: TripleElementCell(
                         alphaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT,
                         betaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION,
-                        gammaElementTitleKey: self.screenConstants.falseString,
+                        gammaElementTitleKey: Constants.App.falseString,
                         cellIdentifier: Constants.CellIdentifiers.addAccountSwitch,
                         cellSettings: [
                             self.screenConstants.keyHeight: self.screenConstants.accountCellHeight
@@ -209,7 +209,7 @@ class AddEditAccountTableViewController: UITableViewController {
         // Edit mode does not have this cell.
         if self.sourceInformation == Constants.SourceInformation.accountNew {
             let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsSection, row: screenConstants.idxDefaultCell)
-            isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
+            isDefaultAccountBool = isDefaultAccount == Constants.App.trueString ? true : false
         }
             
         // If we're editing, however, we should just preserve the current value for isDefaultAccount

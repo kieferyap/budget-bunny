@@ -23,8 +23,8 @@ class BudgetTableViewCell: UITableViewCell,  BunnyTableViewCellProtocol {
         
         // Set the labels
         self.budgetName.text = budgetModel.alphaElementTitle
-        self.totalAmount.text = budgetModel.betaElementTitle
-        self.remainingAmount.text = budgetModel.gammaElementTitle
+        self.totalAmount.text = budgetModel.gammaElementTitle
+        self.remainingAmount.text = budgetModel.betaElementTitle
         
         // Set label overflow
         self.budgetName.adjustsFontSizeToFitWidth = true

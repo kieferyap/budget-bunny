@@ -14,7 +14,7 @@ class BudgetScreen: BaseScreen {
     func tapAddBudgetButton() {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_BUDGETS)
-        ].buttons["+"].tap()
+        ].buttons["Add"].tap()
     }
     
     func tapSegmentedControlMonthly() {

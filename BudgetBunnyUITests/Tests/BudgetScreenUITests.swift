@@ -16,7 +16,7 @@ class BudgetScreenUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        app.launchEnvironment = ["isTesting": "1"]
+        app.launchEnvironment = ["isTesting": "1", "needsDefaultAccount": "1"]
         app.launch()
         continueAfterFailure = false
     }
@@ -38,7 +38,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapAddBudgetButton()
     }
     
-    // MARK: BUD-0001 Test Cases
+    // MARK: BUD-0001 -- Add Budget Test Cases
     
     // Test element existence
     func testExistence() {
@@ -129,7 +129,7 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapErrorAlertOkButton()
     }
     
-    // Test missing fields: both, and amount
+    // Test missing fields: both and amount
     func testMissingAmount() {
         self.proceedToAddBudgetScreen()
         
@@ -155,7 +155,7 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapErrorAlertOkButton()
     }
     
-    // Test no categories
+    // TO-DO: Confirm that we can add budgets without categories
     func testNoCategories() {
         self.proceedToAddBudgetScreen()
         
@@ -165,7 +165,6 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapAmountTextField()
         addBudgetScreen.typeAmountTextField("1024")
         addBudgetScreen.tapDoneButton()
-        addBudgetScreen.tapErrorAlertOkButton()
     }
     
     // Test maximum categories
@@ -209,7 +208,7 @@ class BudgetScreenUITests: XCTestCase {
         addBudgetScreen.tapBackButton()
     }
     
-    // Test the currency displayed
+    // Confirm that the currency displayed is that of the default account
     func testDisplayedCurrency() {
         let accountScreenUITests = AccountScreenUITests()
         accountScreenUITests.addAccountSuccess(
@@ -233,4 +232,68 @@ class BudgetScreenUITests: XCTestCase {
             BunnyUIUtils.uncommentedLocalizedString("¥")
         )
     }
+    
+    // Confirm that we cannot add two budgets of the same name.
+    
+    // Confirm that we cannot add more than 5 budgets
+    
+    // Confirm that we cannot add a new budget if there are no default accounts -- I might need to move this in another class, since this class adds a default account by default to save time.
+    
+    // MARK: BUD-0002 -- Budget Screen Test Cases
+    
+    // Confirm that we cannot add two categories of the same name
+    
+    // Confirm that text field limits are enforced
+    
+    // Confirm that we cannot add more than 5 categories
+    
+    // Confirm that we cannot add blank categories
+    
+    // Confirm that we can add an income category
+    
+    // For the next two tests, we need to add two categories beforehand: one for swipe-to-x, and the other for tap-to-x
+    // Confirm that, when an income category is tapped or swiped left, we can successfully rename.
+    
+    // Confirm that, when an income category is tapped or swiped left, we can successfully delete.
+    
+    // Confirm that we cannot rename an income category to a blank string
+    
+    // Confirm that we cannot rename an income category to an existing income category name
+    
+    // Confirm that swiping a budget left allows as to successfully delete it.
+    
+    // Confirm that tapping a budget allows us to edit it: the edit screen should have been prefilled with the budget's information
+    
+    // MARK: BUD-0003 -- Budget Editing
+    
+    // Confirm that we can successfully change a budget's name and amount
+    
+    // Confirm that we cannot change a budget's name to an existing budget's name
+    
+    // Confirm that we can add new categories (and they will be reflected once we save)
+    
+    // Confirm that we can successfully delete a budget in the budget editing screen
+    
+    // MARK: BUD-0005 -- Budget Category Editing
+    
+    // For the next two tests, we need to add two categories beforehand: one for swipe-to-x, and the other for tap-to-x
+    // Confirm that, when a budget category is tapped or swiped left, we can successfully rename.
+    
+    // Confirm that, when a budget category is tapped or swiped left, we can successfully delete.
+    
+    // Confirm that we cannot rename a budget category to a blank string
+    
+    // Confirm that we cannot rename a budget category to an existing budget category name
+    
+    // The final battle for this set of screens: Add a budget with two categories. Enter said budget and add two more categories. Delete one pre-added category, and delete one newly-added category. Change the name and the amount. Save and check the budget. Everything should be at its place.
+    
+    // The runthrough for GitHub:
+    // - Add two monthly budgets: one with no categories, and the other with three
+    // - Monthly/Weekly/Daily
+    // - Swipe a budget to delete
+    // - Add three categories
+    // - Swipe one category to rename
+    // - Tap one category to delete
+    // - Edit a budget: change its name and amount, swipe a category to rename, tap a category to delete
+    
 }

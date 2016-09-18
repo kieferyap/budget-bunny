@@ -22,7 +22,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var incomeList: [IncomeCategoryCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     private var currentlySelectedObject: BunnyCell!
-    private var amountDivider = 1.0
+    private var amountDivider: Double = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -422,6 +422,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 vc = destinationViewController as! AddEditBudgetTableViewController
                 vc.budgetInformation = cell
                 vc.frequencyKey = frequencyKey
+                vc.amountDivider = self.amountDivider
             }
             self.navigationController?.pushViewController(vc, animated: true)
             break
@@ -495,6 +496,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ) { (destinationViewController) in
             let vc = destinationViewController as! AddEditBudgetTableViewController
             vc.frequencyKey = frequencyKey
+            vc.amountDivider = self.amountDivider
         }
     }
 }
