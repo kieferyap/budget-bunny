@@ -381,9 +381,13 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         let indexPathDelete = NSIndexPath.init(forRow: idxDeleteCell, inSection: idxAccountActionsGroup)
         
         self.accountInformation?.isDefault = true
+        
         self.selectedCountryIdentifier = BunnyUtils.preserveValue(self.selectedCountryIdentifier) {
+            // Set the text of the Account Action buttons
             self.viewDidLoad()
         } as! String
+        
+        // Reload the relevant rows
         self.tableView.reloadRowsAtIndexPaths(
             [indexPathDefault, indexPathDelete],
             withRowAnimation: UITableViewRowAnimation.Fade

@@ -49,7 +49,7 @@ class AddBudgetScreen: BaseScreen {
     
     func assertTextEqualityOfCategoryAtIndex(index: UInt, match: String) {
         let translatedIndex = (index + TestConstants.AddBudget.categoryIndexOffset)
-        self.app.tables.cells.elementAtIndex(translatedIndex).staticTexts[match].exists
+        self.getTableElementAtIndex(translatedIndex).staticTexts[match].exists
     }
     
     func assertAmountStaticTextEquality(match: String) {
@@ -63,6 +63,14 @@ class AddBudgetScreen: BaseScreen {
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
         ].buttons[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DONE)
+        ].tap()
+    }
+    
+    func tapSaveButton() {
+        self.app.navigationBars[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
+        ].buttons[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
         ].tap()
     }
     
@@ -85,5 +93,28 @@ class AddBudgetScreen: BaseScreen {
     
     private func typeTextFieldAtElement(index: UInt, input: String) {
         self.app.tables.textFields.elementAtIndex(index).typeText(input)
+    }
+    
+    func deleteAndEnterBudgetNameText(newText: String, deleteDuration: Double) {
+        self.tapBudgetNameTextField()
+        self.app.keys["delete"].pressForDuration(deleteDuration)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddBudget.idxBudgetNameCell).typeText(newText)
+    }
+    
+    func deleteAndEnterBudgetAmountText(newText: String, deleteDuration: Double) {
+        self.tapAmountTextField()
+        self.app.keys["Delete"].pressForDuration(deleteDuration)
+        self.app.tables.textFields.elementAtIndex(TestConstants.AddBudget.idxAmountCell).typeText(newText)
+    }
+    
+    func tapDeleteBudgetButton() {
+        let buttonName = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_BUTTON)
+        self.app.tables.buttons[buttonName].tap()
+        
+        XCUIApplication().sheets[
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_TITLE)
+            ].collectionViews.buttons[
+                BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_BUTTON)
+            ].tap()
     }
 }
