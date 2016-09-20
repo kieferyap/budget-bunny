@@ -296,36 +296,62 @@ class AddEditBudgetTableViewController: UITableViewController {
     }
 
     private func renameCategory(newName: String, categoryIdx: Int) {
-        // Trim the new name
-        let trimmedName = BunnyUtils.trimLeadingTrailingSpaces(newName)
-        
-        // Check for valid length
-        guard trimmedName.characters.count <= self.screenConstants.categoryNameMaxLength else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG
-            )
-            return
+        BunnyUtils.saveSingleField(
+            newName,
+            parentArray: self.categoryList,
+            maxCount: screenConstants.categoryMaxCount,
+            maxLength: ScreenConstants.AddEditBudget.categoryNameMaxLength,
+            errorMaxLengthKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG,
+            errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_CATEGORIES,
+            errorEmptyNameKey: StringConstants.ERRORLABEL_CATEGORY_NOT_EMPTY,
+            errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
+            viewController: self,
+            isRename: true)
+        { (success, newItem) in
+            // Add the new category in the table and refresh it
+            if success {
+                self.categoryList[categoryIdx].alphaElementTitle = newItem
+                let indexPath = NSIndexPath.init(forRow: categoryIdx, inSection: self.screenConstants.idxCategoryGroup)
+                self.tableView.reloadRowsAtIndexPaths(
+                    [indexPath],
+                    withRowAnimation: UITableViewRowAnimation.None
+                )
+            }
         }
-        
-        // Check for emptiness
-        guard trimmedName != "" else {
-            BunnyUtils.showAlertWithOKButton(
-                self,
-                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY
-            )
-            return
-        }
-        
-        // Set the new title
-        self.categoryList[categoryIdx].alphaElementTitle = trimmedName
-        let indexPath = NSIndexPath.init(forRow: categoryIdx, inSection: self.screenConstants.idxCategoryGroup)
-        self.tableView.reloadRowsAtIndexPaths(
-            [indexPath],
-            withRowAnimation: UITableViewRowAnimation.None
-        )
+//
+//
+//        // Trim the new name
+//        let trimmedName = BunnyUtils.trimLeadingTrailingSpaces(newName)
+//        
+//        // Check for valid length
+//        guard trimmedName.characters.count <= self.screenConstants.categoryNameMaxLength else {
+//            BunnyUtils.showAlertWithOKButton(
+//                self,
+//                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+//                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG
+//            )
+//            return
+//        }
+//        
+//        // Check for emptiness
+//        guard trimmedName != "" else {
+//            BunnyUtils.showAlertWithOKButton(
+//                self,
+//                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+//                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY
+//            )
+//            return
+//        }
+//        
+//        // Check for existing category name
+//        
+//        // Set the new title
+//        self.categoryList[categoryIdx].alphaElementTitle = trimmedName
+//        let indexPath = NSIndexPath.init(forRow: categoryIdx, inSection: self.screenConstants.idxCategoryGroup)
+//        self.tableView.reloadRowsAtIndexPaths(
+//            [indexPath],
+//            withRowAnimation: UITableViewRowAnimation.None
+//        )
     }
     
     private func deleteCategory(categoryIdx: Int) {
@@ -492,7 +518,6 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             self,
             tableView: self.tableView,
             renameCompletion: {
-                // Rename completion
                 BudgetUtils.showRenameDialog(
                     self,
                     tableView: self.tableView,
@@ -500,10 +525,12 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
                         self.renameCategory(textField.text!, categoryIdx: self.selectedCategoryRowIdx)
                     }
                 )
-            }){
-                // Delete completion
+            },
+            deleteCompletion: {
                 self.deleteCategory(self.selectedCategoryRowIdx)
-            }
+            },
+            titleKey: StringConstants.LABEL_BUDGET_CATEGORY_ACTIONS
+        )
     }
     
     func addNewCategory(categoryName: String) {

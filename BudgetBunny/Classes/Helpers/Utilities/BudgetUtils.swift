@@ -82,11 +82,12 @@ class BudgetUtils: NSObject {
         vc: UIViewController,
         tableView: UITableView,
         renameCompletion: () -> Void,
-        deleteCompletion: () -> Void
+        deleteCompletion: () -> Void,
+        titleKey: String
         
     ) {
         let alertController = UIAlertController.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_INCOME_ACTIONS),
+            title: BunnyUtils.uncommentedLocalizedString(titleKey),
             message: "",
             preferredStyle: UIAlertControllerStyle.ActionSheet
         )

@@ -62,7 +62,7 @@ class BudgetScreen: BaseScreen {
         self.app.tables.buttons[addIncomeCategory].tap()
     }
     
-    func assertIncomeCategoryTextFieldEquality(match: String, index: UInt, numberOfBudgetCells: UInt) {
+    func assertIncomeCategoryCellEquality(match: String, index: UInt, numberOfBudgetCells: UInt) {
         // "No budgets found" counts as one cell.
         let translatedBudgetCellCount = numberOfBudgetCells == 0 ? 1 : numberOfBudgetCells
         let translatedIndex = index + translatedBudgetCellCount

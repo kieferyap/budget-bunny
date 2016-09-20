@@ -278,6 +278,8 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapErrorAlertOkButton()
     }
     
+    // Confirm that we cannot add a budget with amount = 0, or negative numbers.
+    
     // Confirm that we cannot add a new budget if there are no default accounts -- I might need to move this in another class, since this class adds a default account by default to save time.
     
     // MARK: BUD-0002 -- Budget Screen Test Cases
@@ -327,7 +329,7 @@ class BudgetScreenUITests: XCTestCase {
         self.proceedToBudgetTab()
         let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
         budgetScreen.typeNewIncomeCategory("   Salary   ")
-        budgetScreen.assertIncomeCategoryTextFieldEquality("Salary", index: 0, numberOfBudgetCells: 0)
+        budgetScreen.assertIncomeCategoryCellEquality("Salary", index: 0, numberOfBudgetCells: 0)
     }
     
     // For the next two tests, we need to add two categories beforehand: one for swipe-to-x, and the other for tap-to-x
@@ -341,10 +343,10 @@ class BudgetScreenUITests: XCTestCase {
         let newName2 = "Salary"
         
         budgetScreen.swipeIncomeCellLeftAndRenameWithIndex(0, numberOfBudgetCells: 0, newName: newName1)
-        budgetScreen.assertIncomeCategoryTextFieldEquality(newName1, index: 0, numberOfBudgetCells: 0)
+        budgetScreen.assertIncomeCategoryCellEquality(newName1, index: 0, numberOfBudgetCells: 0)
         
         budgetScreen.tapIncomeCellAndRenameWithIndex(0, numberOfBudgetCells: 0, newName: newName2)
-        budgetScreen.assertIncomeCategoryTextFieldEquality(newName2, index: 0, numberOfBudgetCells: 0)
+        budgetScreen.assertIncomeCategoryCellEquality(newName2, index: 0, numberOfBudgetCells: 0)
     }
     
     // Confirm that, when an income category is tapped or swiped left, we can successfully delete.
@@ -385,7 +387,7 @@ class BudgetScreenUITests: XCTestCase {
     }
     
     // Confirm that text field limits still hold up when renaming
-    func testRenameFieldLength() {
+    func testRenameIncomeCategoryFieldLength() {
         self.proceedToBudgetTab()
         let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
         let length30 = "123456789012345678901234567890"
@@ -492,17 +494,103 @@ class BudgetScreenUITests: XCTestCase {
     // MARK: BUD-0005 -- Budget Category Editing
     
     // For the next two tests, we need to add two categories beforehand: one for swipe-to-x, and the other for tap-to-x
+    
     // Confirm that, when a budget category is tapped or swiped left, we can successfully rename.
+    func testRenameBudgetCategory() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["wwwwwwwwwwwwwwwwwwwwwwwww"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.tapBudgetCategoryCellAndRenameWithIndex(0, newName: "C")
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndRenameWithIndex(0, newName: "D")
+    }
     
     // Confirm that, when a budget category is tapped or swiped left, we can successfully delete.
+    func testDeleteBudgetCategory() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["A", "B"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.tapBudgetCategoryCellAndDeleteWithIndex(0)
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndDeleteWithIndex(0)
+    }
     
     // Confirm that we cannot rename a budget category to a blank string
+    func testRenameBudgetCategoryBlank() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["A", "B"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.tapBudgetCategoryCellAndRenameWithIndex(0, newName: "     ")
+        editBudgetScreen.tapErrorAlertOkButton()
+    }
     
     // Confirm that we cannot rename a budget category to an existing budget category name
+    func testRenameBudgetCategorySameName() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["A", "B"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndRenameWithIndex(0, newName: "B")
+        editBudgetScreen.tapErrorAlertOkButton()
+    }
     
     // Confirm that text field limits still hold up when renaming
+    func testRenameBudgetCategoryFieldLength() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["A", "B"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        let length30 = "123456789012345678901234567890"
+        
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndRenameWithIndex(0, newName: length30)
+        editBudgetScreen.tapErrorAlertOkButton()
+    }
     
     // The final battle for this set of screens: Add a budget with two categories. Enter said budget and add two more categories. Delete one pre-added category, and delete one newly-added category. Change the name and the amount. Save and check the budget. Everything should be at its place.
+    func testFinalBattleBudget() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food", amount: 1.0, categoryNames: ["A", "B"])
+        
+        let budgetScreen: BudgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.typeCategoryTextField("C")
+        editBudgetScreen.typeCategoryTextField("D")
+        
+        editBudgetScreen.tapBudgetCategoryCellAndDeleteWithIndex(0)
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndDeleteWithIndex(2)
+        
+        let newName = "Groceries"
+        let newAmount = "2.0"
+        
+        editBudgetScreen.deleteAndEnterBudgetNameText(newName, deleteDuration: 3.0)
+        editBudgetScreen.deleteAndEnterBudgetAmountText(newAmount, deleteDuration: 3.0)
+        editBudgetScreen.tapSaveButton()
+        
+        budgetScreen.tapBudgetCellAtIndex(0)
+        
+        editBudgetScreen.assertBudgetNameTextFieldEquality(newName)
+        editBudgetScreen.assertAmountTextFieldEquality(newAmount)
+        editBudgetScreen.assertBudgetCategoryCellEquality("B", index: 0)
+        editBudgetScreen.assertBudgetCategoryCellEquality("C", index: 1)
+    }
     
     // The runthrough for GitHub:
     // - Add two monthly budgets: one with no categories, and the other with three

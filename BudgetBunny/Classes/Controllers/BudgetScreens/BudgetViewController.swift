@@ -217,7 +217,6 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self,
             tableView: self.budgetTableView,
             renameCompletion: {
-                // Rename completion:
                 BudgetUtils.showRenameDialog(
                     self,
                     tableView: self.budgetTableView,
@@ -233,8 +232,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         )
                     }
                 )
-            }){
-                // Delete completion:
+            },
+            deleteCompletion: {
                 BunnyUtils.showDeleteDialog(
                     self,
                     managedObject: (self.currentlySelectedObject as! IncomeCategoryCell).categoryObject,
@@ -247,7 +246,9 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.updateIncomeSection()
                     }
                 )
-            }
+            },
+            titleKey: StringConstants.LABEL_INCOME_ACTIONS
+        )
     }
     
     private func getFrequencyKey() -> String {
