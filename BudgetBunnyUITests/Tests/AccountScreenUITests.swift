@@ -572,4 +572,13 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapSaveButton()
         sleep(5)
     }
+    
+    // Confirm that we cannot add a new budget if there are no default accounts
+    func testAddBudgetNoDefaultAccount() {
+        ScreenManager.tapBudgetsTab(self.app)
+        
+        let budgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapAddBudgetButton()
+        budgetScreen.tapErrorAlertOkButton()
+    }
 }

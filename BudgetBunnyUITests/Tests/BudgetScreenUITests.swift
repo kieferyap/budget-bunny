@@ -46,7 +46,6 @@ class BudgetScreenUITests: XCTestCase {
     }
     
     func proceedToBudgetTab() {
-        // Delete accounts core data
         ScreenManager.tapBudgetsTab(self.app)
     }
     
@@ -279,8 +278,6 @@ class BudgetScreenUITests: XCTestCase {
     }
     
     // Confirm that we cannot add a budget with amount = 0, or negative numbers.
-    
-    // Confirm that we cannot add a new budget if there are no default accounts -- I might need to move this in another class, since this class adds a default account by default to save time.
     
     // MARK: BUD-0002 -- Budget Screen Test Cases
     
@@ -600,5 +597,28 @@ class BudgetScreenUITests: XCTestCase {
     // - Swipe one category to rename
     // - Tap one category to delete
     // - Edit a budget: change its name and amount, swipe a category to rename, tap a category to delete
+    // - Add two income categories: "Allowance" and "Stocks"
+    // - Swipe "Allowance" to left and rename it as "Salary"
+    func testRunThrough() {
+        self.proceedToBudgetTab()
+        self.addNewBudget("Food and Groceries", amount: 600, categoryNames: [])
+        self.addNewBudget("Leisure", amount: 550, categoryNames: ["Gadgets and Tech", "Movies"])
+        
+        let budgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapSegmentedControlWeekly()
+        budgetScreen.tapSegmentedControlDaily()
+        budgetScreen.tapSegmentedControlMonthly()
+        budgetScreen.tapBudgetCellAtIndex(1)
+        
+        let editBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        editBudgetScreen.typeCategoryTextField("Video Games")
+        editBudgetScreen.swipeBudgetCategoryCellLeftAndRenameWithIndex(1, newName: "DVDs")
+        editBudgetScreen.tapBudgetCategoryCellAndDeleteWithIndex(0)
+        editBudgetScreen.tapSaveButton()
+        
+        budgetScreen.typeNewIncomeCategory("Allowance")
+        budgetScreen.typeNewIncomeCategory("Stocks")
+        budgetScreen.swipeIncomeCellLeftAndRenameWithIndex(0, numberOfBudgetCells: 2, newName: "Salary")
+    }
     
 }
