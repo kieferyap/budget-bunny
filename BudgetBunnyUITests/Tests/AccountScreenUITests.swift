@@ -53,7 +53,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(name)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(amount)
         
@@ -98,7 +97,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.typeAccountNameTextField(accountName)
         addAccountScreen.assertAccountNameTextFieldEquality(accountName)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
         addAccountScreen.assertAmountTextFieldEquality(initialAmount)
@@ -157,7 +155,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(decimalOnly)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(accountName)
         addAccountScreen.tapDoneButton()
@@ -543,7 +540,7 @@ class AccountScreenUITests: XCTestCase {
         self.addAccountSuccess("Bank Account Y", amount: "25000", currencyName: "United States", isDefault: false)
         
         // START OF RECORDING! Remove the code in the App Delegate which deletes the Core Data.
-        sleep(5)
+        // sleep(5)
         self.addAccountSuccess("Coin Purse", amount: "55.25", currencyName: "United States", isDefault: true)
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)

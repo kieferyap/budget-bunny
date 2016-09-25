@@ -36,7 +36,9 @@ class BudgetScreenUITests: XCTestCase {
         
         let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         addBudgetScreen.typeBudgetNameTextField(name)
-        addBudgetScreen.typeAmountTextField(String(format: "%.2f", amount))
+        
+        let floatFormat: String = rint(amount) == amount ? "%.0f" : "%.2f"
+        addBudgetScreen.typeAmountTextField(String(format: floatFormat, amount))
         
         for name in categoryNames {
             addBudgetScreen.typeCategoryTextField(name)
@@ -621,7 +623,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapSegmentedControlWeekly()
         budgetScreen.tapSegmentedControlDaily()
         budgetScreen.tapSegmentedControlMonthly()
-        budgetScreen.tapBudgetCellAtIndex(1)
+        budgetScreen.tapBudgetCellAtIndex(0)
         
         let editBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         editBudgetScreen.typeCategoryTextField("Video Games")
