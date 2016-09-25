@@ -101,7 +101,7 @@ class AddEditBudgetTableViewController: UITableViewController {
                     self.screenConstants.idxActionsGroup,
                     idxRow: self.screenConstants.idxDeleteCell,
                     cellData: SingleElementCell(
-                        alphaElementTitleKey: StringConstants.LABEL_DELETE_BUDGET_BUTTON,
+                        alphaElementTitleKey: StringConstants.BUTTON_DELETE_BUDGET,
                         cellIdentifier: Constants.CellIdentifiers.addBudgetAction,
                         cellSettings: [
                             Constants.AppKeys.keySelector: self.screenConstants.selectorDelete,
@@ -219,12 +219,17 @@ class AddEditBudgetTableViewController: UITableViewController {
             errorStringKey: StringConstants.ERRORLABEL_DUPLICATE_BUDGET_NAME,
             oldName: oldName
         )
+        let positiveAmountValidator = PositiveAmountValidator(
+            objectToValidate: budgetAmountFloat,
+            errorStringKey: StringConstants.ERRORLABEL_AMOUNT_GREATER_THAN_0
+        )
         
         // Add the error validators
         let validator = Validator(viewController: self)
         validator.addValidator(emptyNameValidator)
         validator.addValidator(emptyAmountValidator)
         validator.addValidator(nameUniquenessValidator)
+        validator.addValidator(positiveAmountValidator)
         
         // Validate the fields
         validator.validate { (success) in
@@ -308,7 +313,7 @@ class AddEditBudgetTableViewController: UITableViewController {
             viewController: self,
             isRename: true)
         { (success, newItem) in
-            // Add the new category in the table and refresh it
+            // Set the new title
             if success {
                 self.categoryList[categoryIdx].alphaElementTitle = newItem
                 let indexPath = NSIndexPath.init(forRow: categoryIdx, inSection: self.screenConstants.idxCategoryGroup)
@@ -318,40 +323,6 @@ class AddEditBudgetTableViewController: UITableViewController {
                 )
             }
         }
-//
-//
-//        // Trim the new name
-//        let trimmedName = BunnyUtils.trimLeadingTrailingSpaces(newName)
-//        
-//        // Check for valid length
-//        guard trimmedName.characters.count <= self.screenConstants.categoryNameMaxLength else {
-//            BunnyUtils.showAlertWithOKButton(
-//                self,
-//                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-//                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG
-//            )
-//            return
-//        }
-//        
-//        // Check for emptiness
-//        guard trimmedName != "" else {
-//            BunnyUtils.showAlertWithOKButton(
-//                self,
-//                titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
-//                messageKey: StringConstants.ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY
-//            )
-//            return
-//        }
-//        
-//        // Check for existing category name
-//        
-//        // Set the new title
-//        self.categoryList[categoryIdx].alphaElementTitle = trimmedName
-//        let indexPath = NSIndexPath.init(forRow: categoryIdx, inSection: self.screenConstants.idxCategoryGroup)
-//        self.tableView.reloadRowsAtIndexPaths(
-//            [indexPath],
-//            withRowAnimation: UITableViewRowAnimation.None
-//        )
     }
     
     private func deleteCategory(categoryIdx: Int) {
@@ -365,7 +336,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         // The delete button
         alertController.addAction(
             UIAlertAction.init(
-                title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_CATEGORY_BUTTON),
+                title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_BUDGET_CATEGORY),
                 style: UIAlertActionStyle.Destructive,
                 handler: { (UIAlertAction) in
                     let categoryObject = self.categoryList[categoryIdx].categoryObject
@@ -579,7 +550,7 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             managedObject: budgetObject,
             deleteTitleKey: StringConstants.LABEL_DELETE_BUDGET_TITLE,
             deleteMessegeKey: StringConstants.LABEL_DELETE_BUDGET_MESSAGE,
-            deleteActionKey: StringConstants.LABEL_DELETE_BUDGET_BUTTON,
+            deleteActionKey: StringConstants.BUTTON_DELETE_BUDGET,
             tableName: ModelConstants.Entities.budget,
             tableView: self.tableView,
             completion: {

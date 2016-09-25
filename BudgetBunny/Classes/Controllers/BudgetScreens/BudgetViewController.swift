@@ -239,7 +239,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     managedObject: (self.currentlySelectedObject as! IncomeCategoryCell).categoryObject,
                     deleteTitleKey: StringConstants.LABEL_DELETE_CATEGORY_TITLE,
                     deleteMessegeKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_MESSAGE,
-                    deleteActionKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_BUTTON,
+                    deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
                     tableName: ModelConstants.Entities.category,
                     tableView: self.budgetTableView,
                     completion: {
@@ -247,7 +247,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 )
             },
-            titleKey: StringConstants.LABEL_INCOME_ACTIONS
+            titleKey: StringConstants.LABEL_INCOME_CATEGORY_ACTIONS
         )
     }
     
@@ -302,7 +302,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     managedObject: (self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell).budgetObject,
                     deleteTitleKey: StringConstants.LABEL_DELETE_BUDGET_TITLE,
                     deleteMessegeKey: StringConstants.LABEL_DELETE_BUDGET_MESSAGE,
-                    deleteActionKey: StringConstants.LABEL_DELETE_BUDGET_BUTTON,
+                    deleteActionKey: StringConstants.BUTTON_DELETE_BUDGET,
                     tableName: ModelConstants.Entities.budget,
                     tableView: self.budgetTableView,
                     completion: {
@@ -329,7 +329,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         managedObject: self.incomeList[indexPath.row].categoryObject,
                         deleteTitleKey: StringConstants.LABEL_DELETE_CATEGORY_TITLE,
                         deleteMessegeKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_MESSAGE,
-                        deleteActionKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_BUTTON,
+                        deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
                         tableName: ModelConstants.Entities.category,
                         tableView: self.budgetTableView,
                         completion: {

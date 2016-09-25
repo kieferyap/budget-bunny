@@ -26,6 +26,7 @@
 		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
 		FB52461C1CF5F212005B3679 /* ActiveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* ActiveRecord.swift */; };
+		FB5375391D9652C1009049D8 /* PositiveAmountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */; };
 		FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -131,6 +132,7 @@
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FB52461B1CF5F212005B3679 /* ActiveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRecord.swift; sourceTree = "<group>"; };
+		FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositiveAmountValidator.swift; sourceTree = "<group>"; };
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */,
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
+				FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
 				FBB238EE1CF984AD0011C59D /* ModelConstants.swift in Sources */,
 				FB6AC1241D2137BB009EC80C /* Record+CoreDataProperties.swift in Sources */,
+				FB5375391D9652C1009049D8 /* PositiveAmountValidator.swift in Sources */,
 				FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */,
 				FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */,
 				FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */,

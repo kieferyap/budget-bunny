@@ -278,6 +278,20 @@ class BudgetScreenUITests: XCTestCase {
     }
     
     // Confirm that we cannot add a budget with amount = 0, or negative numbers.
+    func testPositiveAmount() {
+        self.proceedToAddBudgetScreen()
+        
+        let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
+        addBudgetScreen.typeBudgetNameTextField("Transportation")
+        
+        addBudgetScreen.typeAmountTextField("0")
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+        
+        addBudgetScreen.typeAmountTextField("-10")
+        addBudgetScreen.tapDoneButton()
+        addBudgetScreen.tapErrorAlertOkButton()
+    }
     
     // MARK: BUD-0002 -- Budget Screen Test Cases
     
@@ -430,12 +444,11 @@ class BudgetScreenUITests: XCTestCase {
         editBudgetScreen.deleteAndEnterBudgetAmountText(String(format: "%.2f", newAmount), deleteDuration: 2.0)
         editBudgetScreen.tapSaveButton()
         
-        let newAmountString = String(format: "%.2f", newAmount)
         budgetScreen.assertBudgetExistenceAtIndex(
             0,
             name: newBudgetName,
-            remainingAmount: newAmountString,
-            amount: newAmountString
+            remainingAmount: "$ 650.00",
+            amount: "$ 650.00"
         )
     }
     
@@ -452,7 +465,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapBudgetCellAtIndex(0)
         
         let editBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
-        editBudgetScreen.deleteAndEnterBudgetNameText("Budget1", deleteDuration: 2.0)
+        editBudgetScreen.deleteAndEnterBudgetNameText("Budget2", deleteDuration: 2.0)
         editBudgetScreen.tapSaveButton()
         editBudgetScreen.tapErrorAlertOkButton()
     }
@@ -584,7 +597,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapBudgetCellAtIndex(0)
         
         editBudgetScreen.assertBudgetNameTextFieldEquality(newName)
-        editBudgetScreen.assertAmountTextFieldEquality(newAmount)
+        editBudgetScreen.assertAmountTextFieldEquality("2")
         editBudgetScreen.assertBudgetCategoryCellEquality("B", index: 0)
         editBudgetScreen.assertBudgetCategoryCellEquality("C", index: 1)
     }

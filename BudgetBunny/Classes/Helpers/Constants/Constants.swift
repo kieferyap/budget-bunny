@@ -8,6 +8,9 @@ struct Constants {
         static let dangerColor = UIColor(red: 236.0/255.0, green: 100.0/255.0, blue: 75.0/255.0, alpha: 1.0)
         static let lightGreen = UIColor(red: 200.0/255.0, green: 247.0/255.0, blue: 197.0/255.0, alpha: 1.0)
         static let weakenedColor = UIColor(red: 245.0/255.0, green: 171.0/255.0, blue: 53.0/255.0, alpha: 1.0)
+        
+        static let incomeColor = UIColor(red: 6.0/255.0, green: 92.0/255.0, blue: 39.0/255.0, alpha: 1.0)
+        static let expenseColor = UIColor(red: 211.0/255.0, green: 84.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     }
     struct CellIdentifiers {
         static let anyCellIdentifier = ""

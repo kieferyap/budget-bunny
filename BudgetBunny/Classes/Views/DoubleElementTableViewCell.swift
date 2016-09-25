@@ -81,6 +81,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
+                    betaLabel.textColor = Constants.Colors.incomeColor
                     
                     alphaLabel.adjustsFontSizeToFitWidth = true
                     betaLabel.adjustsFontSizeToFitWidth = true
@@ -132,6 +133,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     
                     alphaLabel.text = categoryModel.alphaElementTitle
                     betaLabel.text = categoryModel.betaElementTitle
+                    betaLabel.textColor = Constants.Colors.expenseColor
                     
                     alphaLabel.adjustsFontSizeToFitWidth = true
                     betaLabel.adjustsFontSizeToFitWidth = true

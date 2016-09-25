@@ -108,13 +108,13 @@ class AddBudgetScreen: BaseScreen {
     }
     
     func tapDeleteBudgetButton() {
-        let buttonName = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_BUTTON)
+        let buttonName = BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_BUDGET)
         self.app.tables.buttons[buttonName].tap()
         
         XCUIApplication().sheets[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_TITLE)
             ].collectionViews.buttons[
-                BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_BUTTON)
+                BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_BUDGET)
             ].tap()
     }
     
@@ -161,8 +161,8 @@ class AddBudgetScreen: BaseScreen {
     
     private func deleteBudgetCategory() {
         let deleteCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_CATEGORY_TITLE)
-        let deleteIncomeCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_BUDGET_BUTTON)
-        self.app.sheets[deleteCategory].collectionViews.buttons[deleteIncomeCategory].tap()
+        let deleteBudgetCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_BUDGET_CATEGORY)
+        self.app.sheets[deleteCategory].collectionViews.buttons[deleteBudgetCategory].tap()
     }
     
     func swipeBudgetCategoryCellLeftAndRenameWithIndex(index: UInt, newName: String) {

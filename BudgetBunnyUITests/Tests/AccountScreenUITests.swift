@@ -275,7 +275,7 @@ class AccountScreenUITests: XCTestCase {
     func testTrim() {
         self.addAccountSuccess("     test1     ", amount: "1024", currencyName: "Japan", isDefault: true)
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
-        accountScreen.assertCellTextWithIndex(0, textToFind: "test1")
+        accountScreen.assertCellTextWithIndex(0, textToFind: "test1.")
     }
 
     // MARK: ACC-0002 Test Cases

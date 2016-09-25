@@ -91,13 +91,13 @@ class BudgetScreen: BaseScreen {
         let buttonName = BunnyUIUtils.uncommentedLocalizedString(buttonNameKey)
         self.getTableElementAtIndex(translatedIndex).tap()
         
-        let alertTitle = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_INCOME_ACTIONS)
+        let alertTitle = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_INCOME_CATEGORY_ACTIONS)
         self.app.sheets[alertTitle].collectionViews.buttons[buttonName].tap()
     }
     
     private func deleteIncomeCategory() {
         let deleteCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_CATEGORY_TITLE)
-        let deleteIncomeCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_INCOME_CATEGORY_BUTTON)
+        let deleteIncomeCategory = BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_INCOME_CATEGORY)
         self.app.sheets[deleteCategory].collectionViews.buttons[deleteIncomeCategory].tap()
     }
     
