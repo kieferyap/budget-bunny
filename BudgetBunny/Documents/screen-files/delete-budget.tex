@@ -1,10 +1,10 @@
 \bbsubsection{Deleting an Existing Account}{delete-account}
 
-This screen consists of a confirmation alert dialog, activated whenever an account is about to be deleted. Deleting an account will delete all transactions related to the account, and it is an action that cannot be undone. Hence, this alert dialog exists to confirm the action. This alert can be accessed in screens where deleting an account is possible, namely: the \nameref{account} Screen and the \nameref{edit-account} Screen.
+This screen consists of a confirmation alert dialog, activated whenever a budget is about to be deleted. Deleting a budget will delete all transactions related to it, and it is an action that cannot be undone. Hence, this alert dialog exists to confirm the action. This alert can be accessed in screens where deleting a budget is possible, namely: the \nameref{budget} Screen and the \nameref{edit-budget} Screen.
 
 \bbsubsubsection{Application Screenshots}{delete-account-screenshots}
 
-\doublescreenshot{DeleteAccount-1}{DeleteAccount-2}
+\doublescreenshot{DeleteBudget-1}{DeleteBudget-2}
 
 \screentable{
 	\header{Screen Component}
@@ -20,14 +20,14 @@ This screen consists of a confirmation alert dialog, activated whenever an accou
         {
         This alert controller is in the style of an action sheet. It displays the title and the message of the alert.\doublenewline
         
-        Localization Keys: LABEL\_WARNING\_ DELETE\_ACCOUNT\_TITLE, LABEL\_ WARNING\_DELETE\_ACCOUNT\_ MESSAGE	
+        Localization Keys: LABEL\_DELETE\_BUDGET\_TITLE, LABEL\_DELETE\_BUDGET\_MESSAGE
         }
         \row{3. Delete Alert Action}
     	{Alert Action}
         {
-        Once tapped, this button will delete the selected account and its associated transactions from the core data. \doublenewline
+        Once tapped, this button will delete the selected budget and its associated transactions from the core data. \doublenewline
         
-        Localization Key: BUTTON\_DELETE\_ACCOUNT
+        Localization Key: BUTTON\_DELETE\_BUDGET
         }
     \row{4. Cancel Alert Action}
     	{Alert Action}

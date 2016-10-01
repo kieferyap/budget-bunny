@@ -35,6 +35,7 @@ class AddEditBudgetTableViewController: UITableViewController {
         
         // Prepare the variables
         var doneButtonTitleKey = StringConstants.BUTTON_DONE
+        var titleKey = StringConstants.MENULABEL_ADD_BUDGET
         var budgetName = ""
         var budgetAmount = ""
         let isEditing = self.sourceInformation == Constants.SourceInformation.budgetEditing
@@ -48,6 +49,7 @@ class AddEditBudgetTableViewController: UITableViewController {
             budgetName = (self.budgetInformation?.alphaElementTitle)!
             doneButtonTitleKey = StringConstants.BUTTON_SAVE
             self.sectionCount = screenConstants.sectionCountWithDelete
+            titleKey = StringConstants.MENULABEL_EDIT_BUDGET
         }
         
         // "Monthly/Weekly/Daily Budget ($)"
@@ -115,7 +117,7 @@ class AddEditBudgetTableViewController: UITableViewController {
             
             // Set title and done button
             self.doneButton.title = BunnyUtils.uncommentedLocalizedString(doneButtonTitleKey)
-            self.setTitleLocalizationKey(StringConstants.MENULABEL_ADD_BUDGET)
+            self.setTitleLocalizationKey(titleKey)
         }
     }
     

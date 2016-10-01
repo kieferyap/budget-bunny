@@ -36,7 +36,9 @@ class BudgetScreenUITests: XCTestCase {
         
         let addBudgetScreen: AddBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         addBudgetScreen.typeBudgetNameTextField(name)
-        addBudgetScreen.typeAmountTextField(String(format: "%.2f", amount))
+        
+        let floatFormat: String = rint(amount) == amount ? "%.0f" : "%.2f"
+        addBudgetScreen.typeAmountTextField(String(format: floatFormat, amount))
         
         for name in categoryNames {
             addBudgetScreen.typeCategoryTextField(name)
@@ -615,6 +617,8 @@ class BudgetScreenUITests: XCTestCase {
     func testRunThrough() {
         self.proceedToBudgetTab()
         self.addNewBudget("Food and Groceries", amount: 600, categoryNames: [])
+        
+        sleep(5)
         self.addNewBudget("Leisure", amount: 550, categoryNames: ["Gadgets and Tech", "Movies"])
         
         let budgetScreen = BudgetScreen.screenFromApp(self.app)
@@ -632,6 +636,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.typeNewIncomeCategory("Allowance")
         budgetScreen.typeNewIncomeCategory("Stocks")
         budgetScreen.swipeIncomeCellLeftAndRenameWithIndex(0, numberOfBudgetCells: 2, newName: "Salary")
+        sleep(5)
     }
     
 }

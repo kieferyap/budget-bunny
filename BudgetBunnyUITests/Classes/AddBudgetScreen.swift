@@ -68,7 +68,7 @@ class AddBudgetScreen: BaseScreen {
     
     func tapSaveButton() {
         self.app.navigationBars[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_EDIT_BUDGET)
         ].buttons[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SAVE)
         ].tap()

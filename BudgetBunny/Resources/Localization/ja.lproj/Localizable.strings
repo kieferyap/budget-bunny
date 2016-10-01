@@ -39,7 +39,7 @@
 "MENULABEL_RECORDS" = "記録";
 "ERRORLABEL_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
 "TEXTFIELD_NEW_CATEGORY_PLACEHOLDER" = "[Not localized yet]";
-"ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
+"BUTTON_EDIT" = "編集";
 "LABEL_CURRENT_BALANCE" = "経常収支";
 "TEXTFIELD_NEW_INCOME" = "[Not localized yet]";
 "ERRORLABEL_DUPLICATE_CATEGORY_NAME" = "[Not localized yet]";
@@ -51,14 +51,13 @@
 "ERRORLABEL_NAME_AMOUNT_NOT_EMPTY" = "アカウントの名前とアカウントの残高を入力してください。";
 "MENULABEL_ACCOUNT" = "アカウント";
 "MENULABEL_ADD_BUDGET" = "[Not localized yet]";
-"ERRORLABEL_TOO_MANY_INCOME_CATEGORIES" = "[Not localized yet]";
 "ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY" = "[Not localized yet]";
 "ERRORLABEL_DUPLICATE_INCOME_CATEGORY_NAME" = "[Not localized yet]";
-"BUTTON_EDIT" = "編集";
-"ERRORLABEL_TOO_MANY_ACCOUNTS" = "アカウント数の上限を超えています。";
 "LABEL_NO_BUDGETS" = "[Not localized yet]";
 "LABEL_HEADER_ACCOUNT_INFORMATION" = "[Not localized yet]";
 "LABEL_HEADER_ACCOUNT_SETTINGS" = "[Not localized yet]";
+"ERRORLABEL_TOO_MANY_INCOME_CATEGORIES" = "[Not localized yet]";
+"ERRORLABEL_TOO_MANY_ACCOUNTS" = "アカウント数の上限を超えています。";
 "LABEL_HEADER_ACCOUNT_ACTIONS" = "[Not localized yet]";
 "LABEL_HEADER_BUDGETS" = "[Not localized yet]";
 "LABEL_HEADER_INCOME" = "[Not localized yet]";
@@ -67,9 +66,10 @@
 "LABEL_RENAME" = "[Not localized yet]";
 "LABEL_ADD_NEW_INCOME_CATEGORY" = "[Not localized yet]";
 "LABEL_ADD_NEW_INCOME_CATEGORY_MESSAGE" = "[Not localized yet]";
-"LABEL_RENAME_MESSAGE" = "[Not localized yet]";
 "TEXTFIELD_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER" = "[Not localized yet]";
+"LABEL_RENAME_MESSAGE" = "[Not localized yet]";
 "TEXTFIELD_RENAME_PLACEHOLDER" = "[Not localized yet]";
+"ERRORLABEL_TOO_MANY_CATEGORIES" = "[Not localized yet]";
 "ERRORLABEL_TOO_MANY_BUDGETS" = "[Not localized yet]";
 "ERRORLABEL_NO_DEFAULT_ACCOUNT" = "[Not localized yet]";
 "ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG" = "[Not localized yet]";
@@ -87,3 +87,4 @@
 "BUTTON_DELETE_INCOME_CATEGORY" = "[Not localized yet]";
 "BUTTON_DELETE_BUDGET" = "[Not localized yet]";
 "ERRORLABEL_AMOUNT_GREATER_THAN_0" = "[Not localized yet]";
+"MENULABEL_EDIT_BUDGET" = "[Not localized yet]";

@@ -5,20 +5,7 @@ The Edit Account screen enables users to edit existing accounts that were previo
 
 \bbsubsubsection{Application Screenshots}{edit-account-screenshots}
 
-\begin{figure}[h]
- 
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0003-1} 
-  \caption{Editing a Default Account}
-  \label{fig:edit-account-1}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0003-2}
-  \caption{Editing a Non-Default Account}
-  \label{fig:edit-account-2}
-\end{subfigure}
-\caption{Edit Account Screenshots}
-\end{figure}
+\doublescreenshot{EditAccount-1}{EditAccount-2}
 
 \screentable{
 	\header{Screen Component}
@@ -38,17 +25,20 @@ The Edit Account screen enables users to edit existing accounts that were previo
         
         Localization Keys: LABEL\_CURRENT\_BALANCE
         } 
-    \row{4. Disabled Default Account Button}
-    	{Button}
-        {This button cannot be tapped, and it informs the user that the current account is marked as default.\doublenewline 
+    \row{4. Account Actions Header}
+        {Header Text}
+        {Localization Key: LABEL\_HEADER\_ACCOUNT\_ACTIONS} 
+    \row{5. Set as Default Button}
+        {Button}
+        {Once this button is tapped, it will mark the account as default, and will be disabled, turning into a state seen in the seventh item of this screen.\doublenewline 
         
-        Localization Key: BUTTON\_SET\_AS \_ACCOUNT\_DISABLED
-        } 
-    \row{5. Disabled Delete Account Button}
-    	{Button}
-        {This button cannot be tapped, and it informs the user that it is not possible to delete default accounts.\doublenewline 
+        Localization Key: BUTTON\_SET\_AS\_DEFAULT  
+        }  
+    \row{6. Delete Button}
+        {Button}
+        {Once this button is tapped, it will display a warning, telling the user that the action cannot be undone, as seen in the \nameref{delete-account} section.\doublenewline 
         
-        Localization Key: BUTTON\_DELETE \_ACCOUNT\_DISABLED
+        Localization Key: BUTTON\_DELETE\_ACCOUNT   
         } 
 }
 
@@ -56,16 +46,16 @@ The Edit Account screen enables users to edit existing accounts that were previo
 	\header{Screen Component}
     	{Type}
         {Description}
-    \row{6. Set as Default Button}
-    	{Button}
-        {Once this button is tapped, it will mark the account as default, and will be disabled, turning into a state seen in the fourth item of this screen.\doublenewline 
+    \row{7. Disabled Default Account Button}
+        {Button}
+        {This button cannot be tapped, and it informs the user that the current account is marked as default.\doublenewline 
         
-        Localization Key: BUTTON\_SET\_AS\_DEFAULT	
-        }  
-	\row{7. Delete Button}
-    	{Button}
-        {Once this button is tapped, it will display a warning, telling the user that the action cannot be undone, as seen in the \nameref{delete-account} section.\doublenewline 
+        Localization Key: BUTTON\_SET\_AS \_ACCOUNT\_DISABLED
+        } 
+    \row{8. Disabled Delete Account Button}
+        {Button}
+        {This button cannot be tapped, and it informs the user that it is not possible to delete default accounts.\doublenewline 
         
-        Localization Key: BUTTON\_DELETE\_ACCOUNT	
-        }  
+        Localization Key: BUTTON\_DELETE \_ACCOUNT\_DISABLED
+        } 
 }
