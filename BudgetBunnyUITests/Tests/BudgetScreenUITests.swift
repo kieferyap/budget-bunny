@@ -625,7 +625,7 @@ class BudgetScreenUITests: XCTestCase {
         budgetScreen.tapSegmentedControlWeekly()
         budgetScreen.tapSegmentedControlDaily()
         budgetScreen.tapSegmentedControlMonthly()
-        budgetScreen.tapBudgetCellAtIndex(1)
+        budgetScreen.tapBudgetCellAtIndex(0)
         
         let editBudgetScreen = AddBudgetScreen.screenFromApp(self.app)
         editBudgetScreen.typeCategoryTextField("Video Games")
