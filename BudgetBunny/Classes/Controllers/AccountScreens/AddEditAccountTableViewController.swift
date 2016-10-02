@@ -11,8 +11,8 @@ import CoreData
 
 protocol AddEditAccountDelegate: class {
     func pushCurrencyViewController()
-    func popViewController()
     func setAsDefault()
+    func deleteAccount(accountObject: NSManagedObject)
     func presentViewController(vc: UIViewController)
     func setSelectedCurrencyIdentifier(identifier: String)
 }
@@ -78,7 +78,7 @@ class AddEditAccountTableViewController: UITableViewController {
                             Constants.AppKeys.keySelector: self.screenConstants.selectorSetDefault,
                             Constants.AppKeys.keyEnabled: isKeyEnabled,
                             Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen,
-                            self.screenConstants.keyManagedObject: accountObject
+                            Constants.AppKeys.keyManagedObject: accountObject
                         ]
                     )
                 )
@@ -94,7 +94,7 @@ class AddEditAccountTableViewController: UITableViewController {
                             Constants.AppKeys.keySelector: self.screenConstants.selectorDelete,
                             Constants.AppKeys.keyEnabled: isKeyEnabled,
                             Constants.AppKeys.keyButtonColor: Constants.Colors.dangerColor,
-                            self.screenConstants.keyManagedObject: accountObject
+                            Constants.AppKeys.keyManagedObject: accountObject
                         ]
                     )
                 )
@@ -109,7 +109,7 @@ class AddEditAccountTableViewController: UITableViewController {
                     cellData: TripleElementCell(
                         alphaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT,
                         betaElementTitleKey: StringConstants.LABEL_IS_DEFAULT_ACCOUNT_DESCRIPTION,
-                        gammaElementTitleKey: self.screenConstants.falseString,
+                        gammaElementTitleKey: Constants.App.falseString,
                         cellIdentifier: Constants.CellIdentifiers.addAccountSwitch,
                         cellSettings: [
                             self.screenConstants.keyHeight: self.screenConstants.accountCellHeight
@@ -209,7 +209,7 @@ class AddEditAccountTableViewController: UITableViewController {
         // Edit mode does not have this cell.
         if self.sourceInformation == Constants.SourceInformation.accountNew {
             let isDefaultAccount = self.getTableViewCellValue(screenConstants.idxAccountActionsSection, row: screenConstants.idxDefaultCell)
-            isDefaultAccountBool = isDefaultAccount == screenConstants.trueString ? true : false
+            isDefaultAccountBool = isDefaultAccount == Constants.App.trueString ? true : false
         }
             
         // If we're editing, however, we should just preserve the current value for isDefaultAccount
@@ -250,7 +250,7 @@ class AddEditAccountTableViewController: UITableViewController {
             // If there are no errors, save the fields
             if success {
                 // Adding a new account
-                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.account)
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
                 
                 // Set all isDefaults to false
                 if isDefaultAccountBool {
@@ -372,10 +372,6 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         destinationViewController.delegate = self
         self.navigationController?.pushViewController(destinationViewController, animated: true)
     }
-    
-    func popViewController() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
 
     func setAsDefault() {
         let idxAccountActionsGroup = self.screenConstants.idxAccountActionsSection
@@ -385,12 +381,32 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
         let indexPathDelete = NSIndexPath.init(forRow: idxDeleteCell, inSection: idxAccountActionsGroup)
         
         self.accountInformation?.isDefault = true
+        
         self.selectedCountryIdentifier = BunnyUtils.preserveValue(self.selectedCountryIdentifier) {
+            // Set the text of the Account Action buttons
             self.viewDidLoad()
         } as! String
+        
+        // Reload the relevant rows
         self.tableView.reloadRowsAtIndexPaths(
             [indexPathDefault, indexPathDelete],
             withRowAnimation: UITableViewRowAnimation.Fade
+        )
+    }
+    
+    func deleteAccount(accountObject: NSManagedObject) {
+        BunnyUtils.showDeleteDialog(
+            self,
+            managedObject: accountObject,
+            deleteTitleKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_TITLE,
+            deleteMessegeKey: StringConstants.LABEL_WARNING_DELETE_ACCOUNT_MESSAGE,
+            deleteActionKey: StringConstants.BUTTON_DELETE_ACCOUNT,
+            tableName: ModelConstants.Entities.account,
+            tableView: self.tableView,
+            completion: {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            // TO-DO: Remove all transactions that are involved with the account
         )
     }
     

@@ -1,15 +1,15 @@
 //
-//  EmptyArrayValidator.swift
+//  PositiveAmountValidator.swift
 //  BudgetBunny
 //
-//  Created by Kiefer Yap on 7/1/16.
+//  Created by Kiefer Yap on 9/24/16.
 //  Copyright © 2016 Kiefer Yap. All rights reserved.
 //
 
 import UIKit
 
-class EmptyArrayValidator: NSObject, ValidatorProtocol {
-
+class PositiveAmountValidator: NSObject, ValidatorProtocol {
+    
     var objectToValidate: NSObject
     var errorStringKey: String
     
@@ -19,8 +19,6 @@ class EmptyArrayValidator: NSObject, ValidatorProtocol {
     }
     
     func validateObject() -> Bool {
-        let validate = self.objectToValidate as! NSArray
-        return validate.count != 0
+        return (self.objectToValidate as! Double) > 0
     }
-    
 }

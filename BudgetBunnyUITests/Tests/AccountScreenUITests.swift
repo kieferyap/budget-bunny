@@ -53,7 +53,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(name)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(amount)
         
@@ -98,7 +97,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.typeAccountNameTextField(accountName)
         addAccountScreen.assertAccountNameTextFieldEquality(accountName)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(initialAmount)
         addAccountScreen.assertAmountTextFieldEquality(initialAmount)
@@ -157,7 +155,6 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapAmountTextField()
         addAccountScreen.typeAmountTextField(decimalOnly)
         
-        addAccountScreen.tapOutside()
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.typeAccountNameTextField(accountName)
         addAccountScreen.tapDoneButton()
@@ -275,7 +272,7 @@ class AccountScreenUITests: XCTestCase {
     func testTrim() {
         self.addAccountSuccess("     test1     ", amount: "1024", currencyName: "Japan", isDefault: true)
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
-        accountScreen.assertCellTextWithIndex(0, textToFind: "test1")
+        accountScreen.assertCellTextWithIndex(0, textToFind: "test1.")
     }
 
     // MARK: ACC-0002 Test Cases
@@ -450,9 +447,7 @@ class AccountScreenUITests: XCTestCase {
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapButton(
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
-        )
+        addAccountScreen.tapSetAsDefaultButton()
         addAccountScreen.tapSaveButton()
         
         accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
@@ -467,9 +462,7 @@ class AccountScreenUITests: XCTestCase {
         accountScreen.tapCellWithIndex(TestConstants.Accounts.idxNormal)
         
         let addAccountScreen: AddAccountScreen = AddAccountScreen.screenFromApp(self.app)
-        addAccountScreen.tapButton(
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
-        )
+        addAccountScreen.tapSetAsDefaultButton()
         addAccountScreen.returnToAccountScreenFromEdit()
         
         accountScreen.assertCellIsDefaultAccount(TestConstants.Accounts.idxNormal)
@@ -501,9 +494,7 @@ class AccountScreenUITests: XCTestCase {
             TestConstants.Accounts.account2New[TestConstants.Accounts.country]
         )
         currencyPickerScreen.tapBackButtonToEdit()
-        addAccountScreen.tapButton(
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT)
-        )
+        addAccountScreen.tapSetAsDefaultButton()
         addAccountScreen.tapSaveButton()
         sleep(3)
         
@@ -543,7 +534,7 @@ class AccountScreenUITests: XCTestCase {
         self.addAccountSuccess("Bank Account Y", amount: "25000", currencyName: "United States", isDefault: false)
         
         // START OF RECORDING! Remove the code in the App Delegate which deletes the Core Data.
-        sleep(5)
+        // sleep(5)
         self.addAccountSuccess("Coin Purse", amount: "55.25", currencyName: "United States", isDefault: true)
         
         let accountScreen: AccountScreen = AccountScreen.screenFromApp(self.app)
@@ -555,21 +546,24 @@ class AccountScreenUITests: XCTestCase {
         addAccountScreen.tapAccountNameTextField()
         addAccountScreen.deleteAndEnterAccountNameText(
             "Bank Account Z",
-            deleteDuration: 2.5
+            deleteDuration: 2.0
         )
-        addAccountScreen.tapAmountTextField()
-        addAccountScreen.deleteAndEnterAmountText(
-            "17000",
-            deleteDuration: 2.5
-        )
-        addAccountScreen.tapCurrencyCell()
-        
-        // Tap the currency and head back. Assert that the values displayed are correct.
-        let currencyPickerScreen: CurrencyPickerScreen = CurrencyPickerScreen.screenFromApp(self.app)
-        currencyPickerScreen.tapElementWithCountryName("United Kingdom")
-        currencyPickerScreen.tapBackButtonToEdit()
         
         addAccountScreen.tapSaveButton()
+        
+        accountScreen.swipeCellLeftAndSetAsDefaultWithIndex(1)
+        accountScreen.tapCellWithIndex(2)
+        addAccountScreen.tapSetAsDefaultButton()
+        addAccountScreen.tapSaveButton()
         sleep(5)
+    }
+    
+    // Confirm that we cannot add a new budget if there are no default accounts
+    func testAddBudgetNoDefaultAccount() {
+        ScreenManager.tapBudgetsTab(self.app)
+        
+        let budgetScreen = BudgetScreen.screenFromApp(self.app)
+        budgetScreen.tapAddBudgetButton()
+        budgetScreen.tapErrorAlertOkButton()
     }
 }

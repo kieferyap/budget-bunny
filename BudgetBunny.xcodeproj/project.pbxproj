@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
 		FB0F38EA1CDD7FB8002656FF /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */; };
 		FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */; };
-		FB21808D1D2C190C009A86B5 /* IncomeUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB21808C1D2C190C009A86B5 /* IncomeUniquenessValidator.swift */; };
 		FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */; };
 		FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB238F2D1CEE101900636CCC /* AttributeModel.swift */; };
 		FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2445361CCF5B3400E55941 /* BunnyUtils.swift */; };
-		FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */; };
 		FB312E6C1CDD8C32000788EE /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */; };
 		FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */; };
 		FB337CF21CD8FB4900F32AE8 /* UIViewController+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */; };
 		FB39C4581CDD8F3700780E61 /* CurrencyPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */; };
-		FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */; };
+		FB3C67EA1D427AC3001D0E6B /* IncomeCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */; };
 		FB3DD69D1CEA0779005D1F1F /* Double+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */; };
 		FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49683D1CD0ADC9006A0177 /* StringConstants.swift */; };
-		FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* BunnyModel.swift */; };
+		FB52461C1CF5F212005B3679 /* ActiveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52461B1CF5F212005B3679 /* ActiveRecord.swift */; };
+		FB5375391D9652C1009049D8 /* PositiveAmountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */; };
 		FB5F91D31D010DB100F7F0D8 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */; };
 		FB5FF8211CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
 		FB5FF8221CC134D10090F5FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5FF8201CC134D10090F5FA /* Constants.swift */; };
@@ -87,7 +87,6 @@
 		FBDF483D1D056A3D00C9E2D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
 		FBDF483F1D056A5800C9E2D8 /* BunnyUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */; };
 		FBDF48401D056D3300C9E2D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBFE42F71CCF34A1000206FE /* Localizable.strings */; };
-		FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE3F9801CFD404A00C56107 /* AccountUtils.swift */; };
 		FBF32F981D23D74D0023E116 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F971D23D74D0023E116 /* BudgetScreen.swift */; };
 		FBF32F9A1D23D7A20023E116 /* BudgetScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F991D23D7A20023E116 /* BudgetScreenUITests.swift */; };
 		FBF32F9C1D23D86A0023E116 /* AddBudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF32F9B1D23D86A0023E116 /* AddBudgetScreen.swift */; };
@@ -112,24 +111,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCategoryCell.swift; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		FB0F38E91CDD7FB8002656FF /* ScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
 		FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
-		FB21808C1D2C190C009A86B5 /* IncomeUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeUniquenessValidator.swift; sourceTree = "<group>"; };
 		FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeUniquenessValidator.swift; sourceTree = "<group>"; };
 		FB238F2D1CEE101900636CCC /* AttributeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeModel.swift; sourceTree = "<group>"; };
 		FB2445361CCF5B3400E55941 /* BunnyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUtils.swift; sourceTree = "<group>"; };
-		FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyArrayValidator.swift; sourceTree = "<group>"; };
 		FB312E6B1CDD8C32000788EE /* AddAccountScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
 		FB337CEF1CD791F900F32AE8 /* BunnyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyCell.swift; sourceTree = "<group>"; };
 		FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Bunnies.swift"; sourceTree = "<group>"; };
 		FB39C4571CDD8F3700780E61 /* CurrencyPickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerScreen.swift; sourceTree = "<group>"; };
-		FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeCategoryCell.swift; sourceTree = "<group>"; };
 		FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Bunnies.swift"; sourceTree = "<group>"; };
 		FB49683D1CD0ADC9006A0177 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
-		FB52461B1CF5F212005B3679 /* BunnyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyModel.swift; sourceTree = "<group>"; };
+		FB52461B1CF5F212005B3679 /* ActiveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRecord.swift; sourceTree = "<group>"; };
+		FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositiveAmountValidator.swift; sourceTree = "<group>"; };
 		FB5F91D21D010DB100F7F0D8 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		FB5FF8201CC134D10090F5FA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB61662F1D1F669F007DE4C2 /* BudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
@@ -194,7 +193,6 @@
 		FBDF48331D051E8B00C9E2D8 /* BunnyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTextField.swift; sourceTree = "<group>"; };
 		FBDF48371D055EE000C9E2D8 /* BunnyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyTabBarController.swift; sourceTree = "<group>"; };
 		FBDF483E1D056A5800C9E2D8 /* BunnyUIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BunnyUIUtils.swift; sourceTree = "<group>"; };
-		FBE3F9801CFD404A00C56107 /* AccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUtils.swift; sourceTree = "<group>"; };
 		FBEB61561CCF30F100FE1660 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEB61581CCF30FB00FE1660 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FBF32F971D23D74D0023E116 /* BudgetScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
@@ -297,7 +295,7 @@
 				FB97C3391CB499D800C35BC0 /* Items */,
 				FB97C33A1CB499DE00C35BC0 /* ManagedObjects */,
 				FB97C30D1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld */,
-				FB52461B1CF5F212005B3679 /* BunnyModel.swift */,
+				FB52461B1CF5F212005B3679 /* ActiveRecord.swift */,
 				FB8A9B971CC65AB10017D0D3 /* Currency.swift */,
 				FB8A9B991CC65AC40017D0D3 /* CurrencyManager.swift */,
 			);
@@ -313,7 +311,8 @@
 				FBAF76A81D3135FC00E15CC5 /* TripleElementCell.swift */,
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FB6B60291D28F29D00C81ED2 /* BudgetCell.swift */,
-				FB3C67E91D427AC3001D0E6B /* CategoryCell.swift */,
+				FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */,
+				243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */,
 				FB238F2D1CEE101900636CCC /* AttributeModel.swift */,
 			);
 			path = Items;
@@ -514,7 +513,6 @@
 		FBE3F9821CFD80CD00C56107 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				FBE3F9801CFD404A00C56107 /* AccountUtils.swift */,
 				FB2445361CCF5B3400E55941 /* BunnyUtils.swift */,
 				FBD10B4E1D4207090054A331 /* BudgetUtils.swift */,
 			);
@@ -537,11 +535,10 @@
 			children = (
 				FB238F2B1CEE0EF200636CCC /* AttributeUniquenessValidator.swift */,
 				FB6166311D1FA9E7007DE4C2 /* SingleElementUniquenessValidator.swift */,
-				FB21808C1D2C190C009A86B5 /* IncomeUniquenessValidator.swift */,
-				FB2E8FBD1D25FD3100567048 /* EmptyArrayValidator.swift */,
 				FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */,
 				FB6CED231CEDE48800FB222E /* Validator.swift */,
 				FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */,
+				FB5375381D9652C1009049D8 /* PositiveAmountValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -705,10 +702,9 @@
 				FB6AC1291D2137BB009EC80C /* Account.swift in Sources */,
 				FB6AC12A1D2137BB009EC80C /* Transaction+CoreDataProperties.swift in Sources */,
 				FB8550F91CBDF41F0037A881 /* AddEditBudgetTableViewController.swift in Sources */,
-				FB2E8FBE1D25FD3100567048 /* EmptyArrayValidator.swift in Sources */,
+				243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */,
 				FB6AC11F1D2137BB009EC80C /* Category.swift in Sources */,
 				FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */,
-				FBE3F9811CFD404A00C56107 /* AccountUtils.swift in Sources */,
 				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
 				FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */,
@@ -722,17 +718,17 @@
 				FB8A9B981CC65AB10017D0D3 /* Currency.swift in Sources */,
 				FBB238EE1CF984AD0011C59D /* ModelConstants.swift in Sources */,
 				FB6AC1241D2137BB009EC80C /* Record+CoreDataProperties.swift in Sources */,
+				FB5375391D9652C1009049D8 /* PositiveAmountValidator.swift in Sources */,
 				FBB238EC1CF9585A0011C59D /* ScreenConstants.swift in Sources */,
 				FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */,
 				FBDF48381D055EE000C9E2D8 /* BunnyTabBarController.swift in Sources */,
-				FB21808D1D2C190C009A86B5 /* IncomeUniquenessValidator.swift in Sources */,
 				FBAF76AD1D313ED100E15CC5 /* SingleElementTableViewCell.swift in Sources */,
 				FBAF76AF1D314FBC00E15CC5 /* DoubleElementTableViewCell.swift in Sources */,
 				FB6AC1261D2137BB009EC80C /* Target+CoreDataProperties.swift in Sources */,
 				FB6AC1231D2137BB009EC80C /* Wishitem.swift in Sources */,
 				FBA035CB1CC78D330050E59B /* CurrencyTableViewCell.swift in Sources */,
 				FB6166301D1F669F007DE4C2 /* BudgetViewController.swift in Sources */,
-				FB3C67EA1D427AC3001D0E6B /* CategoryCell.swift in Sources */,
+				FB3C67EA1D427AC3001D0E6B /* IncomeCategoryCell.swift in Sources */,
 				FB97C30F1CB4974F00C35BC0 /* BudgetBunny.xcdatamodeld in Sources */,
 				FBAF76A91D3135FC00E15CC5 /* TripleElementCell.swift in Sources */,
 				FB8550FD1CBE0DC90037A881 /* AddNewTransactionViewController.swift in Sources */,
@@ -751,7 +747,7 @@
 				FB6AC1211D2137BB009EC80C /* Budget.swift in Sources */,
 				FBAF76B11D3150CA00E15CC5 /* TripleElementTableViewCell.swift in Sources */,
 				FB8550F31CBDE4FF0037A881 /* AddEditAccountTableViewController.swift in Sources */,
-				FB52461C1CF5F212005B3679 /* BunnyModel.swift in Sources */,
+				FB52461C1CF5F212005B3679 /* ActiveRecord.swift in Sources */,
 				FBAF76AB1D313C5F00E15CC5 /* BunnyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

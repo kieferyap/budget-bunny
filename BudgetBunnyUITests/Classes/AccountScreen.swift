@@ -14,7 +14,7 @@ class AccountScreen: BaseScreen {
     func tapAddAccountButton() {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
-        ].buttons["+"].tap()
+        ].buttons["Add"].tap()
     }
     
     func swipeCellLeftWithIndex(index: UInt) {
@@ -46,10 +46,6 @@ class AccountScreen: BaseScreen {
         ].tap()
     }
     
-    func assertCellCount(count: UInt) {
-        XCTAssertEqual(self.app.tables.cells.count, count)
-    }
-    
     func assertCellTextWithIndex(index: UInt, textToFind: String) {
         XCTAssertTrue(self.getTableElementAtIndex(index).staticTexts[textToFind].exists)
     }
@@ -74,10 +70,6 @@ class AccountScreen: BaseScreen {
     
     func tapCellWithIndex(index: UInt) {
         self.getTableElementAtIndex(index).tap()
-    }
-    
-    private func getTableElementAtIndex(index: UInt) -> XCUIElement {
-        return self.app.tables.cells.elementAtIndex(index)
     }
 
 }

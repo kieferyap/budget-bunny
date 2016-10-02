@@ -1,0 +1,39 @@
+\bbsubsection{Deleting an Existing Account}{delete-account}
+
+This screen consists of a confirmation alert dialog, activated whenever a budget category or an income category is about to be deleted. Deleting a category will delete all transactions related to the category, and it is an action that cannot be undone. Hence, this alert dialog exists to confirm the action. Deleting a budget category can be done through the \nameref{edit-budget} Screen, and deleting an income category can be done through the \nameref{budget} Screen.
+
+\bbsubsubsection{Application Screenshots}{delete-account-screenshots}
+
+\doublescreenshot{DeleteCategory-1}{DeleteCategory-2}
+
+\screentable{
+	\header{Screen Component}
+    	{Type}
+        {Description}
+    \row{1. Cancellation Area}
+    	{Darkened Area}
+        {
+        Tap anywhere within the darkened area, and the alert controller will be dismissed.
+        }  
+    \row{2. Deletion Message}
+    	{Alert Controller}
+        {
+        This alert controller is in the style of an action sheet. It displays the title and the message of the alert.\doublenewline
+        
+        Localization Keys: LABEL\_DELETE\_CATEGORY\_TITLE, LABEL\_DELETE\_INCOME\_CATEGORY\_MESSAGE, LABEL\_DELETE\_BUDGET\_CATEGORY\_MESSAGE   
+        }
+        \row{3. Delete Alert Action}
+    	{Alert Action}
+        {
+        Once tapped, this button will delete the selected category and its associated transactions from the core data. \doublenewline
+        
+        Localization Key: BUTTON\_DELETE\_INCOME\_CATEGORY, BUTTON\_DELETE\_BUDGET\_CATEGORY
+        }
+    \row{4. Cancel Alert Action}
+    	{Alert Action}
+        {
+        Once tapped, the alert controller will be dismissed. \doublenewline
+        
+        Localization Key: BUTTON\_CANCEL
+        } 
+}

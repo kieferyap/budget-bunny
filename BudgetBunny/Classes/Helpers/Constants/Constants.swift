@@ -8,6 +8,9 @@ struct Constants {
         static let dangerColor = UIColor(red: 236.0/255.0, green: 100.0/255.0, blue: 75.0/255.0, alpha: 1.0)
         static let lightGreen = UIColor(red: 200.0/255.0, green: 247.0/255.0, blue: 197.0/255.0, alpha: 1.0)
         static let weakenedColor = UIColor(red: 245.0/255.0, green: 171.0/255.0, blue: 53.0/255.0, alpha: 1.0)
+        
+        static let incomeColor = UIColor(red: 124.0/255.0, green: 179.0/255.0, blue: 66.0/255.0, alpha: 1.0)
+        static let expenseColor = UIColor(red: 211.0/255.0, green: 84.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     }
     struct CellIdentifiers {
         static let anyCellIdentifier = ""
@@ -21,17 +24,22 @@ struct Constants {
         static let addBudgetFieldValue = "addBudgetFieldValueCell"
         static let addBudgetCategory = "addBudgetCategoryCell"
         static let addBudgetNewCategory = "addBudgetNewCategoryCell"
+        static let addBudgetAction = "addBudgetActionCell"
         static let budget = "budgetCell"
-        static let budgetIncome = "incomeCell"
-        static let addIncome = "addIncomeCell"
+        static let incomeCategory = "incomeCategoryCell"
+        static let addIncomeCategory = "addIncomeCategoryCell"
         static let budgetInexistence = "budgetInexistenceCell"
     }
     struct SourceInformation {
         static let accountNew = 0
         static let accountEditing = 1
+        
+        static let budgetNew = 0
+        static let budgetEditing = 1
     }
     struct ViewControllers {
-        static let addEditTable = "AddEditAccountTableViewController"
+        static let addEditAccount = "AddEditAccountTableViewController"
+        static let addEditBudget = "AddEditBudgetTableViewController"
         static let currencyPickerTable = "CurrencyPickerTableViewController"
     }
     struct KeyboardTypes {
@@ -47,6 +55,7 @@ struct Constants {
         static let keySelector = "selector"
         static let keyEnabled = "enabled"
         static let keyButtonColor = "color"
+        static let keyManagedObject = "managedObject"
         // Navigation bar localization keys
         static let tabBarKeys = [
             "MENULABEL_ACCOUNT",
@@ -54,6 +63,10 @@ struct Constants {
             "MENULABEL_DASHBOARD",
             "MENULABEL_RECORDS"
         ]
+    }
+    struct App {
+        static let trueString = "1"
+        static let falseString = "0"
     }
     struct Storyboards {
         static let mainStoryboard = "Main"

@@ -73,15 +73,18 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             
             // "Salary: $2000"/Income Category in the Budget Screen
             self.addCellType(
-                Constants.CellIdentifiers.budgetIncome,
+                Constants.CellIdentifiers.incomeCategory,
                 completion: {
-                    let incomeModel = self.model as! CategoryCell
+                    let incomeModel = self.model as! IncomeCategoryCell
                     let alphaLabel = self.alphaUIElement as! UILabel
                     let betaLabel = self.betaUIElement as! UILabel
                     
                     alphaLabel.text = incomeModel.categoryObject.valueForKey(ModelConstants.Category.name) as? String
                     betaLabel.text = incomeModel.betaElementTitle
-                    self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                    betaLabel.textColor = Constants.Colors.incomeColor
+                    
+                    alphaLabel.adjustsFontSizeToFitWidth = true
+                    betaLabel.adjustsFontSizeToFitWidth = true
                     self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                 },
                 getValue: { () -> String in
@@ -120,6 +123,28 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
+            // Budget Category
+            self.addCellType(
+                Constants.CellIdentifiers.addBudgetCategory,
+                completion: {
+                    let categoryModel = self.model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaLabel = self.betaUIElement as! UILabel
+                    
+                    alphaLabel.text = categoryModel.alphaElementTitle
+                    betaLabel.text = categoryModel.betaElementTitle
+                    betaLabel.textColor = Constants.Colors.expenseColor
+                    
+                    alphaLabel.adjustsFontSizeToFitWidth = true
+                    betaLabel.adjustsFontSizeToFitWidth = true
+                },
+                getValue: { () -> String in
+                    return ""
+                },
+                performAction: {
+                    (self.delegate as! AddEditBudgetDelegate).displayCategoryCellActions()
+                }
+            )
         }
     }
 }

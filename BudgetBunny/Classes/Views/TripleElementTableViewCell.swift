@@ -28,15 +28,15 @@ class TripleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     alphaLabel.text = accountModel.alphaElementTitle
                     betaDescriptionLabel.text = accountModel.betaElementTitle
                     gammaSwitch.on =
-                        accountModel.gammaElementTitle == ScreenConstants.AddEditAccount.trueString ?
+                        accountModel.gammaElementTitle == Constants.App.trueString ?
                         true : false
 
                 },
                 getValue: {
                     let gammaSwitch = self.gammaUIElement as! UISwitch
                     return gammaSwitch.on ?
-                        ScreenConstants.AddEditAccount.trueString :
-                        ScreenConstants.AddEditAccount.falseString
+                        Constants.App.trueString :
+                        Constants.App.falseString
                 },
                 performAction:  {
                     let gammaSwitch = self.gammaUIElement as! UISwitch

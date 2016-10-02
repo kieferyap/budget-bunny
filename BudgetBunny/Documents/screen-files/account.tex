@@ -7,51 +7,42 @@ It allows the user to delete an account, or set it as default by swiping the lis
 
 \bbsubsubsection{Application Screenshots}{account-screenshots}
 
-\begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0002-1} 
-  \caption{Account List Screen}
-  \label{fig:account-1}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0002-2}
-  \caption{Empty Account List}
-  \label{fig:account-2}
-\end{subfigure}
-\caption{Account List Screenshots}
-\label{Account List Screenshots}
-\end{figure}
+\singlescreenshot{Account-1}
+\doublescreenshot{Account-2}{Account-3}
 
 \screentable{
 	\header{Screen Component}
     	{Type}
         {Description}
-    \row{1. Screen Title}
-    	{Label Title}
-        {Localization Key: MENULABEL\_ACCOUNT}
-    \row{2. Add Button}
-    	{Button}
+    \row{1. Add Button}
+        {Button}
         {When tapped, the screen transitions to the Add Account Screen (See section: \nameref{add-account}) if the number of accounts is less than 20. \doublenewline
         However, if the number of accounts has reached 20, it will display an error. (See section: \nameref{account-error-scenarios})} 
-    \row{3. Default Icon}
+    \row{2. Screen Title}
+    	{Label Title}
+        {Localization Key: MENULABEL\_ACCOUNT}
+    \row{3. No Accounts Guide}
+        {Label}
+        {This label is displayed when there are no accounts present. \doublenewline 
+        
+        This scenario theoretically should not happen under normal circumstances, as there is no way for the user to delete an account marked as default, and when the app is freshly installed, there will be one default account available. \doublenewline
+        
+        Localization Key: GUIDELABEL\_NO\_ACCOUNTS}
+    \row{4. Default Icon}
     	{View Element}
         {An indicator showing whether or not an account is marked as default. There can only be one default account at any one time. \doublenewline
         
         Localization Key: LABEL\_DEFAULT}
-    \row{4. Edit Button}
+    \row{5. Edit Button}
     	{Table Cell Button}
-        {This button is displayed when the swiped cell is not a default account. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{edit-account}) \doublenewline
+        {This button is displayed when the swiped cell is a default account. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{edit-account}) \doublenewline
         
         Localization Key: BUTTON\_EDIT}
-       \row{5. Account Name Label}
+    \row{6. Account Cell}
     	{Label}
-        {A label that displays the name of the account.} 
-    \row{6. Amount Label}
-    	{Label}
-        {A label that displays the account's currency and the amount.} 
-    \row{7. Chevron Icon}
-    	{Table cell icon}
-        {Indicates that when the entire cell can be tapped. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{edit-account})}
+        {This cell contains two UI labels, one that displays the account's name, and the other displaying its current amount. \doublenewline
+
+        It has a chevron icon, indicating that the entire cell can be tapped. When tapped, the screen transitions to the Edit Account Screen (See section: \nameref{edit-account})}
 }
 
 
@@ -59,23 +50,17 @@ It allows the user to delete an account, or set it as default by swiping the lis
 	\header{Screen Component}
     	{Type}
         {Description}
-    \row{8. Set Default Button}
+    \row{7. Set Default Button}
     	{Table Cell Button}
-        {This button is displayed when the swiped cell is as default account. \doublenewline
+        {This button is displayed when the swiped cell is not a default account. \doublenewline
+
         When tapped, the cell will slide back and will be marked as default. The previously default cell will slide too, indicating that it was updated and unmarked. \doublenewline
         
         Localization Key: BUTTON\_SET\_DEFAULT}
-    \row{9. Delete Button}
+    \row{8. Delete Button}
     	{Table Cell Button}
         {When tapped, the account is deleted and the cell slides away to disappear. \doublenewline
         Localization Key: BUTTON\_DELETE}
-    \row{10. No Accounts Guide}
-    	{Label}
-        {This label is displayed when there are no accounts present. \doublenewline 
-        
-        This scenario theoretically should not happen under normal circumstances, as there is no way for the user to delete an account marked as default, and when the app is freshly installed, there will be one account available, and it is marked as default. \doublenewline
-        
-        Localization Key: GUIDELABEL\_NO\_ACCOUNTS} 
 }
 
 

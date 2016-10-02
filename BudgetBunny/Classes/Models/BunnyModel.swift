@@ -50,8 +50,22 @@ class BunnyModel: NSObject {
         }
     }
     
-    func deleteAllObjects() -> Bool {
+    func deleteAllObjects(completion: () -> Void) -> Bool {
+        return self.deleteAllObjectsWithParameters([:], completion: completion)
+    }
+    
+    func deleteAllObjectsWithParameters(parameters: NSDictionary, completion: () -> Void) -> Bool {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
+        
+        if parameters != [:] {
+            var predicateArray = [NSPredicate]()
+            for (key, value) in parameters {
+                let predicate = NSPredicate(format: key as! String, value as! NSObject)
+                predicateArray.append(predicate)
+            }
+            let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicateArray)
+            fetchRequest.predicate = compoundPredicate
+        }
         
         do {
             let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
@@ -59,8 +73,9 @@ class BunnyModel: NSObject {
                 self.managedContext.deleteObject(object)
             }
             try self.managedContext.save()
+            completion()
         } catch let error as NSError {
-            print("Could not save: \(error)")
+            print("Could not find user: \(error)")
             return false
         }
         return true

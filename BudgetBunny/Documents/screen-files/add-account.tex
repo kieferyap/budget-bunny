@@ -5,20 +5,7 @@ The Add New Account screen enables users to add a new account by specifying the 
 
 \bbsubsubsection{Application Screenshots}{add-account-screenshots}
 
-\begin{figure}[h]
- 
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0001-1} 
-  \caption{Add New Account Screen}
-  \label{fig:sub-account-1}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-  \includegraphics[scale=0.35]{ACC-0001-2}
-  \caption{Error Scenario}
-  \label{fig:sub-account-2}
-\end{subfigure}
-\caption{Add New Account Screenshots}
-\end{figure}
+\singlescreenshot{AddAccount-1}
 
 \screentable{
 	\header{Screen Component}
@@ -30,11 +17,14 @@ The Add New Account screen enables users to add a new account by specifying the 
     \row{2. Done Button}
     	{Button}
         {
-        When tapped, the app performs form validation and saves all the account information -- the account name, currency, starting balance, and whether or not to use the account as default -- into the database. \doublenewline
+        When tapped, the app performs form validation and saves all the account information -- the account name, currency, starting balance, and whether or not to use the account as default -- into the core data. \doublenewline
         For more details on the form validation, please see the \nameref{add-account-error-scenarios} section. \doublenewline
         Localization Key: BUTTON\_DONE
         } 
-    \row{3. Account Name Cell}
+    \row{3. Account Information Header}
+        {Header Text}
+        {Localization Key: LABEL\_HEADER\_ACCOUNT\_INFORMATION}
+    \row{4. Account Name Cell}
     	{Table Cell}
         {This table cell consists of two UI elements: A label and a textfield. \doublenewline
         
@@ -43,7 +33,7 @@ The Add New Account screen enables users to add a new account by specifying the 
         The textfield has a character limit of 25 characters.\doublenewline
         
         Localization Keys: LABEL\_NAME, TEXTFIELD\_NAME\_PLACEHOLDER} 
-    \row{4. Currency Cell}
+    \row{5. Currency Cell}
     	{Table Cell}
         {This table cell consists of two UI Label elements. \doublenewline
         
@@ -56,7 +46,7 @@ The Add New Account screen enables users to add a new account by specifying the 
 	\header{Screen Component}
     	{Type}
         {Description}
-    \row{5. Starting Balance Cell}
+    \row{6. Starting Balance Cell}
     	{Table Cell}
         {This table cell consists of two UI elements: A label and a textfield. \doublenewline
         
@@ -65,20 +55,16 @@ The Add New Account screen enables users to add a new account by specifying the 
         The textfield has a character limit of 15 characters.\doublenewline
          
         Localization Keys: LABEL\_STARTING\_BALANCE, TEXTFIELD\_STARTING\_BALANCE\_ PLACEHOLDER} 
-    \row{6. Default Account Cell}
+    \row{7. Account Settings Header}
+        {Header Text}
+        {Localization Key: LABEL\_HEADER\_ACCOUNT\_SETTINGS}
+    \row{8. Default Account Cell}
     	{Table Cell}
         {This table cell consists of three UI elements: two labels and a switch. The switch is turned off by default.\doublenewline
         
-        Tap anywhere in the cell and the switch will be toggled. There can only be one default account at any time. \doublenewline
+        Tap anywhere in the cell and the switch will be toggled. There can only be one default account at any time. This means that adding a new default account will cause an existing default account to no longer be the default. \doublenewline
         
-        Localization Keys: LABEL\_IS\_DEFAULT\_ACCOUNT, LABEL\_IS\_DEFAULT\_ACCOUNT\_ DESCRIPTION} 
-    \row{7. Error Alert}
-    	{Alert Controller}
-        {This alert controller has two labels. \doublenewline
-        
-        The alert is displayed when either the account name or the initial amount has not been filled, and the user taps "Done".\doublenewline
-        
-        Localization Keys: ERRORLABEL\_ERROR\_TITLE, ERRORLABEL\_NAME\_CURRENCY\_ NOT\_EMPTY}
+        Localization Keys: LABEL\_IS\_DEFAULT\_ACCOUNT, LABEL\_IS\_DEFAULT\_ACCOUNT\_ DESCRIPTION}
 }
 
 \bbsubsubsection{Error Scenarios}{add-account-error-scenarios}

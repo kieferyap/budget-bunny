@@ -17,7 +17,7 @@ class BunnyTextField: UITextField, UITextFieldDelegate {
     func setKeyboardProperties(type: Int, maxLength: Int, text: String) {
         // UI Testing is underway: disable autocorrect
         let environment = NSProcessInfo.processInfo().environment;
-        if environment["isTesting"] == ScreenConstants.AddEditAccount.trueString {
+        if environment["isTesting"] == Constants.App.trueString {
             self.autocorrectionType = UITextAutocorrectionType.No
         }
         

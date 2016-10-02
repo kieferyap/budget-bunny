@@ -233,6 +233,7 @@ INSERT INTO localizable_words (wording_key, localization_en, localization_jp, lo
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_RENAME', 'Rename', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_TOO_MANY_BUDGETS', 'The number of budgets created has been exceeded.\nKindly delete a budget before proceeding.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_NO_DEFAULT_ACCOUNT', 'There are no default accounts available.\nKindly create a default account before proceeding.', '[Not localized yet]', '[Not localized yet]');
+
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY', 'Add New Income Category', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY_MESSAGE', 'Please enter the name of the new income category.', '[Not localized yet]', '[Not localized yet]');
 INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_ADD_NEW_INCOME_CATEGORY_PLACEHOLDER', 'New Category Name', '[Not localized yet]', '[Not localized yet]');
@@ -246,3 +247,29 @@ UPDATE localizable_words SET localization_en = 'There are no default accounts av
 
 UPDATE localizable_words SET localization_en = 'The number of categories created has been exceeded.\n\nKindly delete a category before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_INCOME_CATEGORIES';
 UPDATE localizable_words SET localization_en = 'The number of accounts created has been exceeded.\n\nKindly delete an account before proceeding.' WHERE wording_key = 'ERRORLABEL_TOO_MANY_ACCOUNTS';
+
+-- 9/14/2016
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG', 'The name of the Income Category is too long. Please specify a shorter name.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_BUDGET_CATEGORY_NAME_TOO_LONG', 'The name of the Budget Category is too long. Please specify a shorter name.', '[Not localized yet]', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_CATEGORY_TITLE', 'Delete Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_INCOME_CATEGORY_MESSAGE', 'The selected income category and its associated transactions will be deleted. This action cannot be undone. Are you sure?', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_INCOME_CATEGORY_BUTTON', 'Delete Income Category', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_BUDGET_CATEGORY_MESSAGE', 'The selected budget category and its associated transactions will be deleted. This action cannot be undone. Are you sure?', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_BUDGET_CATEGORY_BUTTON', 'Delete Budget Category', '[Not localized yet]', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_BUDGET_TITLE', 'Delete Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_BUDGET_BUTTON', 'Delete Budget', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_DELETE_BUDGET_MESSAGE', 'The selected budget, its associated categories, and the transactions associated with them will all be deleted. This action cannot be undone. Are you sure?', '[Not localized yet]', '[Not localized yet]');
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_BUDGET_CATEGORY_NOT_EMPTY', 'The budget category name must not be left blank.', '[Not localized yet]', '[Not localized yet]');
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('LABEL_BUDGET_CATEGORY_ACTIONS', 'Budget Category Actions', '[Not localized yet]', '[Not localized yet]');
+
+-- 9/21/2016
+
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_DUPLICATE_CATEGORY_NAME', 'The income category name already exists.', '[Not localized yet]', '[Not localized yet]');
+UPDATE localizable_words SET wording_key = 'LABEL_INCOME_CATEGORY_ACTIONS' WHERE wording_key = 'LABEL_INCOME_ACTIONS'; 
+UPDATE localizable_words SET wording_key = 'BUTTON_DELETE_BUDGET_CATEGORY' WHERE wording_key = 'LABEL_DELETE_BUDGET_CATEGORY_BUTTON'; 
+UPDATE localizable_words SET wording_key = 'BUTTON_DELETE_INCOME_CATEGORY' WHERE wording_key = 'LABEL_DELETE_INCOME_CATEGORY_BUTTON'; 
+UPDATE localizable_words SET wording_key = 'BUTTON_DELETE_BUDGET' WHERE wording_key = 'LABEL_DELETE_BUDGET_BUTTON'; 
+INSERT INTO localizable_words (wording_key, localization_en, localization_jp, localization_zh) VALUES ('ERRORLABEL_AMOUNT_GREATER_THAN_0', 'The specified amount must be greater than zero.', '[Not localized yet]', '[Not localized yet]');

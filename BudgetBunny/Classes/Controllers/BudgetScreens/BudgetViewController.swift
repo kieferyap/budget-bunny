@@ -19,10 +19,10 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var budgetTableView: UITableView!
     @IBOutlet weak var addBudgetButton: UIBarButtonItem!
     private var budgetTable: [[BunnyCell]] = [[]]
-    private var incomeList: [CategoryCell] = []
+    private var incomeList: [IncomeCategoryCell] = []
     private let screenConstants = ScreenConstants.Budget.self
     private var currentlySelectedObject: BunnyCell!
-    private var amountDivider = 1.0
+    private var amountDivider: Double = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,18 +55,21 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Load the budget and income category data
         self.loadData()
         self.updateIncomeSection()
+        
+        // Reload the table view
         self.budgetTableView.reloadData()
     }
     
-    // Fetch from the core data, and append each element into the table
+    // Fetch all budgets from the core data, and append each element into the table
     private func loadData() {
         let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
         let defaultCurrencyIdentifier = defaultCurrency.identifier
         self.budgetTable[self.screenConstants.idxBudgetSection] = []
         
-        let model = BunnyModel(tableName: ModelConstants.Entities.budget)
+        let model = ActiveRecord(tableName: ModelConstants.Entities.budget)
         model.selectAllObjects { (fetchedObjects) in
             for budget in fetchedObjects {
                 let calculatedBudgetAmount =
@@ -92,42 +95,47 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.budgetTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.None)
     }
     
-    func updateIncomeSection() {
+    // Fetch all income categories from the core data, and append each element into the table
+    private func updateIncomeSection() {
         let defaultCurrency = BunnyUtils.getCurrencyObjectOfDefaultAccount()
         
-        // Fetch all the income categories
+        // "SELECT * FROM categories WHERE isIncome = true;"
         let categoryModel = AttributeModel(
             tableName: ModelConstants.Entities.category,
             key: ModelConstants.Category.isIncome,
             value: true
         )
         
+        // Reset the core data
         self.budgetTable[self.screenConstants.idxIncomeSection] = []
         self.incomeList = []
-        let model = BunnyModel(tableName: ModelConstants.Entities.category)
+        let model = ActiveRecord(tableName: ModelConstants.Entities.category)
         model.selectAllObjectsWithParameters([categoryModel.format: categoryModel.value], completion: { (fetchedObjects) in
             for category in fetchedObjects {
+                // Format the amount
                 let amountDouble = category.valueForKey(ModelConstants.Category.monthlyAmount) as! Double
                 let amountString = defaultCurrency.currencySymbol
                     .stringByAppendingString(" ")
                     .stringByAppendingString(String(format: "%.2f", amountDouble)
                 )
                 
+                // Append to table
                 self.incomeList.append(
-                    CategoryCell(
+                    IncomeCategoryCell(
                         categoryObject: category,
                         alphaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
                         betaElementTitleKey: amountString,
-                        cellIdentifier: Constants.CellIdentifiers.budgetIncome,
+                        cellIdentifier: Constants.CellIdentifiers.incomeCategory,
                         cellSettings: [:]
                     )
                 )
             }
         })
         
+        // "Add New Income" button
         let addNewIncome = SingleElementCell(
             alphaElementTitleKey: StringConstants.TEXTFIELD_NEW_INCOME,
-            cellIdentifier: Constants.CellIdentifiers.addIncome,
+            cellIdentifier: Constants.CellIdentifiers.addIncomeCategory,
             cellSettings: [
                 Constants.AppKeys.keySelector: self.screenConstants.selectorAddNewIncome,
                 Constants.AppKeys.keyEnabled: true,
@@ -140,22 +148,27 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.budgetTableView.reloadData()
     }
     
-    func addNewIncome(incomeName: String) {
+    // Save the new income and refresh the table
+    private func addNewIncome(incomeName: String) {
         BunnyUtils.saveSingleField(
             incomeName,
             parentArray: self.incomeList,
             maxCount: screenConstants.incomeMaxCount,
+            maxLength: ScreenConstants.Budget.incomeNameMaxLength,
+            errorMaxLengthKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NAME_TOO_LONG,
             errorMaxCountKey: StringConstants.ERRORLABEL_TOO_MANY_INCOME_CATEGORIES,
             errorEmptyNameKey: StringConstants.ERRORLABEL_INCOME_CATEGORY_NOT_EMPTY,
             errorDuplicateNameKey: StringConstants.ERRORLABEL_DUPLICATE_CATEGORY_NAME,
             viewController: self,
             isRename: false)
         { (success, newItem) in
+            
+            // TO-DO: Sort the income alphabetically
             if success {
                 self.dismissKeyboard()
                 
                 // Save the new income
-                let activeRecord = BunnyModel.init(tableName: ModelConstants.Entities.category)
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.category)
                 
                 // Set the values of the account and insert it
                 let values = NSDictionary.init(
@@ -179,7 +192,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
 
-    
+    // Changes the budget and income amounts based on the time control
     @IBAction func timeControlChanged(sender: UISegmentedControl) {
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -198,86 +211,162 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.loadData()
     }
     
+    // When a category cell is tapped, the user is presented with options to rename or delete it.
     private func displayIncomeCellActions() {
-        let alertController = UIAlertController.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_INCOME_ACTIONS),
-            message: "",
-            preferredStyle: UIAlertControllerStyle.ActionSheet
-        )
-        
-        let renameAction = UIAlertAction.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME),
-            style: UIAlertActionStyle.Default,
-            handler: { (UIAlertAction) in
+        BudgetUtils.displayCategoryCellActions(
+            self,
+            tableView: self.budgetTableView,
+            renameCompletion: {
                 BudgetUtils.showRenameDialog(
                     self,
-                    model: self.currentlySelectedObject,
-                    incomeList: self.incomeList
+                    tableView: self.budgetTableView,
+                    completion: { (textField) in
+                        BudgetUtils.saveIncomeCategoryTextField(
+                            textField,
+                            model: self.currentlySelectedObject,
+                            incomeList: self.incomeList,
+                            vc: self,
+                            completion: {
+                                self.updateIncomeSection()
+                            }
+                        )
+                    }
                 )
-            }
+            },
+            deleteCompletion: {
+                BunnyUtils.showDeleteDialog(
+                    self,
+                    managedObject: (self.currentlySelectedObject as! IncomeCategoryCell).categoryObject,
+                    deleteTitleKey: StringConstants.LABEL_DELETE_CATEGORY_TITLE,
+                    deleteMessegeKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_MESSAGE,
+                    deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
+                    tableName: ModelConstants.Entities.category,
+                    tableView: self.budgetTableView,
+                    completion: {
+                        self.updateIncomeSection()
+                    }
+                )
+            },
+            titleKey: StringConstants.LABEL_INCOME_CATEGORY_ACTIONS
         )
-        
-        let deleteAction = UIAlertAction.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE_ACCOUNT),
-            style: UIAlertActionStyle.Destructive,
-            handler: { (UIAlertAction) in
-                BudgetUtils.showDeleteDialog(self, model: self.currentlySelectedObject)
-            }
-        )
-        
-        let cancelAction = UIAlertAction.init(
-            title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL),
-            style: UIAlertActionStyle.Cancel,
-            handler: nil
-        )
-        
-        alertController.addAction(renameAction)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    private func getFrequencyKey() -> String {
+        switch self.timeSegmentedControl.selectedSegmentIndex {
+        case self.screenConstants.idxMonthly:
+            return StringConstants.LABEL_MONTHLY_BUDGET
+        case self.screenConstants.idxWeekly:
+            return StringConstants.LABEL_WEEKLY_BUDGET
+        case self.screenConstants.idxDaily:
+            return StringConstants.LABEL_DAILY_BUDGET
+        default:
+            return ""
+        }
     }
     
     // MARK: - Table view data source
     
-    
-    // Needed for the swipe functionality
+    // Needed for the swipe functionality.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
-    // Set the swipe buttons
+    // All budget rows are swipable. All categories, except the last row, is swipable.
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        switch (indexPath.section) {
+            case self.screenConstants.idxBudgetSection:
+                return true
+            case self.screenConstants.idxIncomeSection:
+                // Return true if it's not the last row. False if otherwise.
+                return indexPath.row != self.budgetTable[indexPath.section].count - 1 ? true: false
+            default:
+                return false
+        }
+    }
+    
+    // Budget cells show the Delete button when swiped left. Category cells show the Delete and Rename buttons.
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
         var returnArray: [UITableViewRowAction] = []
         
-        if indexPath.section == self.screenConstants.idxIncomeSection
-            && indexPath.row != self.budgetTable[indexPath.section].count - 1
-        {
+        switch (indexPath.section) {
+            
+        // Budget cells
+        case self.screenConstants.idxBudgetSection:
+            
             // Set the delete button
             let delete = UITableViewRowAction(
                 style: UITableViewRowActionStyle.Destructive,
                 title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
             ) { (action, indexPath) in
-                BudgetUtils.showDeleteDialog(
+                BunnyUtils.showDeleteDialog(
                     self,
-                    model: self.incomeList[indexPath.row]
+                    managedObject: (self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell).budgetObject,
+                    deleteTitleKey: StringConstants.LABEL_DELETE_BUDGET_TITLE,
+                    deleteMessegeKey: StringConstants.LABEL_DELETE_BUDGET_MESSAGE,
+                    deleteActionKey: StringConstants.BUTTON_DELETE_BUDGET,
+                    tableName: ModelConstants.Entities.budget,
+                    tableView: self.budgetTableView,
+                    completion: {
+                        self.loadData()
+                    }
                 )
             }
-            
-            let rename = UITableViewRowAction(
-                style: UITableViewRowActionStyle.Default,
-                title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME)
-            ) { (action, indexPath) in
-                BudgetUtils.showRenameDialog(
-                    self,
-                    model: self.incomeList[indexPath.row],
-                    incomeList: self.incomeList
-                )
-            }
-            
             delete.backgroundColor = Constants.Colors.dangerColor
-            rename.backgroundColor = Constants.Colors.normalGreen
+            returnArray = [delete]
             
-            returnArray = [delete, rename]
+        // Income category cells
+        case self.screenConstants.idxIncomeSection:
+            
+            // If it's not the last row, show the delete and rename buttons
+            if indexPath.row != self.budgetTable[indexPath.section].count - 1
+            {
+                // Set the delete button
+                let delete = UITableViewRowAction(
+                    style: UITableViewRowActionStyle.Destructive,
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
+                ) { (action, indexPath) in
+                    BunnyUtils.showDeleteDialog (
+                        self,
+                        managedObject: self.incomeList[indexPath.row].categoryObject,
+                        deleteTitleKey: StringConstants.LABEL_DELETE_CATEGORY_TITLE,
+                        deleteMessegeKey: StringConstants.LABEL_DELETE_INCOME_CATEGORY_MESSAGE,
+                        deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
+                        tableName: ModelConstants.Entities.category,
+                        tableView: self.budgetTableView,
+                        completion: {
+                            self.updateIncomeSection()
+                        }
+                    )
+                }
+                
+                // Set the rename button
+                let rename = UITableViewRowAction(
+                    style: UITableViewRowActionStyle.Default,
+                    title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_RENAME)
+                ) { (action, indexPath) in
+                    BudgetUtils.showRenameDialog(
+                        self,
+                        tableView: self.budgetTableView,
+                        completion: { (textField) in
+                            BudgetUtils.saveIncomeCategoryTextField(
+                                textField,
+                                model: self.incomeList[indexPath.row],
+                                incomeList: self.incomeList,
+                                vc: self,
+                                completion: {
+                                    self.updateIncomeSection()
+                                }
+                            )
+                        }
+                    )
+                }
+                
+                delete.backgroundColor = Constants.Colors.dangerColor
+                rename.backgroundColor = Constants.Colors.normalGreen
+                
+                returnArray = [delete, rename]
+            }
+        default:
+            break
         }
         
         return returnArray
@@ -288,9 +377,10 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return screenConstants.sectionCount
     }
     
-    // Hey, wait a minute. Don't we have two sections for this?
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellCount = self.budgetTable[section].count
+        
+        // "There are no budgets yet."
         if cellCount == 0 && section == screenConstants.idxBudgetSection {
             let inexistenceCell = SingleElementCell(
                 alphaElementTitleKey: StringConstants.LABEL_NO_BUDGETS,
@@ -303,11 +393,13 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return self.budgetTable[section].count
     }
     
-    // On selection, set the values of the destination view controller and push it into the view controller stack
+    // When a row is tapped...
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentlySelectedObject = self.budgetTable[indexPath.section][indexPath.row]
         
         switch indexPath.section {
+            
+        // Present income cell actions (Rename and Delete)
         case self.screenConstants.idxIncomeSection:
             // If it is not the last row
             if indexPath.row != self.budgetTable[indexPath.section].count - 1 {
@@ -316,8 +408,24 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 (tableView.cellForRowAtIndexPath(indexPath) as! BunnyTableViewCell).performAction()
             }
+            
+        // Prepare the Edit View Controller and pass the relevant values
         case self.screenConstants.idxBudgetSection:
-            // Something about transitioning to the next screen
+            let cell = self.budgetTable[indexPath.section][indexPath.row] as! BudgetCell
+            let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
+            let frequencyKey = self.getFrequencyKey()
+            var vc: AddEditBudgetTableViewController!
+            
+            self.prepareNextViewController(
+                storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditBudget),
+                sourceInformation: Constants.SourceInformation.budgetEditing
+            ) { (destinationViewController) in
+                vc = destinationViewController as! AddEditBudgetTableViewController
+                vc.budgetInformation = cell
+                vc.frequencyKey = frequencyKey
+                vc.amountDivider = self.amountDivider
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
             break
@@ -326,17 +434,15 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    // TO-DO: Header titles for ALL "Add"/"Edit" Screens
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellItem: BunnyCell = self.budgetTable[indexPath.section][indexPath.row]
         let cellIdentifier = cellItem.cellIdentifier
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
-        // Prepare the table view cell
         cell.prepareTableViewCell(cellItem)
         
-        if cellIdentifier == Constants.CellIdentifiers.addIncome {
+        if cellIdentifier == Constants.CellIdentifiers.addIncomeCategory {
             (cell as! SingleElementTableViewCell).delegate = self
         }
         
@@ -360,6 +466,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Activated when + is tapped
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        // Users can only add so many budgets.
         guard
             self.budgetTable[self.screenConstants.idxBudgetSection].count < self.screenConstants.budgetMaxCount
         else {
@@ -371,6 +478,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
+        // Users can't add a new budget if a default account doesn't exist.
         guard BunnyUtils.isDefaultAccountExisting() else {
             BunnyUtils.showAlertWithOKButton(
                 self,
@@ -380,33 +488,23 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        var frequencyKey = ""
-        switch self.timeSegmentedControl.selectedSegmentIndex {
-        case self.screenConstants.idxMonthly:
-            frequencyKey = StringConstants.LABEL_MONTHLY_BUDGET
-            break
-        case self.screenConstants.idxWeekly:
-            frequencyKey = StringConstants.LABEL_WEEKLY_BUDGET
-            break
-        case self.screenConstants.idxDaily:
-            frequencyKey = StringConstants.LABEL_DAILY_BUDGET
-            break
-        default:
-            break
-        }
+        // Pass the frequency key
+        let frequencyKey = self.getFrequencyKey()
 
         self.prepareNextViewController(
             segue.destinationViewController,
-            sourceInformation: -1 // Will be implemented in BUD-0003, I think.
+            sourceInformation: Constants.SourceInformation.budgetNew
         ) { (destinationViewController) in
             let vc = destinationViewController as! AddEditBudgetTableViewController
             vc.frequencyKey = frequencyKey
+            vc.amountDivider = self.amountDivider
         }
     }
 }
 
 extension BudgetViewController: BudgetDelegate {
 
+    // "Add New Income Source" is tapped 
     func presentNewIncomeAlert() {
         BunnyUtils.showTextFieldAlertWithCancelOK(
             StringConstants.LABEL_ADD_NEW_INCOME_CATEGORY,

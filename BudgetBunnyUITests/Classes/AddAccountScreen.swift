@@ -102,7 +102,11 @@ class AddAccountScreen: BaseScreen {
         ].tap()
     }
     
-    func tapButton(buttonName: String) {
+    func tapSetAsDefaultButton() {
+        self.tapButton(BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_SET_AS_DEFAULT))
+    }
+    
+    private func tapButton(buttonName: String) {
         self.app.tables.buttons[buttonName].tap()
     }
     

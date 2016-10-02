@@ -29,4 +29,11 @@ class BaseScreen: NSObject {
             ].tap()
     }
     
+    func getTableElementAtIndex(index: UInt) -> XCUIElement {
+        return self.app.tables.cells.elementAtIndex(index)
+    }
+    
+    func assertCellCount(count: UInt) {
+        XCTAssertEqual(self.app.tables.cells.count, count)
+    }    
 }
