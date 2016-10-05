@@ -416,8 +416,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let frequencyKey = self.getFrequencyKey()
             var vc: AddEditBudgetTableViewController!
             
+            let newNavigationController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addBudgetNavigation) as! UINavigationController
+            let topViewController = newNavigationController.topViewController
+            
             self.prepareNextViewController(
-                storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditBudget),
+                topViewController!,
                 sourceInformation: Constants.SourceInformation.budgetEditing
             ) { (destinationViewController) in
                 vc = destinationViewController as! AddEditBudgetTableViewController
@@ -425,7 +428,8 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 vc.frequencyKey = frequencyKey
                 vc.amountDivider = self.amountDivider
             }
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.presentViewController(newNavigationController, animated: true) {}
             break
         default:
             break
@@ -491,8 +495,11 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the frequency key
         let frequencyKey = self.getFrequencyKey()
 
+        let newNavigationController = segue.destinationViewController as! UINavigationController
+        let topViewController = newNavigationController.topViewController
+        
         self.prepareNextViewController(
-            segue.destinationViewController,
+            topViewController!,
             sourceInformation: Constants.SourceInformation.budgetNew
         ) { (destinationViewController) in
             let vc = destinationViewController as! AddEditBudgetTableViewController

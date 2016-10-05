@@ -41,6 +41,9 @@ struct Constants {
         static let addEditAccount = "AddEditAccountTableViewController"
         static let addEditBudget = "AddEditBudgetTableViewController"
         static let currencyPickerTable = "CurrencyPickerTableViewController"
+        
+        static let addAccountNavigation = "addAccountNavigationController"
+        static let addBudgetNavigation = "addBudgetNavigationController"
     }
     struct KeyboardTypes {
         static let alphanumeric = 0

@@ -302,9 +302,13 @@ class AddEditAccountTableViewController: UITableViewController {
                 activeRecord.insertObject(values)
                 activeRecord.save()
                 
-                self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: {})
             }
         }
+    }
+    
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: {})
     }
     
     // MARK: - Table view data source
@@ -404,7 +408,7 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
             tableName: ModelConstants.Entities.account,
             tableView: self.tableView,
             completion: {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: {})
             }
             // TO-DO: Remove all transactions that are involved with the account
         )

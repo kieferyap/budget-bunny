@@ -175,15 +175,18 @@ class AccountsTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: Constants.Storyboards.mainStoryboard, bundle: nil)
         var vc: AddEditAccountTableViewController!
         
+        let newNavigationController = storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addAccountNavigation) as! UINavigationController
+        let topViewController = newNavigationController.topViewController
+        
         self.prepareNextViewController(
-            storyboard.instantiateViewControllerWithIdentifier(Constants.ViewControllers.addEditAccount),
+            topViewController!,
             sourceInformation: Constants.SourceInformation.accountEditing
         ) { (destinationViewController) in
             vc = destinationViewController as! AddEditAccountTableViewController
             vc.accountInformation = cell
         }
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.presentViewController(newNavigationController, animated: true) {}
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -208,8 +211,11 @@ class AccountsTableViewController: UITableViewController {
             return
         }
         
+        let newNavigationController = segue.destinationViewController as! UINavigationController
+        let topViewController = newNavigationController.topViewController
+        
         self.prepareNextViewController(
-            segue.destinationViewController,
+            topViewController!,
             sourceInformation: Constants.SourceInformation.accountNew
         ) { (destinationViewController) in
             let vc = destinationViewController as! AddEditAccountTableViewController

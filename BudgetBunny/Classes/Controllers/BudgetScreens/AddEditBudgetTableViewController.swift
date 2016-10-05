@@ -297,7 +297,7 @@ class AddEditBudgetTableViewController: UITableViewController {
                         activeRecord.save()
                     }
                 }
-                self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: {})
             }
         }
     }
@@ -379,6 +379,11 @@ class AddEditBudgetTableViewController: UITableViewController {
         }
 
     }
+    
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     
     // MARK: - Table view data source
     // Needed for the swipe functionality
@@ -556,7 +561,7 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             tableName: ModelConstants.Entities.budget,
             tableView: self.tableView,
             completion: {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: {})
             }
         )
     }
