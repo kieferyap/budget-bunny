@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */; };
+		24C08C681DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
@@ -112,6 +113,7 @@
 
 /* Begin PBXFileReference section */
 		243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCategoryCell.swift; sourceTree = "<group>"; };
+		24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrupleElementTableViewCell.swift; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				FBAF76AC1D313ED100E15CC5 /* SingleElementTableViewCell.swift */,
 				FBAF76AE1D314FBC00E15CC5 /* DoubleElementTableViewCell.swift */,
 				FBAF76B01D3150CA00E15CC5 /* TripleElementTableViewCell.swift */,
+				24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */,
 				FBD6E2AB1CE4B06600D2F14A /* AccountsTableViewCell.swift */,
 				FBA035CA1CC78D330050E59B /* CurrencyTableViewCell.swift */,
 				FB169E461D2A041C00AB6439 /* BudgetTableViewCell.swift */,
@@ -742,6 +745,7 @@
 				FB6B602A1D28F29D00C81ED2 /* BudgetCell.swift in Sources */,
 				FB238F2C1CEE0EF200636CCC /* AttributeUniquenessValidator.swift in Sources */,
 				FB337CF01CD791F900F32AE8 /* BunnyCell.swift in Sources */,
+				24C08C681DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift in Sources */,
 				FB8550F11CBDE2990037A881 /* AccountsTableViewController.swift in Sources */,
 				FB8551011CBE27BF0037A881 /* AddTargetViewController.swift in Sources */,
 				FB6AC1211D2137BB009EC80C /* Budget.swift in Sources */,

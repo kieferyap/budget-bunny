@@ -73,4 +73,40 @@ struct ScreenConstants {
         
         static let selectorDelete = "deleteBudget"
     }
+    struct AddTransaction {
+        static let sectionCount = 3
+        static let sectionCountMore = 4
+        
+        static let idxTransactionInformation = 0
+        static let idxTypeInformation = 1
+        static let idxOtherActions = 2
+        
+        static let idxTransactionDetails = 2
+        static let idxOtherActionsMore = 3
+        
+        static let idxAmountCell = 0
+        static let idxNameCell = 1
+        static let idxTypeSegmentControlCell = 2
+        
+        static let idxTransactionInfoCell = 0
+        
+        static let idxSaveTransactionCell = 0
+        static let idxSaveAddProfile = 1
+        static let idxShowMoreDetailsCell = 2
+        
+        static let idxAccountCell = 0
+        static let idxRecurringExpenseCell = 1
+        static let idxRepeatEveryCell = 2
+        
+        static let transactionNameMaxCount = 30
+        static let transactionAmountMaxCount = 10
+        
+        static let segmentedControlIdxExpense = 0
+        static let segmentedControlIdxIncome = 1
+        static let segmentedControlIdxTransfer = 2
+        
+        static let segmentedControlIdxNew = 0
+        static let segmentedControlIdxProfile = 1
+        static let segmentedControlIdxRecrring = 2
+    }
 }

@@ -78,7 +78,7 @@ class AddBudgetScreen: BaseScreen {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_BUDGET)
         ].buttons[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_BUDGETS)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL)
         ].tap()
     }
     

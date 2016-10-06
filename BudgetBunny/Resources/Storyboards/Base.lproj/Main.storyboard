@@ -743,19 +743,14 @@ name</string>
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionAmountCell" rowHeight="44" id="YuU-6F-Wtk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionAmountCell" rowHeight="44" id="YuU-6F-Wtk" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YuU-6F-Wtk" id="FDt-K0-QVR">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1234.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-3r-hHf">
-                                                    <rect key="frame" x="56" y="7" width="536" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-8x-nv2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-8x-nv2">
                                                     <rect key="frame" x="8" y="11" width="40" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="xW2-y6-wpi"/>
@@ -764,6 +759,11 @@ name</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1234.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-3r-hHf" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                                    <rect key="frame" x="56" y="13" width="536" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="E2a-3r-hHf" firstAttribute="leading" secondItem="jCV-8x-nv2" secondAttribute="trailing" constant="8" id="OeD-aM-04Y"/>
@@ -773,16 +773,20 @@ name</string>
                                                 <constraint firstItem="jCV-8x-nv2" firstAttribute="leading" secondItem="FDt-K0-QVR" secondAttribute="leadingMargin" id="yXe-Yq-Sfs"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="jCV-8x-nv2" id="eM2-ZG-F1X"/>
+                                            <outlet property="betaUIElement" destination="E2a-3r-hHf" id="deU-dQ-4O2"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionNotesCell" rowHeight="44" id="RRw-nS-ukU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionNotesCell" rowHeight="44" id="RRw-nS-ukU" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RRw-nS-ukU" id="r0c-3M-TzC">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="notes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="frV-bu-tBx">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="notes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="frV-bu-tBx" customClass="BunnyTextField" customModule="BudgetBunny" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="13" width="584" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -794,8 +798,11 @@ name</string>
                                                 <constraint firstItem="frV-bu-tBx" firstAttribute="leading" secondItem="r0c-3M-TzC" secondAttribute="leadingMargin" id="hS8-tI-haZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="frV-bu-tBx" id="hwv-Z9-9CD"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionSwitchCell" rowHeight="44" id="EbL-gY-qyp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionSwitchCell" rowHeight="44" id="EbL-gY-qyp" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="138" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EbL-gY-qyp" id="U9O-he-w1y">
@@ -820,8 +827,12 @@ name</string>
                                                 <constraint firstItem="KgO-dv-MIc" firstAttribute="centerY" secondItem="U9O-he-w1y" secondAttribute="centerY" id="jIl-6S-cX2"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="KgO-dv-MIc" id="MZc-tR-PM3"/>
+                                            <outlet property="betaUIElement" destination="PPN-P9-A0v" id="XyL-xg-RHp"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionTypeCell" rowHeight="44" id="8Vz-Rt-RVz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionTypeCell" rowHeight="44" id="8Vz-Rt-RVz" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="182" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Vz-Rt-RVz" id="bzw-03-vKb">
@@ -835,6 +846,9 @@ name</string>
                                                         <segment title="income"/>
                                                         <segment title="transfer"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="transactionTypeChanged:" destination="aS9-4m-h9r" eventType="valueChanged" id="s5F-Mo-Wd1"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -844,8 +858,11 @@ name</string>
                                                 <constraint firstAttribute="trailingMargin" secondItem="PFJ-e9-uov" secondAttribute="trailing" id="LdF-yM-pq7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="PFJ-e9-uov" id="NDY-tG-xER"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionFieldValueCell" rowHeight="44" id="zPc-FF-k59">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionFieldValueCell" rowHeight="44" id="zPc-FF-k59" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="226" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zPc-FF-k59" id="Yhw-tj-fdj">
@@ -873,8 +890,12 @@ name</string>
                                                 <constraint firstItem="ffU-iw-bNz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ysM-t1-Aeh" secondAttribute="trailing" constant="8" id="tdd-mO-1jk"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="ysM-t1-Aeh" id="Uut-Xa-Hmt"/>
+                                            <outlet property="betaUIElement" destination="ffU-iw-bNz" id="QoQ-vF-nur"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionActionCell" rowHeight="44" id="tAG-Im-Vaq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionActionCell" rowHeight="44" id="tAG-Im-Vaq" customClass="SingleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="270" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tAG-Im-Vaq" id="w5s-0v-Yq9">
@@ -892,8 +913,11 @@ name</string>
                                                 <constraint firstItem="eUD-Cp-qhX" firstAttribute="centerY" secondItem="w5s-0v-Yq9" secondAttribute="centerY" id="OwY-BE-tfj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="eUD-Cp-qhX" id="1K8-dT-CrZ"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="44" id="Qbn-BK-M0v">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="44" id="Qbn-BK-M0v" customClass="DoubleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="314" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qbn-BK-M0v" id="zn4-m7-b40">
@@ -903,13 +927,13 @@ name</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="profileName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1El-Gt-Qyj">
                                                     <rect key="frame" x="8" y="11" width="94" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSX-hX-BCU">
                                                     <rect key="frame" x="534" y="11" width="58" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -921,8 +945,12 @@ name</string>
                                                 <constraint firstItem="OSX-hX-BCU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1El-Gt-Qyj" secondAttribute="trailing" constant="8" id="wU2-y8-ckW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="1El-Gt-Qyj" id="XuY-8V-lUO"/>
+                                            <outlet property="betaUIElement" destination="OSX-hX-BCU" id="qfU-V7-1ke"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionDoubleFieldValueCell" rowHeight="67" id="5Am-5J-krC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionDoubleFieldValueCell" rowHeight="67" id="5Am-5J-krC" customClass="QuadrupleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="358" width="600" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Am-5J-krC" id="4hs-8U-E97">
@@ -941,14 +969,14 @@ name</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIX-cW-Cug">
-                                                    <rect key="frame" x="541" y="37" width="51" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTq-pa-dNN">
+                                                    <rect key="frame" x="544" y="8" width="48" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTq-pa-dNN">
-                                                    <rect key="frame" x="544" y="8" width="48" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIX-cW-Cug">
+                                                    <rect key="frame" x="541" y="37" width="51" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -969,8 +997,14 @@ name</string>
                                                 <constraint firstItem="xWd-SL-d0e" firstAttribute="bottom" secondItem="4hs-8U-E97" secondAttribute="bottomMargin" id="yRm-RU-PlY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="9qi-BX-D1B" id="KLl-QZ-9Rw"/>
+                                            <outlet property="betaUIElement" destination="xWd-SL-d0e" id="Gdy-hI-TtP"/>
+                                            <outlet property="deltaUIElement" destination="PIX-cW-Cug" id="jVt-uG-vlg"/>
+                                            <outlet property="gammaUIElement" destination="HTq-pa-dNN" id="oQW-0J-92v"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recurringTransactionCell" rowHeight="55" id="mSB-0x-rVw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recurringTransactionCell" rowHeight="55" id="mSB-0x-rVw" customClass="TripleElementTableViewCell" customModule="BudgetBunny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="425" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mSB-0x-rVw" id="J0D-KC-rPz">
@@ -1007,6 +1041,11 @@ name</string>
                                                 <constraint firstItem="UdW-f0-dyH" firstAttribute="top" secondItem="J0D-KC-rPz" secondAttribute="topMargin" id="mpW-WS-09K"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alphaUIElement" destination="UdW-f0-dyH" id="pe7-Fc-oCw"/>
+                                            <outlet property="betaUIElement" destination="2a9-XZ-eMo" id="tyg-4e-SO1"/>
+                                            <outlet property="gammaUIElement" destination="GbB-Hp-Lvc" id="63F-XY-5HP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1030,8 +1069,12 @@ name</string>
                                 <action selector="cancelButtonPressed:" destination="aS9-4m-h9r" id="zzd-vI-QbN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="post" id="Rt4-QG-O2Y"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rt4-QG-O2Y"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="transactionSegmentedControl" destination="wFT-Mx-lGM" id="J3m-B3-7Of"/>
+                        <outlet property="transactionTableView" destination="Amw-2l-8Fh" id="1Xd-ic-27s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w91-ZA-klN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

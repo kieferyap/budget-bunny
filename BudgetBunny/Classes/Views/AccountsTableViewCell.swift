@@ -29,7 +29,6 @@ class AccountsTableViewCell: UITableViewCell, BunnyTableViewCellProtocol {
         self.isDefaultLabel.text = isDefaultText
         self.accountNameLabel.text = model.alphaElementTitle
         self.amountLabel.text = model.betaElementTitle
-        self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         // Colors
         self.isDefaultLabelWidth.constant = 0.0

@@ -87,7 +87,12 @@ class BunnyUtils: NSObject {
     
     // Prepares the textfield. Assumes that each text field has a maxLength, keyboardType, and textValue. Used whenever there is a text field. Returns true if the textfield has been successfully prepared. False, if otherwise.
     // TO-DO: I should be able to customize the Enter key. ("Done", "Continue", etc.)
-    class func prepareTextField(textField: BunnyTextField, placeholderText: String, textColor: UIColor, model: BunnyCell) -> Bool {
+    class func prepareTextField(
+        textField: BunnyTextField,
+        placeholderText: String,
+        textColor: UIColor,
+        model: BunnyCell
+    ) -> Bool {
         textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: nil)
         textField.textColor = textColor
         
@@ -101,12 +106,34 @@ class BunnyUtils: NSObject {
             return false
         }
         
+        var processedTextValue = textValue as! String
+        if processedTextValue == "" {
+            processedTextValue = textField.text!
+        }
         textField.setKeyboardProperties(
             keyboardType as! Int,
             maxLength: maxLength as! Int,
-            text: textValue as! String
+            text: processedTextValue
         )
         return true
+    }
+    
+    // Prepares a segmented control
+    class func prepareSegmentedControl(
+        segmentedControl: UISegmentedControl,
+        model: BunnyCell
+    ) {
+        guard let rawArray = model.cellSettings[Constants.AppKeys.keySegmentedControlText] else {
+            return
+        }
+        guard let tintColor = model.cellSettings[Constants.AppKeys.keyTint] else {
+            return
+        }
+        let segmentedControlArray = rawArray as! NSArray
+        segmentedControl.tintColor = tintColor as! UIColor
+        for item in segmentedControlArray {
+            segmentedControl.setTitle(item as? String, forSegmentAtIndex: segmentedControlArray.indexOfObject(item))
+        }
     }
     
     // Prepares the button, returns true if the preparation is successful. False if otherwise.

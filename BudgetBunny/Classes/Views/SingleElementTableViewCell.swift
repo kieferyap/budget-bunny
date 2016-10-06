@@ -114,6 +114,47 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     self.buttonCellTypeAction()
                 }
             )
+            
+            // Transaction notes: "Bought a new laptop"
+            self.addCellType(
+                Constants.CellIdentifiers.transactionNotes,
+                completion: {
+                    let budgetModel = self.model as! SingleElementCell
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    
+                    guard let textColor = budgetModel.cellSettings[Constants.AppKeys.keyTextColor] else {
+                        return
+                    }
+                    
+                    BunnyUtils.prepareTextField(
+                        alphaTextField,
+                        placeholderText: budgetModel.alphaElementTitle,
+                        textColor: textColor as! UIColor,
+                        model: budgetModel
+                    )
+                },
+                getValue: { () -> String in
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    return alphaTextField.text!
+                },
+                performAction: {
+                    let alphaTextField = self.alphaUIElement as! BunnyTextField
+                    alphaTextField.becomeFirstResponder()
+            })
+            
+            // Transaction Type: Expense, Income, Transfer
+            self.addCellType(
+                Constants.CellIdentifiers.transactionType,
+                completion: {
+                    let budgetModel = self.model as! SingleElementCell
+                    let alphaSegmentControl = self.alphaUIElement as! UISegmentedControl
+                    
+                    BunnyUtils.prepareSegmentedControl(alphaSegmentControl, model: budgetModel)                    
+                }, getValue: { () -> String in
+                    let alphaSegmentControl = self.alphaUIElement as! UISegmentedControl
+                    return String(format: "%d", alphaSegmentControl.selectedSegmentIndex)
+                }, performAction: {}
+            )
         }
     }
     
@@ -128,6 +169,10 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             model: buttonModel,
             target: self
         )
+    }
+    
+    private func transactionTypeChanged() {
+        print("bitches")
     }
     
     private func buttonCellTypeAction() {

@@ -29,6 +29,16 @@ struct Constants {
         static let incomeCategory = "incomeCategoryCell"
         static let addIncomeCategory = "addIncomeCategoryCell"
         static let budgetInexistence = "budgetInexistenceCell"
+        
+        static let transactionAmount = "transactionAmountCell"
+        static let transactionNotes = "transactionNotesCell"
+        static let transactionSwitch = "transactionSwitchCell"
+        static let transactionType = "transactionTypeCell"
+        static let transactionFieldValue = "transactionFieldValueCell"
+        static let transactionAction = "transactionActionCell"
+        static let profile = "profileCell"
+        static let transactionDoubleFieldValue = "transactionDoubleFieldValueCell"
+        static let recurringTransaction = "recurringTransactionCell"
     }
     struct SourceInformation {
         static let accountNew = 0
@@ -54,11 +64,15 @@ struct Constants {
         static let keyKeyboardType = "keyboardType"
         static let keyMaxLength = "maxLength"
         static let keyTextFieldValue = "value"
+        static let keyTextColor = "textColor"
         // Button constants
         static let keySelector = "selector"
         static let keyEnabled = "enabled"
         static let keyButtonColor = "color"
         static let keyManagedObject = "managedObject"
+        static let keySegmentedControlText = "segmentedControlText"
+        // General constants
+        static let keyTint = "tint"
         // Navigation bar localization keys
         static let tabBarKeys = [
             "MENULABEL_ACCOUNT",

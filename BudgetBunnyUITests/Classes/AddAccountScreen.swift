@@ -76,7 +76,7 @@ class AddAccountScreen: BaseScreen {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ADD_ACCOUNT)
         ].buttons[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL)
         ].tap()
     }
     
@@ -84,7 +84,7 @@ class AddAccountScreen: BaseScreen {
         self.app.navigationBars[
             BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_EDIT_ACCOUNT)
         ].buttons[
-            BunnyUIUtils.uncommentedLocalizedString(StringConstants.MENULABEL_ACCOUNT)
+            BunnyUIUtils.uncommentedLocalizedString(StringConstants.BUTTON_CANCEL)
         ].tap()
     }
     

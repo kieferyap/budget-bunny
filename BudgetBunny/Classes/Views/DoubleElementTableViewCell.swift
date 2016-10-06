@@ -145,6 +145,38 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     (self.delegate as! AddEditBudgetDelegate).displayCategoryCellActions()
                 }
             )
+            
+            // Transaction amount: $ [ 1234.00 ]
+            self.addCellType(
+                Constants.CellIdentifiers.transactionAmount,
+                completion: {
+                    let budgetModel = self.model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    
+                    guard let textColor = budgetModel.cellSettings[Constants.AppKeys.keyTextColor] else {
+                        return
+                    }
+                    
+                    alphaLabel.text = budgetModel.alphaElementTitle
+                    BunnyUtils.prepareTextField(
+                        betaTextField,
+                        placeholderText: budgetModel.betaElementTitle,
+                        textColor: textColor as! UIColor,
+                        model: budgetModel
+                    )
+                },
+                getValue: { () -> String in
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    return (betaTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                        )
+                        )!
+                },
+                performAction: {
+                    let betaTextField = self.betaUIElement as! BunnyTextField
+                    betaTextField.becomeFirstResponder()
+                }
+            )
         }
     }
 }
