@@ -107,6 +107,10 @@ struct ScreenConstants {
         
         static let segmentedControlIdxNew = 0
         static let segmentedControlIdxProfile = 1
-        static let segmentedControlIdxRecrring = 2
+        static let segmentedControlIdxRecurring = 2
+        
+        static let selectorSaveTransaction = "saveTransaction"
+        static let selectorSaveAndAddAsProfile = "saveAndAddAsProfile"
+        static let selectorShowMoreDetails = "showMoreDetails"
     }
 }

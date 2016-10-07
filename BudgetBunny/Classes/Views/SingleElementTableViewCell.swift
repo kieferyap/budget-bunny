@@ -115,33 +115,6 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
-            // Transaction notes: "Bought a new laptop"
-            self.addCellType(
-                Constants.CellIdentifiers.transactionNotes,
-                completion: {
-                    let budgetModel = self.model as! SingleElementCell
-                    let alphaTextField = self.alphaUIElement as! BunnyTextField
-                    
-                    guard let textColor = budgetModel.cellSettings[Constants.AppKeys.keyTextColor] else {
-                        return
-                    }
-                    
-                    BunnyUtils.prepareTextField(
-                        alphaTextField,
-                        placeholderText: budgetModel.alphaElementTitle,
-                        textColor: textColor as! UIColor,
-                        model: budgetModel
-                    )
-                },
-                getValue: { () -> String in
-                    let alphaTextField = self.alphaUIElement as! BunnyTextField
-                    return alphaTextField.text!
-                },
-                performAction: {
-                    let alphaTextField = self.alphaUIElement as! BunnyTextField
-                    alphaTextField.becomeFirstResponder()
-            })
-            
             // Transaction Type: Expense, Income, Transfer
             self.addCellType(
                 Constants.CellIdentifiers.transactionType,
@@ -154,6 +127,21 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     let alphaSegmentControl = self.alphaUIElement as! UISegmentedControl
                     return String(format: "%d", alphaSegmentControl.selectedSegmentIndex)
                 }, performAction: {}
+            )
+            
+            // Transaction actions: "Show More", "Save Transaction", "Save and Add as Profile"
+            self.addCellType(
+                Constants.CellIdentifiers.transactionAction,
+                completion: {
+                    self.buttonCellTypeCompletion()
+                },
+                getValue: {
+                    // A button does not have a return value
+                    return ""
+                },
+                performAction:  {
+                    self.buttonCellTypeAction()
+                }
             )
         }
     }
@@ -169,10 +157,6 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
             model: buttonModel,
             target: self
         )
-    }
-    
-    private func transactionTypeChanged() {
-        print("bitches")
     }
     
     private func buttonCellTypeAction() {
@@ -239,6 +223,18 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
     
     func presentNewIncomeAlert() {
         (self.delegate as! BudgetDelegate).presentNewIncomeAlert()
+    }
+    
+    func saveTransaction() {
+        print("Saving Transaction")
+    }
+    
+    func saveAndAddAsProfile() {
+        print("Saving Transaction and Add as Profile")
+    }
+    
+    func showMoreDetails() {
+        print("Show More Details")
     }
     
 }

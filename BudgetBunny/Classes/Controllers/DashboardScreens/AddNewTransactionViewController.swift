@@ -13,8 +13,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     private var sectionCount = ScreenConstants.AddTransaction.sectionCount
     private var screenConstants = ScreenConstants.AddTransaction.self
     private var tintColor = Constants.Colors.expenseColor
+    private var selectedTransactionTypeIndex = ScreenConstants.AddTransaction.segmentedControlIdxExpense
     @IBOutlet weak var transactionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var transactionTableView: UITableView!
+    @IBOutlet weak var transactionKindSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +27,38 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         self.transactionTableView.tintColor = self.tintColor
         self.prepareModelData(self.sectionCount) {
             
+            switch self.selectedTransactionTypeIndex {
+            case self.screenConstants.segmentedControlIdxExpense:
+                self.tintColor = Constants.Colors.expenseColor
+            case self.screenConstants.segmentedControlIdxIncome:
+                self.tintColor = Constants.Colors.incomeColor
+            case self.screenConstants.segmentedControlIdxTransfer:
+                self.tintColor = Constants.Colors.darkGray
+            default:
+                break
+            }
+            
+            self.transactionKindSegmentedControl.setTitle(
+                BunnyUtils.uncommentedLocalizedString("New"),
+                forSegmentAtIndex: self.screenConstants.segmentedControlIdxNew
+            )
+            self.transactionKindSegmentedControl.setTitle(
+                BunnyUtils.uncommentedLocalizedString("Profile"),
+                forSegmentAtIndex: self.screenConstants.segmentedControlIdxProfile
+            )
+            self.transactionKindSegmentedControl.setTitle(
+                BunnyUtils.uncommentedLocalizedString("Recurring"),
+                forSegmentAtIndex: self.screenConstants.segmentedControlIdxRecurring
+            )
+            
             // Transaction amount
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxTransactionInformation,
                 idxRow: self.screenConstants.idxAmountCell,
                 cellData: DoubleElementCell(
-                    alphaElementTitleKey: "$",
+                    alphaElementTitleKey: "Amount ($)",
                     betaElementTitleKey: "150.25",
-                    cellIdentifier: Constants.CellIdentifiers.transactionAmount,
+                    cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
                     cellSettings: [
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
@@ -47,9 +73,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxTransactionInformation,
                 idxRow: self.screenConstants.idxNameCell,
-                cellData: SingleElementCell(
-                    alphaElementTitleKey: "Just some groceries",
-                    cellIdentifier: Constants.CellIdentifiers.transactionNotes,
+                cellData: DoubleElementCell(
+                    alphaElementTitleKey: "Notes",
+                    betaElementTitleKey: "Just some groceries",
+                    cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
                     cellSettings: [
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.transactionNameMaxCount,
@@ -76,6 +103,51 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     ]
                 )
             )
+            
+            // Save transaction button
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxOtherActions,
+                idxRow: self.screenConstants.idxSaveTransactionCell,
+                cellData: SingleElementCell(
+                    alphaElementTitleKey: "Save Transaction",
+                    cellIdentifier: Constants.CellIdentifiers.transactionAction,
+                    cellSettings: [
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorSaveTransaction,
+                        Constants.AppKeys.keyEnabled: true,
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                    ]
+                )
+            )
+            
+            // Save transaction and add as profile button
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxOtherActions,
+                idxRow: self.screenConstants.idxSaveAddProfile,
+                cellData: SingleElementCell(
+                    alphaElementTitleKey: "Save and Add as Profile",
+                    cellIdentifier: Constants.CellIdentifiers.transactionAction,
+                    cellSettings: [
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorSaveAndAddAsProfile,
+                        Constants.AppKeys.keyEnabled: true,
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                    ]
+                )
+            )
+            
+            // Show More Details button
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxOtherActions,
+                idxRow: self.screenConstants.idxShowMoreDetailsCell,
+                cellData: SingleElementCell(
+                    alphaElementTitleKey: "Show More Details",
+                    cellIdentifier: Constants.CellIdentifiers.transactionAction,
+                    cellSettings: [
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorShowMoreDetails,
+                        Constants.AppKeys.keyEnabled: true,
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                    ]
+                )
+            )
         }
         
         // Do any additional setup after loading the view.
@@ -87,16 +159,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     }
 
     @IBAction func transactionTypeChanged(sender: AnyObject) {
-        switch sender.selectedSegmentIndex {
-        case screenConstants.segmentedControlIdxExpense:
-            self.tintColor = Constants.Colors.expenseColor
-        case screenConstants.segmentedControlIdxIncome:
-            self.tintColor = Constants.Colors.incomeColor
-        case screenConstants.segmentedControlIdxTransfer:
-            self.tintColor = Constants.Colors.darkGray
-        default:
-            break
-        }
+        self.selectedTransactionTypeIndex = sender.selectedSegmentIndex
         self.viewDidLoad()
     }
     
@@ -132,6 +195,8 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         switch section {
         case screenConstants.idxTransactionInformation:
             headerNameKey = "Transaction Information"
+        case screenConstants.idxOtherActions:
+            headerNameKey = "Transaction Actions"
         default:
             break
         }

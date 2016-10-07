@@ -30,8 +30,7 @@ struct Constants {
         static let addIncomeCategory = "addIncomeCategoryCell"
         static let budgetInexistence = "budgetInexistenceCell"
         
-        static let transactionAmount = "transactionAmountCell"
-        static let transactionNotes = "transactionNotesCell"
+        static let transactionFieldValueTextField = "transactionFieldValueTextFieldCell"
         static let transactionSwitch = "transactionSwitchCell"
         static let transactionType = "transactionTypeCell"
         static let transactionFieldValue = "transactionFieldValueCell"

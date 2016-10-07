@@ -146,9 +146,9 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 }
             )
             
-            // Transaction amount: $ [ 1234.00 ]
+            // Amount ($) [ 1234.00 ], Title [ (optional) ]
             self.addCellType(
-                Constants.CellIdentifiers.transactionAmount,
+                Constants.CellIdentifiers.transactionFieldValueTextField,
                 completion: {
                     let budgetModel = self.model as! DoubleElementCell
                     let alphaLabel = self.alphaUIElement as! UILabel
