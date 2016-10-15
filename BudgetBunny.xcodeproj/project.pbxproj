@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */; };
+		249354CB1DADE0F900346A83 /* QuadrupleElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249354CA1DADE0F900346A83 /* QuadrupleElementCell.swift */; };
 		24C08C681DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
@@ -113,6 +114,7 @@
 
 /* Begin PBXFileReference section */
 		243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCategoryCell.swift; sourceTree = "<group>"; };
+		249354CA1DADE0F900346A83 /* QuadrupleElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrupleElementCell.swift; sourceTree = "<group>"; };
 		24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrupleElementTableViewCell.swift; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				FBAF76A41D31350300E15CC5 /* SingleElementCell.swift */,
 				FBAF76A61D31357000E15CC5 /* DoubleElementCell.swift */,
 				FBAF76A81D3135FC00E15CC5 /* TripleElementCell.swift */,
+				249354CA1DADE0F900346A83 /* QuadrupleElementCell.swift */,
 				FBD06A7A1CE4E47200C32672 /* AccountCell.swift */,
 				FB6B60291D28F29D00C81ED2 /* BudgetCell.swift */,
 				FB3C67E91D427AC3001D0E6B /* IncomeCategoryCell.swift */,
@@ -699,6 +702,7 @@
 				FBAF76A51D31350300E15CC5 /* SingleElementCell.swift in Sources */,
 				FBDF48341D051E8B00C9E2D8 /* BunnyTextField.swift in Sources */,
 				FB49683E1CD0ADC9006A0177 /* StringConstants.swift in Sources */,
+				249354CB1DADE0F900346A83 /* QuadrupleElementCell.swift in Sources */,
 				FB2445371CCF5B3400E55941 /* BunnyUtils.swift in Sources */,
 				FB6AC11E1D2137BB009EC80C /* Category+CoreDataProperties.swift in Sources */,
 				FB6AC1271D2137BB009EC80C /* Target.swift in Sources */,

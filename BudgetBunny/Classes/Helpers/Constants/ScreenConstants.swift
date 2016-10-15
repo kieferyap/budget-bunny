@@ -18,10 +18,7 @@ struct ScreenConstants {
         static let accountNameMaxLength = 25
         static let initialAmountMaxLength = 15
         
-        static let defaultCellHeight = 44.0
         static let accountCellHeight = 60.0
-        
-        static let keyHeight = "height"
         
         static let selectorDelete = "deleteAccount"
         static let selectorSetDefault = "setDefault"
@@ -112,5 +109,8 @@ struct ScreenConstants {
         static let selectorSaveTransaction = "saveTransaction"
         static let selectorSaveAndAddAsProfile = "saveAndAddAsProfile"
         static let selectorShowMoreDetails = "showMoreDetails"
+        static let selectorTest = "test"
+        
+        static let doubleFieldValueCellHeight = 60.0
     }
 }

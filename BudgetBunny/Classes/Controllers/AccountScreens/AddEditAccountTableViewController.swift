@@ -112,7 +112,7 @@ class AddEditAccountTableViewController: UITableViewController {
                         gammaElementTitleKey: Constants.App.falseString,
                         cellIdentifier: Constants.CellIdentifiers.addAccountSwitch,
                         cellSettings: [
-                            self.screenConstants.keyHeight: self.screenConstants.accountCellHeight
+                            Constants.AppKeys.keyHeight: self.screenConstants.accountCellHeight
                         ]
                     )
                 )
@@ -339,8 +339,8 @@ class AddEditAccountTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
-        var cellHeight: CGFloat = CGFloat(screenConstants.defaultCellHeight)
-        BunnyUtils.keyExistsForCellSettings(cellItem, key: screenConstants.keyHeight) { (object) in
+        var cellHeight: CGFloat = CGFloat(Constants.App.defaultCellHeight)
+        BunnyUtils.keyExistsForCellSettings(cellItem, key: Constants.AppKeys.keyHeight) { (object) in
             cellHeight = object as! CGFloat
         }
         return cellHeight

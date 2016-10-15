@@ -845,7 +845,7 @@ name</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffU-iw-bNz">
-                                                    <rect key="frame" x="551" y="11" width="41" height="21"/>
+                                                    <rect key="frame" x="543" y="11" width="41" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -860,7 +860,7 @@ name</string>
                                             <constraints>
                                                 <constraint firstItem="ffU-iw-bNz" firstAttribute="centerY" secondItem="Yhw-tj-fdj" secondAttribute="centerY" id="0Rh-JE-25e"/>
                                                 <constraint firstItem="ysM-t1-Aeh" firstAttribute="leading" secondItem="Yhw-tj-fdj" secondAttribute="leadingMargin" constant="8" id="FzB-0F-ehD"/>
-                                                <constraint firstItem="ffU-iw-bNz" firstAttribute="trailing" secondItem="Yhw-tj-fdj" secondAttribute="trailingMargin" id="bXX-Ht-aDL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ffU-iw-bNz" secondAttribute="trailing" constant="8" id="bXX-Ht-aDL"/>
                                                 <constraint firstItem="ysM-t1-Aeh" firstAttribute="centerY" secondItem="Yhw-tj-fdj" secondAttribute="centerY" id="pPO-o0-cYT"/>
                                                 <constraint firstItem="ffU-iw-bNz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ysM-t1-Aeh" secondAttribute="trailing" constant="8" id="tdd-mO-1jk"/>
                                             </constraints>

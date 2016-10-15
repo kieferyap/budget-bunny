@@ -27,13 +27,51 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         self.transactionTableView.tintColor = self.tintColor
         self.prepareModelData(self.sectionCount) {
             
+            var transactionInfoCell: BunnyCell!
+            
             switch self.selectedTransactionTypeIndex {
             case self.screenConstants.segmentedControlIdxExpense:
                 self.tintColor = Constants.Colors.expenseColor
+                transactionInfoCell = QuadrupleElementCell(
+                    alphaElementTitleKey: "Budget name",
+                    betaElementTitleKey: "Category name",
+                    gammaElementTitleKey: "Food and Groceries",
+                    deltaElementTitleKey: "Snacks",
+                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
+                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                    ]
+                )
             case self.screenConstants.segmentedControlIdxIncome:
                 self.tintColor = Constants.Colors.incomeColor
+                transactionInfoCell = DoubleElementCell(
+                    alphaElementTitleKey: "Income Category name",
+                    betaElementTitleKey: "Salary",
+                    cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                    ]
+                )
             case self.screenConstants.segmentedControlIdxTransfer:
                 self.tintColor = Constants.Colors.darkGray
+                transactionInfoCell = QuadrupleElementCell(
+                    alphaElementTitleKey: "Transfer from",
+                    betaElementTitleKey: "Transfer to",
+                    gammaElementTitleKey: "Bank Account",
+                    deltaElementTitleKey: "My Wallet",
+                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
+                    cellSettings: [
+                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
+                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                    ]
+                )
             default:
                 break
             }
@@ -104,6 +142,13 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                 )
             )
             
+            // Income/Expense/Transfer Section
+            self.appendCellAtSectionIndex(
+                self.screenConstants.idxTypeInformation,
+                idxRow: self.screenConstants.idxTransactionInfoCell,
+                cellData: transactionInfoCell
+            )
+            
             // Save transaction button
             self.appendCellAtSectionIndex(
                 self.screenConstants.idxOtherActions,
@@ -164,7 +209,6 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     }
     
     // MARK: - Table view data source
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.sectionCount
     }
@@ -190,11 +234,31 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         return cell as! UITableViewCell
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellItem: BunnyCell = self.modelData[indexPath.section][indexPath.row]
+        var cellHeight: CGFloat = CGFloat(Constants.App.defaultCellHeight)
+        BunnyUtils.keyExistsForCellSettings(cellItem, key: Constants.AppKeys.keyHeight) { (object) in
+            cellHeight = object as! CGFloat
+        }
+        return cellHeight
+    }
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var headerNameKey = ""
         switch section {
         case screenConstants.idxTransactionInformation:
             headerNameKey = "Transaction Information"
+        case screenConstants.idxTypeInformation:
+            switch self.selectedTransactionTypeIndex {
+            case self.screenConstants.segmentedControlIdxExpense:
+                headerNameKey = "Expense Information"
+            case self.screenConstants.segmentedControlIdxIncome:
+                headerNameKey = "Income Information"
+            case self.screenConstants.segmentedControlIdxTransfer:
+                headerNameKey = "Transfer Information"
+            default:
+                break
+            }
         case screenConstants.idxOtherActions:
             headerNameKey = "Transaction Actions"
         default:

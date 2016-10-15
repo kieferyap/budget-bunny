@@ -91,7 +91,6 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     return ""
                 },
                 performAction: {
-                    // On tap, an alert will show, allowing the user to edit the name of the income category
                 }
             )
             
@@ -177,6 +176,48 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     betaTextField.becomeFirstResponder()
                 }
             )
+            
+            // Transaction field value (e.g. "Income Category: Salary")
+            self.addCellType(
+                Constants.CellIdentifiers.transactionFieldValue,
+                completion: {
+                    let transactionModel = self.model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaLabel = self.betaUIElement as! UILabel
+                    
+                    alphaLabel.text = transactionModel.alphaElementTitle
+                    betaLabel.text = transactionModel.betaElementTitle
+                    
+                    let tintColor = transactionModel.cellSettings[Constants.AppKeys.keyTint]
+                    let accessoryType = transactionModel.cellSettings[Constants.AppKeys.keyTableCellAccessoryType]
+                    
+                    if (tintColor != nil) {
+                        betaLabel.textColor = tintColor as! UIColor
+                    }
+                    
+                    if (accessoryType != nil) {
+                        self.accessoryType = accessoryType as! UITableViewCellAccessoryType
+                    }
+                    
+                }, getValue: { () -> String in
+                    return ""
+                }, performAction: {
+                    self.cellAction()
+                }
+            )
         }
+    }
+    
+    private func cellAction() {
+        let actionModel = model as! SingleElementCell
+        self.performSelector(
+            Selector(
+                actionModel.cellSettings[Constants.AppKeys.keySelector] as! String
+            )
+        )
+    }
+    
+    private func test() {
+        print("TEST")
     }
 }

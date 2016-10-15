@@ -72,6 +72,8 @@ struct Constants {
         static let keySegmentedControlText = "segmentedControlText"
         // General constants
         static let keyTint = "tint"
+        static let keyTableCellAccessoryType = "tableViewCellAccessoryType"
+        static let keyHeight = "height"
         // Navigation bar localization keys
         static let tabBarKeys = [
             "MENULABEL_ACCOUNT",
@@ -83,6 +85,8 @@ struct Constants {
     struct App {
         static let trueString = "1"
         static let falseString = "0"
+        
+        static let defaultCellHeight = 44.0
     }
     struct Storyboards {
         static let mainStoryboard = "Main"
