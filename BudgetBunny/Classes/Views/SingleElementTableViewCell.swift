@@ -234,7 +234,7 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
     }
     
     func showMoreDetails() {
-        print("Show More Details")
+        (self.delegate as! AddTransactionDelegate).showMoreDetails()
     }
     
 }

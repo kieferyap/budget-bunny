@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol AddTransactionDelegate: class {
+    func showMoreDetails()
+}
+
 class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var sectionCount = ScreenConstants.AddTransaction.sectionCount
     private var screenConstants = ScreenConstants.AddTransaction.self
     private var tintColor = Constants.Colors.expenseColor
     private var selectedTransactionTypeIndex = ScreenConstants.AddTransaction.segmentedControlIdxExpense
+    private var isMoreDetailsShown = false
     @IBOutlet weak var transactionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var transactionKindSegmentedControl: UISegmentedControl!
@@ -23,8 +28,18 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         
         // Prepare the variables
         let titleKey = "Add New Transaction"
+        
+        // Assumes that isMoreDetailsShown is false
+        var showMoreTextKey = "Show More Details"
+        var idxOtherActions = self.screenConstants.idxOtherActions
+        
+        // Change text if set to true
+        if (self.isMoreDetailsShown) {
+            showMoreTextKey = "Show Less Details"
+            idxOtherActions = self.screenConstants.idxOtherActionsMore
+            self.sectionCount = self.screenConstants.sectionCountMore
+        }
 
-        self.transactionTableView.tintColor = self.tintColor
         self.prepareModelData(self.sectionCount) {
             
             var transactionInfoCell: BunnyCell!
@@ -151,7 +166,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             
             // Save transaction button
             self.appendCellAtSectionIndex(
-                self.screenConstants.idxOtherActions,
+                idxOtherActions,
                 idxRow: self.screenConstants.idxSaveTransactionCell,
                 cellData: SingleElementCell(
                     alphaElementTitleKey: "Save Transaction",
@@ -166,7 +181,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             
             // Save transaction and add as profile button
             self.appendCellAtSectionIndex(
-                self.screenConstants.idxOtherActions,
+                idxOtherActions,
                 idxRow: self.screenConstants.idxSaveAddProfile,
                 cellData: SingleElementCell(
                     alphaElementTitleKey: "Save and Add as Profile",
@@ -181,10 +196,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             
             // Show More Details button
             self.appendCellAtSectionIndex(
-                self.screenConstants.idxOtherActions,
+                idxOtherActions,
                 idxRow: self.screenConstants.idxShowMoreDetailsCell,
                 cellData: SingleElementCell(
-                    alphaElementTitleKey: "Show More Details",
+                    alphaElementTitleKey: showMoreTextKey,
                     cellIdentifier: Constants.CellIdentifiers.transactionAction,
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorShowMoreDetails,
@@ -193,6 +208,61 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     ]
                 )
             )
+            
+            if (self.isMoreDetailsShown) {
+                //
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxTransactionDetails,
+                    idxRow: self.screenConstants.idxAccountCell,
+                    cellData: DoubleElementCell(
+                        alphaElementTitleKey: "Amount ($)",
+                        betaElementTitleKey: "150.25",
+                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
+                        cellSettings: [
+                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
+                            Constants.AppKeys.keyTextFieldValue: "",
+                            Constants.AppKeys.keyTextColor: self.tintColor
+                        ]
+                    )
+                )
+                
+                //
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxTransactionDetails,
+                    idxRow: self.screenConstants.idxRecurringExpenseCell,
+                    cellData: DoubleElementCell(
+                        alphaElementTitleKey: "Amount ($)",
+                        betaElementTitleKey: "150.25",
+                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
+                        cellSettings: [
+                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
+                            Constants.AppKeys.keyTextFieldValue: "",
+                            Constants.AppKeys.keyTextColor: self.tintColor
+                        ]
+                    )
+                )
+                
+                //
+                self.appendCellAtSectionIndex(
+                    self.screenConstants.idxTransactionDetails,
+                    idxRow: self.screenConstants.idxRepeatEveryCell,
+                    cellData: DoubleElementCell(
+                        alphaElementTitleKey: "Amount ($)",
+                        betaElementTitleKey: "150.25",
+                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
+                        cellSettings: [
+                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
+                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
+                            Constants.AppKeys.keyTextFieldValue: "",
+                            Constants.AppKeys.keyTextColor: self.tintColor
+                        ]
+                    )
+                )
+            }
+            
+            
         }
         
         // Do any additional setup after loading the view.
@@ -230,6 +300,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BunnyTableViewCellProtocol
         
         cell.prepareTableViewCell(cellItem)
+        (cell as! BunnyTableViewCell).delegate = self
         
         return cell as! UITableViewCell
     }
@@ -245,6 +316,12 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var headerNameKey = ""
+        var idxOtherActions = self.screenConstants.idxOtherActions
+        
+        if (self.isMoreDetailsShown) {
+            idxOtherActions = self.screenConstants.idxOtherActionsMore
+        }
+        
         switch section {
         case screenConstants.idxTransactionInformation:
             headerNameKey = "Transaction Information"
@@ -259,8 +336,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             default:
                 break
             }
-        case screenConstants.idxOtherActions:
+        case idxOtherActions:
             headerNameKey = "Transaction Actions"
+        case screenConstants.idxTransactionDetails:
+            headerNameKey = "Transaction Details"
         default:
             break
         }
@@ -271,4 +350,11 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         self.dismissViewControllerAnimated(true, completion: {})
     }
 
+}
+
+extension AddNewTransactionViewController: AddTransactionDelegate {
+    func showMoreDetails() {
+        self.isMoreDetailsShown = !self.isMoreDetailsShown
+        self.viewDidLoad()
+    }
 }
