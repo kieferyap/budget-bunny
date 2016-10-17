@@ -111,6 +111,6 @@ struct ScreenConstants {
         static let selectorShowMoreDetails = "showMoreDetails"
         static let selectorTest = "test"
         
-        static let doubleFieldValueCellHeight = 60.0
+        static let doubleFieldValueCellHeight = 67.0
     }
 }

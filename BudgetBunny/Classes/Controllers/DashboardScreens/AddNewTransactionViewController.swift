@@ -42,7 +42,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                         Constants.AppKeys.keyTint: self.tintColor,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                         Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
-                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                        Constants.AppKeys.keyTableCellDisclosure: true
                     ]
                 )
             case self.screenConstants.segmentedControlIdxIncome:
@@ -54,7 +54,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keyTint: self.tintColor,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
-                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                        Constants.AppKeys.keyTableCellDisclosure: true
                     ]
                 )
             case self.screenConstants.segmentedControlIdxTransfer:
@@ -69,7 +69,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                         Constants.AppKeys.keyTint: self.tintColor,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                         Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
-                        Constants.AppKeys.keyTableCellAccessoryType: UITableViewCellAccessoryType.DetailDisclosureButton as! AnyObject
+                        Constants.AppKeys.keyTableCellDisclosure: true
                     ]
                 )
             default:

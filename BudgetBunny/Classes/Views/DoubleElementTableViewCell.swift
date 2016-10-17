@@ -189,14 +189,14 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     betaLabel.text = transactionModel.betaElementTitle
                     
                     let tintColor = transactionModel.cellSettings[Constants.AppKeys.keyTint]
-                    let accessoryType = transactionModel.cellSettings[Constants.AppKeys.keyTableCellAccessoryType]
+                    let isDisclosureIndicator = transactionModel.cellSettings[Constants.AppKeys.keyTableCellDisclosure]
                     
                     if (tintColor != nil) {
                         betaLabel.textColor = tintColor as! UIColor
                     }
                     
-                    if (accessoryType != nil) {
-                        self.accessoryType = accessoryType as! UITableViewCellAccessoryType
+                    if (isDisclosureIndicator != nil) {
+                        self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     }
                     
                 }, getValue: { () -> String in
@@ -217,7 +217,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
         )
     }
     
-    private func test() {
+    func test() {
         print("TEST")
     }
 }

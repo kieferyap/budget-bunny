@@ -33,15 +33,15 @@ class QuadrupleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProto
                     deltaLabel.text = transactionModel.deltaElementTitle
                     
                     let tintColor = transactionModel.cellSettings[Constants.AppKeys.keyTint]
-                    let accessoryType = transactionModel.cellSettings[Constants.AppKeys.keyTableCellAccessoryType]
+                    let isDisclosureIndicator = transactionModel.cellSettings[Constants.AppKeys.keyTableCellDisclosure]
                     
                     if (tintColor != nil) {
-                        gammaLabel.tintColor = tintColor as! UIColor
-                        deltaLabel.tintColor = tintColor as! UIColor
+                        gammaLabel.textColor = tintColor as! UIColor
+                        deltaLabel.textColor = tintColor as! UIColor
                     }
                     
-                    if (accessoryType != nil) {
-                        self.accessoryType = accessoryType as! UITableViewCellAccessoryType
+                    if (isDisclosureIndicator != nil) {
+                        self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     }
                     
                 }, getValue: { () -> String in
@@ -62,7 +62,7 @@ class QuadrupleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProto
         )
     }
     
-    private func test() {
+    func test() {
         print("TEST")
     }
 }

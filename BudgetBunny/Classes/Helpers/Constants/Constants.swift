@@ -72,7 +72,7 @@ struct Constants {
         static let keySegmentedControlText = "segmentedControlText"
         // General constants
         static let keyTint = "tint"
-        static let keyTableCellAccessoryType = "tableViewCellAccessoryType"
+        static let keyTableCellDisclosure = "tableCellDisclosure"
         static let keyHeight = "height"
         // Navigation bar localization keys
         static let tabBarKeys = [
