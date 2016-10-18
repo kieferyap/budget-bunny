@@ -10,6 +10,7 @@ import UIKit
 
 protocol AddTransactionDelegate: class {
     func showMoreDetails()
+    func toggleIsRecurring()
 }
 
 class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -18,6 +19,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     private var screenConstants = ScreenConstants.AddTransaction.self
     private var tintColor = Constants.Colors.expenseColor
     private var selectedTransactionTypeIndex = ScreenConstants.AddTransaction.segmentedControlIdxExpense
+    private var isRecurringTransaction = false
     private var isMoreDetailsShown = false
     @IBOutlet weak var transactionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var transactionTableView: UITableView!
@@ -210,56 +212,69 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             )
             
             if (self.isMoreDetailsShown) {
-                //
+                
+                let accountIdx = self.screenConstants.idxAccountCell
+                var switchIdx = self.screenConstants.idxRecurringExpenseCell
+                var recurringIdx = self.screenConstants.idxRepeatEveryCell
+                let isTransfer = self.selectedTransactionTypeIndex == self.screenConstants.segmentedControlIdxTransfer
+                let isRecurringString = self.isRecurringTransaction ? Constants.App.trueString : Constants.App.falseString
+                
+                if (isTransfer) {
+                    switchIdx = self.screenConstants.idxRecurringExpenseCellTransfer
+                    recurringIdx = self.screenConstants.idxRepeatEveryCellTransfer
+                }
+                
+                // Account name. Don't display on Transfer
+                else {
+                    self.appendCellAtSectionIndex(
+                        self.screenConstants.idxTransactionDetails,
+                        idxRow: accountIdx,
+                        cellData: DoubleElementCell(
+                            alphaElementTitleKey: "Account",
+                            betaElementTitleKey: "My Wallet",
+                            cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
+                            cellSettings: [
+                                Constants.AppKeys.keyTint: self.tintColor,
+                                Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                Constants.AppKeys.keyTableCellDisclosure: true
+                            ]
+                        )
+                    )
+                }
+                
+                // Mark expense as a recurring expense
                 self.appendCellAtSectionIndex(
                     self.screenConstants.idxTransactionDetails,
-                    idxRow: self.screenConstants.idxAccountCell,
+                    idxRow: switchIdx,
                     cellData: DoubleElementCell(
-                        alphaElementTitleKey: "Amount ($)",
-                        betaElementTitleKey: "150.25",
-                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
+                        alphaElementTitleKey: "Recurring Expense",
+                        betaElementTitleKey: isRecurringString,
+                        cellIdentifier: Constants.CellIdentifiers.transactionSwitch,
                         cellSettings: [
-                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
-                            Constants.AppKeys.keyTextFieldValue: "",
-                            Constants.AppKeys.keyTextColor: self.tintColor
+                            Constants.AppKeys.keySelector: self.screenConstants.selectorToggleIsRecurring,
+                            Constants.AppKeys.keyTint: self.tintColor,
                         ]
                     )
                 )
                 
-                //
-                self.appendCellAtSectionIndex(
-                    self.screenConstants.idxTransactionDetails,
-                    idxRow: self.screenConstants.idxRecurringExpenseCell,
-                    cellData: DoubleElementCell(
-                        alphaElementTitleKey: "Amount ($)",
-                        betaElementTitleKey: "150.25",
-                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
-                        cellSettings: [
-                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
-                            Constants.AppKeys.keyTextFieldValue: "",
-                            Constants.AppKeys.keyTextColor: self.tintColor
-                        ]
+                // Repeat every X. Do not display this cell if the UISwitch in Recurring Expenses is not turned on
+                if (self.isRecurringTransaction) {
+                    self.appendCellAtSectionIndex(
+                        self.screenConstants.idxTransactionDetails,
+                        idxRow: recurringIdx,
+                        cellData: DoubleElementCell(
+                            alphaElementTitleKey: "Repeat Every:",
+                            betaElementTitleKey: "10th, 25th",
+                            cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
+                            cellSettings: [
+                                Constants.AppKeys.keyTint: self.tintColor,
+                                Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                Constants.AppKeys.keyTableCellDisclosure: true
+                            ]
+                        )
                     )
-                )
+                }
                 
-                //
-                self.appendCellAtSectionIndex(
-                    self.screenConstants.idxTransactionDetails,
-                    idxRow: self.screenConstants.idxRepeatEveryCell,
-                    cellData: DoubleElementCell(
-                        alphaElementTitleKey: "Amount ($)",
-                        betaElementTitleKey: "150.25",
-                        cellIdentifier: Constants.CellIdentifiers.transactionFieldValueTextField,
-                        cellSettings: [
-                            Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
-                            Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
-                            Constants.AppKeys.keyTextFieldValue: "",
-                            Constants.AppKeys.keyTextColor: self.tintColor
-                        ]
-                    )
-                )
             }
             
             
@@ -355,6 +370,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
 extension AddNewTransactionViewController: AddTransactionDelegate {
     func showMoreDetails() {
         self.isMoreDetailsShown = !self.isMoreDetailsShown
+        self.viewDidLoad()
+    }
+    func toggleIsRecurring() {
+        self.isRecurringTransaction = !self.isRecurringTransaction
         self.viewDidLoad()
     }
 }

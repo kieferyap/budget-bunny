@@ -95,6 +95,9 @@ struct ScreenConstants {
         static let idxRecurringExpenseCell = 1
         static let idxRepeatEveryCell = 2
         
+        static let idxRecurringExpenseCellTransfer = 0
+        static let idxRepeatEveryCellTransfer = 1
+        
         static let transactionNameMaxCount = 30
         static let transactionAmountMaxCount = 10
         
@@ -109,6 +112,7 @@ struct ScreenConstants {
         static let selectorSaveTransaction = "saveTransaction"
         static let selectorSaveAndAddAsProfile = "saveAndAddAsProfile"
         static let selectorShowMoreDetails = "showMoreDetails"
+        static let selectorToggleIsRecurring = "toggleIsRecurring"
         static let selectorTest = "test"
         
         static let doubleFieldValueCellHeight = 67.0

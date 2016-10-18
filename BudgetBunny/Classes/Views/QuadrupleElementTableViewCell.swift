@@ -36,8 +36,10 @@ class QuadrupleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProto
                     let isDisclosureIndicator = transactionModel.cellSettings[Constants.AppKeys.keyTableCellDisclosure]
                     
                     if (tintColor != nil) {
-                        gammaLabel.textColor = tintColor as! UIColor
-                        deltaLabel.textColor = tintColor as! UIColor
+                        let color = tintColor as! UIColor
+                        gammaLabel.textColor = color
+                        deltaLabel.textColor = color
+                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
                     }
                     
                     if (isDisclosureIndicator != nil) {

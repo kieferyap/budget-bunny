@@ -192,16 +192,45 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     let isDisclosureIndicator = transactionModel.cellSettings[Constants.AppKeys.keyTableCellDisclosure]
                     
                     if (tintColor != nil) {
-                        betaLabel.textColor = tintColor as! UIColor
+                        let color = tintColor as! UIColor
+                        betaLabel.textColor = color
+                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
                     }
                     
                     if (isDisclosureIndicator != nil) {
                         self.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                     }
                     
-                }, getValue: { () -> String in
+                }, getValue: { () -> String	 in
                     return ""
                 }, performAction: {
+                    self.cellAction()
+                }
+            )
+            
+            // transactionSwitch
+            self.addCellType(
+                Constants.CellIdentifiers.transactionSwitch,
+                completion: {
+                    let transactionModel = self.model as! DoubleElementCell
+                    let alphaLabel = self.alphaUIElement as! UILabel
+                    let betaSwitch = self.betaUIElement as! UISwitch
+                    
+                    alphaLabel.text = transactionModel.alphaElementTitle
+                    betaSwitch.on = transactionModel.betaElementTitle == Constants.App.trueString ? true : false
+                    
+                    let tintColor = transactionModel.cellSettings[Constants.AppKeys.keyTint]
+                    
+                    if (tintColor != nil) {
+                        let color = tintColor as! UIColor
+                        betaSwitch.onTintColor = color
+                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
+                    }
+                }, getValue: { () -> String	 in
+                    return ""
+                }, performAction: {
+                    let betaSwitch = self.betaUIElement as! UISwitch
+                    betaSwitch.setOn(!betaSwitch.on, animated: true)
                     self.cellAction()
                 }
             )
@@ -215,6 +244,10 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 actionModel.cellSettings[Constants.AppKeys.keySelector] as! String
             )
         )
+    }
+    
+    func toggleIsRecurring() {
+        (self.delegate as! AddTransactionDelegate).toggleIsRecurring()
     }
     
     func test() {
