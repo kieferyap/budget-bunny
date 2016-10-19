@@ -17,7 +17,6 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
 
     private var sectionCount = ScreenConstants.AddTransaction.sectionCount
     private var screenConstants = ScreenConstants.AddTransaction.self
-    private var tintColor = Constants.Colors.expenseColor
     private var selectedTransactionTypeIndex = ScreenConstants.AddTransaction.segmentedControlIdxExpense
     private var isRecurringTransaction = false
     private var isMoreDetailsShown = false
@@ -27,7 +26,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.loadData([])
+    }
+    
+    private func loadData(reloadIndices: [Int]) {
         // Prepare the variables
         let titleKey = "Add New Transaction"
         
@@ -41,14 +43,13 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             idxOtherActions = self.screenConstants.idxOtherActionsMore
             self.sectionCount = self.screenConstants.sectionCountMore
         }
-
+        
         self.prepareModelData(self.sectionCount) {
             
             var transactionInfoCell: BunnyCell!
             
             switch self.selectedTransactionTypeIndex {
             case self.screenConstants.segmentedControlIdxExpense:
-                self.tintColor = Constants.Colors.expenseColor
                 transactionInfoCell = QuadrupleElementCell(
                     alphaElementTitleKey: "Budget name",
                     betaElementTitleKey: "Category name",
@@ -56,26 +57,24 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     deltaElementTitleKey: "Snacks",
                     cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
                     cellSettings: [
-                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                         Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
                         Constants.AppKeys.keyTableCellDisclosure: true
                     ]
                 )
             case self.screenConstants.segmentedControlIdxIncome:
-                self.tintColor = Constants.Colors.incomeColor
                 transactionInfoCell = DoubleElementCell(
                     alphaElementTitleKey: "Income Category name",
                     betaElementTitleKey: "Salary",
                     cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
                     cellSettings: [
-                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                         Constants.AppKeys.keyTableCellDisclosure: true
                     ]
                 )
             case self.screenConstants.segmentedControlIdxTransfer:
-                self.tintColor = Constants.Colors.darkGray
                 transactionInfoCell = QuadrupleElementCell(
                     alphaElementTitleKey: "Transfer from",
                     betaElementTitleKey: "Transfer to",
@@ -83,7 +82,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     deltaElementTitleKey: "My Wallet",
                     cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
                     cellSettings: [
-                        Constants.AppKeys.keyTint: self.tintColor,
+                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                         Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                         Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
                         Constants.AppKeys.keyTableCellDisclosure: true
@@ -118,7 +117,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.decimal,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.transactionAmountMaxCount,
                         Constants.AppKeys.keyTextFieldValue: "",
-                        Constants.AppKeys.keyTextColor: self.tintColor
+                        Constants.AppKeys.keyTextColor: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -136,7 +135,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                         Constants.AppKeys.keyKeyboardType: Constants.KeyboardTypes.alphanumeric,
                         Constants.AppKeys.keyMaxLength: self.screenConstants.transactionNameMaxCount,
                         Constants.AppKeys.keyTextFieldValue: "",
-                        Constants.AppKeys.keyTextColor: self.tintColor
+                        Constants.AppKeys.keyTextColor: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -154,7 +153,8 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                             "Income",
                             "Transfer"
                         ],
-                        Constants.AppKeys.keyTint: self.tintColor
+                        Constants.AppKeys.keySelectedControlIdx: self.selectedTransactionTypeIndex,
+                        Constants.AppKeys.keyTint: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -176,7 +176,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorSaveTransaction,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -191,7 +191,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorSaveAndAddAsProfile,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -206,7 +206,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorShowMoreDetails,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
                     ]
                 )
             )
@@ -223,7 +223,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     switchIdx = self.screenConstants.idxRecurringExpenseCellTransfer
                     recurringIdx = self.screenConstants.idxRepeatEveryCellTransfer
                 }
-                
+                    
                 // Account name. Don't display on Transfer
                 else {
                     self.appendCellAtSectionIndex(
@@ -234,7 +234,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                             betaElementTitleKey: "My Wallet",
                             cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
                             cellSettings: [
-                                Constants.AppKeys.keyTint: self.tintColor,
+                                Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                                 Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                                 Constants.AppKeys.keyTableCellDisclosure: true
                             ]
@@ -252,7 +252,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                         cellIdentifier: Constants.CellIdentifiers.transactionSwitch,
                         cellSettings: [
                             Constants.AppKeys.keySelector: self.screenConstants.selectorToggleIsRecurring,
-                            Constants.AppKeys.keyTint: self.tintColor,
+                            Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                         ]
                     )
                 )
@@ -267,17 +267,14 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                             betaElementTitleKey: "10th, 25th",
                             cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
                             cellSettings: [
-                                Constants.AppKeys.keyTint: self.tintColor,
+                                Constants.AppKeys.keyTint: Constants.Colors.darkGray,
                                 Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
                                 Constants.AppKeys.keyTableCellDisclosure: true
                             ]
                         )
                     )
                 }
-                
             }
-            
-            
         }
         
         // Do any additional setup after loading the view.
@@ -285,13 +282,28 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
         self.transactionTableView.dataSource = self;
         self.transactionTableView.scrollEnabled = true;
         self.setTitleLocalizationKey(titleKey)
-        self.transactionTableView.reloadData()
+        
+        if (reloadIndices.count == 0) {
+            self.transactionTableView.reloadData()
+        }
+        else {
+            for index in reloadIndices {
+                self.transactionTableView.reloadSectionIndex(index, rowAnimation: UITableViewRowAnimation.Fade)
+            }
+        }
+        
     }
 
     @IBAction func transactionTypeChanged(sender: AnyObject) {
         self.selectedTransactionTypeIndex = sender.selectedSegmentIndex
-        self.viewDidLoad()
+        self.loadData([])
     }
+    
+    @IBAction func recurringSwitchChanged(sender: AnyObject) {
+        self.isRecurringTransaction = sender.on
+        self.loadData([self.screenConstants.idxOtherActions])
+    }
+    
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -370,10 +382,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
 extension AddNewTransactionViewController: AddTransactionDelegate {
     func showMoreDetails() {
         self.isMoreDetailsShown = !self.isMoreDetailsShown
-        self.viewDidLoad()
+        self.loadData([])
     }
     func toggleIsRecurring() {
         self.isRecurringTransaction = !self.isRecurringTransaction
-        self.viewDidLoad()
+        self.loadData([self.screenConstants.idxOtherActions])
     }
 }

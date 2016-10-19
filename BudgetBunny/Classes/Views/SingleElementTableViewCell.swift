@@ -121,7 +121,8 @@ class SingleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                 completion: {
                     let budgetModel = self.model as! SingleElementCell
                     let alphaSegmentControl = self.alphaUIElement as! UISegmentedControl
-                    
+                    // TO-DO: Check for null
+                    alphaSegmentControl.selectedSegmentIndex = budgetModel.cellSettings[Constants.AppKeys.keySelectedControlIdx] as! Int
                     BunnyUtils.prepareSegmentedControl(alphaSegmentControl, model: budgetModel)                    
                 }, getValue: { () -> String in
                     let alphaSegmentControl = self.alphaUIElement as! UISegmentedControl

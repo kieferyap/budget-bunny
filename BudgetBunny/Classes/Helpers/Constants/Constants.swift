@@ -70,6 +70,7 @@ struct Constants {
         static let keyButtonColor = "color"
         static let keyManagedObject = "managedObject"
         static let keySegmentedControlText = "segmentedControlText"
+        static let keySelectedControlIdx = "segmentedControlIdx"
         // General constants
         static let keyTint = "tint"
         static let keyTableCellDisclosure = "tableCellDisclosure"

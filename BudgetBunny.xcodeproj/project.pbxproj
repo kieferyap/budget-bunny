@@ -10,6 +10,7 @@
 		243A6BBD1D86A09000052562 /* BudgetCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */; };
 		249354CB1DADE0F900346A83 /* QuadrupleElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249354CA1DADE0F900346A83 /* QuadrupleElementCell.swift */; };
 		24C08C681DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */; };
+		24C7EDF31DB7179A004AD2BE /* UITableView+Bunnies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7EDF21DB7179A004AD2BE /* UITableView+Bunnies.swift */; };
 		FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */; };
 		FB0928AB1CECC54B00E73FF1 /* EmptyStringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */; };
 		FB0DBAC01D00964600980BE5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0DBABF1D00964600980BE5 /* XCUIElement.swift */; };
@@ -116,6 +117,7 @@
 		243A6BBC1D86A09000052562 /* BudgetCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCategoryCell.swift; sourceTree = "<group>"; };
 		249354CA1DADE0F900346A83 /* QuadrupleElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrupleElementCell.swift; sourceTree = "<group>"; };
 		24C08C671DA5EF5400ACA1A3 /* QuadrupleElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrupleElementTableViewCell.swift; sourceTree = "<group>"; };
+		24C7EDF21DB7179A004AD2BE /* UITableView+Bunnies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Bunnies.swift"; sourceTree = "<group>"; };
 		FB0928A81CECBE6900E73FF1 /* ValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorProtocol.swift; sourceTree = "<group>"; };
 		FB0928AA1CECC54900E73FF1 /* EmptyStringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringValidator.swift; sourceTree = "<group>"; };
 		FB0DBABF1D00964600980BE5 /* XCUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 			children = (
 				FB3DD69C1CEA0779005D1F1F /* Double+Bunnies.swift */,
 				FB337CF11CD8FB4900F32AE8 /* UIViewController+Bunnies.swift */,
+				24C7EDF21DB7179A004AD2BE /* UITableView+Bunnies.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				FB169E471D2A041C00AB6439 /* BudgetTableViewCell.swift in Sources */,
 				FB6AC1221D2137BB009EC80C /* Wishitem+CoreDataProperties.swift in Sources */,
 				FB0928A91CECBE6900E73FF1 /* ValidatorProtocol.swift in Sources */,
+				24C7EDF31DB7179A004AD2BE /* UITableView+Bunnies.swift in Sources */,
 				FB238F2E1CEE101900636CCC /* AttributeModel.swift in Sources */,
 				FB8550FF1CBE27950037A881 /* RecordsViewController.swift in Sources */,
 				FB8550F51CBDE6300037A881 /* CurrencyPickerTableViewController.swift in Sources */,
