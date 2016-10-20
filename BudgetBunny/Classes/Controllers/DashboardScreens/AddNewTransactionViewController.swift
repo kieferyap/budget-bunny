@@ -44,12 +44,17 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             self.sectionCount = self.screenConstants.sectionCountMore
         }
         
+        // TO-DO: Transfer should not be possible if there is only one account!
         self.prepareModelData(self.sectionCount) {
             
             var transactionInfoCell: BunnyCell!
             
             switch self.selectedTransactionTypeIndex {
             case self.screenConstants.segmentedControlIdxExpense:
+                // Retrieve the very first budget and its budget category
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.budget)
+                activeRecord.selectAllObjects(<#T##completion: (fetchedObjects: [NSManagedObject]) -> Void##(fetchedObjects: [NSManagedObject]) -> Void#>)
+                
                 transactionInfoCell = QuadrupleElementCell(
                     alphaElementTitleKey: "Budget name",
                     betaElementTitleKey: "Category name",
@@ -64,6 +69,8 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     ]
                 )
             case self.screenConstants.segmentedControlIdxIncome:
+                // Retrieve the very first income category
+                
                 transactionInfoCell = DoubleElementCell(
                     alphaElementTitleKey: "Income Category name",
                     betaElementTitleKey: "Salary",
@@ -75,6 +82,8 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     ]
                 )
             case self.screenConstants.segmentedControlIdxTransfer:
+                // Retrieve the default account name and another account
+                
                 transactionInfoCell = QuadrupleElementCell(
                     alphaElementTitleKey: "Transfer from",
                     betaElementTitleKey: "Transfer to",

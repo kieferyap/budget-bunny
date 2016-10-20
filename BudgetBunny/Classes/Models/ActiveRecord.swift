@@ -22,14 +22,18 @@ class ActiveRecord: NSObject {
     }
     
     func selectAllObjects(completion: (fetchedObjects: [NSManagedObject]) -> Void) {
-        self.selectAllObjectsWithParameters([:], completion: completion)
+        self.selectAllObjectsWithParameters([:], completion: completion, limit: 0)
     }
     
     func changeTableName(newTableName: String) {
         self.tableName = newTableName
     }
     
-    func selectAllObjectsWithParameters(parameters: NSDictionary, completion: (fetchedObjects: [NSManagedObject]) -> Void) {
+    func selectAllObjectsWithParameters(
+        parameters: NSDictionary,
+        completion: (fetchedObjects: [NSManagedObject]) -> Void,
+        limit: Int
+    ) {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
         
         if parameters != [:] {
@@ -43,7 +47,11 @@ class ActiveRecord: NSObject {
         }
             
         do {
-            let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            let fetchedObjectsRaw = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            var fetchedObjects = fetchedObjectsRaw
+            if (limit > 0) {
+                // fetchedObjects = fetchedObjectsRaw[0..2]
+            }
             completion(fetchedObjects: fetchedObjects)
         } catch let error as NSError {
             print("Could not find user: \(error)")
