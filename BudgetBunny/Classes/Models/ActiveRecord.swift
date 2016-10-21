@@ -22,7 +22,14 @@ class ActiveRecord: NSObject {
     }
     
     func selectAllObjects(completion: (fetchedObjects: [NSManagedObject]) -> Void) {
-        self.selectAllObjectsWithParameters([:], completion: completion, limit: 0)
+        self.selectAllObjectsWithParametersAndLimit([:], limit: 0, completion: completion)
+    }
+    
+    func selectAllObjectsWithLimit(
+        limit: Int,
+        completion: (fetchedObjects: [NSManagedObject]) -> Void
+    ) {
+        self.selectAllObjectsWithParametersAndLimit([:], limit: limit, completion: completion)
     }
     
     func changeTableName(newTableName: String) {
@@ -31,8 +38,14 @@ class ActiveRecord: NSObject {
     
     func selectAllObjectsWithParameters(
         parameters: NSDictionary,
-        completion: (fetchedObjects: [NSManagedObject]) -> Void,
-        limit: Int
+        completion: (fetchedObjects: [NSManagedObject]) -> Void
+    ) {
+        self.selectAllObjectsWithParametersAndLimit([:], limit: 0, completion: completion)
+    }
+    func selectAllObjectsWithParametersAndLimit(
+        parameters: NSDictionary,
+        limit: Int,
+        completion: (fetchedObjects: [NSManagedObject]) -> Void
     ) {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
         
@@ -50,7 +63,10 @@ class ActiveRecord: NSObject {
             let fetchedObjectsRaw = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
             var fetchedObjects = fetchedObjectsRaw
             if (limit > 0) {
-                // fetchedObjects = fetchedObjectsRaw[0..2]
+                fetchedObjects = []
+                for i in 0..<limit {
+                    fetchedObjects.append(fetchedObjectsRaw[i])
+                }
             }
             completion(fetchedObjects: fetchedObjects)
         } catch let error as NSError {

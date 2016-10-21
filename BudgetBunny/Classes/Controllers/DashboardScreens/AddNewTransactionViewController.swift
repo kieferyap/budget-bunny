@@ -53,21 +53,39 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             case self.screenConstants.segmentedControlIdxExpense:
                 // Retrieve the very first budget and its budget category
                 let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.budget)
-                activeRecord.selectAllObjects(<#T##completion: (fetchedObjects: [NSManagedObject]) -> Void##(fetchedObjects: [NSManagedObject]) -> Void#>)
-                
-                transactionInfoCell = QuadrupleElementCell(
-                    alphaElementTitleKey: "Budget name",
-                    betaElementTitleKey: "Category name",
-                    gammaElementTitleKey: "Food and Groceries",
-                    deltaElementTitleKey: "Snacks",
-                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
-                    cellSettings: [
-                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
-                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
-                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
-                        Constants.AppKeys.keyTableCellDisclosure: true
-                    ]
-                )
+                activeRecord.selectAllObjectsWithLimit(1, completion: { (fetchedObjects) in
+                    for budget in fetchedObjects {
+                        activeRecord.changeTableName(ModelConstants.Entities.category)
+                        
+                        // This entire bit is basically: "SELECT * FROM categories WHERE budgetId = n;"
+                        let categoryModel = AttributeModel(
+                            tableName: ModelConstants.Entities.category,
+                            key: ModelConstants.Category.budgetId,
+                            value: budget
+                        )
+                        activeRecord.selectAllObjectsWithParametersAndLimit(
+                            [categoryModel.format: categoryModel.value],
+                            limit: 1,
+                            completion: { (fetchedObjects) in
+                                for category in fetchedObjects {
+                                    transactionInfoCell = QuadrupleElementCell(
+                                        alphaElementTitleKey: "Budget name",
+                                        betaElementTitleKey: "Category name",
+                                        gammaElementTitleKey: budget.valueForKey(ModelConstants.Budget.name) as! String,
+                                        deltaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
+                                        cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
+                                        cellSettings: [
+                                            Constants.AppKeys.keyTint: Constants.Colors.darkGray,
+                                            Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                            Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
+                                            Constants.AppKeys.keyTableCellDisclosure: true
+                                        ]
+                                    )
+                                }
+                            }
+                        )
+                    }
+                })
             case self.screenConstants.segmentedControlIdxIncome:
                 // Retrieve the very first income category
                 
