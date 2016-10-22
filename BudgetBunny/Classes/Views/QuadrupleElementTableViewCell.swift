@@ -39,7 +39,7 @@ class QuadrupleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProto
                         let color = tintColor as! UIColor
                         gammaLabel.textColor = color
                         deltaLabel.textColor = color
-                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
+                        self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                     }
                     
                     if (isDisclosureIndicator != nil) {

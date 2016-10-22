@@ -194,7 +194,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     if (tintColor != nil) {
                         let color = tintColor as! UIColor
                         betaLabel.textColor = color
-                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
+                        self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                     }
                     
                     if (isDisclosureIndicator != nil) {
@@ -224,7 +224,7 @@ class DoubleElementTableViewCell: BunnyTableViewCell, BunnyTableViewCellProtocol
                     if (tintColor != nil) {
                         let color = tintColor as! UIColor
                         betaSwitch.onTintColor = color
-                        self.setSelectedBackgroundColor(color.colorWithAlphaComponent(0.25))
+                        self.setSelectedBackgroundColor(Constants.Colors.lightGreen)
                     }
                 }, getValue: { () -> String	 in
                     return ""

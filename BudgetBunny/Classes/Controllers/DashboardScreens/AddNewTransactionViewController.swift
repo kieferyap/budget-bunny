@@ -254,7 +254,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorSaveTransaction,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
                     ]
                 )
             )
@@ -269,7 +269,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorSaveAndAddAsProfile,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
                     ]
                 )
             )
@@ -284,7 +284,7 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
                     cellSettings: [
                         Constants.AppKeys.keySelector: self.screenConstants.selectorShowMoreDetails,
                         Constants.AppKeys.keyEnabled: true,
-                        Constants.AppKeys.keyButtonColor: Constants.Colors.darkGray
+                        Constants.AppKeys.keyButtonColor: Constants.Colors.normalGreen
                     ]
                 )
             )
