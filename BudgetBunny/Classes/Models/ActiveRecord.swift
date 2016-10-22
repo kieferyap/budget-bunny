@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ActiveRecord: NSObject {
-
+    
     var tableName: String = ""
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
@@ -22,31 +22,14 @@ class ActiveRecord: NSObject {
     }
     
     func selectAllObjects(completion: (fetchedObjects: [NSManagedObject]) -> Void) {
-        self.selectAllObjectsWithParametersAndLimit([:], limit: 0, completion: completion)
-    }
-    
-    func selectAllObjectsWithLimit(
-        limit: Int,
-        completion: (fetchedObjects: [NSManagedObject]) -> Void
-    ) {
-        self.selectAllObjectsWithParametersAndLimit([:], limit: limit, completion: completion)
+        self.selectAllObjectsWithParameters([:], completion: completion)
     }
     
     func changeTableName(newTableName: String) {
         self.tableName = newTableName
     }
     
-    func selectAllObjectsWithParameters(
-        parameters: NSDictionary,
-        completion: (fetchedObjects: [NSManagedObject]) -> Void
-    ) {
-        self.selectAllObjectsWithParametersAndLimit([:], limit: 0, completion: completion)
-    }
-    func selectAllObjectsWithParametersAndLimit(
-        parameters: NSDictionary,
-        limit: Int,
-        completion: (fetchedObjects: [NSManagedObject]) -> Void
-    ) {
+    func selectAllObjectsWithParameters(parameters: NSDictionary, completion: (fetchedObjects: [NSManagedObject]) -> Void) {
         let fetchRequest = NSFetchRequest(entityName: self.tableName)
         
         if parameters != [:] {
@@ -58,16 +41,9 @@ class ActiveRecord: NSObject {
             let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicateArray)
             fetchRequest.predicate = compoundPredicate
         }
-            
+        
         do {
-            let fetchedObjectsRaw = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-            var fetchedObjects = fetchedObjectsRaw
-            if (limit > 0) {
-                fetchedObjects = []
-                for i in 0..<limit {
-                    fetchedObjects.append(fetchedObjectsRaw[i])
-                }
-            }
+            let fetchedObjects = try self.managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
             completion(fetchedObjects: fetchedObjects)
         } catch let error as NSError {
             print("Could not find user: \(error)")
@@ -146,7 +122,7 @@ class ActiveRecord: NSObject {
             print("Error occured: \(error)")
         }
         return NSManagedObject.init()
-
+        
     }
     
     func updateAllValues(key: String, value: NSObject) {

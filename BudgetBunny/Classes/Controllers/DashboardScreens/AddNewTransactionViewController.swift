@@ -44,76 +44,127 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
             self.sectionCount = self.screenConstants.sectionCountMore
         }
         
-        // TO-DO: Transfer should not be possible if there is only one account!
         self.prepareModelData(self.sectionCount) {
             
             var transactionInfoCell: BunnyCell!
             
+            // TO-DO: User only has one budget expense, without any categories
             switch self.selectedTransactionTypeIndex {
             case self.screenConstants.segmentedControlIdxExpense:
+                
                 // Retrieve the very first budget and its budget category
                 let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.budget)
-                activeRecord.selectAllObjectsWithLimit(1, completion: { (fetchedObjects) in
-                    for budget in fetchedObjects {
+                activeRecord.selectAllObjects(
+                    { (fetchedObjects) in
+                        let budget = fetchedObjects.first
+                        let budgetName = budget?.valueForKey(ModelConstants.Budget.name) as! String
                         activeRecord.changeTableName(ModelConstants.Entities.category)
                         
-                        // This entire bit is basically: "SELECT * FROM categories WHERE budgetId = n;"
+                        // "SELECT * FROM categories WHERE budgetId = n;"
                         let categoryModel = AttributeModel(
                             tableName: ModelConstants.Entities.category,
                             key: ModelConstants.Category.budgetId,
-                            value: budget
+                            value: budget!
                         )
-                        activeRecord.selectAllObjectsWithParametersAndLimit(
+                        
+                        activeRecord.selectAllObjectsWithParameters(
                             [categoryModel.format: categoryModel.value],
-                            limit: 1,
                             completion: { (fetchedObjects) in
-                                for category in fetchedObjects {
-                                    transactionInfoCell = QuadrupleElementCell(
-                                        alphaElementTitleKey: "Budget name",
-                                        betaElementTitleKey: "Category name",
-                                        gammaElementTitleKey: budget.valueForKey(ModelConstants.Budget.name) as! String,
-                                        deltaElementTitleKey: category.valueForKey(ModelConstants.Category.name) as! String,
-                                        cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
-                                        cellSettings: [
-                                            Constants.AppKeys.keyTint: Constants.Colors.darkGray,
-                                            Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
-                                            Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
-                                            Constants.AppKeys.keyTableCellDisclosure: true
-                                        ]
-                                    )
-                                }
+                                let category = fetchedObjects.first
+                                let categoryName = category?.valueForKey(ModelConstants.Category.name) as! String
+                                
+                                transactionInfoCell = QuadrupleElementCell(
+                                    alphaElementTitleKey: "Budget name",
+                                    betaElementTitleKey: "Category name",
+                                    gammaElementTitleKey: budgetName,
+                                    deltaElementTitleKey: categoryName,
+                                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
+                                    cellSettings: [
+                                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
+                                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
+                                        Constants.AppKeys.keyTableCellDisclosure: true
+                                    ]
+                                )
                             }
                         )
                     }
-                })
-            case self.screenConstants.segmentedControlIdxIncome:
-                // Retrieve the very first income category
-                
-                transactionInfoCell = DoubleElementCell(
-                    alphaElementTitleKey: "Income Category name",
-                    betaElementTitleKey: "Salary",
-                    cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
-                    cellSettings: [
-                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
-                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
-                        Constants.AppKeys.keyTableCellDisclosure: true
-                    ]
                 )
+                
+            case self.screenConstants.segmentedControlIdxIncome:
+                
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.category)
+                
+                // "SELECT * FROM categories WHERE isIncome = true;"
+                let categoryModel = AttributeModel(
+                    tableName: ModelConstants.Entities.category,
+                    key: ModelConstants.Category.isIncome,
+                    value: true
+                )
+                
+                activeRecord.selectAllObjectsWithParameters(
+                    [categoryModel.format: categoryModel.value],
+                    completion: { (fetchedObjects) in
+                        let incomeName = fetchedObjects.first?.valueForKey(ModelConstants.Category.name) as! String
+                        
+                        // Retrieve the very first income category
+                        transactionInfoCell = DoubleElementCell(
+                            alphaElementTitleKey: "Income Category name",
+                            betaElementTitleKey: incomeName,
+                            cellIdentifier: Constants.CellIdentifiers.transactionFieldValue,
+                            cellSettings: [
+                                Constants.AppKeys.keyTint: Constants.Colors.darkGray,
+                                Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                Constants.AppKeys.keyTableCellDisclosure: true
+                            ]
+                        )
+                    }
+                )
+                
             case self.screenConstants.segmentedControlIdxTransfer:
                 // Retrieve the default account name and another account
+                let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
                 
-                transactionInfoCell = QuadrupleElementCell(
-                    alphaElementTitleKey: "Transfer from",
-                    betaElementTitleKey: "Transfer to",
-                    gammaElementTitleKey: "Bank Account",
-                    deltaElementTitleKey: "My Wallet",
-                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
-                    cellSettings: [
-                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
-                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
-                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
-                        Constants.AppKeys.keyTableCellDisclosure: true
-                    ]
+                // "SELECT * FROM accounts WHERE isDefault = true;"
+                let defaultAccountModel = AttributeModel(
+                    tableName: ModelConstants.Entities.account,
+                    key: ModelConstants.Account.isDefault,
+                    value: true
+                )
+                
+                // "SELECT * FROM accounts WHERE isDefault = false;"
+                let nonDefaultAccountModel = AttributeModel(
+                    tableName: ModelConstants.Entities.account,
+                    key: ModelConstants.Account.isDefault,
+                    value: false
+                )
+                
+                activeRecord.selectAllObjectsWithParameters(
+                    [defaultAccountModel.format: defaultAccountModel.value],
+                    completion: { (fetchedObjects) in
+                        let defaultAccountName = fetchedObjects.first?.valueForKey(ModelConstants.Account.name) as! String
+                        
+                        activeRecord.selectAllObjectsWithParameters(
+                            [nonDefaultAccountModel.format: nonDefaultAccountModel.value],
+                            completion: { (fetchedObjects) in
+                                let nonDefaultAccountName = fetchedObjects.first?.valueForKey(ModelConstants.Account.name) as! String
+                                
+                                transactionInfoCell = QuadrupleElementCell(
+                                    alphaElementTitleKey: "Transfer from",
+                                    betaElementTitleKey: "Transfer to",
+                                    gammaElementTitleKey: defaultAccountName,
+                                    deltaElementTitleKey: nonDefaultAccountName,
+                                    cellIdentifier: Constants.CellIdentifiers.transactionDoubleFieldValue,
+                                    cellSettings: [
+                                        Constants.AppKeys.keyTint: Constants.Colors.darkGray,
+                                        Constants.AppKeys.keySelector: self.screenConstants.selectorTest,
+                                        Constants.AppKeys.keyHeight: self.screenConstants.doubleFieldValueCellHeight,
+                                        Constants.AppKeys.keyTableCellDisclosure: true
+                                    ]
+                                )
+                            }
+                        )
+                    }
                 )
             default:
                 break
@@ -322,6 +373,10 @@ class AddNewTransactionViewController: UIViewController, UITableViewDelegate, UI
     }
 
     @IBAction func transactionTypeChanged(sender: AnyObject) {
+        // TO-DO: Switch the selectedSegmentIndex
+            // TO-DO: Income -- Cannot be selected if there are no sources of income. "Please add a source of income first in the Budget tab before proceeding."
+            // TO-DO: Expense -- If there are no existing budgets for some weird reason, create one automatically. I say "weird" because users shouldn't be able to delete a budget if it's the last one.
+            // TO-DO: Transfer -- Cannot be selected if there are less than two accounts.
         self.selectedTransactionTypeIndex = sender.selectedSegmentIndex
         self.loadData([])
     }

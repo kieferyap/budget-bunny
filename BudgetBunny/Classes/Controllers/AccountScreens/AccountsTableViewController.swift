@@ -92,7 +92,6 @@ class AccountsTableViewController: UITableViewController {
                     }
                     // TO-DO: Remove all transactions that are involved with the account
                 )
-                
             }
             
             // Set the "Set Default" button

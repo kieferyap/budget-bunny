@@ -206,7 +206,7 @@ class BunnyUtils: NSObject {
             // This runs in a separate thread.
             activeRecord.selectAllObjectsWithParameters([accountModel.format: accountModel.value]) { (fetchedObjects) in
                 if fetchedObjects.count > 0 {
-                    let defaultAccount = fetchedObjects[0] as! Account
+                    let defaultAccount = fetchedObjects.first as! Account
                     currency.setAttributes(
                         defaultAccount.valueForKey(ModelConstants.Account.currency) as! String
                     )
@@ -402,6 +402,7 @@ class BunnyUtils: NSObject {
         )
         
         // "Delete X"
+        // TO-DO: Can't delete the final budget!
         alertController.addAction(
             UIAlertAction.init(
                 title: BunnyUtils.uncommentedLocalizedString(deleteActionKey),
