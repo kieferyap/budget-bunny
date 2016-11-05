@@ -86,6 +86,7 @@ class AccountsTableViewController: UITableViewController {
                     deleteActionKey: StringConstants.BUTTON_DELETE_ACCOUNT,
                     tableName: ModelConstants.Entities.account,
                     tableView: self.tableView,
+                    isFinalCheck: true,
                     completion: {
                         self.accountTable.removeAtIndex(row)
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

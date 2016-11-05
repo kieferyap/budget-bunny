@@ -328,6 +328,7 @@ class AddEditBudgetTableViewController: UITableViewController {
     }
     
     private func deleteCategory(categoryIdx: Int) {
+        
         // "Are you sure you want to delete this? This can't be undone."
         let alertController = UIAlertController.init(
             title: BunnyUtils.uncommentedLocalizedString(StringConstants.LABEL_DELETE_CATEGORY_TITLE),
@@ -560,6 +561,7 @@ extension AddEditBudgetTableViewController: AddEditBudgetDelegate {
             deleteActionKey: StringConstants.BUTTON_DELETE_BUDGET,
             tableName: ModelConstants.Entities.budget,
             tableView: self.tableView,
+            isFinalCheck: true,
             completion: {
                 self.dismissViewControllerAnimated(true, completion: {})
             }

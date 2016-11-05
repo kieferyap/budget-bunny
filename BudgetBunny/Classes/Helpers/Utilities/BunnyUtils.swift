@@ -219,6 +219,18 @@ class BunnyUtils: NSObject {
         return currency
     }
     
+    class func waitForThreadToFinish(completion: () -> Void) {
+        let group = dispatch_group_create()
+        let queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_group_async(group, queue) {
+            completion()
+        }
+        
+        // Wait for the thread to finish before returning
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+    }
+    
     class func isDefaultAccountExisting() -> Bool {
         let activeRecord = ActiveRecord.init(tableName: ModelConstants.Entities.account)
         let accountModel = AttributeModel(
@@ -393,16 +405,34 @@ class BunnyUtils: NSObject {
         deleteActionKey: String,
         tableName: String,
         tableView: UITableView?,
+        isFinalCheck: Bool,
         completion: () -> Void
     ) {
+        if isFinalCheck {
+            let finalRecordChecker = ActiveRecord.init(tableName: tableName)
+            var objectCount = 1
+            BunnyUtils.waitForThreadToFinish({
+                finalRecordChecker.selectAllObjects({ (fetchedObjects) in
+                    objectCount = fetchedObjects.count
+                })
+            })
+            if objectCount == 1 {
+                BunnyUtils.showAlertWithOKButton(
+                    vc,
+                    titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                    messageKey: "Cannot delete the last item."
+                )
+                return
+            }
+        }
+        
         let alertController = UIAlertController.init(
             title: BunnyUtils.uncommentedLocalizedString(deleteTitleKey),
             message: BunnyUtils.uncommentedLocalizedString(deleteMessegeKey),
             preferredStyle: UIAlertControllerStyle.ActionSheet
         )
         
-        // "Delete X"
-        // TO-DO: Can't delete the final budget!
+        // "Delete X"
         alertController.addAction(
             UIAlertAction.init(
                 title: BunnyUtils.uncommentedLocalizedString(deleteActionKey),

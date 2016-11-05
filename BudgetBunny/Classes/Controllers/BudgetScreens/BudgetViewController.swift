@@ -234,6 +234,33 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 )
             },
             deleteCompletion: {
+                let finalRecordChecker = ActiveRecord.init(tableName: ModelConstants.Entities.category)
+                
+                var objectCount = 1
+                // "SELECT * FROM categories WHERE isIncome = true;"
+                let categoryModel = AttributeModel(
+                    tableName: ModelConstants.Entities.category,
+                    key: ModelConstants.Category.isIncome,
+                    value: true
+                )
+                
+                BunnyUtils.waitForThreadToFinish({
+                    finalRecordChecker.selectAllObjectsWithParameters(
+                        [categoryModel.format: categoryModel.value],
+                        completion: { (fetchedObjects) in
+                            objectCount = fetchedObjects.count
+                        }
+                    )
+                })
+                if objectCount == 1 {
+                    BunnyUtils.showAlertWithOKButton(
+                        self,
+                        titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                        messageKey: "Cannot delete the last item."
+                    )
+                    return
+                }
+                
                 BunnyUtils.showDeleteDialog(
                     self,
                     managedObject: (self.currentlySelectedObject as! IncomeCategoryCell).categoryObject,
@@ -242,6 +269,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
                     tableName: ModelConstants.Entities.category,
                     tableView: self.budgetTableView,
+                    isFinalCheck: false,
                     completion: {
                         self.updateIncomeSection()
                     }
@@ -305,6 +333,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     deleteActionKey: StringConstants.BUTTON_DELETE_BUDGET,
                     tableName: ModelConstants.Entities.budget,
                     tableView: self.budgetTableView,
+                    isFinalCheck: true,
                     completion: {
                         self.loadData()
                     }
@@ -324,6 +353,33 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     style: UITableViewRowActionStyle.Destructive,
                     title: BunnyUtils.uncommentedLocalizedString(StringConstants.BUTTON_DELETE)
                 ) { (action, indexPath) in
+                    let finalRecordChecker = ActiveRecord.init(tableName: ModelConstants.Entities.category)
+                    
+                    var objectCount = 1
+                    // "SELECT * FROM categories WHERE isIncome = true;"
+                    let categoryModel = AttributeModel(
+                        tableName: ModelConstants.Entities.category,
+                        key: ModelConstants.Category.isIncome,
+                        value: true
+                    )
+                    
+                    BunnyUtils.waitForThreadToFinish({
+                        finalRecordChecker.selectAllObjectsWithParameters(
+                            [categoryModel.format: categoryModel.value],
+                            completion: { (fetchedObjects) in
+                                objectCount = fetchedObjects.count
+                            }
+                        )
+                    })
+                    if objectCount == 1 {
+                        BunnyUtils.showAlertWithOKButton(
+                            self,
+                            titleKey: StringConstants.ERRORLABEL_ERROR_TITLE,
+                            messageKey: "Cannot delete the last item."
+                        )
+                        return
+                    }
+                    
                     BunnyUtils.showDeleteDialog (
                         self,
                         managedObject: self.incomeList[indexPath.row].categoryObject,
@@ -332,6 +388,7 @@ class BudgetViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         deleteActionKey: StringConstants.BUTTON_DELETE_INCOME_CATEGORY,
                         tableName: ModelConstants.Entities.category,
                         tableView: self.budgetTableView,
+                        isFinalCheck: true,
                         completion: {
                             self.updateIncomeSection()
                         }

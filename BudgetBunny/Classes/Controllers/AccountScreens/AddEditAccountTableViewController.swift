@@ -407,6 +407,7 @@ extension AddEditAccountTableViewController: AddEditAccountDelegate {
             deleteActionKey: StringConstants.BUTTON_DELETE_ACCOUNT,
             tableName: ModelConstants.Entities.account,
             tableView: self.tableView,
+            isFinalCheck: true,
             completion: {
                 self.dismissViewControllerAnimated(true, completion: {})
             }
